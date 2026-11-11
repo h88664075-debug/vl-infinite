@@ -1,129 +1,771 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
+<!DOCTYPE html><html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090812">
-<title>VL — Infinite Network</title>
-<style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090611">
+<title>۷ گناه کبیره | SEVEN SINS</title><style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
-:root{--bg:#090812;--panel:#121020;--panel2:#19152b;--line:#29233e;--text:#f7f3ff;--muted:#aaa1bf;--purple:#a879ff;--blue:#62c8ff;--pink:#ff79d1;--good:#69e6b1;--shadow:0 18px 60px #0008}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#45247755,transparent 38%),radial-gradient(ellipse at 0% 50%,#12365a33,transparent 38%),var(--bg);color:var(--text);font-family:Vazirmatn,system-ui,sans-serif;min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{max-width:1440px;margin:auto;padding:22px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;border:1px solid var(--line);border-radius:20px;background:#100d1dcc;backdrop-filter:blur(18px);position:sticky;top:10px;z-index:5;box-shadow:var(--shadow)}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:24px;font-weight:900;background:linear-gradient(135deg,#b98aff,#5730b5 55%,#35b9ec);box-shadow:0 0 28px #9860ff66}.brand strong{font-size:19px;letter-spacing:2px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.top-actions{display:flex;gap:9px;align-items:center}.pill,.btn{border:1px solid var(--line);background:#1b1730;padding:9px 14px;border-radius:12px;color:var(--text)}.btn.primary{background:linear-gradient(120deg,#8654e8,#436fc7);border:0;box-shadow:0 8px 25px #8154d944}.btn:hover,.nav button:hover{transform:translateY(-2px);border-color:#8d69ce}.layout{display:grid;grid-template-columns:230px 1fr;gap:20px;margin-top:20px}.sidebar,.panel{background:#100e1bd9;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.sidebar{padding:15px;height:max-content;position:sticky;top:95px}.side-title{color:var(--muted);font-size:11px;padding:8px 12px}.nav{display:grid;gap:7px}.nav button{border:1px solid transparent;background:transparent;text-align:right;padding:12px;border-radius:12px;color:#c9c1dc;transition:.2s}.nav button.active{background:linear-gradient(100deg,#8454d633,#3b9bd322);border-color:#7655b1;color:white}.nav .ico{display:inline-block;width:27px}.side-note{margin-top:22px;padding:14px;background:linear-gradient(140deg,#6c43b52b,#1686a31b);border:1px solid #4e3d70;border-radius:15px;font-size:12px;color:#d7cbee;line-height:1.9}.main{min-width:0}.hero{position:relative;overflow:hidden;border:1px solid #443266;border-radius:25px;padding:34px;background:linear-gradient(115deg,#1b1230ee,#11182bed 70%),radial-gradient(circle at 85% 40%,#8d55ff,transparent 35%);min-height:255px;box-shadow:0 20px 65px #0007}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}.hero:before{width:250px;height:250px;border:1px solid #b58cff55;right:8%;top:-65px;box-shadow:0 0 60px #995cff44,inset 0 0 60px #995cff22}.hero:after{width:140px;height:140px;background:#6d50ff1c;right:14%;top:0;filter:blur(30px)}.eyebrow{color:#c7a9ff;font-size:12px;letter-spacing:2px}.hero h1{font-size:clamp(34px,6vw,62px);line-height:1.12;margin:12px 0;background:linear-gradient(90deg,#fff,#c5a4ff 55%,#70d8ff);-webkit-background-clip:text;color:transparent;position:relative;z-index:1}.hero p{color:#c3bad5;max-width:570px;line-height:2;position:relative;z-index:1}.hero .btn{position:relative;z-index:1}.hero-mark{position:absolute;left:7%;top:20%;font-size:115px;font-weight:900;color:#ffffff08;letter-spacing:-12px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:25px 2px 13px;gap:10px}.section-head h2{font-size:18px;margin:0}.section-head span{font-size:11px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{padding:17px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#19152a,#100e1b)}.stat .label{color:var(--muted);font-size:12px}.stat strong{display:block;font-size:25px;margin:7px 0}.stat small{color:#a98aff;font-size:11px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{padding:17px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#18142a,#100e1b)}.card h3{margin:8px 0;font-size:15px}.card p{color:var(--muted);font-size:12px;line-height:1.9;margin:5px 0}.symbol{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#8f63df25;font-size:20px}.view{display:none}.view.active{display:block;animation:fade .3s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.panel{padding:22px}.member-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.member{display:flex;align-items:center;gap:12px;padding:14px;background:#19152a;border:1px solid var(--line);border-radius:15px}.avatar{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,#a36bff,#318cc9);display:grid;place-items:center;font-weight:800}.member small{display:block;color:var(--muted)}.tag{font-size:10px;color:#c9aaff;border:1px solid #6d50a5;border-radius:30px;padding:3px 8px;margin-right:auto}.feed-item{padding:15px;border-bottom:1px solid var(--line)}.feed-item:last-child{border:0}.feed-item p{color:#c4bdd3;line-height:1.9}.input{width:100%;padding:12px 14px;background:#0c0a15;border:1px solid var(--line);border-radius:12px;color:white;outline:none}.input:focus{border-color:#9569e8}textarea.input{min-height:90px;resize:vertical}.form-row{display:flex;gap:9px;margin:12px 0}.form-row>*{flex:1}.chatbox{height:300px;overflow:auto;background:#0b0913;border:1px solid var(--line);border-radius:15px;padding:12px}.bubble{max-width:80%;background:#27203e;border:1px solid #443461;border-radius:14px;padding:10px 13px;margin:8px 0;line-height:1.8}.bubble.me{margin-right:auto;background:#302052}.bubble small{display:block;color:#b7a6d6;font-size:10px}.progress{height:9px;border-radius:20px;background:#29233a;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#9561ef,#54c7ed);border-radius:20px}.notice{border:1px solid #5a477b;background:#271c3c;padding:13px;border-radius:13px;color:#d9c9f5;font-size:12px;line-height:1.8}.footer{text-align:center;color:#756d89;font-size:11px;padding:25px}.mobile-nav{display:none}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#211a35;border:1px solid #8062b3;padding:12px 18px;border-radius:12px;transition:.25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.stats{grid-template-columns:repeat(2,1fr)}.cards,.member-grid{grid-template-columns:repeat(2,1fr)}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:8;justify-content:space-around;padding:9px 4px calc(9px + env(safe-area-inset-bottom));background:#100d1bf2;border-top:1px solid var(--line);backdrop-filter:blur(15px)}.mobile-nav button{background:none;border:0;color:#aaa1bf;font-size:10px;display:grid;gap:3px;justify-items:center}.mobile-nav button.active{color:#c5a2ff}.app{padding:12px 12px 90px}.topbar{top:5px}.hero{padding:25px 20px}.hero-mark{font-size:80px;left:2%}}
-@media(max-width:520px){.cards,.member-grid{grid-template-columns:1fr}.top-actions .pill{display:none}.hero{min-height:240px}.stats .stat{padding:13px}.stat strong{font-size:21px}.panel{padding:15px}.form-row{flex-direction:column}.brand small{font-size:8px}}
-</style>
-</head>
-<body>
-<div class="app">
-<header class="topbar">
- <div class="brand"><div class="logo">VL</div><div><strong>VL INFINITE</strong><small>THE COMMUNITY NETWORK</small></div></div>
- <div class="top-actions"><span class="pill">✦ BEYOND LIMITS</span><button class="btn" id="langBtn">FA / EN</button><button class="btn primary" onclick="showToast('به دنیای VL خوش آمدی!')">ورود به VL ↗</button></div>
-</header>
-<div class="layout">
-<aside class="sidebar">
- <div class="side-title">MAIN MENU / منوی اصلی</div>
- <nav class="nav" id="sideNav">
-  <button class="active" data-view="home"><span class="ico">⌂</span> خانه</button>
-  <button data-view="members"><span class="ico">♙</span> اعضای VL</button>
-  <button data-view="feed"><span class="ico">◈</span> تالار گفتگو</button>
-  <button data-view="chat"><span class="ico">▤</span> چت گروهی</button>
-  <button data-view="events"><span class="ico">◷</span> رویدادها</button>
-  <button data-view="arena"><span class="ico">♜</span> آرنا و امتیازات</button>
-  <button data-view="gallery"><span class="ico">▧</span> گالری خاطرات</button>
-  <button data-view="admin"><span class="ico">⚙</span> مدیریت</button>
- </nav>
- <div class="side-note">✧ <b>VL MANIFESTO</b><br>یک جامعه، هزاران ایده، بی‌نهایت امکان. اینجا هر عضو بخشی از داستان VL است.</div>
-</aside>
-<main class="main">
-<section class="view active" id="home">
- <div class="hero"><div class="hero-mark">VL</div><div class="eyebrow">WELCOME TO THE INFINITE NETWORK</div><h1>فراتر از معمولی.</h1><p>به دنیای اختصاصی VL خوش آمدی؛ جایی برای ارتباط، ساختن خاطره، رقابت دوستانه و خلق اتفاق‌های بزرگ.</p><button class="btn primary" onclick="navigate('members')">کشف اعضای VL ←</button></div>
- <div class="section-head"><h2>نمای کلی شبکه</h2><span>DEMO DASHBOARD</span></div>
- <div class="stats">
-  <div class="stat"><div class="label">اعضای نمونه</div><strong id="memberCount">06</strong><small>✦ شبکه در حال رشد</small></div>
-  <div class="stat"><div class="label">پست‌های تالار</div><strong id="postCount">03</strong><small>✦ گفتگوهای گروه</small></div>
-  <div class="stat"><div class="label">رویدادهای پیش‌رو</div><strong>02</strong><small>✦ برنامه‌ریزی شده</small></div>
-  <div class="stat"><div class="label">سطح نمایشی</div><strong>LV.08</strong><small>✦ مسیر پیشرفت</small></div>
- </div>
- <div class="section-head"><h2>دسترسی سریع</h2><span>EXPLORE VL</span></div>
- <div class="cards">
-  <article class="card"><div class="symbol">♙</div><h3>اعضای افسانه‌ای</h3><p>با اعضا آشنا شو و پروفایل‌های گروه را ببین.</p><button class="btn" onclick="navigate('members')">مشاهده اعضا</button></article>
-  <article class="card"><div class="symbol">◈</div><h3>تالار گفتگو</h3><p>ایده‌ها، خبرها و اتفاق‌های تازه را دنبال کن.</p><button class="btn" onclick="navigate('feed')">رفتن به تالار</button></article>
-  <article class="card"><div class="symbol">♜</div><h3>VL Arena</h3><p>چالش‌های دوستانه و سیستم امتیاز نمایشی.</p><button class="btn" onclick="navigate('arena')">ورود به آرنا</button></article>
- </div>
- <div class="section-head"><h2>آخرین اطلاعیه</h2><span>ANNOUNCEMENT</span></div>
- <div class="notice">✦ به نسخه اولیه VL INFINITE خوش آمدید. اینجا می‌توانید ظاهر و امکانات نمونه را امتحان کنید. برای استفاده گروهی واقعی، اتصال سرور و پایگاه داده لازم است.</div>
-</section>
-<section class="view" id="members">
- <div class="section-head"><h2>اعضای VL</h2><span>MEMBER DIRECTORY</span></div>
- <div class="panel"><input class="input" id="memberSearch" placeholder="جست‌وجوی نام عضو..." oninput="filterMembers()"><div class="member-grid" id="memberGrid" style="margin-top:15px"></div></div>
-</section>
-<section class="view" id="feed">
- <div class="section-head"><h2>تالار گفتگو</h2><span>COMMUNITY FEED</span></div>
- <div class="panel"><textarea class="input" id="postText" placeholder="چه چیزی می‌خواهی با VL به اشتراک بگذاری؟"></textarea><div class="form-row"><button class="btn primary" onclick="addPost()">انتشار پست ✦</button></div><div id="feedList"></div></div>
-</section>
-<section class="view" id="chat">
- <div class="section-head"><h2>چت گروهی</h2><span>LOCAL DEMO CHAT</span></div>
- <div class="panel"><div class="notice">این چت فقط روی همین دستگاه و مرورگر ذخیره می‌شود و هنوز بین اعضا آنلاین نیست.</div><div class="chatbox" id="chatBox" style="margin-top:12px"></div><div class="form-row"><input class="input" id="chatInput" placeholder="پیامت را بنویس..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">ارسال</button></div></div>
-</section>
-<section class="view" id="events">
- <div class="section-head"><h2>رویدادهای VL</h2><span>UPCOMING EVENTS</span></div>
- <div class="cards">
-  <article class="card"><div class="symbol">✦</div><h3>شب ایده‌های VL</h3><p>یک دورهمی برای مطرح کردن ایده‌های تازه و برنامه‌های گروه.</p><span class="tag">به‌زودی</span></article>
-  <article class="card"><div class="symbol">◈</div><h3>چالش خلاقیت</h3><p>یک چالش دوستانه برای ساختن و به اشتراک گذاشتن آثار.</p><span class="tag">در انتظار زمان‌بندی</span></article>
- </div>
- <div class="panel" style="margin-top:14px"><h3>افزودن رویداد شخصی</h3><input class="input" id="eventName" placeholder="نام رویداد"><div class="form-row"><input class="input" id="eventDate" type="date"><button class="btn primary" onclick="addEvent()">ثبت رویداد</button></div><div id="eventList"></div></div>
-</section>
-<section class="view" id="arena">
- <div class="section-head"><h2>VL Arena</h2><span>LEVEL UP</span></div>
- <div class="panel"><div class="eyebrow">YOUR DEMO RANK</div><h1 style="font-size:38px;margin:5px 0">LEVEL 08 <span style="font-size:15px;color:#b58cff">✦ ELITE</span></h1><p style="color:var(--muted)">امتیاز نمایشی شما: <b id="xp">640 XP</b></p><div class="progress"><i id="xpBar" style="width:64%"></i></div><p style="font-size:12px;color:var(--muted)">برای رسیدن به سطح بعدی، در فعالیت‌های گروه شرکت کن.</p><button class="btn primary" onclick="earnXP()">گرفتن ۵۰ امتیاز آزمایشی +</button></div>
- <div class="section-head"><h2>جدول افتخارات نمونه</h2></div><div class="panel" id="leaderboard"></div>
-</section>
-<section class="view" id="gallery">
- <div class="section-head"><h2>Memory Galaxy</h2><span>MEMORIES</span></div>
- <div class="panel"><p style="color:var(--muted)">خاطرات و لحظه‌های ماندگار گروه را اینجا ثبت کنید.</p><input class="input" id="memoryTitle" placeholder="عنوان خاطره"><div class="form-row"><input class="input" id="memoryDesc" placeholder="توضیح کوتاه"><button class="btn primary" onclick="addMemory()">ثبت خاطره</button></div><div id="memoryList" class="cards"></div></div>
-</section>
-<section class="view" id="admin">
- <div class="section-head"><h2>مرکز مدیریت</h2><span>ADMIN CONSOLE</span></div>
- <div class="notice">پنل نمایشی است. کنترل واقعی اعضا، نقش‌ها و دسترسی‌ها باید با احراز هویت امن در سرور پیاده‌سازی شود.</div>
- <div class="panel" style="margin-top:14px"><h3>انتشار اطلاعیه</h3><textarea class="input" id="announcement" placeholder="متن اطلاعیه..."></textarea><div class="form-row"><button class="btn primary" onclick="publishAnnouncement()">انتشار اطلاعیه</button></div><div id="adminStatus" style="color:var(--good);font-size:12px"></div></div>
- <div class="panel" style="margin-top:14px"><h3>تنظیمات نمایشی</h3><button class="btn" onclick="resetDemo()">بازنشانی داده‌های نمونه</button></div>
-</section>
-</main>
+
+:root{
+  --bg:#07050b;
+  --bg2:#0d0813;
+  --panel:rgba(20,12,29,.82);
+  --panel-solid:#171020;
+  --line:rgba(177,110,225,.22);
+  --text:#f8f4ff;
+  --muted:#a99db6;
+  --purple:#9b5cff;
+  --pink:#ff4f87;
+  --red:#ff365f;
+  --gold:#ffc857;
+  --cyan:#65d9ff;
+  --green:#6ff0bd;
+  --shadow:0 25px 90px rgba(0,0,0,.65);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 8% 15%,rgba(155,92,255,.15),transparent 28%),
+    radial-gradient(circle at 92% 18%,rgba(255,54,95,.12),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(71,31,111,.12),transparent 35%),
+    var(--bg);
+}
+
+/* BACKGROUND */
+body:before,
+body:after{
+  content:"";
+  position:fixed;
+  width:400px;height:400px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.12;
+  pointer-events:none;
+  z-index:-1;
+}
+body:before{background:var(--purple);top:-180px;right:-100px}
+body:after{background:var(--red);bottom:-180px;left:-100px}
+
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+
+.app{
+  max-width:1400px;
+  margin:auto;
+  padding:18px;
+}
+
+/* HEADER */
+.topbar{
+  position:sticky;
+  top:12px;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:12px 17px;
+  border:1px solid var(--line);
+  border-radius:23px;
+  background:rgba(12,8,19,.78);
+  backdrop-filter:blur(22px);
+  box-shadow:var(--shadow);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.logo{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  font-size:26px;
+  font-weight:900;
+  background:
+    linear-gradient(135deg,var(--red),var(--purple) 55%,var(--cyan));
+  box-shadow:
+    0 0 35px rgba(155,92,255,.35),
+    inset 0 1px 1px rgba(255,255,255,.2);
+}
+
+.brand strong{
+  display:block;
+  font-size:18px;
+  letter-spacing:.3px;
+}
+
+.brand small{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  color:var(--muted);
+  letter-spacing:2px;
+}
+
+.nav{
+  display:flex;
+  gap:4px;
+  flex-wrap:wrap;
+}
+
+.nav button{
+  border:1px solid transparent;
+  background:transparent;
+  color:#c7bbd2;
+  padding:9px 13px;
+  border-radius:12px;
+  transition:.25s;
+}
+
+.nav button:hover,
+.nav button.active{
+  color:white;
+  background:linear-gradient(120deg,rgba(155,92,255,.18),rgba(255,54,95,.1));
+  border-color:var(--line);
+  transform:translateY(-1px);
+}
+
+.live{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 12px;
+  border:1px solid rgba(111,240,189,.2);
+  border-radius:20px;
+  background:rgba(111,240,189,.05);
+  color:#9ff4d2;
+  font-size:11px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  overflow:hidden;
+  margin-top:20px;
+  min-height:510px;
+  padding:75px 8%;
+  border:1px solid rgba(177,110,225,.3);
+  border-radius:32px;
+  background:
+    linear-gradient(105deg,rgba(18,10,28,.97),rgba(8,6,13,.78)),
+    radial-gradient(circle at 78% 45%,rgba(155,92,255,.28),transparent 35%);
+  box-shadow:var(--shadow);
+}
+
+.hero:before{
+  content:"VII";
+  position:absolute;
+  left:3%;
+  top:-55px;
+  font-size:280px;
+  font-weight:900;
+  letter-spacing:-25px;
+  color:rgba(255,255,255,.018);
+  pointer-events:none;
+}
+
+.hero-orb{
+  position:absolute;
+  width:310px;
+  height:310px;
+  border-radius:50%;
+  border:1px solid rgba(199,140,255,.2);
+  left:7%;
+  bottom:-120px;
+  box-shadow:
+    0 0 70px rgba(155,92,255,.15),
+    inset 0 0 70px rgba(155,92,255,.06);
+}
+
+.hero-content{position:relative;z-index:2}
+
+.eyebrow{
+  color:#d4b4ff;
+  font-size:11px;
+  letter-spacing:4px;
+}
+
+.hero h1{
+  margin:15px 0;
+  font-size:clamp(50px,9vw,105px);
+  line-height:1;
+  letter-spacing:-3px;
+  background:linear-gradient(90deg,#fff,#dec4ff 50%,#ff91ac);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:650px;
+  color:#c7bacf;
+  line-height:2.1;
+  font-size:16px;
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  color:white;
+  background:rgba(34,23,47,.9);
+  padding:12px 19px;
+  border-radius:14px;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  border-color:rgba(212,160,255,.6);
+}
+
+.btn.primary{
+  border:0;
+  background:linear-gradient(120deg,var(--red),var(--purple));
+  box-shadow:0 12px 35px rgba(155,92,255,.28);
+}
+
+/* STATS */
+.section{display:none;margin-top:25px}
+.section.active{display:block;animation:fade .4s ease}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin:25px 3px 14px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:20px;
+}
+
+.section-head span{
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:1.5px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+
+.stat{
+  position:relative;
+  overflow:hidden;
+  padding:19px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(31,21,42,.9),rgba(14,9,20,.9));
+}
+
+.stat:after{
+  content:"";
+  position:absolute;
+  width:80px;height:80px;
+  border-radius:50%;
+  background:var(--purple);
+  filter:blur(60px);
+  opacity:.12;
+  left:-30px;bottom:-30px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.stat strong{
+  display:block;
+  margin-top:7px;
+  font-size:28px;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+  padding:21px;
+  border:1px solid var(--line);
+  border-radius:23px;
+  background:linear-gradient(145deg,rgba(29,19,40,.92),rgba(12,8,18,.92));
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(203,139,255,.6);
+  box-shadow:0 25px 60px rgba(0,0,0,.38);
+}
+
+.icon{
+  width:51px;height:51px;
+  display:grid;place-items:center;
+  border-radius:17px;
+  font-size:23px;
+  background:linear-gradient(135deg,rgba(255,54,95,.18),rgba(155,92,255,.25));
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.card h3{margin:14px 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:12px;line-height:2}
+
+.number{
+  position:absolute;
+  left:10px;
+  bottom:-35px;
+  font-size:110px;
+  font-weight:900;
+  color:rgba(255,255,255,.025);
+  pointer-events:none;
+}
+
+.tag{
+  display:inline-block;
+  margin-top:13px;
+  padding:4px 10px;
+  border:1px solid rgba(190,130,225,.3);
+  border-radius:20px;
+  color:#d9b8f4;
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+/* PANELS */
+.panel{
+  border:1px solid var(--line);
+  border-radius:23px;
+  padding:22px;
+  background:linear-gradient(145deg,rgba(23,15,33,.94),rgba(11,8,17,.94));
+}
+
+.notice{
+  padding:15px;
+  border-right:3px solid var(--red);
+  border-radius:13px;
+  background:rgba(255,54,95,.06);
+  color:#d7cadf;
+  line-height:2;
+  font-size:13px;
+}
+
+/* MEMBER CARDS */
+.member{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:rgba(29,20,40,.65);
+}
+
+.avatar{
+  width:46px;height:46px;
+  display:grid;place-items:center;
+  border-radius:15px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--red),var(--purple));
+}
+
+.member small{display:block;color:var(--muted);font-size:10px}
+
+/* HALL */
+.message{
+  padding:15px;
+  margin-top:10px;
+  border-bottom:1px solid var(--line);
+}
+
+.message:last-child{border-bottom:0}
+
+.message p{
+  margin:8px 0 0;
+  color:#c7bacf;
+  font-size:13px;
+  line-height:1.9;
+}
+
+.message small{color:var(--muted)}
+
+/* FORM */
+.input{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  outline:0;
+  color:white;
+  background:#0c0811;
+  font-family:inherit;
+}
+
+.input:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px rgba(155,92,255,.08);
+}
+
+textarea.input{
+  min-height:100px;
+  resize:vertical;
+}
+
+.form-row{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* QUOTE */
+.quote{
+  text-align:center;
+  padding:40px 20px;
+  font-size:18px;
+  line-height:2.4;
+  color:#d8cce2;
+}
+
+.quote b{
+  color:#ff9db5;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:35px 10px 15px;
+  color:#70657a;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,30px);
+  opacity:0;
+  z-index:1000;
+  padding:13px 20px;
+  border:1px solid rgba(204,144,255,.4);
+  border-radius:15px;
+  background:rgba(27,18,39,.96);
+  backdrop-filter:blur(15px);
+  box-shadow:var(--shadow);
+  transition:.3s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* MOBILE */
+@media(max-width:950px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .live{display:none}
+}
+
+@media(max-width:650px){
+  .app{padding:10px 10px 25px}
+  .topbar{top:5px}
+  .nav{display:none}
+  .hero{min-height:470px;padding:55px 25px}
+  .hero h1{font-size:58px}
+  .grid,.stats{grid-template-columns:1fr}
+  .section-head span{display:none}
+  .form-row{flex-direction:column}
+}
+</style></head><body>
+<div class="app"><header class="topbar">
+  <div class="brand">
+    <div class="logo">۷</div>
+    <div>
+      <strong>۷ گناه کبیره</strong>
+      <small>SEVEN SINS SOCIETY</small>
+    </div>
+  </div>  <nav class="nav">
+    <button class="active" data-page="home">خانه</button>
+    <button data-page="sins">هفت گناه</button>
+    <button data-page="hall">تالار</button>
+    <button data-page="members">اعضا</button>
+    <button data-page="about">درباره ما</button>
+  </nav>  <div class="live"><span class="dot"></span> SOCIETY ONLINE</div>
+</header><!-- HOME --><section class="section active" id="home">  <div class="hero">
+    <div class="hero-orb"></div><div class="hero-content">
+  <div class="eyebrow">WELCOME TO THE SEVEN SINS SOCIETY</div>
+  <h1>۷ گناه<br>کبیره</h1>
+
+  <p>
+    این فقط یک سایت نیست؛ دروازه ورود به دنیای محفل ماست.
+    جایی میان داستان، راز، دوستی و خاطراتی که قرار است با هم بسازیم.
+    هفت نماد، یک گروه و بی‌نهایت داستان.
+  </p>
+
+  <div class="hero-buttons">
+    <button class="btn primary" onclick="go('sins')">ورود به هفت‌گانه ✦</button>
+    <button class="btn" onclick="go('hall')">ورود به تالار</button>
+  </div>
 </div>
-<nav class="mobile-nav" id="mobileNav">
- <button class="active" data-view="home">⌂<span>خانه</span></button><button data-view="members">♙<span>اعضا</span></button><button data-view="feed">◈<span>تالار</span></button><button data-view="chat">▤<span>چت</span></button><button data-view="arena">♜<span>آرنا</span></button><button data-view="admin">⚙<span>مدیریت</span></button>
-</nav>
-<div class="footer">VL INFINITE NETWORK · BEYOND LIMITS · نسخه نمایشی 1.0</div>
-</div><div class="toast" id="toast"></div>
-<script>
-const $=id=>document.getElementById(id);
-const initialMembers=[['A','آرمان','Founder'],['N','نیکا','Creative'],['R','رادین','Elite'],['S','سارا','Member'],['M','مانی','Member'],['D','درسا','Member']];
-let members=JSON.parse(localStorage.vlMembers||'null')||initialMembers;
-let posts=JSON.parse(localStorage.vlPosts||'null')||[{name:'VL SYSTEM',text:'به شبکه اختصاصی VL خوش آمدید. اینجا شروع یک مسیر تازه است.',time:'امروز'},{name:'آرمان',text:'ایده‌های جدید برای برنامه بعدی گروه؟ همین‌جا مطرح کنید!',time:'امروز'},{name:'نیکا',text:'گالری خاطرات رو فراموش نکنید ✦',time:'امروز'}];
-let chats=JSON.parse(localStorage.vlChats||'null')||[{name:'VL SYSTEM',text:'به چت نمایشی VL خوش آمدی.'}];
-let events=JSON.parse(localStorage.vlEvents||'[]'),memories=JSON.parse(localStorage.vlMemories||'[]');
-let xp=Number(localStorage.vlXP||640);
-function save(){localStorage.vlMembers=JSON.stringify(members);localStorage.vlPosts=JSON.stringify(posts);localStorage.vlChats=JSON.stringify(chats);localStorage.vlEvents=JSON.stringify(events);localStorage.vlMemories=JSON.stringify(memories);localStorage.vlXP=xp}
-function showToast(t){let el=$('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300)}
-function navigate(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.view)));
-function renderMembers(list=members){$('memberGrid').innerHTML=list.map(m=>`<div class="member"><div class="avatar">${esc(m[0])}</div><div><b>${esc(m[1])}</b><small>${esc(m[2])}</small></div><span class="tag">VL</span></div>`).join('')}
-function filterMembers(){let q=$('memberSearch').value.trim().toLowerCase();renderMembers(members.filter(m=>m[1].toLowerCase().includes(q)))}
-function renderPosts(){$('feedList').innerHTML=posts.slice().reverse().map(p=>`<div class="feed-item"><b>${esc(p.name)}</b><small style="color:var(--muted);margin-right:8px">${esc(p.time)}</small><p>${esc(p.text)}</p></div>`).join('');$('postCount').textContent=String(posts.length).padStart(2,'0')}
-function addPost(){let t=$('postText').value.trim();if(!t)return showToast('اول متن پست را بنویس');posts.push({name:'عضو VL',text:t,time:new Date().toLocaleString('fa-IR')});$('postText').value='';save();renderPosts();showToast('پست در همین دستگاه ذخیره شد')}
-function renderChat(){$('chatBox').innerHTML=chats.map(c=>`<div class="bubble ${c.name==='شما'?'me':''}"><b>${esc(c.name)}</b><div>${esc(c.text)}</div></div>`).join('');$('chatBox').scrollTop=$('chatBox').scrollHeight}
-function sendChat(){let t=$('chatInput').value.trim();if(!t)return;chats.push({name:'شما',text:t});$('chatInput').value='';save();renderChat()}
-function addEvent(){let n=$('eventName').value.trim(),d=$('eventDate').value;if(!n||!d)return showToast('نام و تاریخ رویداد را وارد کن');events.push({n,d});save();renderEvents();$('eventName').value='';showToast('رویداد ذخیره شد')}
-function renderEvents(){$('eventList').innerHTML=events.map(e=>`<div class="feed-item"><b>${esc(e.n)}</b><span style="color:var(--muted);margin-right:12px">${esc(e.d)}</span></div>`).join('')}
-function addMemory(){let n=$('memoryTitle').value.trim(),d=$('memoryDesc').value.trim();if(!n)return showToast('عنوان خاطره را وارد کن');memories.push({n,d});save();renderMemories();$('memoryTitle').value='';$('memoryDesc').value='';showToast('خاطره ذخیره شد')}
-function renderMemories(){$('memoryList').innerHTML=memories.map(m=>`<article class="card"><div class="symbol">✧</div><h3>${esc(m.n)}</h3><p>${esc(m.d)}</p></article>`).join('')||'<p style="color:var(--muted)">هنوز خاطره‌ای ثبت نشده.</p>'}
-function earnXP(){xp+=50;save();$('xp').textContent=xp+' XP';$('xpBar').style.width=(xp%1000)/10+'%';showToast('۵۰ امتیاز آزمایشی اضافه شد!')}
-function renderLeaderboard(){$('leaderboard').innerHTML=[['آرمان',980],['نیکا',860],['رادین',740],['شما',xp]].sort((a,b)=>b[1]-a[1]).map((x,i)=>`<div class="feed-item"> <b>${i+1}. ${x[0]}</b><span style="float:left;color:#b99aff">${x[1]} XP</span></div>`).join('')}
-function publishAnnouncement(){let t=$('announcement').value.trim();if(!t)return showToast('متن اطلاعیه را وارد کن');posts.push({name:'مدیریت VL',text:t,time:new Date().toLocaleString('fa-IR')});save();renderPosts();$('announcement').value='';$('adminStatus').textContent='اطلاعیه به تالار نمونه اضافه شد.';showToast('اطلاعیه منتشر شد')}
-function resetDemo(){if(!confirm('همه داده‌های ذخیره‌شده این نسخه نمایشی پاک شوند؟'))return;['vlMembers','vlPosts','vlChats','vlEvents','vlMemories','vlXP'].forEach(k=>localStorage.removeItem(k));location.reload()}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-$('langBtn').onclick=()=>showToast('نسخه فارسی فعال است؛ ترجمه انگلیسی در توسعه بعدی اضافه می‌شود.');
-function init(){renderMembers();renderPosts();renderChat();renderEvents();renderMemories();$('xp').textContent=xp+' XP';$('xpBar').style.width=(xp%1000)/10+'%';renderLeaderboard();$('memberCount').textContent=String(members.length).padStart(2,'0')}
-init();
-</script>
-</body></html>
+
+  </div>  <div class="section-head">
+    <h2>وضعیت محفل</h2>
+    <span>SEVEN SINS · LIVE OVERVIEW</span>
+  </div>  <div class="stats">
+    <div class="stat"><span>نمادهای اصلی</span><strong>07</strong></div>
+    <div class="stat"><span>اعضای نمونه</span><strong id="memberCount">07</strong></div>
+    <div class="stat"><span>پیام‌های تالار</span><strong id="postCount">03</strong></div>
+    <div class="stat"><span>قدرت محفل</span><strong>∞</strong></div>
+  </div>  <div class="section-head">
+    <h2>قانون محفل</h2>
+    <span>ONE RULE ABOVE ALL</span>
+  </div>  <div class="panel quote">
+    «در هر انسانی سایه‌ای وجود دارد؛
+    <b>قدرت واقعی در شناختن و کنترل کردن آن است.</b>»
+  </div></section><!-- SINS --><section class="section" id="sins">  <div class="section-head">
+    <h2>هفت نماد</h2>
+    <span>THE SEVEN SYMBOLS</span>
+  </div>  <div class="grid"><article class="card">
+  <div class="icon">👑</div>
+  <h3>غرور</h3>
+  <p>نماد اعتماد به خود و شناخت ارزش‌ها؛ قدرتی که همیشه باید با فروتنی همراه باشد.</p>
+  <span class="tag">SYMBOL I</span><div class="number">I</div>
+</article>
+
+<article class="card">
+  <div class="icon">💎</div>
+  <h3>طمع</h3>
+  <p>میل به داشتن بیشتر و بیشتر؛ یادآوری اینکه گاهی کافی بودن بزرگ‌ترین ثروت است.</p>
+  <span class="tag">SYMBOL II</span><div class="number">II</div>
+</article>
+
+<article class="card">
+  <div class="icon">🔥</div>
+  <h3>اشتیاق</h3>
+  <p>نیروی خواستن و حرکت کردن؛ هر احساس قدرتمندی به آگاهی و مسئولیت نیاز دارد.</p>
+  <span class="tag">SYMBOL III</span><div class="number">III</div>
+</article>
+
+<article class="card">
+  <div class="icon">👁️</div>
+  <h3>حسد</h3>
+  <p>نگاهی به مسیر دیگران که می‌تواند تبدیل به انگیزه‌ای برای ساختن مسیر خودمان شود.</p>
+  <span class="tag">SYMBOL IV</span><div class="number">IV</div>
+</article>
+
+<article class="card">
+  <div class="icon">🍎</div>
+  <h3>زیاده‌روی</h3>
+  <p>یادآوری اینکه لذت زمانی زیباتر است که در کنار تعادل و انتخاب آگاهانه باشد.</p>
+  <span class="tag">SYMBOL V</span><div class="number">V</div>
+</article>
+
+<article class="card">
+  <div class="icon">🌙</div>
+  <h3>تنبلی</h3>
+  <p>سکون همیشه پایان داستان نیست؛ گاهی یک قدم کوچک می‌تواند همه‌چیز را تغییر دهد.</p>
+  <span class="tag">SYMBOL VI</span><div class="number">VI</div>
+</article>
+
+<article class="card">
+  <div class="icon">⚡</div>
+  <h3>خشم</h3>
+  <p>انرژی قدرتمندی که با شناخت احساسات و کنترل آن می‌تواند به نیرویی سازنده تبدیل شود.</p>
+  <span class="tag">SYMBOL VII</span><div class="number">VII</div>
+</article>
+
+  </div>
+</section><!-- HALL --><section class="section" id="hall">  <div class="section-head">
+    <h2>تالار محفل</h2>
+    <span>THE INNER HALL</span>
+  </div>  <div class="panel">
+    <div class="notice">
+      ✦ به تالار اصلی ۷ گناه کبیره خوش آمدی.
+      اینجا برای به اشتراک گذاشتن ایده‌ها، پیام‌ها و خاطره‌های گروه ساخته شده است.
+      قانون اول ما: احترام به همه اعضای محفل.
+    </div><textarea class="input" id="postInput" placeholder="پیامی برای محفل بنویس..." style="margin-top:15px"></textarea>
+
+<div class="form-row">
+  <button class="btn primary" onclick="addPost()">انتشار پیام ✦</button>
+</div>
+
+<div id="posts"></div>
+
+  </div></section><!-- MEMBERS --><section class="section" id="members">  <div class="section-head">
+    <h2>اعضای محفل</h2>
+    <span>THE INNER CIRCLE</span>
+  </div>  <div class="grid" id="membersGrid"></div></section><!-- ABOUT --><section class="section" id="about">  <div class="section-head">
+    <h2>درباره محفل</h2>
+    <span>THE STORY BEHIND THE SYMBOL</span>
+  </div>  <div class="panel">
+    <h2>✦ ۷ گناه کبیره</h2><p style="color:var(--muted);line-height:2.2">
+  این سایت خانه دیجیتال گروه ۷ گناه کبیره است؛
+  فضایی برای سرگرمی، داستان‌پردازی، دوستی و ساختن خاطره‌های مشترک.
+  هفت نماد اینجا فقط بخشی از یک دنیای خلاقانه هستند.
+</p>
+
+<div class="notice" style="margin-top:20px">
+  «ما قرار نیست شبیه بقیه باشیم؛ ما قرار است داستان خودمان را بسازیم.» ✦
+</div>
+
+  </div></section><footer>
+  ✦ ۷ گناه کبیره · SEVEN SINS SOCIETY · BEYOND THE STORY ✦
+</footer></div><div class="toast" id="toast"></div><script>
+const members = [
+  ["۷","رهبر محفل","FOUNDER"],
+  ["I","نماد اول","PRIDE"],
+  ["II","نماد دوم","GREED"],
+  ["III","نماد سوم","PASSION"],
+  ["IV","نماد چهارم","ENVY"],
+  ["V","نماد پنجم","EXCESS"],
+  ["VI","نماد ششم","SLOTH"],
+  ["VII","نماد هفتم","WRATH"]
+];
+
+let posts = JSON.parse(localStorage.getItem("sevenSinsPosts")) || [
+  {name:"سیستم محفل",text:"به تالار ۷ گناه کبیره خوش آمدید. داستان از همین‌جا شروع می‌شود.",time:"امروز"},
+  {name:"یکی از اعضا",text:"برای ماجراجویی بعدی گروه آماده‌اید؟ ✦",time:"امروز"},
+  {name:"مدیریت",text:"قانون اصلی محفل: احترام، دوستی و ساختن خاطره‌های خوب.",time:"امروز"}
+];
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function showToast(text){
+  const toast = $("toast");
+  toast.textContent = text;
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2500);
+}
+
+function go(id){
+  document.querySelectorAll(".section").forEach(section=>{
+    section.classList.toggle("active",section.id === id);
+  });
+
+  document.querySelectorAll(".nav button").forEach(button=>{
+    button.classList.toggle("active",button.dataset.page === id);
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+document.querySelectorAll(".nav button").forEach(button=>{
+  button.addEventListener("click",()=>{
+    go(button.dataset.page);
+  });
+});
+
+function escapeHTML(text){
+  return String(text).replace(/[&<>"']/g,function(char){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char];
+  });
+}
+
+function renderMembers(){
+  $("membersGrid").innerHTML = members.map(member=>`
+    <article class="member">
+      <div class="avatar">${member[0]}</div>
+      <div>
+        <strong>${member[1]}</strong>
+        <small>${member[2]}</small>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderPosts(){
+  $("posts").innerHTML = posts.slice().reverse().map(post=>`
+    <div class="message">
+      <strong>${escapeHTML(post.name)}</strong>
+      <small> · ${escapeHTML(post.time)}</small>
+      <p>${escapeHTML(post.text)}</p>
+    </div>
+  `).join("");
+
+  $("postCount").textContent = String(posts.length).padStart(2,"0");
+}
+
+function addPost(){
+  const input = $("postInput");
+  const text = input.value.trim();
+
+  if(!text){
+    showToast("اول یک پیام برای محفل بنویس ✦");
+    return;
+  }
+
+  posts.push({
+    name:"عضو محفل",
+    text:text,
+    time:new Date().toLocaleString("fa-IR")
+  });
+
+  localStorage.setItem("sevenSinsPosts",JSON.stringify(posts));
+
+  input.value = "";
+  renderPosts();
+
+  showToast("پیام با موفقیت در تالار ثبت شد ✦");
+}
+
+renderMembers();
+renderPosts();
+$("memberCount").textContent = "07";
+</script></body>
+                       </html>
