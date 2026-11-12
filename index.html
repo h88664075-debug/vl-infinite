@@ -1,186 +1,358 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amir & Yalda</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEVEN SINS — Forbidden Empire</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
+:root{
+ --bg:#08080c;--panel:#12121b;--gold:#d6ae69;
+ --red:#a83248;--text:#eee9df;--muted:#9993a0;
+}
 *{box-sizing:border-box}
-body{margin:0;overflow:hidden;background:#080b12;font-family:Tahoma}
-#hud{position:fixed;top:15px;left:0;width:100%;text-align:center;color:white;z-index:5;pointer-events:none}
-#mission{display:inline-block;background:#111d;padding:13px 22px;border:1px solid #c49b55;border-radius:12px}
-#distance{margin-top:10px;color:#ffd58a}
-#controls{position:fixed;bottom:25px;width:100%;display:flex;justify-content:space-between;padding:0 25px;z-index:5}
-.pad{width:110px;height:110px;border-radius:50%;background:#ffffff22;border:2px solid #ffffff66;color:white;font-size:27px;display:grid;place-items:center;touch-action:none}
-#run{width:85px;height:85px;border-radius:50%;background:#b98a3d99}
-#message{position:fixed;top:45%;width:100%;text-align:center;color:white;font-size:24px;display:none;z-index:10}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+header{
+ position:sticky;top:0;z-index:10;background:#090910ed;
+ border-bottom:1px solid #6e542c;padding:15px;
+ display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap
+}
+.logo{font:900 22px Cinzel;color:var(--gold);letter-spacing:2px}
+nav{display:flex;gap:7px;flex-wrap:wrap}
+nav button,.btn{
+ background:#1b1920;border:1px solid #55432d;color:var(--text);
+ padding:9px 13px;border-radius:10px
+}
+nav button.active,.btn.primary{background:#755127;color:white}
+main{max-width:1150px;margin:auto;padding:22px}
+.page{display:none}.page.active{display:block}
+.hero{
+ min-height:330px;border:1px solid #76572e;border-radius:20px;
+ padding:35px 22px;display:flex;flex-direction:column;
+ justify-content:center;align-items:center;text-align:center;
+ background:linear-gradient(120deg,#160f17,#10101b 55%,#25131b);
+ position:relative;overflow:hidden
+}
+.hero:after{content:"✦";position:absolute;font-size:240px;color:#d6ae690c}
+h1{font:900 clamp(35px,8vw,65px) Cinzel;color:var(--gold);margin:10px}
+h2{color:var(--gold)}
+.subtitle{color:#c9b9a1}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{
+ background:linear-gradient(145deg,#191821,#101017);
+ border:1px solid #42352a;border-radius:16px;padding:18px;
+ transition:.25s;min-width:0
+}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.sigil{font-size:43px}
+.card h3{color:var(--gold)}
+.muted{color:var(--muted);font-size:13px}
+.stat{font-size:25px;color:var(--gold);font-weight:bold}
+.section-title{margin:28px 0 14px}
+input,textarea{
+ width:100%;background:#090910;color:white;border:1px solid #514334;
+ border-radius:10px;padding:12px;outline:none
+}
+input:focus,textarea:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:90px}
+button:disabled{opacity:.5;cursor:not-allowed}
+.chatbox{background:#090910;border:1px solid #40332b;border-radius:14px;padding:12px}
+.messages{height:330px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;margin:12px 0}
+.msg{background:#1b1a23;padding:10px 12px;border-radius:10px;overflow-wrap:anywhere}
+.msg strong{color:var(--gold)}
+.msg small{color:var(--muted);display:block;font-size:10px;margin-top:4px}
+.chatrow{display:flex;gap:8px}
+.chatrow input{flex:1;min-width:0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tabs button{background:#211e25;color:white;border:1px solid #514334;border-radius:9px;padding:9px}
+.tabs button.active{background:#755127}
+.preview{font-size:23px;overflow-wrap:anywhere;min-height:70px}
+footer{text-align:center;color:var(--muted);padding:35px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#27212b;border:1px solid var(--gold);padding:12px 20px;border-radius:12px;display:none;z-index:30}
 </style>
 </head>
 <body>
-<div id="hud">
- <div id="mission">ماموریت: به یلدا برس!</div>
- <div id="distance">فاصله: ۳۰ متر</div>
-</div>
-<div id="message"></div>
-<div id="controls">
- <div class="pad" id="move">▲</div>
- <div class="pad" id="run">بدو!</div>
-</div>
+<header>
+ <div class="logo">SEVEN SINS</div>
+ <nav>
+  <button class="active" data-page="home">خانه</button>
+  <button data-page="sins">هفت گناه</button>
+  <button data-page="chat">چت</button>
+  <button data-page="fonts">فونت‌ساز</button>
+  <button data-page="games">بازی</button>
+  <button data-page="profile">پروفایل</button>
+ </nav>
+</header>
+
+<main>
+<section class="page active" id="home">
+ <div class="hero">
+  <p class="subtitle">WELCOME TO THE FORBIDDEN EMPIRE</p>
+  <h1>SEVEN SINS</h1>
+  <p>هفت قلمرو، هفت راز، یک امپراتوری بی‌انتها</p>
+  <button class="btn primary" onclick="showPage('sins')">ورود به هفت قلمرو ✦</button>
+ </div>
+ <h2 class="section-title">وضعیت امپراتوری</h2>
+ <div class="grid">
+  <div class="card"><div class="muted">سطح تو</div><div class="stat" id="level">۱</div></div>
+  <div class="card"><div class="muted">امتیاز تجربه</div><div class="stat" id="xp">۰</div></div>
+  <div class="card"><div class="muted">پیام‌های این نشست</div><div class="stat" id="sent">۰</div></div>
+ </div>
+ <h2 class="section-title">دروازه‌های امپراتوری</h2>
+ <div class="grid">
+  <div class="card"><div class="sigil">💬</div><h3>تالار گفتگو</h3><p>با دیگر بازدیدکنندگان صحبت کن.</p><button class="btn" onclick="showPage('chat')">ورود</button></div>
+  <div class="card"><div class="sigil">✍️</div><h3>کارگاه فونت</h3><p>متن‌های خاص و فانتزی بساز.</p><button class="btn" onclick="showPage('fonts')">ورود</button></div>
+  <div class="card"><div class="sigil">🎮</div><h3>اتاق بازی</h3><p>امتیاز جمع کن و رکورد بزن.</p><button class="btn" onclick="showPage('games')">ورود</button></div>
+ </div>
+</section>
+
+<section class="page" id="sins">
+ <h1>THE SEVEN KINGDOMS</h1>
+ <p class="subtitle">هفت قلمرو افسانه‌ای را کشف کن.</p>
+ <div class="grid" id="sinsGrid"></div>
+</section>
+
+<section class="page" id="chat">
+ <h1>GLOBAL CHAT</h1>
+ <p class="muted">چت گروهی زنده؛ پیام‌ها برای کاربران همان اتاق نمایش داده می‌شوند.</p>
+ <div class="chatbox">
+  <div class="tabs" id="roomTabs">
+   <button class="active" data-room="public">عمومی</button>
+   <button data-room="games">گیمرها</button>
+   <button data-room="mystery">اسرارآمیز</button>
+  </div>
+  <div class="muted" id="chatStatus">در حال اتصال...</div>
+  <div class="messages" id="messages"></div>
+  <div class="chatrow">
+   <input id="chatInput" maxlength="500" placeholder="پیامت را بنویس...">
+   <button class="btn primary" id="sendBtn">ارسال</button>
+  </div>
+  <p class="muted">نام نمایشی: <b id="nickname">...</b> · پیام‌ها عمومی‌اند؛ اطلاعات شخصی ارسال نکن.</p>
+ </div>
+</section>
+
+<section class="page" id="fonts">
+ <h1>FONT FORGE</h1>
+ <p class="subtitle">کارگاه ساخت متن‌های خاص</p>
+ <div class="card">
+  <label>متن موردنظر</label>
+  <input id="fontInput" placeholder="متنت را اینجا بنویس..." value="SEVEN SINS">
+  <h3>انتخاب استایل</h3>
+  <div class="grid" id="fontStyles"></div>
+  <h3>پیش‌نمایش</h3>
+  <div class="preview" id="fontPreview">SEVEN SINS</div>
+  <button class="btn primary" id="copyFont">کپی متن</button>
+ </div>
+</section>
+
+<section class="page" id="games">
+ <h1>THE GAME HALL</h1>
+ <div class="grid">
+  <div class="card">
+   <div class="sigil">💎</div><h3>شکار کریستال</h3>
+   <p>با هر کلیک یک کریستال جمع کن.</p>
+   <div class="stat" id="crystals">۰</div>
+   <button class="btn primary" id="crystalBtn">جمع‌آوری کریستال</button>
+  </div>
+  <div class="card">
+   <div class="sigil">🔮</div><h3>حدس عدد</h3>
+   <p>عدد بین ۱ تا ۱۰ را حدس بزن.</p>
+   <input id="guess" type="number" min="1" max="10" placeholder="عدد؟">
+   <button class="btn" id="guessBtn">امتحان کن</button>
+   <p id="guessResult" class="muted"></p>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="profile">
+ <h1>YOUR IDENTITY</h1>
+ <div class="card">
+  <div class="sigil">👑</div>
+  <h2 id="profileName">مسافر امپراتوری</h2>
+  <p>شناسه مهمان: <span id="uidShort">...</span></p>
+  <p>سطح: <b id="profileLevel">۱</b></p>
+  <p>امتیاز تجربه: <b id="profileXP">۰</b></p>
+  <p class="muted">پیشرفت بازی در همین مرورگر ذخیره می‌شود.</p>
+ </div>
+</section>
+</main>
+<footer>SEVEN SINS · THE FORBIDDEN EMPIRE</footer>
+<div id="toast"></div>
 
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import {getAuth,signInAnonymously,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import {getFirestore,collection,addDoc,query,orderBy,limit,onSnapshot,serverTimestamp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x101725);
-scene.fog=new THREE.Fog(0x101725,25,115);
+const firebaseConfig={
+ apiKey:"AIzaSyDHgvoAw4cHHD01UfQipDo6z5Z88Me0oCc",
+ authDomain:"seven-sins-chat.firebaseapp.com",
+ projectId:"seven-sins-chat",
+ storageBucket:"seven-sins-chat.firebasestorage.app",
+ messagingSenderId:"1009632654398",
+ appId:"1:1009632654398:web:c7bc6b9660dfda377bcd6f"
+};
 
-const camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.1,200);
-const renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(innerWidth,innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-document.body.appendChild(renderer.domElement);
-
-scene.add(new THREE.HemisphereLight(0xaabbdd,0x25202a,2));
-const moon=new THREE.DirectionalLight(0xffdfb0,2.5);
-moon.position.set(-10,20,10);
-moon.castShadow=true;
-scene.add(moon);
-
-const mat=(color,roughness=.8)=>new THREE.MeshStandardMaterial({color,roughness});
-const skin=mat(0xc68e70), darkSkin=mat(0x9d6856);
-const black=mat(0x171923), jacket=mat(0x252a35);
-const pants=mat(0x171a24), shoe=mat(0xeeeeea);
-const hair=mat(0x17120f), eye=mat(0x17100d);
-const white=mat(0xf0e9dc), red=mat(0x812f3e);
-
-function sphere(parent,x,y,z,sx,sy,sz,material){
- const m=new THREE.Mesh(new THREE.SphereGeometry(1,24,16),material);
- m.position.set(x,y,z);m.scale.set(sx,sy,sz);
- m.castShadow=true;parent.add(m);return m;
-}
-function limb(parent,a,b,r1,r2,material){
- const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b);
- const d=new THREE.Vector3().subVectors(end,start);
- const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r2,r1,d.length(),12),material);
- mesh.position.copy(start).add(end).multiplyScalar(.5);
- mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());
- mesh.castShadow=true;parent.add(mesh);return mesh;
+const $=id=>document.getElementById(id);
+function toast(text){
+ const t=$("toast");t.textContent=text;t.style.display="block";
+ setTimeout(()=>t.style.display="none",2600);
 }
 
-function person(isAmir){
- const root=new THREE.Group();
- const clothes=isAmir?jacket:red;
- const legs=[];
- const arms=[];
-
- // تنه و گردن
- sphere(root,0,1.23,0,.34,.48,.20,clothes);
- sphere(root,0,.91,0,.25,.22,.16,pants);
- sphere(root,0,1.73,0,.105,.16,.11,skin);
-
- // سر
- sphere(root,0,2.02,0,.22,.29,.20,skin);
- // گوش‌ها
- sphere(root,-.22,2.03,0,.045,.075,.04,skin);
- sphere(root,.22,2.03,0,.045,.075,.04,skin);
- // مو
- sphere(root,0,2.22,-.025,.23,.15,.21,hair);
- sphere(root,-.15,2.14,.07,.09,.12,.12,hair);
- sphere(root,.12,2.16,.07,.10,.12,.12,hair);
- // چشم‌ها
- sphere(root,-.085,2.06,.18,.025,.025,.015,eye);
- sphere(root,.085,2.06,.18,.025,.025,.015,eye);
- // بینی و دهان
- sphere(root,0,1.99,.205,.035,.065,.045,skin);
- sphere(root,0,1.91,.19,.055,.015,.012,red);
-
- // جزئیات لباس
- if(isAmir){
-   sphere(root,0,1.32,.205,.13,.08,.012,white);
- }else{
-   sphere(root,0,1.28,.205,.12,.025,.012,white);
-   sphere(root,0,1.02,.18,.08,.10,.02,black);
- }
-
- // دست‌ها
- for(const side of [-1,1]){
-   const shoulder=[side*.37,1.48,0];
-   const elbow=[side*.43,1.18,0];
-   const hand=[side*.43,1.0,.03];
-   const upper=limb(root,shoulder,elbow,.105,.08,clothes);
-   const lower=limb(root,elbow,hand,.075,.045,skin);
-   sphere(root,...hand,.065,.07,.06,skin);
-   arms.push({upper,lower,side});
- }
-
- // پاها
- for(const side of [-1,1]){
-   const hip=[side*.14,.85,0];
-   const knee=[side*.16,.48,0];
-   const ankle=[side*.16,.12,0];
-   const upper=limb(root,hip,knee,.13,.09,pants);
-   const lower=limb(root,knee,ankle,.085,.055,pants);
-   const foot=sphere(root,side*.16,.07,.10,.09,.07,.17,shoe);
-   legs.push({upper,lower,foot,side});
- }
- root.userData={legs,arms,isAmir};
- return root;
+let xp=Number(localStorage.getItem("sinsXP")||0);
+let crystals=Number(localStorage.getItem("sinsCrystals")||0);
+let sent=0;
+function updateStats(){
+ const level=Math.floor(xp/100)+1;
+ $("xp").textContent=xp;$("level").textContent=level;
+ $("profileXP").textContent=xp;$("profileLevel").textContent=level;
+ $("sent").textContent=sent;$("crystals").textContent=crystals;
 }
-
-// خیابان
-const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),mat(0x252936));
-ground.rotation.x=-Math.PI/2;ground.position.y=-.04;
-ground.receiveShadow=true;scene.add(ground);
-
-const road=new THREE.Mesh(new THREE.PlaneGeometry(13,180),mat(0x151923));
-road.rotation.x=-Math.PI/2;road.position.set(0,.005,-35);scene.add(road);
-
-// خط‌های خیابان
-for(let z=15;z>-100;z-=9){
- const line=new THREE.Mesh(new THREE.BoxGeometry(.12,.02,4),mat(0xc4b58d));
- line.position.set(0,.025,z);scene.add(line);
+function addXP(amount){
+ xp+=amount;localStorage.setItem("sinsXP",xp);updateStats();
 }
+updateStats();
 
-// ساختمان‌ها
-for(let z=10;z>-100;z-=13){
- for(const side of [-1,1]){
-  const h=8+Math.random()*16;
-  const building=new THREE.Mesh(
-   new THREE.BoxGeometry(5,h,10),
-   mat(side===1?0x303442:0x242b38)
-  );
-  building.position.set(side*10,h/2,z);
-  building.castShadow=true;scene.add(building);
-  for(let y=2;y<h-1;y+=2.3){
-   for(let x=-1.5;x<=1.5;x+=1.5){
-    const window=new THREE.Mesh(
-     new THREE.PlaneGeometry(.65,.9),
-     new THREE.MeshBasicMaterial({color:Math.random()>.35?0xffd18a:0x34445c})
-    );
-    window.position.set(side*7.47,y,z+x);
-    window.rotation.y=side===1?Math.PI/2:-Math.PI/2;
-    scene.add(window);
-   }
+window.showPage=id=>{
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ $(id).classList.add("active");
+};
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+
+const sins=[
+ ["👑","غرور","PRIDE","قدرت، شکوه و جاه‌طلبی"],
+ ["💰","طمع","GREED","گنجینه‌های پنهان"],
+ ["🌹","شهوت","LUST","زیبایی و وسوسه"],
+ ["🪞","حسادت","ENVY","آینه‌ی آرزوها"],
+ ["🍷","شکم‌پرستی","GLUTTONY","ضیافت بی‌پایان"],
+ ["🔥","خشم","WRATH","آتش درون"],
+ ["⏳","تنبلی","SLOTH","سکوت زمان"]
+];
+sins.forEach((s,i)=>{
+ const el=document.createElement("div");el.className="card";
+ el.innerHTML=`<div class="sigil">${s[0]}</div><h3>${s[1]}</h3><div class="muted">${s[2]}</div><p>${s[3]}</p><button class="btn" data-sin="${i}">کشف قلمرو</button>`;
+ el.querySelector("button").onclick=()=>toast("قلمرو "+s[1]+" انتخاب شد!");
+ $("sinsGrid").append(el);
+});
+
+const styles=[
+ ["معمولی",s=>s],
+ ["گوتیک",s=>"𝕲𝖔𝖙𝖍𝖎𝖈: "+s],
+ ["بولد",s=>s.toUpperCase()],
+ ["فاصله‌دار",s=>[...s].join(" ")],
+ ["ستاره‌ای",s=>"✦ "+s+" ✦"],
+ ["سلطنتی",s=>"♛ "+s+" ♛"],
+ ["مرموز",s=>"☾ "+s+" ☽"],
+ ["الماسی",s=>"◇ "+s+" ◇"],
+ ["آتشین",s=>"🔥 "+s+" 🔥"],
+ ["کلاسیک",s=>"『"+s+"』"],
+ ["مربعی",s=>"▣ "+s+" ▣"],
+ ["جادویی",s=>"༺ "+s+" ༻"]
+];
+let currentStyle=styles[0];
+styles.forEach(s=>{
+ const b=document.createElement("button");b.className="btn";b.textContent=s[0];
+ b.onclick=()=>{currentStyle=s;updateFont();};
+ $("fontStyles").append(b);
+});
+function updateFont(){
+ $("fontPreview").textContent=currentStyle[1]($("fontInput").value);
+}
+$("fontInput").addEventListener("input",updateFont);
+updateFont();
+$("copyFont").onclick=async()=>{
+ try{await navigator.clipboard.writeText($("fontPreview").textContent);toast("متن کپی شد!");}
+ catch{toast("کپی خودکار در این مرورگر در دسترس نیست.");}
+};
+
+$("crystalBtn").onclick=()=>{
+ crystals++;localStorage.setItem("sinsCrystals",crystals);
+ addXP(5);$("crystals").textContent=crystals;
+};
+let secret=Math.floor(Math.random()*10)+1;
+$("guessBtn").onclick=()=>{
+ const n=Number($("guess").value);
+ if(!Number.isInteger(n)||n<1||n>10){$("guessResult").textContent="عدد ۱ تا ۱۰ وارد کن.";return;}
+ if(n===secret){
+  $("guessResult").textContent="درست حدس زدی! ۲۰ XP گرفتی.";
+  addXP(20);secret=Math.floor(Math.random()*10)+1;
+ }else $("guessResult").textContent=n<secret?"عدد بزرگ‌تر است.":"عدد کوچک‌تر است.";
+};
+
+// Firebase chat
+let db,auth,user,currentRoom="public",unsubscribe=null;
+let nickname=sessionStorage.getItem("sinsNickname");
+if(!nickname){
+ nickname="Shadow-"+Math.floor(1000+Math.random()*9000);
+ sessionStorage.setItem("sinsNickname",nickname);
+}
+$("nickname").textContent=nickname;
+$("profileName").textContent=nickname;
+
+function chatError(e){
+ console.error(e);
+ $("chatStatus").textContent="خطا در اتصال: "+(e.code||e.message||"نامشخص");
+}
+try{
+ const app=initializeApp(firebaseConfig);
+ auth=getAuth(app);db=getFirestore(app);
+ onAuthStateChanged(auth,async u=>{
+  if(u){user=u; $("uidShort").textContent=u.uid.slice(0,8);listenRoom();}
+  else{
+   try{await signInAnonymously(auth);}
+   catch(e){chatError(e);}
   }
- }
-}
+ });
+}catch(e){chatError(e);}
 
-// چراغ‌های خیابان
-for(let z=10;z>-90;z-=18){
- for(const side of [-1,1]){
-  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.06,.09,5,8),black);
-  pole.position.set(side*5,2.5,z);scene.add(pole);
-  const lamp=new THREE.PointLight(0xffbd73,25,13);
-  lamp.position.set(side*5,5,z);scene.add(lamp);
-  sphere(scene,side*5,5,z,.17,.17,.17,mat(0xffd49b));
- }
+function listenRoom(){
+ if(unsubscribe)unsubscribe();
+ $("messages").innerHTML="";
+ $("chatStatus").textContent="در حال دریافت پیام‌ها...";
+ const q=query(collection(db,"rooms",currentRoom,"messages"),orderBy("createdAt","desc"),limit(60));
+ unsubscribe=onSnapshot(q,snap=>{
+  $("chatStatus").textContent="متصل · اتاق "+currentRoom;
+  $("messages").innerHTML="";
+  const docs=[...snap.docs].reverse();
+  docs.forEach(doc=>{
+   const d=doc.data();
+   const el=document.createElement("div");el.className="msg";
+   const name=document.createElement("strong");name.textContent=d.nickname||"مهمان";
+   const body=document.createElement("div");body.textContent=d.text||"";
+   const time=document.createElement("small");
+   time.textContent=d.createdAt?.toDate?d.createdAt.toDate().toLocaleString("fa-IR"):"اکنون";
+   el.append(name,body,time);$("messages").append(el);
+  });
+  $("messages").scrollTop=$("messages").scrollHeight;
+ },chatError);
 }
-
-const amir=person(true),yalda=person(false);
-scene.add(amir,y alda);
+document.querySelectorAll("[data-room]").forEach(b=>{
+ b.onclick=()=>{
+  currentRoom=b.dataset.room;
+  document.querySelectorAll("[data-room]").forEach(x=>x.classList.toggle("active",x===b));
+  if(user)listenRoom();
+ };
+});
+async function sendMessage(){
+ const text=$("chatInput").value.trim();
+ if(!text)return;
+ if(!user){toast("هنوز به چت وصل نشده‌ای.");return;}
+ if(text.length>500){toast("حداکثر ۵۰۰ حرف مجاز است.");return;}
+ $("sendBtn").disabled=true;
+ try{
+  await addDoc(collection(db,"rooms",currentRoom,"messages"),{
+   uid:user.uid,nickname,text,createdAt:serverTimestamp()
+  });
+  $("chatInput").value="";sent++;updateStats();addXP(1);
+ }catch(e){chatError(e);toast("پیام ارسال نشد.");}
+ finally{$("sendBtn").disabled=false;}
+}
+$("sendBtn").onclick=sendMessage;
+$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage();});
 </script>
 </body>
 </html>
