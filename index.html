@@ -1,49 +1,38 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>AMIR & YALDA 3D</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amir & Yalda</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;overflow:hidden;background:#080b13;font-family:Tahoma;color:white}
-canvas{display:block}
-#hud{position:fixed;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;pointer-events:none}
-.panel{background:#101827dd;border:1px solid #c3a36c;border-radius:12px;padding:12px}
-#mission{position:fixed;top:85px;left:50%;transform:translateX(-50%);background:#101827dd;border:1px solid #c3a36c;border-radius:10px;padding:12px;white-space:nowrap}
-#status{position:fixed;top:140px;left:50%;transform:translateX(-50%);color:#f4d18a;text-align:center}
-#controls{position:fixed;bottom:18px;left:15px;right:15px;display:flex;justify-content:space-between;align-items:end;pointer-events:none}
-.pad{display:grid;grid-template-columns:55px 55px 55px;grid-template-rows:55px 55px;gap:5px;pointer-events:auto}
-.ctrl{background:#17243bdc;color:white;border:1px solid #c3a36c;border-radius:13px;font-size:22px;touch-action:none}
-#up{grid-column:2}#left{grid-column:1;grid-row:2}#down{grid-column:2;grid-row:2}#right{grid-column:3;grid-row:2}
-#run{width:75px;height:75px;border-radius:50%;font-size:15px;pointer-events:auto}
-#restart{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#8d6b35;color:white;border:0;border-radius:10px;padding:12px}
+body{margin:0;overflow:hidden;background:#080b12;font-family:Tahoma}
+#hud{position:fixed;top:15px;left:0;width:100%;text-align:center;color:white;z-index:5;pointer-events:none}
+#mission{display:inline-block;background:#111d;padding:13px 22px;border:1px solid #c49b55;border-radius:12px}
+#distance{margin-top:10px;color:#ffd58a}
+#controls{position:fixed;bottom:25px;width:100%;display:flex;justify-content:space-between;padding:0 25px;z-index:5}
+.pad{width:110px;height:110px;border-radius:50%;background:#ffffff22;border:2px solid #ffffff66;color:white;font-size:27px;display:grid;place-items:center;touch-action:none}
+#run{width:85px;height:85px;border-radius:50%;background:#b98a3d99}
+#message{position:fixed;top:45%;width:100%;text-align:center;color:white;font-size:24px;display:none;z-index:10}
 </style>
 </head>
 <body>
 <div id="hud">
- <div class="panel">AMIR<br><small>شخصیت اصلی</small></div>
- <div class="panel">فاصله: <span id="distance">0</span> متر</div>
+ <div id="mission">ماموریت: به یلدا برس!</div>
+ <div id="distance">فاصله: ۳۰ متر</div>
 </div>
-<div id="mission">ماموریت: به یلدا در خیابان برس!</div>
-<div id="status">برای حرکت از دکمه‌ها استفاده کن</div>
+<div id="message"></div>
 <div id="controls">
- <div class="pad">
-  <button class="ctrl" id="up">▲</button>
-  <button class="ctrl" id="left">◀</button>
-  <button class="ctrl" id="down">▼</button>
-  <button class="ctrl" id="right">▶</button>
- </div>
- <button class="ctrl" id="run">دویدن</button>
+ <div class="pad" id="move">▲</div>
+ <div class="pad" id="run">بدو!</div>
 </div>
-<button id="restart">شروع دوباره</button>
 
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
 const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x111827);
-scene.fog=new THREE.Fog(0x111827,25,100);
+scene.background=new THREE.Color(0x101725);
+scene.fog=new THREE.Fog(0x101725,25,115);
 
 const camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.1,200);
 const renderer=new THREE.WebGLRenderer({antialias:true});
@@ -54,307 +43,144 @@ renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 
-scene.add(new THREE.HemisphereLight(0xc5d8ff,0x28202b,2));
-const sun=new THREE.DirectionalLight(0xffe1bd,2.4);
-sun.position.set(-12,25,12);
-sun.castShadow=true;
-scene.add(sun);
+scene.add(new THREE.HemisphereLight(0xaabbdd,0x25202a,2));
+const moon=new THREE.DirectionalLight(0xffdfb0,2.5);
+moon.position.set(-10,20,10);
+moon.castShadow=true;
+scene.add(moon);
 
-// خیابان و زمین
-const ground=new THREE.Mesh(
- new THREE.PlaneGeometry(200,200),
- new THREE.MeshStandardMaterial({color:0x30313a,roughness:1})
-);
-ground.rotation.x=-Math.PI/2;
-ground.position.y=-.1;
-ground.receiveShadow=true;
-scene.add(ground);
+const mat=(color,roughness=.8)=>new THREE.MeshStandardMaterial({color,roughness});
+const skin=mat(0xc68e70), darkSkin=mat(0x9d6856);
+const black=mat(0x171923), jacket=mat(0x252a35);
+const pants=mat(0x171a24), shoe=mat(0xeeeeea);
+const hair=mat(0x17120f), eye=mat(0x17100d);
+const white=mat(0xf0e9dc), red=mat(0x812f3e);
 
-const road=new THREE.Mesh(
- new THREE.PlaneGeometry(13,180),
- new THREE.MeshStandardMaterial({color:0x171a21,roughness:.9})
-);
-road.rotation.x=-Math.PI/2;
-road.position.z=-40;
-scene.add(road);
-
-for(let z=10;z>-110;z-=9){
- const line=new THREE.Mesh(
-  new THREE.BoxGeometry(.13,.025,4),
-  new THREE.MeshStandardMaterial({color:0xd6bd82})
- );
- line.position.set(0,.02,z);
- scene.add(line);
+function sphere(parent,x,y,z,sx,sy,sz,material){
+ const m=new THREE.Mesh(new THREE.SphereGeometry(1,24,16),material);
+ m.position.set(x,y,z);m.scale.set(sx,sy,sz);
+ m.castShadow=true;parent.add(m);return m;
+}
+function limb(parent,a,b,r1,r2,material){
+ const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b);
+ const d=new THREE.Vector3().subVectors(end,start);
+ const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r2,r1,d.length(),12),material);
+ mesh.position.copy(start).add(end).multiplyScalar(.5);
+ mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());
+ mesh.castShadow=true;parent.add(mesh);return mesh;
 }
 
-// ساختمان‌های شهر
-for(let z=10;z>-110;z-=14){
- for(const side of [-1,1]){
-  const h=9+Math.random()*12;
-  const w=5+Math.random()*4;
-  const building=new THREE.Mesh(
-   new THREE.BoxGeometry(w,h,11),
-   new THREE.MeshStandardMaterial({color:side===1?0x373044:0x293749,roughness:.9})
-  );
-  building.position.set(side*(9+w/2),h/2,z);
-  building.castShadow=true;
-  scene.add(building);
+function person(isAmir){
+ const root=new THREE.Group();
+ const clothes=isAmir?jacket:red;
+ const legs=[];
+ const arms=[];
 
-  for(let y=2;y<h-1;y+=2.4){
-   for(let x=-w/2+1;x<w/2;x+=1.8){
-    const win=new THREE.Mesh(
-     new THREE.PlaneGeometry(.8,1),
-     new THREE.MeshBasicMaterial({
-      color:Math.random()>.4?0xffd28a:0x273b52
-     })
+ // تنه و گردن
+ sphere(root,0,1.23,0,.34,.48,.20,clothes);
+ sphere(root,0,.91,0,.25,.22,.16,pants);
+ sphere(root,0,1.73,0,.105,.16,.11,skin);
+
+ // سر
+ sphere(root,0,2.02,0,.22,.29,.20,skin);
+ // گوش‌ها
+ sphere(root,-.22,2.03,0,.045,.075,.04,skin);
+ sphere(root,.22,2.03,0,.045,.075,.04,skin);
+ // مو
+ sphere(root,0,2.22,-.025,.23,.15,.21,hair);
+ sphere(root,-.15,2.14,.07,.09,.12,.12,hair);
+ sphere(root,.12,2.16,.07,.10,.12,.12,hair);
+ // چشم‌ها
+ sphere(root,-.085,2.06,.18,.025,.025,.015,eye);
+ sphere(root,.085,2.06,.18,.025,.025,.015,eye);
+ // بینی و دهان
+ sphere(root,0,1.99,.205,.035,.065,.045,skin);
+ sphere(root,0,1.91,.19,.055,.015,.012,red);
+
+ // جزئیات لباس
+ if(isAmir){
+   sphere(root,0,1.32,.205,.13,.08,.012,white);
+ }else{
+   sphere(root,0,1.28,.205,.12,.025,.012,white);
+   sphere(root,0,1.02,.18,.08,.10,.02,black);
+ }
+
+ // دست‌ها
+ for(const side of [-1,1]){
+   const shoulder=[side*.37,1.48,0];
+   const elbow=[side*.43,1.18,0];
+   const hand=[side*.43,1.0,.03];
+   const upper=limb(root,shoulder,elbow,.105,.08,clothes);
+   const lower=limb(root,elbow,hand,.075,.045,skin);
+   sphere(root,...hand,.065,.07,.06,skin);
+   arms.push({upper,lower,side});
+ }
+
+ // پاها
+ for(const side of [-1,1]){
+   const hip=[side*.14,.85,0];
+   const knee=[side*.16,.48,0];
+   const ankle=[side*.16,.12,0];
+   const upper=limb(root,hip,knee,.13,.09,pants);
+   const lower=limb(root,knee,ankle,.085,.055,pants);
+   const foot=sphere(root,side*.16,.07,.10,.09,.07,.17,shoe);
+   legs.push({upper,lower,foot,side});
+ }
+ root.userData={legs,arms,isAmir};
+ return root;
+}
+
+// خیابان
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),mat(0x252936));
+ground.rotation.x=-Math.PI/2;ground.position.y=-.04;
+ground.receiveShadow=true;scene.add(ground);
+
+const road=new THREE.Mesh(new THREE.PlaneGeometry(13,180),mat(0x151923));
+road.rotation.x=-Math.PI/2;road.position.set(0,.005,-35);scene.add(road);
+
+// خط‌های خیابان
+for(let z=15;z>-100;z-=9){
+ const line=new THREE.Mesh(new THREE.BoxGeometry(.12,.02,4),mat(0xc4b58d));
+ line.position.set(0,.025,z);scene.add(line);
+}
+
+// ساختمان‌ها
+for(let z=10;z>-100;z-=13){
+ for(const side of [-1,1]){
+  const h=8+Math.random()*16;
+  const building=new THREE.Mesh(
+   new THREE.BoxGeometry(5,h,10),
+   mat(side===1?0x303442:0x242b38)
+  );
+  building.position.set(side*10,h/2,z);
+  building.castShadow=true;scene.add(building);
+  for(let y=2;y<h-1;y+=2.3){
+   for(let x=-1.5;x<=1.5;x+=1.5){
+    const window=new THREE.Mesh(
+     new THREE.PlaneGeometry(.65,.9),
+     new THREE.MeshBasicMaterial({color:Math.random()>.35?0xffd18a:0x34445c})
     );
-    win.position.set(side*(9+w/2)+x,y,z+5.52);
-    if(side===1)win.rotation.y=Math.PI;
-    scene.add(win);
+    window.position.set(side*7.47,y,z+x);
+    window.rotation.y=side===1?Math.PI/2:-Math.PI/2;
+    scene.add(window);
    }
   }
  }
 }
 
-// چراغ خیابان
-for(let z=7;z>-110;z-=18){
+// چراغ‌های خیابان
+for(let z=10;z>-90;z-=18){
  for(const side of [-1,1]){
-  const pole=new THREE.Mesh(
-   new THREE.CylinderGeometry(.09,.13,5,8),
-   new THREE.MeshStandardMaterial({color:0x3b3540,metalness:.5})
-  );
-  pole.position.set(side*6,2.5,z);
-  scene.add(pole);
-  const light=new THREE.PointLight(0xffc77c,55,17);
-  light.position.set(side*6,5,z);
-  scene.add(light);
-  const bulb=new THREE.Mesh(
-   new THREE.SphereGeometry(.2,12,12),
-   new THREE.MeshBasicMaterial({color:0xffd99b})
-  );
-  bulb.position.copy(light.position);
-  scene.add(bulb);
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.06,.09,5,8),black);
+  pole.position.set(side*5,2.5,z);scene.add(pole);
+  const lamp=new THREE.PointLight(0xffbd73,25,13);
+  lamp.position.set(side*5,5,z);scene.add(lamp);
+  sphere(scene,side*5,5,z,.17,.17,.17,mat(0xffd49b));
  }
 }
 
-// ابزار ساخت بدن انسان
-function material(color,roughness=.8){
- return new THREE.MeshStandardMaterial({color,roughness});
-}
-function sphere(parent,mat,x,y,z,sx,sy,sz){
- const m=new THREE.Mesh(new THREE.SphereGeometry(1,24,18),mat);
- m.position.set(x,y,z);
- m.scale.set(sx,sy,sz);
- m.castShadow=true;
- m.receiveShadow=true;
- parent.add(m);
- return m;
-}
-function limb(parent,mat,length,radius){
- const m=new THREE.Mesh(
-  new THREE.CapsuleGeometry(radius,length,6,12),mat
- );
- m.castShadow=true;
- parent.add(m);
- return m;
-}
-function makeHuman(name,colors){
- const root=new THREE.Group();
- const skin=material(colors.skin);
- const hair=material(colors.hair);
- const shirt=material(colors.shirt);
- const pants=material(colors.pants);
- const shoes=material(0x17151a);
- const eyes=material(0x171018,.3);
- const lips=material(0x713e43);
- const white=material(0xf4e9dc);
-
- // لگن و تنه
- const torso=sphere(root,shirt,0,1.35,0,.39,.59,.23);
- sphere(root,pants,0,.78,0,.31,.22,.21);
-
- // گردن و سر
- sphere(root,skin,0,1.94,0,.13,.19,.13);
- const head=new THREE.Group();
- head.position.y=2.25;
- root.add(head);
- sphere(head,skin,0,0,0,.27,.35,.25);
-
- // گوش‌ها
- for(const side of [-1,1])
-  sphere(head,skin,side*.27,-.02,0,.065,.1,.07);
-
- // مو و مدل مو
- sphere(head,hair,0,.20,.015,.285,.19,.26);
- sphere(head,hair,0,.09,.18,.27,.16,.12);
- for(let i=0;i<5;i++){
-  sphere(head,hair,-.18+i*.09,.29,.02,.08,.12,.1);
- }
-
- // چشم‌ها، ابرو و بینی و لب
- for(const side of [-1,1]){
-  sphere(head,white,side*.105,.035,-.224,.055,.035,.018);
-  sphere(head,eyes,side*.105,.035,-.243,.023,.027,.012);
-  sphere(head,hair,side*.105,.105,-.23,.065,.018,.02);
- }
- sphere(head,skin,0,-.02,-.27,.045,.07,.055);
- sphere(head,lips,0,-.145,-.235,.07,.018,.018);
-
- // دست‌ها
- const arms=[];
- for(const side of [-1,1]){
-  const arm=new THREE.Group();
-  arm.position.set(side*.43,1.72,0);
-  root.add(arm);
-  const upper=limb(arm,shirt,.35,.105);
-  upper.position.y=-.22;
-  const elbow=new THREE.Group();
-  elbow.position.y=-.43;
-  arm.add(elbow);
-  const fore=limb(elbow,skin,.32,.085);
-  fore.position.y=-.19;
-  sphere(elbow,skin,0,-.39,0,.09,.1,.09);
-  arms.push({arm,elbow,side});
- }
-
- // پاها
- const legs=[];
- for(const side of [-1,1]){
-  const hip=new THREE.Group();
-  hip.position.set(side*.18,.72,0);
-  root.add(hip);
-  const thigh=limb(hip,pants,.40,.15);
-  thigh.position.y=-.25;
-  const knee=new THREE.Group();
-  knee.position.y=-.49;
-  hip.add(knee);
-  const shin=limb(knee,pants,.39,.11);
-  shin.position.y=-.23;
-  const foot=sphere(knee,shoes,0,-.44,-.07,.13,.09,.23);
-  legs.push({hip,knee,side});
- }
-
- // شانه‌ها
- for(const side of [-1,1])
-  sphere(root,shirt,side*.39,1.75,0,.16,.17,.18);
-
- // نام بالای شخصیت
- const labelCanvas=document.createElement('canvas');
- labelCanvas.width=512;labelCanvas.height=128;
- const ctx=labelCanvas.getContext('2d');
- ctx.fillStyle='white';
- ctx.font='bold 64px Arial';
- ctx.textAlign='center';
- ctx.fillText(name,256,80);
- const label=new THREE.Sprite(new THREE.SpriteMaterial({
-  map:new THREE.CanvasTexture(labelCanvas),transparent:true
- }));
- label.scale.set(2.4,.6,1);
- label.position.y=3.05;
- root.add(label);
-
- root.userData={arms,legs,head};
- scene.add(root);
- return root;
-}
-
-const amir=makeHuman('AMIR',{
- skin:0xc58c6b,hair:0x20130f,shirt:0x27394e,pants:0x191e29
-});
-const yalda=makeHuman('YALDA',{
- skin:0xe0b08e,hair:0x25131b,shirt:0x653d6a,pants:0x29202e
-});
-
-amir.position.set(0,0,2);
-yalda.position.set(0,0,-10);
-
-let keys={},touch={},time=0,won=false;
-function bind(id,key){
- const el=document.getElementById(id);
- el.addEventListener('pointerdown',e=>{
-  e.preventDefault();touch[key]=true;
- });
- for(const event of ['pointerup','pointerleave','pointercancel'])
-  el.addEventListener(event,()=>touch[key]=false);
-}
-bind('up','forward');bind('down','back');
-bind('left','left');bind('right','right');bind('run','run');
-
-window.addEventListener('keydown',e=>keys[e.key.toLowerCase()]=true);
-window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
-
-function restart(){
- amir.position.set(0,0,2);
- yalda.position.set(0,0,-10);
- won=false;
- document.getElementById('status').textContent='به یلدا برس!';
-}
-document.getElementById('restart').onclick=restart;
-
-function animateBody(person,t,isMoving){
- const swing=isMoving?Math.sin(t*12)*.65:Math.sin(t*2)*.035;
- const {arms,legs}=person.userData;
- legs.forEach((l,i)=>{
-  l.hip.rotation.x=i===0?swing:-swing;
-  l.knee.rotation.x=Math.max(0,-l.hip.rotation.x)*.8;
- });
- arms.forEach((a,i)=>{
-  a.arm.rotation.x=i===0?-swing:swing;
-  a.elbow.rotation.x=-.15;
- });
- person.userData.head.rotation.z=Math.sin(t*2)*.025;
-}
-
-const clock=new THREE.Clock();
-function animate(){
- requestAnimationFrame(animate);
- const dt=Math.min(clock.getDelta(),.04);
- time+=dt;
-
- if(!won){
-  const forward=keys.w||keys.arrowup||touch.forward;
-  const back=keys.s||keys.arrowdown||touch.back;
-  const left=keys.a||keys.arrowleft||touch.left;
-  const right=keys.d||keys.arrowright||touch.right;
-  const running=keys.shift||touch.run;
-  const speed=running?8:4.5;
-
-  if(forward)amir.position.z-=speed*dt;
-  if(back)amir.position.z+=speed*.6*dt;
-  if(left)amir.position.x-=speed*.7*dt;
-  if(right)amir.position.x+=speed*.7*dt;
-  amir.position.x=THREE.MathUtils.clamp(amir.position.x,-4.5,4.5);
-  amir.position.z=Math.min(amir.position.z,4);
-
-  // یلدا در مسیر می‌دود
-  yalda.position.z-=2.2*dt;
-  yalda.position.x=Math.sin(time*.8)*1.3;
-
-  const gap=amir.position.distanceTo(yalda.position);
-  document.getElementById('distance').textContent=Math.round(gap);
-  animateBody(amir,time,forward||back||left||right);
-  animateBody(yalda,time,true);
-
-  if(gap<1.6){
-   won=true;
-   document.getElementById('status').textContent='مرحله تمام شد! به یلدا رسیدی!';
-  }
- }
-
- const desired=new THREE.Vector3(
-  amir.position.x*.45,4.2,amir.position.z+8
- );
- camera.position.lerp(desired,.09);
- camera.lookAt(amir.position.x,1.35,amir.position.z-5);
- renderer.render(scene,camera);
-}
-animate();
-
-window.addEventListener('resize',()=>{
- camera.aspect=innerWidth/innerHeight;
- camera.updateProjectionMatrix();
- renderer.setSize(innerWidth,innerHeight);
-});
+const amir=person(true),yalda=person(false);
+scene.add(amir,y alda);
 </script>
 </body>
 </html>
