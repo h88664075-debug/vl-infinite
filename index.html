@@ -2,753 +2,229 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080510">
-<title>۷ گناه کبیره | SEVEN SINS</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09070d">
+<title>Seven Sins Empire</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
-
-:root {
-  --bg:#080510;
-  --panel:rgba(20,12,31,.82);
-  --line:rgba(190,115,255,.22);
-  --purple:#9d4edd;
-  --pink:#ff4f87;
-  --cyan:#62ddff;
-  --green:#70f0bb;
-  --text:#f8f3ff;
-  --muted:#a99db6;
-}
-
+:root{--bg:#09070d;--panel:#17111f;--purple:#a36ac0;--gold:#d6b36e;--white:#f4edf8;--muted:#b6a5c0;--border:#523961}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
-body{
-  margin:0;
-  min-height:100vh;
-  overflow-x:hidden;
-  font-family:Vazirmatn,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 10% 10%,rgba(157,78,221,.20),transparent 30%),
-    radial-gradient(circle at 90% 15%,rgba(255,79,135,.14),transparent 28%),
-    radial-gradient(circle at 50% 100%,rgba(70,30,110,.18),transparent 35%),
-    var(--bg);
-}
-
-.stars{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  opacity:.55;
-  pointer-events:none;
-  background-image:
-    radial-gradient(circle,white 1px,transparent 1.5px),
-    radial-gradient(circle,#d39cff 1px,transparent 1.5px);
-  background-size:90px 90px,150px 150px;
-  animation:stars 25s linear infinite;
-}
-
-@keyframes stars{
-  to{background-position:90px 180px,-150px 100px}
-}
-
-.app{width:min(1200px,94%);margin:auto}
-
-header{
-  position:sticky;
-  top:12px;
-  z-index:100;
-  margin:18px 0;
-  padding:12px 17px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:rgba(12,8,19,.78);
-  backdrop-filter:blur(20px);
-  box-shadow:0 20px 70px rgba(0,0,0,.4);
-}
-
-.brand{display:flex;align-items:center;gap:10px;font-weight:900}
-
-.logo{
-  width:45px;height:45px;
-  display:grid;place-items:center;
-  border-radius:15px;font-size:23px;
-  background:linear-gradient(135deg,var(--pink),var(--purple),var(--cyan));
-  box-shadow:0 0 30px rgba(157,78,221,.45);
-}
-
-nav{display:flex;flex-wrap:wrap;gap:5px}
-
-button{font-family:inherit;cursor:pointer}
-
-nav button,.btn{
-  border:1px solid transparent;
-  color:#eee5f8;background:transparent;
-  padding:9px 13px;border-radius:12px;
-  transition:.25s;
-}
-
-nav button:hover,.btn:hover{
-  transform:translateY(-2px);
-  background:rgba(157,78,221,.16);
-  border-color:var(--line);
-}
-
-.live{
-  font-size:10px;color:#a7f6d2;
-  padding:8px 12px;
-  border:1px solid rgba(112,240,187,.18);
-  border-radius:20px;
-  background:rgba(112,240,187,.05);
-}
-
-.dot{
-  display:inline-block;width:7px;height:7px;
-  margin-left:5px;border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-}
-
-.hero{
-  min-height:520px;
-  display:grid;place-items:center;
-  text-align:center;padding:70px 25px;
-  overflow:hidden;position:relative;
-  border:1px solid var(--line);
-  border-radius:30px;
-  background:linear-gradient(120deg,rgba(18,10,28,.95),rgba(8,5,14,.8));
-}
-
-.hero::before{
-  content:"VII";position:absolute;
-  font-size:280px;font-weight:900;
-  color:rgba(255,255,255,.018);
-  pointer-events:none;
-}
-
-.hero-content{position:relative;z-index:1}
-.eyebrow{color:#d9baff;letter-spacing:3px;font-size:11px}
-
-.hero h1{
-  margin:18px 0;
-  font-size:clamp(55px,10vw,120px);
-  line-height:.95;
-  background:linear-gradient(90deg,#fff,#d9b4ff,#ff9db5);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p{max-width:650px;line-height:2;color:#c5b8ce}
-
-.hero-buttons{
-  display:flex;justify-content:center;
-  flex-wrap:wrap;gap:10px;margin-top:25px;
-}
-
-.btn.primary{
-  border:0;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  box-shadow:0 10px 35px rgba(157,78,221,.3);
-}
-
-section{margin:35px 0;scroll-margin-top:100px}
-.section-title{margin:0 0 16px;font-size:24px}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
-}
-
-.card{
-  padding:20px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:linear-gradient(145deg,rgba(29,19,41,.9),rgba(11,7,17,.92));
-  transition:.3s;
-}
-
-.card:hover{transform:translateY(-6px);border-color:rgba(210,145,255,.6)}
-.card h3{margin-top:0}
-.card p{color:var(--muted);line-height:1.9;font-size:13px}
-.stat{font-size:30px;font-weight:900;color:#e5caff}
-.stat-label{color:var(--muted);font-size:11px}
-
-.chat-shell{
-  overflow:hidden;
-  border:1px solid rgba(190,115,255,.3);
-  border-radius:25px;
-  background:rgba(12,8,19,.88);
-  box-shadow:0 25px 80px rgba(0,0,0,.45);
-}
-
-#chatSetup{padding:40px;text-align:center}
-
-.input{
-  width:100%;padding:13px;color:white;
-  font-family:inherit;background:rgba(255,255,255,.05);
-  border:1px solid var(--line);border-radius:13px;outline:none;
-}
-
-.input:focus{
-  border-color:var(--purple);
-  box-shadow:0 0 0 3px rgba(157,78,221,.1);
-}
-
-.hidden{display:none!important}
-
-.chat-top{
-  padding:14px;border-bottom:1px solid rgba(255,255,255,.07);
-  display:flex;align-items:center;justify-content:space-between;
-  gap:10px;flex-wrap:wrap;
-}
-
-.room-buttons{display:flex;gap:6px;flex-wrap:wrap}
-
-.room-buttons button{
-  color:#cbbcd6;padding:7px 10px;
-  border-radius:10px;background:#191020;
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.room-buttons button.active{
-  color:white;background:linear-gradient(135deg,#7029b2,#9d4edd);
-}
-
-#messages{
-  height:430px;overflow-y:auto;padding:18px;
-  display:flex;flex-direction:column;gap:10px;
-}
-
-.message{
-  max-width:82%;padding:11px 14px;
-  align-self:flex-start;
-  border-radius:17px 17px 17px 4px;
-  background:rgba(113,43,168,.20);
-  border:1px solid rgba(196,117,255,.12);
-}
-
-.message.mine{
-  align-self:flex-end;
-  border-radius:17px 17px 4px 17px;
-  background:rgba(157,78,221,.30);
-}
-
-.message-name{
-  margin-bottom:4px;font-size:11px;
-  font-weight:bold;color:#dfa9ff;
-}
-
-.message-text{word-break:break-word;line-height:1.8}
-.message-time{margin-top:5px;font-size:9px;color:#95899f}
-
-.chat-form{
-  display:flex;gap:8px;padding:12px;
-  border-top:1px solid rgba(255,255,255,.07);
-}
-
-.chat-form button:disabled{opacity:.5;cursor:not-allowed}
-
-.emoji-bar{
-  padding:8px 14px;display:flex;gap:8px;
-  border-top:1px solid rgba(255,255,255,.05);
-}
-
-.emoji-bar button{border:0;background:transparent;font-size:18px}
-.status{color:var(--muted);font-size:11px;overflow-wrap:anywhere}
-
-.game-stage{
-  height:280px;position:relative;overflow:hidden;
-  border:1px solid var(--line);border-radius:20px;
-  background:radial-gradient(circle at 50% 30%,rgba(157,78,221,.35),transparent 30%),#090611;
-}
-
-.crystal{
-  position:absolute;width:42px;height:42px;
-  cursor:pointer;
-  clip-path:polygon(50% 0%,100% 40%,70% 100%,30% 100%,0% 40%);
-  background:linear-gradient(135deg,#fff,#b55cff);
-  box-shadow:0 0 28px #b45cff;
-}
-
-footer{padding:50px 15px 25px;text-align:center;color:#766a80;font-size:11px}
-
-@media(max-width:700px){
-  nav,.live{display:none}
-  .hero{min-height:450px}
-  #messages{height:360px}
-  .message{max-width:92%}
-  .chat-form{flex-direction:column}
-}
+body{margin:0;background:radial-gradient(ellipse at top,#35203f,#100b16 45%,#09070d 85%);color:var(--white);font-family:Vazirmatn,Tahoma,sans-serif}
+button,input{font:inherit}button{cursor:pointer}
+header{min-height:300px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:35px 15px;background:linear-gradient(#0b0710bb,#100b17e8),url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80') center/cover;border-bottom:1px solid var(--border)}
+.logo{font:900 clamp(37px,8vw,76px) Cinzel,serif;color:var(--gold);letter-spacing:4px;text-shadow:0 0 30px #a36ac0}
+header p{color:#e1cce9;letter-spacing:2px}
+nav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:12px;background:#100b17ed;backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.btn{border:1px solid #76518a;background:#30203c;color:white;padding:10px 17px;border-radius:10px;transition:.2s}
+.btn:hover,.btn.active{background:#82549a;box-shadow:0 0 15px #82549a66}
+main{max-width:1100px;margin:auto;padding:20px}
+section{margin:42px 0;scroll-margin-top:85px}
+.section-title{color:var(--gold);font-size:24px;border-bottom:1px solid var(--border);padding-bottom:12px}
+.hero{text-align:center;padding:35px 10px}
+.hero h2{font-size:clamp(23px,5vw,36px);color:#e6c8f5}
+.hero p,.card p{color:var(--muted);line-height:1.9}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.card{background:linear-gradient(145deg,#261a31,#120d18);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 12px 30px #0006}
+.card h3{color:#dfb6f0}
+.symbol{font-size:38px}
+.stat{text-align:center}
+.stat strong{display:block;color:var(--gold);font-size:30px}
+.game-wrap{text-align:center}
+#board{display:grid;grid-template-columns:repeat(3,85px);gap:9px;justify-content:center;margin:22px}
+.tile{height:76px;font-size:26px;background:#281934;border:1px solid #76518a;border-radius:12px;color:white}
+.tile:disabled{opacity:1}
+#gameStatus{color:var(--gold);min-height:28px}
+.rooms{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+#messages{height:360px;overflow-y:auto;padding:12px;background:#0e0a13;border:1px solid var(--border);border-radius:12px}
+.message{background:#281c32;padding:11px;border-radius:10px;margin-bottom:9px;overflow-wrap:anywhere}
+.message strong{display:block;color:#d7a6ed;font-size:12px;margin-bottom:5px}
+form{display:flex;gap:8px;margin-top:12px}
+input{flex:1;min-width:0;background:#21182a;color:white;border:1px solid #68477b;padding:13px;border-radius:10px}
+.muted{font-size:12px;color:var(--muted)}
+#chatStatus{color:var(--gold);margin:10px 0}
+footer{text-align:center;padding:35px;border-top:1px solid var(--border);color:var(--muted)}
+@media(max-width:450px){main{padding:12px}#board{grid-template-columns:repeat(3,75px)}.tile{height:68px}}
 </style>
 </head>
-
 <body>
-<div class="stars"></div>
-
-<div class="app">
 <header>
-  <div class="brand">
-    <div class="logo">۷</div>
-    <div>
-      ۷ گناه کبیره
-      <div style="font-size:9px;color:#a99db6;letter-spacing:2px">SEVEN SINS SOCIETY</div>
-    </div>
-  </div>
-
-  <nav>
-    <button onclick="goTo('sins')">هفت نماد</button>
-    <button onclick="goTo('chat')">تالار زنده</button>
-    <button onclick="goTo('game')">بازی</button>
-  </nav>
-
-  <div class="live"><span class="dot"></span> LIVE SOCIETY</div>
+<div class="logo">SEVEN SINS</div>
+<h2>EMPIRE OF DARKNESS</h2>
+<p>به قلمرو هفت گناه کبیره خوش آمدی</p>
 </header>
-
+<nav>
+<button class="btn" onclick="go('home')">خانه</button>
+<button class="btn" onclick="go('sins')">هفت گناه</button>
+<button class="btn" onclick="go('game')">بازی</button>
+<button class="btn" onclick="go('chat')">چت گروهی</button>
+<button class="btn" onclick="go('stats')">آمار</button>
+</nav>
 <main>
-<section class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">WELCOME TO THE INNER WORLD</div>
-    <h1>۷ گناه<br>کبیره</h1>
-    <p>
-      وارد دنیایی از رازها، داستان‌ها و گفتگوهای زنده شو.
-      هر عضو یک داستان دارد و هر داستان می‌تواند یک دروازه جدید باز کند.
-    </p>
-    <div class="hero-buttons">
-      <button class="btn primary" onclick="goTo('chat')">💬 ورود به تالار</button>
-      <button class="btn" onclick="goTo('game')">🔮 شکار کریستال</button>
-    </div>
-  </div>
+<section id="home" class="hero">
+<h2>قلمرو تاریکی منتظر توست</h2>
+<p>بازی کن، رازها را کشف کن و با دیگران گفتگو کن.</p>
 </section>
-
 <section id="sins">
-  <h2 class="section-title">✦ هفت نماد محفل</h2>
-  <div class="grid">
-    <div class="card"><h3>👑 غرور</h3><p>شناخت ارزش خود و حرکت با اعتماد، همراه با فروتنی و آگاهی.</p></div>
-    <div class="card"><h3>💎 طمع</h3><p>یادآوری اینکه گاهی ارزشمندترین چیز، دانستن معنای کافی بودن است.</p></div>
-    <div class="card"><h3>🔥 اشتیاق</h3><p>انرژی حرکت، ساختن و دنبال کردن رویاها با مسئولیت‌پذیری.</p></div>
-    <div class="card"><h3>👁️ حسد</h3><p>نگاهی به مسیر دیگران که می‌تواند به انگیزه‌ای برای ساختن مسیر خودت تبدیل شود.</p></div>
-    <div class="card"><h3>🍎 زیاده‌روی</h3><p>لذت زمانی زیباتر است که انتخاب و تعادل را فراموش نکنیم.</p></div>
-    <div class="card"><h3>🌙 تنبلی</h3><p>حتی کوچک‌ترین قدم می‌تواند آغاز یک تغییر بزرگ باشد.</p></div>
-    <div class="card"><h3>⚡ خشم</h3><p>یک احساس قدرتمند که با شناخت و کنترل می‌تواند به نیروی سازنده تبدیل شود.</p></div>
-  </div>
+<h2 class="section-title">هفت گناه کبیره</h2>
+<div class="grid">
+<article class="card"><div class="symbol">👑</div><h3>غرور | Pride</h3><p>نماد خودبزرگ‌بینی و تکبر.</p></article>
+<article class="card"><div class="symbol">💰</div><h3>طمع | Greed</h3><p>میل افراطی به داشتن دارایی بیشتر.</p></article>
+<article class="card"><div class="symbol">🌹</div><h3>شهوت | Lust</h3><p>نماد میل افراطی و خواسته‌های کنترل‌نشده.</p></article>
+<article class="card"><div class="symbol">🟢</div><h3>حسد | Envy</h3><p>حسرت نسبت به داشته‌های دیگران.</p></article>
+<article class="card"><div class="symbol">🍇</div><h3>شکم‌پرستی | Gluttony</h3><p>زیاده‌روی در خوردن و لذت‌ها.</p></article>
+<article class="card"><div class="symbol">🔥</div><h3>خشم | Wrath</h3><p>عصبانیت کنترل‌نشده.</p></article>
+<article class="card"><div class="symbol">🌑</div><h3>تنبلی | Sloth</h3><p>بی‌میلی به تلاش و مسئولیت.</p></article>
+</div>
 </section>
-
-<section>
-  <h2 class="section-title">📊 وضعیت محفل</h2>
-  <div class="grid">
-    <div class="card"><div class="stat">07</div><div class="stat-label">نماد اصلی</div></div>
-    <div class="card"><div class="stat" id="messageCount">۰</div><div class="stat-label">پیام‌های این اتاق</div></div>
-    <div class="card"><div class="stat" id="bestScore">۰</div><div class="stat-label">بهترین رکورد کریستال</div></div>
-  </div>
-</section>
-
-<section id="chat">
-  <h2 class="section-title">💬 تالار زنده</h2>
-  <div class="chat-shell">
-
-    <div id="chatSetup">
-      <h3>☾ ورود به محفل</h3>
-      <p class="status">یک اسم مستعار انتخاب کن. نیازی به ایمیل یا رمز نیست.</p>
-      <br>
-      <input class="input" id="nicknameInput" maxlength="20" placeholder="مثلاً: سایه بنفش">
-      <br><br>
-      <button class="btn primary" id="enterButton" onclick="enterChat()">ورود به تالار ✦</button>
-      <p id="connectionStatus" class="status"></p>
-    </div>
-
-    <div id="chatApp" class="hidden">
-      <div class="chat-top">
-        <div>
-          <strong id="chatUser">☾ عضو محفل</strong>
-          <div class="status" id="roomStatus">اتاق عمومی</div>
-        </div>
-
-        <div class="room-buttons">
-          <button class="active" onclick="switchRoom('public',this)">💬 عمومی</button>
-          <button onclick="switchRoom('games',this)">🎮 بازی‌ها</button>
-          <button onclick="switchRoom('mystery',this)">🔮 رازها</button>
-        </div>
-      </div>
-
-      <div id="messages">
-        <p class="status">در حال اتصال به تالار...</p>
-      </div>
-
-      <div class="emoji-bar">
-        <button onclick="addEmoji('🔥')">🔥</button>
-        <button onclick="addEmoji('❤️')">❤️</button>
-        <button onclick="addEmoji('😂')">😂</button>
-        <button onclick="addEmoji('⚡')">⚡</button>
-        <button onclick="addEmoji('🔮')">🔮</button>
-        <button onclick="addEmoji('👑')">👑</button>
-      </div>
-
-      <form class="chat-form" id="messageForm">
-        <input class="input" id="messageInput" maxlength="500" autocomplete="off" placeholder="پیامت را برای محفل بنویس...">
-        <button class="btn primary" type="submit">ارسال ✦</button>
-      </form>
-    </div>
-  </div>
-</section>
-
 <section id="game">
-  <h2 class="section-title">🎮 شکار کریستال</h2>
-  <div class="card">
-    <p>۳۰ ثانیه فرصت داری! روی کریستال‌ها بزن و رکورد خودت را بشکن.</p>
-    <div class="game-stage" id="crystalStage"></div>
-    <p>امتیاز: <strong id="score">0</strong> | زمان: <strong id="timer">30</strong></p>
-    <button class="btn primary" onclick="startGame()">شروع بازی 🔮</button>
-  </div>
+<h2 class="section-title">بازی کریستال</h2>
+<div class="card game-wrap">
+<p>کریستال پنهان را پیدا کن و امتیاز بگیر!</p>
+<div id="board"></div>
+<div id="gameStatus">برای شروع بازی جدید را بزن.</div>
+<button class="btn" onclick="newGame()">بازی جدید</button>
+<p>امتیاز: <strong id="score">0</strong></p>
+</div>
+</section>
+<section id="chat">
+<h2 class="section-title">تالار گفت‌وگوی گروهی</h2>
+<div class="card">
+<div id="identity" class="muted">در حال ورود مهمان...</div>
+<div class="rooms">
+<button class="btn active" data-room="public">تالار عمومی</button>
+<button class="btn" data-room="games">تالار بازی</button>
+<button class="btn" data-room="mystery">تالار معما</button>
+</div>
+<div id="chatStatus">در حال اتصال...</div>
+<div id="messages"></div>
+<form id="chatForm">
+<input id="message" maxlength="500" placeholder="پیامت را بنویس..." autocomplete="off">
+<button class="btn" id="send" type="submit">ارسال</button>
+</form>
+<p class="muted">اطلاعات شخصی و رمزهایت را در چت عمومی منتشر نکن.</p>
+</div>
+</section>
+<section id="stats">
+<h2 class="section-title">آمار امپراتوری</h2>
+<div class="grid">
+<div class="card stat"><strong>7</strong>هفت گناه</div>
+<div class="card stat"><strong>3</strong>تالار گفتگو</div>
+<div class="card stat"><strong id="statScore">0</strong>امتیاز بازی این دستگاه</div>
+</div>
 </section>
 </main>
-
-<footer>☾ SEVEN SINS SOCIETY · THE STORY HAS JUST BEGUN ☾</footer>
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
-
-import {
-  getAuth,
-  signInAnonymously,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  limit,
-  onSnapshot,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDHgvoAw4cH4HD01UfQipDo6z5Z88Me0oCc",
-  authDomain: "seven-sins-chat.firebaseapp.com",
-  projectId: "seven-sins-chat",
-  storageBucket: "seven-sins-chat.firebasestorage.app",
-  messagingSenderId: "1009632654398",
-  appId: "1:1009632654398:web:c7bc6b9660dfda377bcd6f"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-let nickname = "";
-let currentRoom = "public";
-let unsubscribeMessages = null;
-let sending = false;
-
-const allowedRooms = ["public", "games", "mystery"];
-
-async function ensureAuth() {
-  await auth.authStateReady();
-
-  if (!auth.currentUser) {
-    await signInAnonymously(auth);
-  }
-
-  if (!auth.currentUser) {
-    throw new Error("ورود ناشناس انجام نشد.");
-  }
-
-  return auth.currentUser;
-}
-
-window.enterChat = async function() {
-  const input = document.getElementById("nicknameInput");
-  const status = document.getElementById("connectionStatus");
-  const button = document.getElementById("enterButton");
-  const name = input.value.trim();
-
-  if (name.length < 2 || name.length > 20) {
-    alert("اسم مستعار باید بین ۲ تا ۲۰ حرف باشد.");
-    return;
-  }
-
-  nickname = name;
-  status.textContent = "در حال اتصال به محفل...";
-  button.disabled = true;
-
-  try {
-    await ensureAuth();
-
-    document.getElementById("chatSetup").classList.add("hidden");
-    document.getElementById("chatApp").classList.remove("hidden");
-    document.getElementById("chatUser").textContent = "☾ " + nickname;
-
-    loadMessages();
-  } catch(error) {
-    console.error("Firebase Auth Error:", error);
-    status.textContent =
-      "خطای ورود: " + (error.code || "") + " | " + error.message;
-  } finally {
-    button.disabled = false;
-  }
-};
-
-window.switchRoom = function(room, button) {
-  if (!allowedRooms.includes(room)) return;
-
-  currentRoom = room;
-
-  document.querySelectorAll(".room-buttons button")
-    .forEach(btn => btn.classList.remove("active"));
-
-  button.classList.add("active");
-
-  const names = {
-    public: "اتاق عمومی",
-    games: "اتاق بازی‌ها",
-    mystery: "اتاق رازها"
-  };
-
-  document.getElementById("roomStatus").textContent = names[room];
-  loadMessages();
-};
-
-function loadMessages() {
-  if (!auth.currentUser) return;
-
-  if (unsubscribeMessages) {
-    unsubscribeMessages();
-    unsubscribeMessages = null;
-  }
-
-  const roomAtStart = currentRoom;
-  const box = document.getElementById("messages");
-
-  box.textContent = "در حال دریافت پیام‌های زنده...";
-
-  const messagesRef = collection(db, "rooms", roomAtStart, "messages");
-
-  const q = query(
-    messagesRef,
-    orderBy("createdAt", "desc"),
-    limit(100)
-  );
-
-  unsubscribeMessages = onSnapshot(
-    q,
-    snapshot => {
-      if (roomAtStart !== currentRoom) return;
-
-      box.innerHTML = "";
-
-      const messages = [];
-      snapshot.forEach(doc => messages.push(doc.data()));
-      messages.reverse();
-
-      document.getElementById("messageCount").textContent =
-        new Intl.NumberFormat("fa-IR").format(messages.length);
-
-      if (messages.length === 0) {
-        box.textContent = "هنوز پیامی نیست. اولین پیام را تو بفرست! ✦";
-        return;
-      }
-
-      messages.forEach(message => {
-        const div = document.createElement("div");
-
-        div.className =
-          message.uid === auth.currentUser?.uid ? "message mine" : "message";
-
-        const name = document.createElement("div");
-        name.className = "message-name";
-        name.textContent = message.nickname || "ناشناس";
-
-        const text = document.createElement("div");
-        text.className = "message-text";
-        text.textContent = message.text || "";
-
-        const time = document.createElement("div");
-        time.className = "message-time";
-
-        if (message.createdAt?.toDate) {
-          time.textContent =
-            message.createdAt.toDate().toLocaleTimeString(
-              "fa-IR",
-              {hour:"2-digit", minute:"2-digit"}
-            );
-        } else {
-          time.textContent = "همین الان";
-        }
-
-        div.append(name, text, time);
-        box.appendChild(div);
-      });
-
-      box.scrollTop = box.scrollHeight;
-    },
-    error => {
-      console.error("Firestore Read Error:", error);
-
-      if (roomAtStart !== currentRoom) return;
-
-      box.textContent =
-        "خطای دریافت پیام: " +
-        (error.code || "") + " | " + error.message;
-    }
-  );
-}
-
-document.getElementById("messageForm")
-  .addEventListener("submit", async event => {
-    event.preventDefault();
-
-    const input = document.getElementById("messageInput");
-    const text = input.value.trim();
-
-    if (!text || sending) return;
-
-    if (!auth.currentUser) {
-      alert("هنوز به محفل وصل نشده‌ای. دوباره وارد شو.");
-      return;
-    }
-
-    if (!allowedRooms.includes(currentRoom)) return;
-
-    sending = true;
-
-    const submitButton =
-      document.querySelector("#messageForm button[type='submit']");
-
-    submitButton.disabled = true;
-
-    try {
-      await addDoc(
-        collection(db, "rooms", currentRoom, "messages"),
-        {
-          uid: auth.currentUser.uid,
-          nickname: nickname,
-          text: text,
-          createdAt: serverTimestamp()
-        }
-      );
-
-      input.value = "";
-    } catch(error) {
-      console.error("Firestore Send Error:", error);
-      alert(
-        "پیام ارسال نشد:\n" +
-        (error.code || "") + "\n" +
-        error.message
-      );
-    } finally {
-      sending = false;
-      submitButton.disabled = false;
-      input.focus();
-    }
-  });
-
-window.addEmoji = function(emoji) {
-  const input = document.getElementById("messageInput");
-  input.value += emoji;
-  input.focus();
-};
-
-onAuthStateChanged(auth, user => {
-  if (user) {
-    console.log("Seven Sins connected:", user.uid);
-  } else {
-    console.log("Seven Sins: waiting for sign in");
-  }
-});
-</script>
+<footer>SEVEN SINS EMPIRE © 2026</footer>
 
 <script>
-function goTo(id) {
-  document.getElementById(id).scrollIntoView({
-    behavior:"smooth"
-  });
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+let target=0,score=0,playing=false;
+function newGame(){
+ target=Math.floor(Math.random()*9);playing=true;
+ document.getElementById('gameStatus').textContent='کریستال را پیدا کن!';
+ const board=document.getElementById('board');board.replaceChildren();
+ for(let i=0;i<9;i++){
+  const b=document.createElement('button');b.className='tile';b.textContent='◇';
+  b.onclick=()=>{
+   if(!playing)return;
+   b.textContent=i===target?'💎':'✦';b.disabled=true;
+   if(i===target){
+    playing=false;score++;
+    document.getElementById('score').textContent=score;
+    document.getElementById('statScore').textContent=score;
+    document.getElementById('gameStatus').textContent='آفرین! کریستال پیدا شد.';
+   }else document.getElementById('gameStatus').textContent='این کریستال نبود؛ دوباره امتحان کن.';
+  };
+  board.append(b);
+ }
 }
-
-/* GAME */
-let score = 0;
-let timeLeft = 30;
-let gameTimer = null;
-let playing = false;
-
-function updateBestScore() {
-  const best = Number(localStorage.getItem("sevenSinsBestScore") || 0);
-
-  document.getElementById("bestScore").textContent =
-    new Intl.NumberFormat("fa-IR").format(best);
-}
-
-window.startGame = function() {
-  if (playing) return;
-
-  playing = true;
-  score = 0;
-  timeLeft = 30;
-
-  document.getElementById("score").textContent = score;
-  document.getElementById("timer").textContent = timeLeft;
-
-  const stage = document.getElementById("crystalStage");
-
-  function spawnCrystal() {
-    if (!playing) return;
-
-    stage.innerHTML = "";
-
-    const crystal = document.createElement("div");
-    crystal.className = "crystal";
-
-    crystal.style.left = Math.random() * 85 + "%";
-    crystal.style.top = Math.random() * 80 + "%";
-
-    crystal.onclick = function() {
-      if (!playing) return;
-
-      score++;
-      document.getElementById("score").textContent = score;
-      spawnCrystal();
-    };
-
-    stage.appendChild(crystal);
-  }
-
-  spawnCrystal();
-
-  gameTimer = setInterval(() => {
-    timeLeft--;
-    document.getElementById("timer").textContent = timeLeft;
-
-    if (timeLeft <= 0) {
-      clearInterval(gameTimer);
-      playing = false;
-
-      stage.innerHTML =
-        '<div style="text-align:center;padding-top:100px;font-size:20px">🏆 پایان بازی!<br>امتیاز تو: ' +
-        score + '</div>';
-
-      const best = Number(
-        localStorage.getItem("sevenSinsBestScore") || 0
-      );
-
-      if (score > best) {
-        localStorage.setItem("sevenSinsBestScore", score);
-        updateBestScore();
-      }
-    }
-  }, 1000);
-};
-
-updateBestScore();
+newGame();
 </script>
 
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import {getAuth,signInAnonymously,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import {getFirestore,collection,addDoc,query,orderBy,limit,onSnapshot,serverTimestamp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyDHgvoAw4cHHD01UfQipDo6z5Z88Me0oCc",
+ authDomain:"seven-sins-chat.firebaseapp.com",
+ projectId:"seven-sins-chat",
+ storageBucket:"seven-sins-chat.firebasestorage.app",
+ messagingSenderId:"1009632654398",
+ appId:"1:1009632654398:web:c7bc6b9660dfda377bcd6f"
+};
+
+const status=document.getElementById('chatStatus');
+const messages=document.getElementById('messages');
+const form=document.getElementById('chatForm');
+const input=document.getElementById('message');
+const send=document.getElementById('send');
+const identity=document.getElementById('identity');
+let db,user,room='public',nickname,unsubscribe;
+
+function guestName(){
+ let name=sessionStorage.getItem('sevenSinsGuest');
+ if(!name){
+  name='Shadow-'+Math.floor(1000+Math.random()*9000);
+  sessionStorage.setItem('sevenSinsGuest',name);
+ }
+ return name;
+}
+function showError(e){
+ status.textContent='خطا: '+(e.code||e.message);
+ console.error(e);
+}
+function loadRoom(){
+ if(unsubscribe)unsubscribe();
+ messages.replaceChildren();
+ const q=query(collection(db,'rooms',room,'messages'),orderBy('createdAt','desc'),limit(100));
+ unsubscribe=onSnapshot(q,snap=>{
+  messages.replaceChildren();
+  snap.docs.reverse().forEach(doc=>{
+   const d=doc.data();
+   const box=document.createElement('div');box.className='message';
+   const name=document.createElement('strong');name.textContent=d.nickname||'مهمان';
+   const body=document.createElement('span');body.textContent=d.text||'';
+   box.append(name,body);messages.append(box);
+  });
+  messages.scrollTop=messages.scrollHeight;
+ },showError);
+ status.textContent='تالار '+room;
+}
+document.querySelectorAll('[data-room]').forEach(b=>{
+ b.addEventListener('click',()=>{
+  room=b.dataset.room;
+  document.querySelectorAll('[data-room]').forEach(x=>x.classList.toggle('active',x===b));
+  if(user)loadRoom();
+ });
+});
+form.addEventListener('submit',async e=>{
+ e.preventDefault();
+ const text=input.value.trim();
+ if(!text||!user)return;
+ send.disabled=true;
+ try{
+  await addDoc(collection(db,'rooms',room,'messages'),{
+   uid:user.uid,nickname,text,createdAt:serverTimestamp()
+  });
+  input.value='';
+ }catch(e){showError(e)}
+ finally{send.disabled=false}
+});
+try{
+ const app=initializeApp(firebaseConfig);
+ const auth=getAuth(app);
+ db=getFirestore(app);
+ nickname=guestName();
+ await signInAnonymously(auth);
+ onAuthStateChanged(auth,u=>{
+  if(!u)return;
+  user=u;
+  identity.textContent='نام مهمان خودکار: '+nickname;
+  loadRoom();
+ });
+}catch(e){showError(e)}
+</script>
 </body>
 </html>
