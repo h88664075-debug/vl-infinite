@@ -1,404 +1,207 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URBAN STYLE | فروشگاه پوشاک</title>
-  <meta name="description" content="فروشگاه آنلاین پوشاک URBAN STYLE">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBAN STYLE | فروشگاه پوشاک</title>
 
-  <style>
-    :root {
-      --bg: #f7f7f7;
-      --card: #ffffff;
-      --text: #171717;
-      --muted: #777;
-      --accent: #111;
-      --line: #e7e7e7;
-      --danger: #d94343;
-      --radius: 18px;
-    }
+<style>
+:root{
+  --bg:#f6f6f6;
+  --card:#fff;
+  --text:#171717;
+  --muted:#777;
+  --dark:#111;
+  --line:#e5e5e5;
+  --accent:#c89b5b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+a{text-decoration:none;color:inherit}
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+/* Header */
+header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  max-width:1200px;margin:auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:18px}
+.nav-links a{font-size:14px}
+.cart-btn,.admin-btn{
+  background:var(--dark);color:#fff;
+  padding:11px 15px;border-radius:12px;
+}
+.cart-count{
+  background:#fff;color:#111;border-radius:50%;
+  width:21px;height:21px;display:inline-flex;
+  align-items:center;justify-content:center;font-size:12px;
+}
 
-    body {
-      margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+/* Hero */
+.hero{
+  max-width:1200px;margin:25px auto;padding:60px 45px;
+  min-height:390px;border-radius:25px;color:#fff;
+  display:flex;flex-direction:column;justify-content:center;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.1)),
+    url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+}
+.hero h1{font-size:clamp(38px,7vw,70px);margin:0}
+.hero p{max-width:500px;line-height:2;color:#eee}
+.hero button{
+  width:max-content;padding:13px 20px;
+  border-radius:12px;font-weight:bold;
+}
 
-    button, input { font: inherit; }
+/* Main */
+main{max-width:1200px;margin:auto;padding:10px 20px 60px}
+.title-row{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;margin:35px 0 15px;
+}
+.search,input,select{
+  border:1px solid var(--line);
+  background:#fff;border-radius:11px;padding:12px;
+}
+.search{width:min(100%,330px)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter{
+  padding:10px 16px;background:#fff;
+  border:1px solid var(--line);border-radius:999px;
+}
+.filter.active{background:var(--dark);color:#fff}
 
-    button {
-      cursor: pointer;
-      border: 0;
-    }
+/* Products */
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.product{
+  background:#fff;border:1px solid var(--line);
+  border-radius:18px;overflow:hidden;
+  transition:.2s;
+}
+.product:hover{transform:translateY(-4px)}
+.product img{
+  width:100%;aspect-ratio:1/1.15;
+  object-fit:cover;display:block;background:#eee;
+}
+.product-info{padding:14px}
+.category{color:var(--muted);font-size:12px}
+.product h3{margin:7px 0;font-size:16px}
+.product-bottom{
+  display:flex;align-items:center;
+  justify-content:space-between;gap:8px;margin-top:12px;
+}
+.price{font-weight:bold}
+.add-btn{
+  background:var(--dark);color:#fff;
+  padding:9px 12px;border-radius:10px;
+}
 
-    /* Header */
-    header {
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
+/* Drawers */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.45);
+  display:none;z-index:40;
+}
+.overlay.show{display:block}
+.drawer{
+  position:fixed;top:0;left:0;height:100vh;
+  width:min(440px,100%);background:#fff;
+  z-index:50;transform:translateX(-105%);
+  transition:.3s;display:flex;flex-direction:column;
+}
+.drawer.open{transform:translateX(0)}
+.drawer-header{
+  padding:18px;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.close-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:#eee;font-size:20px;
+}
 
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      min-height: 70px;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
+/* Cart */
+.cart-items{padding:15px;overflow:auto;flex:1}
+.cart-item{
+  display:grid;grid-template-columns:70px 1fr;
+  gap:12px;padding:12px 0;border-bottom:1px solid var(--line);
+}
+.cart-item img{
+  width:70px;height:85px;object-fit:cover;border-radius:10px;
+}
+.cart-item h4{margin:0 0 7px}
+.quantity{display:flex;align-items:center;gap:8px;margin-top:7px}
+.quantity button{
+  width:28px;height:28px;border-radius:8px;background:#eee;
+}
+.remove{background:none;color:#c33;padding:6px 0;font-size:12px}
+.drawer-footer{padding:18px;border-top:1px solid var(--line)}
+.total{display:flex;justify-content:space-between;font-weight:bold;margin-bottom:14px}
+.checkout{
+  width:100%;background:var(--dark);color:#fff;
+  padding:14px;border-radius:12px;font-weight:bold;
+}
 
-    .logo {
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: 2px;
-      white-space: nowrap;
-    }
+/* Admin */
+.admin-content{padding:18px;overflow:auto}
+.form-group{margin-bottom:13px}
+.form-group label{display:block;margin-bottom:6px;font-size:13px}
+.form-group input,.form-group select{width:100%}
+.save-btn{
+  width:100%;background:var(--dark);color:#fff;
+  padding:14px;border-radius:12px;font-weight:bold;
+}
+.admin-products{margin-top:25px}
+.admin-product{
+  display:flex;justify-content:space-between;
+  gap:10px;padding:12px 0;border-bottom:1px solid var(--line);
+}
+.delete-btn{background:#fee;color:#c22;padding:7px 10px;border-radius:8px}
 
-    .logo span { color: #777; }
+/* Toast */
+#toast{
+  position:fixed;bottom:25px;right:50%;
+  transform:translateX(50%);
+  background:#111;color:#fff;padding:13px 20px;
+  border-radius:12px;z-index:100;display:none;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
+/* Footer */
+footer{background:#111;color:#aaa;text-align:center;padding:45px 20px}
+footer strong{color:#fff;font-size:20px}
 
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 14px;
-    }
+.empty{text-align:center;color:var(--muted);padding:40px 10px}
 
-    .cart-button {
-      position: relative;
-      background: #111;
-      color: white;
-      border-radius: 12px;
-      padding: 11px 16px;
-    }
-
-    .cart-count {
-      background: white;
-      color: #111;
-      width: 20px;
-      height: 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      font-size: 12px;
-      margin-right: 5px;
-    }
-
-    /* Hero */
-    .hero {
-      max-width: 1200px;
-      margin: 25px auto;
-      min-height: 410px;
-      padding: 55px 45px;
-      border-radius: 28px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.15)),
-        url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 7vw, 70px);
-      margin: 0 0 10px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 500px;
-      color: #eee;
-      line-height: 2;
-    }
-
-    .hero button {
-      background: white;
-      color: #111;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-weight: bold;
-      width: max-content;
-      margin-top: 10px;
-    }
-
-    /* Main */
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 10px 20px 60px;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin: 40px 0 18px;
-    }
-
-    .section-title h2 { margin: 0; }
-
-    .search {
-      width: min(100%, 340px);
-      padding: 13px 16px;
-      border: 1px solid var(--line);
-      background: white;
-      border-radius: 12px;
-      outline: none;
-    }
-
-    .search:focus { border-color: #999; }
-
-    .filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .filter {
-      background: white;
-      border: 1px solid var(--line);
-      padding: 10px 16px;
-      border-radius: 999px;
-    }
-
-    .filter.active {
-      background: #111;
-      color: white;
-      border-color: #111;
-    }
-
-    /* Products */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .product {
-      background: var(--card);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--line);
-      transition: transform .2s;
-    }
-
-    .product:hover { transform: translateY(-5px); }
-
-    .product-image {
-      width: 100%;
-      aspect-ratio: 1 / 1.1;
-      object-fit: cover;
-      display: block;
-      background: #eee;
-    }
-
-    .product-info { padding: 15px; }
-
-    .product-category {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .product h3 {
-      margin: 7px 0;
-      font-size: 16px;
-    }
-
-    .product-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: 13px;
-    }
-
-    .price {
-      font-weight: bold;
-      font-size: 15px;
-    }
-
-    .add-button {
-      background: #111;
-      color: white;
-      border-radius: 10px;
-      padding: 9px 12px;
-    }
-
-    /* Cart */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.4);
-      z-index: 40;
-      display: none;
-    }
-
-    .overlay.show { display: block; }
-
-    .cart {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: min(430px, 100%);
-      height: 100vh;
-      background: white;
-      z-index: 50;
-      transform: translateX(-100%);
-      transition: transform .3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart.open { transform: translateX(0); }
-
-    .cart-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close {
-      background: #eee;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 18px;
-    }
-
-    .cart-items {
-      padding: 15px;
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .empty {
-      text-align: center;
-      color: var(--muted);
-      padding: 50px 15px;
-    }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 70px 1fr;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .cart-item img {
-      width: 70px;
-      height: 85px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .cart-item h4 { margin: 0 0 7px; }
-
-    .quantity {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      margin-top: 8px;
-    }
-
-    .quantity button {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: #eee;
-    }
-
-    .remove {
-      background: none;
-      color: var(--danger);
-      padding: 5px 0;
-      font-size: 12px;
-    }
-
-    .cart-footer {
-      padding: 18px;
-      border-top: 1px solid var(--line);
-    }
-
-    .total {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .checkout {
-      width: 100%;
-      background: #111;
-      color: white;
-      padding: 15px;
-      border-radius: 12px;
-      font-weight: bold;
-    }
-
-    /* Toast */
-    #toast {
-      position: fixed;
-      bottom: 25px;
-      right: 50%;
-      transform: translateX(50%);
-      background: #111;
-      color: white;
-      padding: 13px 20px;
-      border-radius: 12px;
-      z-index: 100;
-      display: none;
-    }
-
-    footer {
-      background: #111;
-      color: #aaa;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    footer strong {
-      color: white;
-      font-size: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .products { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (max-width: 650px) {
-      .nav-links { display: none; }
-      .hero {
-        margin: 15px;
-        padding: 35px 22px;
-        min-height: 360px;
-      }
-      .products { grid-template-columns: repeat(2, 1fr); }
-      .section-title { align-items: stretch; flex-direction: column; }
-      .search { width: 100%; }
-      main { padding: 5px 15px 50px; }
-    }
-  </style>
+@media(max-width:900px){
+  .products{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+  .nav-links{display:none}
+  .hero{margin:15px;padding:35px 22px;min-height:350px}
+  main{padding:5px 15px 50px}
+  .products{grid-template-columns:repeat(2,1fr);gap:12px}
+  .title-row{flex-direction:column;align-items:stretch}
+  .search{width:100%}
+  .nav{padding:10px 14px}
+}
+</style>
 </head>
 
 <body>
@@ -409,28 +212,26 @@
 
     <nav class="nav-links">
       <a href="#home">خانه</a>
-      <a href="#products">فروشگاه</a>
+      <a href="#shop">فروشگاه</a>
       <a href="#footer">درباره ما</a>
     </nav>
 
-    <button class="cart-button" onclick="openCart()">
-      🛒 سبد
-      <span class="cart-count" id="cartCount">0</span>
-    </button>
+    <div style="display:flex;gap:8px">
+      <button class="admin-btn" onclick="openAdmin()">⚙️ مدیریت</button>
+      <button class="cart-btn" onclick="openCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
+    </div>
   </div>
 </header>
 
 <section class="hero" id="home">
   <h1>URBAN STYLE</h1>
-  <p>استایل خودت را بساز. جدیدترین لباس‌ها و ترندهای روز را در فروشگاه ما پیدا کن.</p>
-  <button onclick="document.getElementById('products').scrollIntoView()">
-    مشاهده محصولات
-  </button>
+  <p>فروشگاه آنلاین پوشاک؛ استایل خودت را انتخاب کن و متفاوت باش.</p>
+  <button onclick="document.getElementById('shop').scrollIntoView()">مشاهده محصولات</button>
 </section>
 
 <main>
-  <div class="section-title" id="products">
-    <h2>محصولات جدید</h2>
+  <div class="title-row" id="shop">
+    <h2>محصولات فروشگاه</h2>
     <input class="search" id="search" placeholder="🔍 جستجوی محصول...">
   </div>
 
@@ -444,25 +245,68 @@
   <div class="products" id="productsGrid"></div>
 </main>
 
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
 
-<aside class="cart" id="cart">
-  <div class="cart-header">
-    <h2>🛒 سبد خرید</h2>
-    <button class="close" onclick="closeCart()">×</button>
+<!-- Cart -->
+<aside class="drawer" id="cart">
+  <div class="drawer-header">
+    <h2>سبد خرید 🛒</h2>
+    <button class="close-btn" onclick="closeAll()">×</button>
   </div>
 
   <div class="cart-items" id="cartItems"></div>
 
-  <div class="cart-footer">
+  <div class="drawer-footer">
     <div class="total">
       <span>مجموع:</span>
       <span id="totalPrice">۰ تومان</span>
     </div>
+    <button class="checkout" onclick="checkout()">ثبت سفارش</button>
+  </div>
+</aside>
 
-    <button class="checkout" onclick="checkout()">
-      ادامه و ثبت سفارش
-    </button>
+<!-- Admin -->
+<aside class="drawer" id="admin">
+  <div class="drawer-header">
+    <h2>مدیریت فروشگاه ⚙️</h2>
+    <button class="close-btn" onclick="closeAll()">×</button>
+  </div>
+
+  <div class="admin-content">
+    <h3>اضافه کردن محصول جدید</h3>
+
+    <form id="productForm">
+      <div class="form-group">
+        <label>نام محصول</label>
+        <input id="productName" required placeholder="مثلاً هودی مشکی">
+      </div>
+
+      <div class="form-group">
+        <label>قیمت (تومان)</label>
+        <input id="productPrice" type="number" required min="0" placeholder="مثلاً 850000">
+      </div>
+
+      <div class="form-group">
+        <label>دسته‌بندی</label>
+        <select id="productCategory">
+          <option>مردانه</option>
+          <option>زنانه</option>
+          <option>اکسسوری</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>لینک عکس محصول</label>
+        <input id="productImage" type="url" required placeholder="https://...">
+      </div>
+
+      <button class="save-btn" type="submit">➕ اضافه کردن محصول</button>
+    </form>
+
+    <div class="admin-products">
+      <h3>محصولات اضافه‌شده</h3>
+      <div id="adminProducts"></div>
+    </div>
   </div>
 </aside>
 
@@ -475,252 +319,266 @@
 <div id="toast"></div>
 
 <script>
-  const products = [
-    {
-      id: 1,
-      name: "هودی مشکی کلاسیک",
-      category: "مردانه",
-      price: 1290000,
-      image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 2,
-      name: "کت جین شهری",
-      category: "مردانه",
-      price: 1590000,
-      image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 3,
-      name: "استایل مینیمال",
-      category: "زنانه",
-      price: 1890000,
-      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 4,
-      name: "تی‌شرت اورسایز",
-      category: "مردانه",
-      price: 790000,
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 5,
-      name: "کیف شهری",
-      category: "اکسسوری",
-      price: 990000,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 6,
-      name: "لباس روزمره",
-      category: "زنانه",
-      price: 1490000,
-      image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 7,
-      name: "کلاه استایل",
-      category: "اکسسوری",
-      price: 490000,
-      image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-      id: 8,
-      name: "ژاکت زمستانی",
-      category: "مردانه",
-      price: 2190000,
-      image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=700&q=80"
-    }
-  ];
-
-  let cart = JSON.parse(localStorage.getItem("urbanStyleCart") || "[]");
-  let currentCategory = "همه";
-
-  const faNumber = number =>
-    number.toLocaleString("fa-IR") + " تومان";
-
-  function showToast(message) {
-    const toast = document.getElementById("toast");
-    toast.textContent = message;
-    toast.style.display = "block";
-
-    clearTimeout(window.toastTimer);
-    window.toastTimer = setTimeout(() => {
-      toast.style.display = "none";
-    }, 2500);
+const defaultProducts = [
+  {
+    id: 1,
+    name: "هودی مشکی کلاسیک",
+    category: "مردانه",
+    price: 1290000,
+    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    id: 2,
+    name: "کت جین شهری",
+    category: "مردانه",
+    price: 1590000,
+    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    id: 3,
+    name: "استایل مینیمال",
+    category: "زنانه",
+    price: 1890000,
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    id: 4,
+    name: "تی‌شرت اورسایز",
+    category: "مردانه",
+    price: 790000,
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    id: 5,
+    name: "کیف شهری",
+    category: "اکسسوری",
+    price: 990000,
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    id: 6,
+    name: "لباس روزمره",
+    category: "زنانه",
+    price: 1490000,
+    image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80"
   }
+];
 
-  function renderProducts() {
-    const search = document.getElementById("search").value.trim().toLowerCase();
+// محصولات سفارشی در مرورگر ذخیره می‌شوند
+let customProducts = JSON.parse(localStorage.getItem("urbanCustomProducts") || "[]");
+let products = [...defaultProducts, ...customProducts];
 
-    const filtered = products.filter(product => {
-      const categoryMatch =
-        currentCategory === "همه" ||
-        product.category === currentCategory;
+let cart = JSON.parse(localStorage.getItem("urbanCart") || "[]");
+let currentCategory = "همه";
 
-      const searchMatch =
-        product.name.toLowerCase().includes(search) ||
-        product.category.includes(search);
+function formatPrice(price){
+  return Number(price).toLocaleString("fa-IR") + " تومان";
+}
 
-      return categoryMatch && searchMatch;
-    });
+function toast(text){
+  const t = document.getElementById("toast");
+  t.textContent = text;
+  t.style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => t.style.display = "none", 2500);
+}
 
-    const grid = document.getElementById("productsGrid");
+function renderProducts(){
+  const search = document.getElementById("search").value.trim().toLowerCase();
 
-    if (!filtered.length) {
-      grid.innerHTML = "<p>محصولی پیدا نشد.</p>";
-      return;
-    }
-
-    grid.innerHTML = filtered.map(product => `
-      <article class="product">
-        <img
-          class="product-image"
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy"
-        >
-
-        <div class="product-info">
-          <div class="product-category">${product.category}</div>
-          <h3>${product.name}</h3>
-
-          <div class="product-bottom">
-            <div class="price">${faNumber(product.price)}</div>
-            <button class="add-button" onclick="addToCart(${product.id})">
-              افزودن
-            </button>
-          </div>
-        </div>
-      </article>
-    `).join("");
-  }
-
-  function addToCart(id) {
-    const item = cart.find(item => item.id === id);
-
-    if (item) {
-      item.quantity++;
-    } else {
-      cart.push({ id, quantity: 1 });
-    }
-
-    saveCart();
-    showToast("محصول به سبد خرید اضافه شد 🛍️");
-  }
-
-  function saveCart() {
-    localStorage.setItem("urbanStyleCart", JSON.stringify(cart));
-    renderCart();
-  }
-
-  function renderCart() {
-    const container = document.getElementById("cartItems");
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-    document.getElementById("cartCount").textContent =
-      count.toLocaleString("fa-IR");
-
-    if (!cart.length) {
-      container.innerHTML = `
-        <div class="empty">
-          <h3>سبد خرید خالی است</h3>
-          <p>یک محصول انتخاب کن و به سبد اضافه کن.</p>
-        </div>
-      `;
-
-      document.getElementById("totalPrice").textContent = "۰ تومان";
-      return;
-    }
-
-    let total = 0;
-
-    container.innerHTML = cart.map(item => {
-      const product = products.find(product => product.id === item.id);
-      total += product.price * item.quantity;
-
-      return `
-        <div class="cart-item">
-          <img src="${product.image}" alt="${product.name}">
-
-          <div>
-            <h4>${product.name}</h4>
-            <strong>${faNumber(product.price)}</strong>
-
-            <div class="quantity">
-              <button onclick="changeQuantity(${product.id}, 1)">+</button>
-              <span>${item.quantity.toLocaleString("fa-IR")}</span>
-              <button onclick="changeQuantity(${product.id}, -1)">−</button>
-            </div>
-
-            <button class="remove" onclick="removeFromCart(${product.id})">
-              حذف محصول
-            </button>
-          </div>
-        </div>
-      `;
-    }).join("");
-
-    document.getElementById("totalPrice").textContent = faNumber(total);
-  }
-
-  function changeQuantity(id, change) {
-    const item = cart.find(item => item.id === id);
-    if (!item) return;
-
-    item.quantity += change;
-
-    if (item.quantity <= 0) {
-      cart = cart.filter(item => item.id !== id);
-    }
-
-    saveCart();
-  }
-
-  function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
-    saveCart();
-    showToast("محصول حذف شد.");
-  }
-
-  function openCart() {
-    document.getElementById("cart").classList.add("open");
-    document.getElementById("overlay").classList.add("show");
-  }
-
-  function closeCart() {
-    document.getElementById("cart").classList.remove("open");
-    document.getElementById("overlay").classList.remove("show");
-  }
-
-  function checkout() {
-    if (!cart.length) {
-      showToast("سبد خریدت خالی است.");
-      return;
-    }
-
-    showToast("سیستم ثبت سفارش در نسخه دمو فعال است.");
-  }
-
-  document.getElementById("search")
-    .addEventListener("input", renderProducts);
-
-  document.querySelectorAll(".filter").forEach(button => {
-    button.addEventListener("click", () => {
-      currentCategory = button.dataset.category;
-
-      document.querySelectorAll(".filter")
-        .forEach(btn => btn.classList.remove("active"));
-
-      button.classList.add("active");
-      renderProducts();
-    });
+  const filtered = products.filter(p => {
+    const categoryOK = currentCategory === "همه" || p.category === currentCategory;
+    const searchOK = p.name.toLowerCase().includes(search) || p.category.includes(search);
+    return categoryOK && searchOK;
   });
 
-  renderProducts();
+  const grid = document.getElementById("productsGrid");
+
+  if(!filtered.length){
+    grid.innerHTML = "<p>محصولی پیدا نشد.</p>";
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <article class="product">
+      <img src="${p.image}" alt="${p.name}" loading="lazy">
+      <div class="product-info">
+        <div class="category">${p.category}</div>
+        <h3>${p.name}</h3>
+        <div class="product-bottom">
+          <span class="price">${formatPrice(p.price)}</span>
+          <button class="add-btn" onclick="addToCart(${p.id})">افزودن</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function addToCart(id){
+  const item = cart.find(x => x.id === id);
+  if(item) item.quantity++;
+  else cart.push({id, quantity:1});
+
+  saveCart();
+  toast("به سبد خرید اضافه شد 🛍️");
+}
+
+function saveCart(){
+  localStorage.setItem("urbanCart", JSON.stringify(cart));
   renderCart();
+}
+
+function renderCart(){
+  const box = document.getElementById("cartItems");
+  const count = cart.reduce((sum, x) => sum + x.quantity, 0);
+  document.getElementById("cartCount").textContent = count.toLocaleString("fa-IR");
+
+  if(!cart.length){
+    box.innerHTML = '<div class="empty"><h3>سبد خرید خالی است</h3><p>یک محصول انتخاب کن.</p></div>';
+    document.getElementById("totalPrice").textContent = "۰ تومان";
+    return;
+  }
+
+  let total = 0;
+
+  box.innerHTML = cart.map(item => {
+    const p = products.find(x => x.id === item.id);
+    if(!p) return "";
+
+    total += p.price * item.quantity;
+
+    return `
+      <div class="cart-item">
+        <img src="${p.image}" alt="${p.name}">
+        <div>
+          <h4>${p.name}</h4>
+          <strong>${formatPrice(p.price)}</strong>
+          <div class="quantity">
+            <button onclick="changeQuantity(${p.id},1)">+</button>
+            <span>${item.quantity.toLocaleString("fa-IR")}</span>
+            <button onclick="changeQuantity(${p.id},-1)">−</button>
+          </div>
+          <button class="remove" onclick="removeFromCart(${p.id})">حذف محصول</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("totalPrice").textContent = formatPrice(total);
+}
+
+function changeQuantity(id, amount){
+  const item = cart.find(x => x.id === id);
+  if(!item) return;
+
+  item.quantity += amount;
+  if(item.quantity <= 0) cart = cart.filter(x => x.id !== id);
+  saveCart();
+}
+
+function removeFromCart(id){
+  cart = cart.filter(x => x.id !== id);
+  saveCart();
+  toast("محصول حذف شد.");
+}
+
+function openDrawer(id){
+  document.getElementById("overlay").classList.add("show");
+  document.getElementById(id).classList.add("open");
+}
+
+function openCart(){ openDrawer("cart"); }
+function openAdmin(){
+  renderAdminProducts();
+  openDrawer("admin");
+}
+
+function closeAll(){
+  document.getElementById("overlay").classList.remove("show");
+  document.querySelectorAll(".drawer").forEach(x => x.classList.remove("open"));
+}
+
+function checkout(){
+  if(!cart.length){
+    toast("سبد خرید خالی است.");
+    return;
+  }
+
+  toast("سفارش در نسخه آزمایشی ثبت شد ✅");
+}
+
+// اضافه کردن محصول از پنل مدیریت
+document.getElementById("productForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const newProduct = {
+    id: Date.now(),
+    name: document.getElementById("productName").value.trim(),
+    price: Number(document.getElementById("productPrice").value),
+    category: document.getElementById("productCategory").value,
+    image: document.getElementById("productImage").value.trim()
+  };
+
+  customProducts.push(newProduct);
+  localStorage.setItem("urbanCustomProducts", JSON.stringify(customProducts));
+
+  products = [...defaultProducts, ...customProducts];
+  e.target.reset();
+
+  renderProducts();
+  renderAdminProducts();
+  toast("محصول جدید اضافه شد! 🎉");
+});
+
+function renderAdminProducts(){
+  const box = document.getElementById("adminProducts");
+
+  if(!customProducts.length){
+    box.innerHTML = '<p class="empty">هنوز محصول جدیدی اضافه نکرده‌ای.</p>';
+    return;
+  }
+
+  box.innerHTML = customProducts.map(p => `
+    <div class="admin-product">
+      <div>
+        <b>${p.name}</b>
+        <div class="category">${formatPrice(p.price)} · ${p.category}</div>
+      </div>
+      <button class="delete-btn" onclick="deleteProduct(${p.id})">حذف</button>
+    </div>
+  `).join("");
+}
+
+function deleteProduct(id){
+  customProducts = customProducts.filter(p => p.id !== id);
+  localStorage.setItem("urbanCustomProducts", JSON.stringify(customProducts));
+  products = [...defaultProducts, ...customProducts];
+
+  // حذف محصول از سبد خرید هم
+  cart = cart.filter(x => x.id !== id);
+  saveCart();
+
+  renderProducts();
+  renderAdminProducts();
+  toast("محصول حذف شد.");
+}
+
+document.getElementById("search").addEventListener("input", renderProducts);
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    currentCategory = button.dataset.category;
+
+    document.querySelectorAll(".filter").forEach(x => x.classList.remove("active"));
+    button.classList.add("active");
+
+    renderProducts();
+  });
+});
+
+renderProducts();
+renderCart();
 </script>
 
 </body>
-      </html>
+  </html>
