@@ -2,684 +2,506 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEVEN SINS | ULTIMATE EMPIRE</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Vazirmatn:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DARK EMPIRE X | SEVEN SINS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Vazirmatn:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
- --bg:#08080d;
- --panel:#11111a;
- --panel2:#191923;
- --gold:#e8bd72;
- --gold2:#9b7138;
- --red:#bd3c54;
- --text:#f5f0e8;
- --muted:#9996a4;
- --line:#ffffff12;
- --green:#67d6a0;
+ --bg:#07070b;--panel:#11111a;--panel2:#191923;
+ --gold:#e8bd72;--red:#d34a65;--text:#f6f1e9;
+ --muted:#9996a4;--line:#ffffff13;--green:#5bd4a0;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
  margin:0;background:var(--bg);color:var(--text);
- font-family:Vazirmatn,sans-serif;overflow-x:hidden;
- background-image:
- radial-gradient(ellipse at 15% 5%,#351b2c55,transparent 35%),
- radial-gradient(ellipse at 85% 30%,#22204a40,transparent 35%);
+ font-family:Vazirmatn,sans-serif;
+ background-image:radial-gradient(at 10% 0%,#41192a55,transparent 35%),
+ radial-gradient(at 90% 20%,#26204c55,transparent 35%);
 }
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-button:disabled{opacity:.4;cursor:not-allowed}
-button:active{transform:scale(.97)}
-#particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.particle{
- position:absolute;width:3px;height:3px;border-radius:50%;
- background:var(--gold);opacity:.35;
- animation:rise linear infinite;
-}
-@keyframes rise{to{transform:translateY(-110vh);opacity:0}}
 header{
- position:sticky;top:0;z-index:50;
- background:#08080de8;backdrop-filter:blur(18px);
+ position:sticky;top:0;z-index:20;
+ background:#08080eec;backdrop-filter:blur(18px);
  border-bottom:1px solid var(--line);
- padding:13px 4%;display:flex;align-items:center;
- justify-content:space-between;gap:15px;
+ padding:13px 4%;display:flex;justify-content:space-between;
+ align-items:center;gap:12px;flex-wrap:wrap
 }
-.logo{
- font:900 23px Cinzel,serif;color:var(--gold);
- letter-spacing:3px;white-space:nowrap;
-}
+.logo{font:900 23px Cinzel;color:var(--gold);letter-spacing:3px}
 nav{display:flex;gap:5px;overflow:auto}
 nav button{
- border:1px solid transparent;background:none;
- color:var(--muted);padding:9px 12px;border-radius:10px;
- white-space:nowrap;font-size:13px;
+ background:none;border:1px solid transparent;
+ color:var(--muted);padding:9px 11px;border-radius:9px;
+ white-space:nowrap;font-size:12px
 }
-nav button:hover,nav button.active{
- color:var(--gold);background:#e8bd7210;
- border-color:#e8bd7240;
+nav button.active,nav button:hover{
+ color:var(--gold);border-color:#e8bd7240;background:#e8bd7210
 }
-main{max-width:1250px;margin:auto;padding:25px 20px 70px}
-.page{display:none;animation:appear .3s ease}
+main{max-width:1300px;margin:auto;padding:22px 17px 60px}
+.page{display:none;animation:fade .3s}
 .page.active{display:block}
-@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .hero{
- min-height:520px;border-radius:28px;border:1px solid #e8bd7230;
- background:
- radial-gradient(circle at 50% 40%,#573b2730,transparent 45%),
- linear-gradient(135deg,#1b101a,#0b0c17 60%,#21160f);
- display:grid;place-items:center;text-align:center;
- padding:45px 20px;position:relative;overflow:hidden;
+ min-height:510px;display:grid;place-items:center;text-align:center;
+ border:1px solid #e8bd7240;border-radius:28px;overflow:hidden;
+ position:relative;background:
+ radial-gradient(circle,#5b342b30,transparent 55%),
+ linear-gradient(135deg,#1c101b,#0c0c19,#21140e)
 }
 .hero:before{
- content:"VII";position:absolute;z-index:0;
- font:900 min(65vw,570px) Cinzel,serif;
- color:#ffffff05;
+ content:"VII";position:absolute;font:900 min(65vw,570px) Cinzel;
+ color:#ffffff06
 }
-.hero-inner{position:relative;z-index:1}
+.hero-content{position:relative;padding:30px}
 .kicker{color:var(--gold);letter-spacing:5px;font-size:12px}
 .hero h1{
- font:900 clamp(55px,12vw,125px)/.9 Cinzel,serif;
- letter-spacing:5px;margin:24px 0;
- background:linear-gradient(120deg,#fff,#e8bd72,#91602e);
- -webkit-background-clip:text;color:transparent;
+ font:900 clamp(55px,12vw,125px)/.9 Cinzel;margin:23px 0;
+ letter-spacing:5px;background:linear-gradient(120deg,#fff,#e8bd72,#91602e);
+ -webkit-background-clip:text;color:transparent
 }
-.hero p{max-width:570px;color:var(--muted);line-height:2.2;margin:auto}
+.hero p{max-width:570px;margin:auto;color:var(--muted);line-height:2.2}
 .btn{
- padding:11px 17px;border-radius:11px;border:1px solid var(--line);
- background:#ffffff09;color:var(--text);font-weight:700;
- transition:.2s;
+ padding:10px 15px;border:1px solid var(--line);
+ background:#ffffff08;color:var(--text);border-radius:10px;
+ font-weight:700;margin:4px
 }
-.btn:hover{border-color:var(--gold);color:var(--gold)}
 .btn.gold{background:var(--gold);color:#17120c;border-color:var(--gold)}
-.btn.red{border-color:#bd3c5470;color:#ff9aaa}
-.btn.small{padding:7px 11px;font-size:12px}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px;justify-content:center}
-.section-head{margin:30px 0 18px}
-.section-head h2{color:var(--gold);margin:0 0 5px;font-size:25px}
-.section-head p,.muted{color:var(--muted);font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.btn.red{color:#ff9aaa;border-color:#d34a6570}
+.btn:hover{border-color:var(--gold)}
+.section{margin:30px 0 15px}
+.section h2{color:var(--gold);margin:0 0 5px}
+.muted{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:14px}
 .card{
+ padding:18px;border-radius:18px;
  background:linear-gradient(145deg,var(--panel2),var(--panel));
- border:1px solid var(--line);border-radius:19px;padding:19px;
- transition:.25s;min-width:0;
+ border:1px solid var(--line);transition:.2s;min-width:0
 }
-.card:hover{border-color:#e8bd7250;transform:translateY(-3px)}
-.card h3{margin:8px 0;color:var(--gold)}
-.big-icon{font-size:35px}
-.stat{font:900 34px Cinzel,serif;color:var(--gold);margin-top:7px}
-.stat-label{color:var(--muted);font-size:12px}
-.bar{height:9px;background:#ffffff12;border-radius:30px;overflow:hidden;margin:12px 0}
-.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:30px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.avatar{
- width:58px;height:58px;border-radius:17px;
- display:grid;place-items:center;font-size:27px;
- background:linear-gradient(135deg,#493022,#171522);
- border:1px solid var(--gold);
-}
-.member-top{display:flex;align-items:center;gap:12px}
-.member-name{font-weight:900}
-.tag{
- display:inline-block;padding:4px 9px;border-radius:20px;
- background:#e8bd7215;color:var(--gold);font-size:11px;
- margin-top:5px;
-}
+.card:hover{border-color:#e8bd7260;transform:translateY(-3px)}
+.card h3{color:var(--gold);margin:8px 0}
+.icon{font-size:35px}
+.stat{font:900 34px Cinzel;color:var(--gold);margin:8px 0}
+.bar{height:8px;background:#ffffff12;border-radius:20px;overflow:hidden;margin:10px 0}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,#986a32,var(--gold))}
 .input{
- width:100%;background:#080810;color:var(--text);
- border:1px solid var(--line);padding:12px;
- border-radius:11px;outline:none;margin:6px 0;
+ width:100%;padding:12px;border-radius:10px;
+ background:#08080e;border:1px solid var(--line);
+ color:white;margin:6px 0;outline:none
 }
 .input:focus{border-color:var(--gold)}
-textarea.input{min-height:100px;resize:vertical}
-.member-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
-.table{width:100%;border-collapse:collapse}
-.table th,.table td{padding:13px 9px;border-bottom:1px solid var(--line);text-align:right}
-.table th{color:var(--gold);font-size:12px}
-.table td{font-size:13px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.member{display:flex;gap:12px;align-items:center}
+.avatar{
+ width:57px;height:57px;border:1px solid var(--gold);
+ background:linear-gradient(135deg,#493022,#171522);
+ display:grid;place-items:center;border-radius:16px;font-size:28px
+}
+.tag{color:var(--gold);background:#e8bd7215;padding:4px 8px;border-radius:20px;font-size:11px}
+.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
+.quest{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.quest.done{opacity:.45;text-decoration:line-through}
+.badges{display:flex;gap:9px;flex-wrap:wrap}
+.badge{padding:10px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:12px}
+.badge.on{border-color:var(--gold);color:var(--gold);background:#e8bd7210}
 .table-wrap{overflow:auto}
-.mission{
- display:flex;justify-content:space-between;align-items:center;
- gap:12px;padding:14px 0;border-bottom:1px solid var(--line)
-}
-.mission:last-child{border:0}
-.mission.done{opacity:.5}
-.mission.done .mission-name{text-decoration:line-through}
-.badges{display:flex;flex-wrap:wrap;gap:10px}
-.badge{
- border:1px solid var(--line);padding:10px 13px;
- border-radius:12px;color:var(--muted);font-size:12px;
-}
-.badge.unlocked{border-color:var(--gold);color:var(--gold);background:#e8bd7210}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px}
-.gallery-item{position:relative;border-radius:15px;overflow:hidden;background:#15151e;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:right;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--gold);font-size:12px}
+td{font-size:13px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.gallery-item{position:relative;overflow:hidden;border-radius:14px}
 .gallery-item img{width:100%;height:180px;object-fit:cover;display:block}
-.gallery-item button{position:absolute;top:8px;left:8px}
-.chatbox{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:#08080e}
-.messages{height:330px;overflow:auto;padding:15px}
-.msg{padding:11px 13px;border-radius:12px;background:#171721;margin-bottom:9px;font-size:13px;overflow-wrap:anywhere}
+.chat{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#08080e}
+.messages{height:300px;overflow:auto;padding:14px}
+.msg{padding:10px;background:#191923;border-radius:10px;margin-bottom:8px;font-size:13px;overflow-wrap:anywhere}
 .msg b{color:var(--gold)}
-.chat-send{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
-.chat-send input{flex:1;min-width:0}
-.notice{
- border-right:3px solid var(--gold);background:#e8bd720d;
- padding:14px;border-radius:10px;margin:10px 0;
-}
-.notice small{color:var(--muted)}
-.modal{
- display:none;position:fixed;inset:0;z-index:100;
- background:#000b;backdrop-filter:blur(8px);
- align-items:center;justify-content:center;padding:18px;
-}
-.modal.show{display:flex}
-.modal-box{
- width:min(450px,100%);background:#15151e;
- border:1px solid var(--gold);border-radius:20px;padding:22px;
- max-height:90vh;overflow:auto;
-}
-.toast{
- position:fixed;bottom:20px;left:50%;z-index:200;
- transform:translateX(-50%);background:#1d1a20;
- border:1px solid var(--gold);padding:12px 18px;
- border-radius:12px;display:none;max-width:90%;
-}
-footer{text-align:center;padding:35px 10px;color:var(--muted);border-top:1px solid var(--line)}
-@media(max-width:750px){
+.chat-form{display:flex;padding:10px;gap:8px;border-top:1px solid var(--line)}
+.chat-form input{flex:1;min-width:0}
+.notice{padding:13px;background:#e8bd720b;border-right:3px solid var(--gold);border-radius:8px;margin:9px 0}
+.modal{display:none;position:fixed;inset:0;z-index:90;background:#000c;align-items:center;justify-content:center;padding:15px}
+.modal.open{display:flex}
+.modal-box{width:min(450px,100%);background:#171720;border:1px solid var(--gold);border-radius:18px;padding:20px;max-height:90vh;overflow:auto}
+.toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#211b21;border:1px solid var(--gold);padding:12px 18px;border-radius:12px;z-index:100;max-width:90%}
+footer{text-align:center;padding:35px;color:var(--muted);border-top:1px solid var(--line)}
+@media(max-width:700px){
  header{align-items:flex-start;flex-direction:column}
- nav{width:100%;padding-bottom:2px}
- main{padding:15px 12px 50px}
- .hero{min-height:440px}
- .table th,.table td{white-space:nowrap}
+ nav{width:100%}
+ .hero{min-height:420px}
 }
 </style>
 </head>
-
 <body>
-<div id="particles"></div>
 
 <header>
- <div class="logo">SEVEN SINS</div>
- <nav>
+ <div class="logo">DARK EMPIRE X</div>
+ <nav id="navigation">
   <button class="active" data-page="home">خانه</button>
   <button data-page="dashboard">داشبورد</button>
   <button data-page="members">اعضا</button>
-  <button data-page="kingdoms">قلمروها</button>
-  <button data-page="missions">مأموریت</button>
-  <button data-page="leaderboard">رتبه‌بندی</button>
+  <button data-page="houses">خاندان‌ها</button>
+  <button data-page="quests">مأموریت‌ها</button>
+  <button data-page="ranking">رتبه‌بندی</button>
+  <button data-page="shop">فروشگاه</button>
   <button data-page="gallery">گالری</button>
-  <button data-page="hall">تالار</button>
-  <button data-page="rules">قوانین</button>
+  <button data-page="chat">تالار</button>
+  <button data-page="news">اخبار</button>
   <button data-page="settings">تنظیمات</button>
  </nav>
 </header>
 
 <main>
-
 <section class="page active" id="home">
  <div class="hero">
-  <div class="hero-inner">
-   <div class="kicker">THE LEGEND STARTS HERE</div>
-   <h1>SEVEN<br>SINS</h1>
-   <p>هفت قلمرو، یک امپراتوری، یک اکیپ.
-   اینجا جایی است که خاطرات و داستان‌های خودتان را می‌سازید.</p>
-   <div class="actions">
-    <button class="btn gold" onclick="go('dashboard')">ورود به امپراتوری ✦</button>
-    <button class="btn" onclick="go('members')">مشاهده اعضا</button>
-   </div>
+  <div class="hero-content">
+   <div class="kicker">THE SEVEN KINGDOMS AWAKEN</div>
+   <h1>DARK<br>EMPIRE</h1>
+   <p>هفت خاندان، یک امپراتوری و یک دنیای اختصاصی برای ساختن خاطرات اکیپ.</p>
+   <button class="btn gold" onclick="go('dashboard')">ورود به امپراتوری ✦</button>
+   <button class="btn" onclick="go('members')">اعضای اکیپ</button>
   </div>
  </div>
- <div class="section-head"><h2>EMPIRE STATUS</h2><p>وضعیت فعلی امپراتوری</p></div>
+ <div class="section"><h2>EMPIRE OVERVIEW</h2><p class="muted">آمار کلی امپراتوری</p></div>
  <div class="grid">
-  <div class="card"><div class="stat" id="homeMembers">0</div><div class="stat-label">اعضای ثبت‌شده</div></div>
-  <div class="card"><div class="stat" id="homeXP">0</div><div class="stat-label">مجموع XP</div></div>
-  <div class="card"><div class="stat">VII</div><div class="stat-label">قلمرو افسانه‌ای</div></div>
-  <div class="card"><div class="stat" id="homeTasks">0</div><div class="stat-label">مأموریت‌های کامل</div></div>
+  <div class="card"><div class="stat" id="hMembers">0</div><div class="muted">اعضا</div></div>
+  <div class="card"><div class="stat" id="hXP">0</div><div class="muted">XP کل</div></div>
+  <div class="card"><div class="stat" id="hCoins">0</div><div class="muted">سکه‌ها</div></div>
+  <div class="card"><div class="stat" id="hQuests">0</div><div class="muted">مأموریت کامل</div></div>
  </div>
- <div class="section-head"><h2>LATEST ANNOUNCEMENT</h2></div>
- <div class="card" id="homeNotice">به امپراتوری SEVEN SINS خوش آمدید.</div>
+ <div class="section"><h2>آخرین خبر</h2></div>
+ <div class="card" id="latestNews">به DARK EMPIRE خوش آمدید.</div>
 </section>
 
 <section class="page" id="dashboard">
- <div class="section-head"><h2>COMMAND CENTER</h2><p>مرکز فرماندهی امپراتوری</p></div>
+ <div class="section"><h2>COMMAND CENTER</h2><p class="muted">مرکز فرماندهی</p></div>
  <div class="grid">
-  <div class="card"><div class="stat" id="dashMembers">0</div><div class="stat-label">تعداد اعضا</div></div>
-  <div class="card"><div class="stat" id="dashXP">0</div><div class="stat-label">کل XP</div></div>
-  <div class="card"><div class="stat" id="dashCoins">0</div><div class="stat-label">کریستال‌ها</div></div>
-  <div class="card"><div class="stat" id="dashTasks">0</div><div class="stat-label">مأموریت‌های کامل</div></div>
+  <div class="card"><div class="muted">اعضا</div><div class="stat" id="dMembers">0</div></div>
+  <div class="card"><div class="muted">XP</div><div class="stat" id="dXP">0</div></div>
+  <div class="card"><div class="muted">سکه</div><div class="stat" id="dCoins">0</div></div>
+  <div class="card"><div class="muted">سطح امپراتوری</div><div class="stat" id="dLevel">1</div></div>
  </div>
- <div class="section-head"><h2>EMPIRE PROGRESS</h2></div>
+ <div class="section"><h2>EMPIRE LEVEL</h2></div>
  <div class="card">
-  <div class="row"><b>سطح امپراتوری</b><b id="empireLevel">1</b></div>
-  <div class="bar"><span id="empireBar" style="width:0%"></span></div>
-  <small class="muted" id="empireProgress"></small>
+  <div class="row"><b>پیشرفت</b><b id="levelText">0/100</b></div>
+  <div class="bar"><span id="levelBar" style="width:0%"></span></div>
  </div>
- <div class="section-head"><h2>ACHIEVEMENTS</h2></div>
- <div class="badges" id="achievementList"></div>
+ <div class="section"><h2>ACHIEVEMENTS</h2></div>
+ <div class="badges" id="achievements"></div>
 </section>
 
 <section class="page" id="members">
- <div class="section-head"><h2>THE CREW</h2><p>اعضای افسانه‌ای اکیپ</p></div>
+ <div class="section"><h2>THE CREW</h2><p class="muted">اعضای امپراتوری</p></div>
  <div class="card">
-  <h3>افزودن عضو جدید</h3>
-  <input class="input" id="newName" maxlength="30" placeholder="نام عضو">
-  <input class="input" id="newRole" maxlength="30" placeholder="لقب یا نقش عضو">
-  <select class="input" id="newIcon">
-   <option>👑</option><option>🔥</option><option>⚡</option>
-   <option>🌙</option><option>💎</option><option>🐉</option>
-   <option>🦅</option><option>🖤</option>
-  </select>
-  <button class="btn gold" onclick="addMember()">+ ثبت عضو</button>
+  <h3>ثبت عضو جدید</h3>
+  <input class="input" id="memberName" placeholder="نام عضو" maxlength="30">
+  <input class="input" id="memberRole" placeholder="لقب عضو" maxlength="30">
+  <select class="input" id="memberIcon"><option>👑</option><option>🔥</option><option>⚡</option><option>🌙</option><option>💎</option><option>🐉</option><option>🦅</option><option>🖤</option></select>
+  <button class="btn gold" onclick="addMember()">افزودن عضو</button>
  </div>
- <div class="section-head"><h2>MEMBERS LIST</h2></div>
- <div class="grid" id="memberList"></div>
+ <div class="section"><h2>MEMBER DATABASE</h2></div>
+ <div class="grid" id="memberGrid"></div>
 </section>
 
-<section class="page" id="kingdoms">
- <div class="section-head"><h2>THE SEVEN KINGDOMS</h2><p>هفت قلمرو امپراتوری</p></div>
- <div class="grid" id="kingdomList"></div>
+<section class="page" id="houses">
+ <div class="section"><h2>THE SEVEN HOUSES</h2><p class="muted">خاندان مورد علاقه‌ات را انتخاب کن.</p></div>
+ <div class="grid" id="houseGrid"></div>
 </section>
 
-<section class="page" id="missions">
- <div class="section-head"><h2>DAILY QUESTS</h2><p>مأموریت‌های سرگرم‌کننده روزانه</p></div>
+<section class="page" id="quests">
+ <div class="section"><h2>QUEST SYSTEM</h2><p class="muted">مأموریت‌های سرگرم‌کننده</p></div>
  <div class="card">
-  <div class="row"><b>پیشرفت امروز</b><b id="questProgress">0/0</b></div>
-  <div class="bar"><span id="questBar" style="width:0%"></span></div>
-  <div id="questList"></div>
+  <div class="row"><b>پیشرفت مأموریت‌ها</b><b id="qCount">0/0</b></div>
+  <div class="bar"><span id="qBar" style="width:0%"></span></div>
+  <div id="questGrid"></div>
  </div>
 </section>
 
-<section class="page" id="leaderboard">
- <div class="section-head"><h2>HALL OF FAME</h2><p>جدول رتبه‌بندی اعضا بر اساس XP</p></div>
+<section class="page" id="ranking">
+ <div class="section"><h2>HALL OF FAME</h2><p class="muted">برترین اعضای امپراتوری</p></div>
  <div class="card table-wrap">
-  <table class="table">
-   <thead><tr><th>رتبه</th><th>عضو</th><th>XP</th><th>سطح</th></tr></thead>
-   <tbody id="leaderList"></tbody>
-  </table>
+  <table><thead><tr><th>رتبه</th><th>نام</th><th>خاندان</th><th>XP</th><th>سطح</th></tr></thead><tbody id="rankBody"></tbody></table>
  </div>
+</section>
+
+<section class="page" id="shop">
+ <div class="section"><h2>EMPIRE SHOP</h2><p class="muted">فروشگاه جوایز نمایشی</p></div>
+ <div class="card"><div class="row"><b>موجودی سکه</b><span class="tag" id="shopCoins">0</span></div></div>
+ <div class="grid" id="shopGrid"></div>
+ <div class="section"><h2>خریدهای من</h2></div>
+ <div class="card" id="purchases">هنوز خریدی انجام نشده است.</div>
 </section>
 
 <section class="page" id="gallery">
- <div class="section-head"><h2>MEMORIES GALLERY</h2><p>گالری تصاویر خاطرات اکیپ</p></div>
- <div class="card">
-  <input class="input" type="file" id="galleryFile" accept="image/*">
-  <p class="muted">تصاویر در مرورگر همین دستگاه ذخیره می‌شوند.</p>
- </div>
- <div class="section-head"><h2>YOUR COLLECTION</h2></div>
- <div class="gallery" id="galleryList"></div>
+ <div class="section"><h2>MEMORY VAULT</h2><p class="muted">آلبوم تصاویر اکیپ</p></div>
+ <div class="card"><input class="input" type="file" id="photoFile" accept="image/*"><p class="muted">تصاویر در همین مرورگر ذخیره می‌شوند.</p></div>
+ <div class="section"><h2>COLLECTION</h2></div>
+ <div class="gallery" id="photoGrid"></div>
 </section>
 
-<section class="page" id="hall">
- <div class="section-head"><h2>THE GRAND HALL</h2><p>تالار پیام‌های محلی</p></div>
- <div class="chatbox">
-  <div class="messages" id="messages"></div>
-  <div class="chat-send">
-   <input class="input" id="chatText" maxlength="300" placeholder="پیام خود را بنویس...">
-   <button class="btn gold" onclick="sendMessage()">ارسال</button>
-  </div>
+<section class="page" id="chat">
+ <div class="section"><h2>THE GRAND HALL</h2><p class="muted">تالار پیام‌های محلی</p></div>
+ <div class="chat">
+  <div class="messages" id="messageList"></div>
+  <div class="chat-form"><input class="input" id="messageInput" maxlength="300" placeholder="پیامت را بنویس..."><button class="btn gold" onclick="sendMessage()">ارسال</button></div>
  </div>
- <p class="muted">این تالار فقط روی همین مرورگر کار می‌کند و پیام‌ها برای دیگر بازدیدکنندگان ارسال نمی‌شوند.</p>
+ <p class="muted">این چت محلی است و پیام‌ها به دستگاه دیگر ارسال نمی‌شوند.</p>
 </section>
 
-<section class="page" id="rules">
- <div class="section-head"><h2>THE CODE</h2><p>قوانین و اطلاعیه‌های امپراتوری</p></div>
+<section class="page" id="news">
+ <div class="section"><h2>EMPIRE CHRONICLES</h2><p class="muted">اخبار و اطلاعیه‌ها</p></div>
  <div class="card">
-  <h3>قوانین SEVEN SINS</h3>
-  <div id="rulesList"></div>
+  <textarea class="input" id="newsInput" placeholder="خبر جدید..."></textarea>
+  <button class="btn gold" onclick="addNews()">انتشار خبر</button>
  </div>
- <div class="section-head"><h2>ANNOUNCEMENTS</h2></div>
- <div class="card">
-  <textarea class="input" id="noticeInput" placeholder="اطلاعیه جدید بنویس..."></textarea>
-  <button class="btn gold" onclick="addNotice()">ثبت اطلاعیه</button>
-  <div id="noticeList"></div>
- </div>
+ <div class="section"><h2>ARCHIVE</h2></div>
+ <div id="newsList"></div>
 </section>
 
 <section class="page" id="settings">
- <div class="section-head"><h2>EMPIRE SETTINGS</h2><p>شخصی‌سازی محیط سایت</p></div>
+ <div class="section"><h2>CONTROL PANEL</h2><p class="muted">تنظیمات امپراتوری</p></div>
  <div class="card">
   <h3>نام امپراتوری</h3>
-  <input class="input" id="empireName" maxlength="35">
-  <button class="btn gold" onclick="saveEmpireName()">ذخیره نام</button>
+  <input class="input" id="empireInput" maxlength="35">
+  <button class="btn gold" onclick="saveName()">ذخیره</button>
  </div>
- <div class="card" style="margin-top:15px">
-  <h3>رنگ اصلی</h3>
-  <div class="row" style="justify-content:flex-start;flex-wrap:wrap">
-   <button class="btn" onclick="setTheme('#e8bd72')">طلایی</button>
-   <button class="btn" onclick="setTheme('#bd526e')">قرمز</button>
-   <button class="btn" onclick="setTheme('#8b83ec')">بنفش</button>
-   <button class="btn" onclick="setTheme('#56b9c8')">آبی</button>
-   <button class="btn" onclick="setTheme('#68c994')">سبز</button>
-  </div>
+ <div class="card" style="margin-top:12px">
+  <h3>انتخاب تم</h3>
+  <button class="btn" onclick="theme('#e8bd72')">طلایی</button>
+  <button class="btn" onclick="theme('#d34a65')">قرمز</button>
+  <button class="btn" onclick="theme('#9580ef')">بنفش</button>
+  <button class="btn" onclick="theme('#53b8d0')">آبی</button>
+  <button class="btn" onclick="theme('#65c98f')">سبز</button>
  </div>
- <div class="card" style="margin-top:15px">
-  <h3>مدیریت اطلاعات</h3>
-  <button class="btn" onclick="exportData()">خروجی گرفتن از اطلاعات</button>
-  <button class="btn" onclick="document.getElementById('importFile').click()">بازیابی اطلاعات</button>
-  <input id="importFile" type="file" accept=".json,application/json" hidden>
-  <p class="muted">قبل از پاک‌کردن داده‌های مرورگر، از اطلاعاتت خروجی بگیر.</p>
-  <button class="btn red" onclick="resetData()">پاک‌کردن اطلاعات محلی</button>
+ <div class="card" style="margin-top:12px">
+  <h3>پشتیبان اطلاعات</h3>
+  <button class="btn" onclick="backup()">دانلود نسخه پشتیبان</button>
+  <button class="btn" onclick="document.getElementById('restoreFile').click()">بازیابی پشتیبان</button>
+  <input type="file" id="restoreFile" accept=".json" hidden>
+  <p class="muted">اطلاعات را قبل از پاک‌کردن مرورگر ذخیره کن.</p>
  </div>
 </section>
-
 </main>
 
-<footer>
- <div class="logo">SEVEN SINS</div>
- <p>SEVEN KINGDOMS · ONE EMPIRE</p>
- <small>THE LEGEND IS YOURS TO WRITE</small>
-</footer>
-
-<div class="modal" id="modal">
- <div class="modal-box">
-  <div class="row"><h3 id="modalTitle">ویرایش عضو</h3><button class="btn small" onclick="closeModal()">✕</button></div>
-  <div id="modalContent"></div>
- </div>
-</div>
+<footer><div class="logo">DARK EMPIRE X</div><p>SEVEN HOUSES · ONE LEGEND</p></footer>
+<div class="modal" id="modal"><div class="modal-box"><div class="row"><h3 id="modalTitle">ویرایش</h3><button class="btn" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 const $=id=>document.getElementById(id);
-
-const defaultState={
- name:"SEVEN SINS",
- theme:"#e8bd72",
- members:[],
- xp:0,
- coins:0,
- missions:{},
- gallery:[],
- messages:[],
- notices:["به امپراتوری SEVEN SINS خوش آمدید."],
- rules:[
- "احترام به تمام اعضا الزامی است.",
- "از توهین و آزار دیگران خودداری کنید.",
- "اطلاعات خصوصی اعضا را منتشر نکنید.",
- "برای همه فضایی دوستانه و سرگرم‌کننده بسازید.",
- "تصمیم‌های گروهی با گفت‌وگو گرفته می‌شوند."
- ]
+const base={
+ name:"DARK EMPIRE X",theme:"#e8bd72",members:[],
+ xp:0,coins:0,quests:{},questDay:"",
+ photos:[],messages:[],news:["به امپراتوری DARK EMPIRE خوش آمدید."],
+ purchases:[],house:"غرور"
 };
-
-let state;
-try{
- state=JSON.parse(localStorage.getItem("sevenEmpireData"))||structuredClone(defaultState);
-}catch(e){state=structuredClone(defaultState)}
-
+let data;
+try{data=Object.assign({},base,JSON.parse(localStorage.getItem("darkEmpireX")||"{}"))}
+catch(e){data={...base}}
 function save(){
- try{
-  localStorage.setItem("sevenEmpireData",JSON.stringify(state));
- }catch(e){
-  toast("فضای ذخیره مرورگر پر شده است؛ تصاویر کمتری نگه دار.");
- }
+ try{localStorage.setItem("darkEmpireX",JSON.stringify(data))}
+ catch(e){notify("فضای ذخیره‌سازی پر شده است.")}
 }
-function toast(text){
- const t=$("toast");t.textContent=text;t.style.display="block";
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>t.style.display="none",2600);
+function notify(s){
+ $("toast").textContent=s;$("toast").style.display="block";
+ clearTimeout(window.tt);window.tt=setTimeout(()=>$("toast").style.display="none",2500);
 }
 function go(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
- $(id).classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
+ $(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});
 }
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.page));
-
-function addMember(){
- const name=$("newName").value.trim();
- const role=$("newRole").value.trim()||"عضو اکیپ";
- const icon=$("newIcon").value;
- if(!name){toast("نام عضو را وارد کن.");return}
- if(state.members.some(m=>m.name.toLowerCase()===name.toLowerCase())){
-  toast("این نام قبلاً ثبت شده است.");return;
- }
- state.members.push({id:Date.now()+Math.random(),name,role,icon,xp:0});
- $("newName").value="";$("newRole").value="";
- save();render();toast("عضو جدید ثبت شد!");
-}
-function deleteMember(id){
- if(!confirm("این عضو حذف شود؟"))return;
- state.members=state.members.filter(m=>m.id!==id);
- save();render();toast("عضو حذف شد.");
-}
-function editMember(id){
- const m=state.members.find(x=>x.id===id);if(!m)return;
- $("modalTitle").textContent="ویرایش "+m.name;
- $("modalContent").innerHTML=`
- <label>نام</label><input class="input" id="editName" maxlength="30" value="${escapeHTML(m.name)}">
- <label>نقش</label><input class="input" id="editRole" maxlength="30" value="${escapeHTML(m.role)}">
- <label>XP</label><input class="input" id="editXP" type="number" min="0" max="999999" value="${m.xp}">
- <button class="btn gold" onclick="saveMember(${Number(m.id)})">ذخیره تغییرات</button>`;
- $("modal").classList.add("show");
-}
-function saveMember(id){
- const m=state.members.find(x=>x.id===id);if(!m)return;
- m.name=$("editName").value.trim()||m.name;
- m.role=$("editRole").value.trim()||m.role;
- m.xp=Math.max(0,Math.min(999999,Number($("editXP").value)||0));
- save();closeModal();render();toast("اطلاعات عضو به‌روز شد.");
-}
-function closeModal(){$("modal").classList.remove("show")}
-function escapeHTML(s){
+function safe(s){
  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-
-function addXP(amount,id){
- state.xp+=amount;
- if(id){
-  const m=state.members.find(x=>x.id===id);
-  if(m)m.xp+=amount;
- }
- save();render();
-}
-const kingdoms=[
- ["👑","غرور","نماد اعتماد و رهبری"],
- ["💎","طمع","نماد آرزو و هدف"],
- ["🌹","وسوسه","نماد راز و زیبایی"],
- ["🪞","حسادت","نماد شناخت خواسته‌ها"],
- ["🍇","ضیافت","نماد جشن و خاطره"],
- ["🔥","خشم","نماد انرژی و انگیزه"],
- ["🌙","سکوت","نماد آرامش و تمرکز"]
+const houses=[
+ ["👑","غرور","اعتماد و رهبری"],
+ ["💎","طمع","هدف و آرزو"],
+ ["🌹","وسوسه","راز و زیبایی"],
+ ["🪞","حسادت","شناخت خواسته‌ها"],
+ ["🍇","ضیافت","جشن و خاطره"],
+ ["🔥","خشم","انرژی و انگیزه"],
+ ["🌙","سکوت","آرامش و تمرکز"]
 ];
-function renderKingdoms(){
- $("kingdomList").innerHTML=kingdoms.map((k,i)=>`
- <div class="card">
- <div class="big-icon">${k[0]}</div>
- <h3>${k[1]}</h3><p class="muted">${k[2]}</p>
- <span class="tag">KINGDOM ${i+1}</span>
- <div style="margin-top:15px"><button class="btn small" onclick="chooseKingdom(${i})">انتخاب قلمرو +5 XP</button></div>
- </div>`).join("");
+function renderHouses(){
+ $("houseGrid").innerHTML=houses.map((h,i)=>`
+ <div class="card"><div class="icon">${h[0]}</div><h3>${h[1]}</h3><p class="muted">${h[2]}</p><button class="btn" onclick="chooseHouse(${i})">انتخاب خاندان</button></div>`).join("");
 }
-function chooseKingdom(i){
- addXP(5);toast("قلمرو "+kingdoms[i][1]+" انتخاب شد! +5 XP");
+function chooseHouse(i){
+ data.house=houses[i][1];data.xp+=5;save();render();notify("خاندان "+data.house+" انتخاب شد! +5 XP");
 }
-
-const quests=[
- ["welcome","از یک قلمرو دیدن کن",10],
- ["crew","یک عضو جدید ثبت کن",15],
- ["hall","یک پیام در تالار بنویس",5],
- ["explore","به بخش دستاوردها سر بزن",10],
- ["profile","نام امپراتوری را بررسی کن",5]
+function addMember(){
+ let name=$("memberName").value.trim(),role=$("memberRole").value.trim()||"عضو";
+ if(!name)return notify("نام عضو را وارد کن.");
+ if(data.members.some(m=>m.name.toLowerCase()===name.toLowerCase()))return notify("این نام قبلاً ثبت شده.");
+ data.members.push({id:Date.now()+Math.random(),name,role,icon:$("memberIcon").value,xp:0,house:data.house});
+ $("memberName").value="";$("memberRole").value="";
+ save();render();notify("عضو اضافه شد!");
+}
+function removeMember(id){
+ if(!confirm("عضو حذف شود؟"))return;
+ data.members=data.members.filter(m=>m.id!==id);save();render();
+}
+function editMember(id){
+ let m=data.members.find(x=>x.id===id);if(!m)return;
+ $("modalTitle").textContent="ویرایش عضو";
+ $("modalBody").innerHTML=`<input class="input" id="edName" value="${safe(m.name)}"><input class="input" id="edRole" value="${safe(m.role)}"><input class="input" id="edXP" type="number" min="0" value="${m.xp}"><button class="btn gold" onclick="saveMember(${Number(id)})">ذخیره</button>`;
+ $("modal").classList.add("open");
+}
+function saveMember(id){
+ let m=data.members.find(x=>x.id===id);if(!m)return;
+ m.name=$("edName").value.trim()||m.name;m.role=$("edRole").value.trim()||m.role;
+ m.xp=Math.max(0,Math.min(999999,Number($("edXP").value)||0));
+ closeModal();save();render();notify("ذخیره شد.");
+}
+function closeModal(){$("modal").classList.remove("open")}
+function renderMembers(){
+ $("memberGrid").innerHTML=data.members.length?data.members.map(m=>`
+ <div class="card"><div class="member"><div class="avatar">${safe(m.icon)}</div><div><b>${safe(m.name)}</b><br><span class="tag">${safe(m.role)}</span></div></div>
+ <p class="muted">خاندان: ${safe(m.house)}</p><div class="row"><span class="muted">XP</span><b>${m.xp}</b></div>
+ <div class="bar"><span style="width:${m.xp%100}%"></span></div>
+ <div class="actions"><button class="btn" onclick="editMember(${Number(m.id)})">ویرایش</button><button class="btn" onclick="award(${Number(m.id)})">+10 XP</button><button class="btn red" onclick="removeMember(${Number(m.id)})">حذف</button></div></div>`).join("")
+ :'<div class="card muted">هنوز عضوی ثبت نشده است.</div>';
+}
+function award(id){
+ let m=data.members.find(x=>x.id===id);if(m){m.xp+=10;data.coins+=1;save();render();notify("10 XP و یک سکه دریافت شد.")}
+}
+function totals(){
+ return data.xp+data.members.reduce((s,m)=>s+m.xp,0);
+}
+const questDefs=[
+ ["visit","یک خاندان را انتخاب کن",10],
+ ["member","یک عضو جدید ثبت کن",15],
+ ["message","یک پیام در تالار بنویس",5],
+ ["news","یک خبر جدید منتشر کن",10],
+ ["explore","از داشبورد بازدید کن",5]
 ];
-function todayKey(){return new Date().toLocaleDateString("en-CA")}
-function checkDay(){
- if(state.missionDate!==todayKey()){
-  state.missionDate=todayKey();state.missions={};save();
- }
+function today(){
+ const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 }
-function completeQuest(id,reward){
- if(state.missions[id])return;
- state.missions[id]=true;
- state.xp+=reward;state.coins+=Math.max(1,Math.floor(reward/5));
- save();render();toast("مأموریت کامل شد! +" +reward+" XP");
+function dailyReset(){
+ if(data.questDay!==today()){data.questDay=today();data.quests={};save()}
+}
+function finishQuest(id,reward){
+ if(data.quests[id])return;
+ data.quests[id]=true;data.xp+=reward;data.coins+=Math.max(1,Math.floor(reward/5));
+ save();render();notify("مأموریت انجام شد! +"+reward+" XP");
 }
 function renderQuests(){
- const done=quests.filter(q=>state.missions[q[0]]).length;
- $("questProgress").textContent=done+"/"+quests.length;
- $("questBar").style.width=(done/quests.length*100)+"%";
- $("questList").innerHTML=quests.map(q=>`
- <div class="mission ${state.missions[q[0]]?"done":""}">
- <div><b class="mission-name">${q[1]}</b><div class="muted">جایزه: ${q[2]} XP</div></div>
- <button class="btn small" ${state.missions[q[0]]?"disabled":""}
- onclick="completeQuest('${q[0]}',${q[2]})">
- ${state.missions[q[0]]?"انجام شد ✓":"دریافت جایزه"}
- </button></div>`).join("");
+ let n=questDefs.filter(q=>data.quests[q[0]]).length;
+ $("qCount").textContent=n+"/"+questDefs.length;
+ $("qBar").style.width=n/questDefs.length*100+"%";
+ $("questGrid").innerHTML=questDefs.map(q=>`
+ <div class="quest ${data.quests[q[0]]?"done":""}">
+ <div><b>${q[1]}</b><div class="muted">${q[2]} XP + سکه</div></div>
+ <button class="btn" ${data.quests[q[0]]?"disabled":""} onclick="finishQuest('${q[0]}',${q[2]})">${data.quests[q[0]]?"کامل شد ✓":"دریافت جایزه"}</button></div>`).join("");
 }
-function renderMembers(){
- $("memberList").innerHTML=state.members.length?state.members.map(m=>`
- <div class="card">
- <div class="member-top">
- <div class="avatar">${escapeHTML(m.icon)}</div>
- <div><div class="member-name">${escapeHTML(m.name)}</div>
- <span class="tag">${escapeHTML(m.role)}</span></div>
- </div>
- <div class="row" style="margin-top:18px"><span class="muted">XP</span><b>${m.xp.toLocaleString("fa-IR")}</b></div>
- <div class="bar"><span style="width:${m.xp%100}%"></span></div>
- <div class="muted">سطح ${Math.floor(m.xp/100)+1}</div>
- <div class="member-actions">
- <button class="btn small" onclick="editMember(${Number(m.id)})">ویرایش</button>
- <button class="btn small" onclick="awardXP(${Number(m.id)})">+10 XP</button>
- <button class="btn small red" onclick="deleteMember(${Number(m.id)})">حذف</button>
- </div></div>`).join("")
- :`<div class="card muted">هنوز عضوی ثبت نشده است. اولین عضو را اضافه کن!</div>`;
+function renderRanking(){
+ let a=[...data.members].sort((x,y)=>y.xp-x.xp);
+ $("rankBody").innerHTML=a.length?a.map((m,i)=>`<tr><td>${["🥇","🥈","🥉"][i]||i+1}</td><td>${safe(m.icon)} ${safe(m.name)}</td><td>${safe(m.house)}</td><td>${m.xp}</td><td>${Math.floor(m.xp/100)+1}</td></tr>`).join(""):'<tr><td colspan="5">عضوی وجود ندارد.</td></tr>';
 }
-function awardXP(id){addXP(10,id);toast("10 XP به عضو اضافه شد.")}
-function renderLeaderboard(){
- const sorted=[...state.members].sort((a,b)=>b.xp-a.xp);
- $("leaderList").innerHTML=sorted.length?sorted.map((m,i)=>`
- <tr><td>${["🥇","🥈","🥉"][i]||i+1}</td>
- <td>${escapeHTML(m.icon)} ${escapeHTML(m.name)}</td>
- <td>${m.xp.toLocaleString("fa-IR")}</td>
- <td>${Math.floor(m.xp/100)+1}</td></tr>`).join("")
- :`<tr><td colspan="4">هنوز عضوی وجود ندارد.</td></tr>`;
+const products=[
+ ["🏅","مدال طلایی",20],["👑","نشان فرمانده",40],
+ ["💠","کریستال ویژه",60],["🌟","نشان افسانه",100],
+ ["🎖️","مدال افتخار",150],["🛡️","نشان خاندان",30]
+];
+function renderShop(){
+ $("shopCoins").textContent=data.coins;
+ $("shopGrid").innerHTML=products.map((p,i)=>`
+ <div class="card"><div class="icon">${p[0]}</div><h3>${p[1]}</h3><p class="muted">${p[2]} سکه</p><button class="btn gold" onclick="buy(${i})">خرید</button></div>`).join("");
+ $("purchases").innerHTML=data.purchases.length?data.purchases.map(p=>`<div class="notice">${safe(p)}</div>`).join(""):"هنوز خریدی انجام نشده است.";
 }
-function renderDashboard(){
- const totalXP=state.members.reduce((s,m)=>s+m.xp,0)+state.xp;
- const completed=Object.values(state.missions).filter(Boolean).length;
- $("dashMembers").textContent=state.members.length;
- $("dashXP").textContent=totalXP.toLocaleString("fa-IR");
- $("dashCoins").textContent=state.coins.toLocaleString("fa-IR");
- $("dashTasks").textContent=completed;
- $("homeMembers").textContent=state.members.length;
- $("homeXP").textContent=totalXP.toLocaleString("fa-IR");
- $("homeTasks").textContent=completed;
- const level=Math.floor(totalXP/100)+1,progress=totalXP%100;
- $("empireLevel").textContent=level;
- $("empireBar").style.width=progress+"%";
- $("empireProgress").textContent=progress+" از 100 XP تا سطح بعدی";
- const achievements=[
- ["✦ آغازگر",totalXP>=1],
- ["⚡ ماجراجو",totalXP>=50],
- ["👑 فرمانده",totalXP>=150],
- ["💎 کلکسیونر",state.coins>=10],
- ["🏆 افسانه",totalXP>=500],
- ["🌟 اکیپ‌ساز",state.members.length>=3]
- ];
- $("achievementList").innerHTML=achievements.map(a=>
- `<span class="badge ${a[1]?"unlocked":""}">${a[0]}</span>`).join("");
+function buy(i){
+ let p=products[i];if(data.coins<p[2])return notify("سکه کافی نداری!");
+ data.coins-=p[2];data.purchases.push(p[0]+" "+p[1]);
+ save();render();notify("جایزه خریداری شد!");
 }
-function renderGallery(){
- $("galleryList").innerHTML=state.gallery.length?state.gallery.map((img,i)=>`
- <div class="gallery-item">
- <img src="${img}" alt="تصویر ${i+1}">
- <button class="btn small red" onclick="removeImage(${i})">حذف</button>
- </div>`).join("")
- :`<div class="card muted">گالری خالی است. یک تصویر اضافه کن.</div>`;
+function renderPhotos(){
+ $("photoGrid").innerHTML=data.photos.length?data.photos.map((p,i)=>`
+ <div class="gallery-item"><img src="${p}" alt="عکس ${i+1}"><button class="btn red" onclick="removePhoto(${i})">حذف</button></div>`).join(""):'<div class="card muted">گالری خالی است.</div>';
 }
-function removeImage(i){
- state.gallery.splice(i,1);save();renderGallery();toast("تصویر حذف شد.");
-}
-$("galleryFile").addEventListener("change",e=>{
- const file=e.target.files[0];if(!file)return;
- if(file.size>1200000){toast("حجم عکس باید کمتر از 1.2 مگابایت باشد.");e.target.value="";return}
- const reader=new FileReader();
- reader.onload=()=>{
-  state.gallery.push(reader.result);save();renderGallery();toast("عکس اضافه شد!");
- };
- reader.readAsDataURL(file);e.target.value="";
+$("photoFile").addEventListener("change",e=>{
+ let f=e.target.files[0];if(!f)return;
+ if(f.size>1000000){notify("حجم تصویر باید کمتر از 1 مگابایت باشد.");e.target.value="";return}
+ let r=new FileReader();r.onload=()=>{data.photos.push(r.result);save();renderPhotos();notify("تصویر اضافه شد.")};r.readAsDataURL(f);e.target.value="";
 });
+function removePhoto(i){data.photos.splice(i,1);save();renderPhotos()}
 function sendMessage(){
- const input=$("chatText"),value=input.value.trim();
- if(!value)return;
- state.messages.push({name:"عضو",text:value,time:new Date().toLocaleTimeString("fa-IR",{hour:"2-digit",minute:"2-digit"})});
- state.messages=state.messages.slice(-60);
- if(!state.missions.hall){
-  state.missions.hall=true;state.xp+=5;
- }
- save();renderMessages();renderQuests();renderDashboard();
- input.value="";
+ let input=$("messageInput"),t=input.value.trim();if(!t)return;
+ data.messages.push({text:t,time:new Date().toLocaleTimeString("fa-IR")});
+ data.messages=data.messages.slice(-50);
+ if(!data.quests.message){data.quests.message=true;data.xp+=5}
+ save();renderMessages();renderQuests();renderDashboard();input.value="";
 }
 function renderMessages(){
- $("messages").innerHTML=state.messages.map(m=>`
- <div class="msg"><b>${escapeHTML(m.name)}</b>
- <span class="muted"> · ${escapeHTML(m.time)}</span><br>
- ${escapeHTML(m.text)}</div>`).join("");
- $("messages").scrollTop=$("messages").scrollHeight;
+ $("messageList").innerHTML=data.messages.map(m=>`<div class="msg"><b>عضو اکیپ</b> <span class="muted">${safe(m.time)}</span><br>${safe(m.text)}</div>`).join("");
 }
-$("chatText").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
-function renderRules(){
- $("rulesList").innerHTML=state.rules.map((r,i)=>`
- <div class="notice"><b>${i+1}.</b> ${escapeHTML(r)}</div>`).join("");
- $("noticeList").innerHTML=state.notices.map(n=>
- `<div class="notice">${escapeHTML(n)}</div>`).join("");
- $("homeNotice").textContent=state.notices[state.notices.length-1]||"اطلاعیه‌ای ثبت نشده است.";
+$("messageInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
+function addNews(){
+ let t=$("newsInput").value.trim();if(!t)return;
+ data.news.unshift(t);data.news=data.news.slice(0,30);
+ $("newsInput").value="";
+ if(!data.quests.news){data.quests.news=true;data.xp+=10}
+ save();render();notify("خبر منتشر شد!");
 }
-function addNotice(){
- const text=$("noticeInput").value.trim();if(!text)return;
- state.notices.push(text);state.notices=state.notices.slice(-20);
- $("noticeInput").value="";save();renderRules();toast("اطلاعیه ثبت شد.");
+function renderNews(){
+ $("newsList").innerHTML=data.news.map(n=>`<div class="notice">${safe(n)}</div>`).join("");
+ $("latestNews").textContent=data.news[0]||"خبری وجود ندارد.";
 }
-function saveEmpireName(){
- const n=$("empireName").value.trim();if(!n)return;
- state.name=n.slice(0,35);save();updateTitle();toast("نام امپراتوری ذخیره شد.");
+function renderDashboard(){
+ let t=totals(),level=Math.floor(t/100)+1,progress=t%100;
+ $("dMembers").textContent=data.members.length;
+ $("dXP").textContent=t.toLocaleString("fa-IR");
+ $("dCoins").textContent=data.coins;
+ $("dLevel").textContent=level;
+ $("levelText").textContent=progress+"/100";
+ $("levelBar").style.width=progress+"%";
+ $("hMembers").textContent=data.members.length;
+ $("hXP").textContent=t.toLocaleString("fa-IR");
+ $("hCoins").textContent=data.coins;
+ $("hQuests").textContent=Object.values(data.quests).filter(Boolean).length;
+ let achievements=[
+ ["✦ شروع",t>=1],["⚡ ماجراجو",t>=50],
+ ["👑 فرمانده",t>=150],["💎 کلکسیونر",data.coins>=10],
+ ["🏆 افسانه",t>=500],["🐉 اکیپ‌ساز",data.members.length>=3]
+ ];
+ $("achievements").innerHTML=achievements.map(a=>`<span class="badge ${a[1]?"on":""}">${a[0]}</span>`).join("");
 }
-function updateTitle(){
- document.title=state.name+" | ULTIMATE EMPIRE";
- $("empireName").value=state.name;
+function saveName(){
+ let n=$("empireInput").value.trim();if(!n)return;
+ data.name=n.slice(0,35);save();render();notify("نام امپراتوری تغییر کرد.");
 }
-function setTheme(color){
- state.theme=color;document.documentElement.style.setProperty("--gold",color);
- save();toast("تم رنگی تغییر کرد.");
+function theme(c){data.theme=c;document.documentElement.style.setProperty("--gold",c);save();notify("تم تغییر کرد.")}
+function backup(){
+ let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ let a=document.createElement("a");a.href=URL.createObjectURL(blob);
+ a.download="dark-empire-backup.json";a.click();URL.revokeObjectURL(a.href);
 }
-function exportData(){
- const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
- const a=document.createElement("a");
- a.href=URL.createObjectURL(blob);a.download="seven-sins-backup.json";a.click();
- URL.revokeObjectURL(a.href);toast("فایل پشتیبان ساخته شد.");
-}
-$("importFile").addEventListener("change",e=>{
- const file=e.target.files[0];if(!file)return;
- const reader=new FileReader();
- reader.onload=()=>{
-  try{
-   const imported=JSON.parse(reader.result);
-   if(!imported||!Array.isArray(imported.members)||!Array.isArray(imported.gallery))throw Error();
-   state={...defaultState,...imported};save();render();toast("اطلاعات بازیابی شد.");
-  }catch(err){toast("فایل پشتیبان معتبر نیست.")}
- };
- reader.readAsText(file);e.target.value="";
+$("restoreFile").addEventListener("change",e=>{
+ let f=e.target.files[0];if(!f)return;
+ let r=new FileReader();r.onload=()=>{
+ try{
+  let x=JSON.parse(r.result);
+  if(!Array.isArray(x.members)||!Array.isArray(x.photos))throw Error();
+  data={...base,...x};save();render();notify("پشتیبان بازیابی شد.");
+ }catch(err){notify("فایل پشتیبان معتبر نیست.")}
+ };r.readAsText(f);e.target.value="";
 });
-function resetData(){
- if(!confirm("تمام اطلاعات محلی سایت پاک شود؟"))return;
- localStorage.removeItem("sevenEmpireData");
- state=structuredClone(defaultState);render();toast("اطلاعات محلی پاک شد.");
-}
 function render(){
- checkDay();
- document.documentElement.style.setProperty("--gold",state.theme||"#e8bd72");
- renderMembers();renderKingdoms();renderQuests();renderDashboard();
- renderLeaderboard();renderGallery();renderMessages();renderRules();updateTitle();
+ dailyReset();
+ document.documentElement.style.setProperty("--gold",data.theme);
+ document.title=data.name+" | SEVEN SINS";
+ $("empireInput").value=data.name;
+ renderHouses();renderMembers();renderQuests();renderRanking();
+ renderShop();renderPhotos();renderMessages();renderNews();renderDashboard();
 }
 for(let i=0;i<35;i++){
- const p=document.createElement("i");p.className="particle";
- p.style.left=Math.random()*100+"%";
- p.style.top=Math.random()*100+"%";
- p.style.animationDuration=(8+Math.random()*18)+"s";
- p.style.animationDelay=(-Math.random()*15)+"s";
- $("particles").appendChild(p);
+ let p=document.createElement("i");p.style.cssText=`position:fixed;pointer-events:none;z-index:-1;left:${Math.random()*100}%;top:${Math.random()*100}%;width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.25;animation:float ${8+Math.random()*15}s linear infinite`;
+ document.body.appendChild(p);
 }
+const style=document.createElement("style");
+style.textContent="@keyframes float{to{transform:translateY(-100vh);opacity:0}}";
+document.head.appendChild(style);
 render();
 </script>
 </body>
-                               </html>
+   </html>
