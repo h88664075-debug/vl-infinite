@@ -1,358 +1,726 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SEVEN SINS — Forbidden Empire</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-:root{
- --bg:#08080c;--panel:#12121b;--gold:#d6ae69;
- --red:#a83248;--text:#eee9df;--muted:#9993a0;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,sans-serif}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-a{color:inherit}
-header{
- position:sticky;top:0;z-index:10;background:#090910ed;
- border-bottom:1px solid #6e542c;padding:15px;
- display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap
-}
-.logo{font:900 22px Cinzel;color:var(--gold);letter-spacing:2px}
-nav{display:flex;gap:7px;flex-wrap:wrap}
-nav button,.btn{
- background:#1b1920;border:1px solid #55432d;color:var(--text);
- padding:9px 13px;border-radius:10px
-}
-nav button.active,.btn.primary{background:#755127;color:white}
-main{max-width:1150px;margin:auto;padding:22px}
-.page{display:none}.page.active{display:block}
-.hero{
- min-height:330px;border:1px solid #76572e;border-radius:20px;
- padding:35px 22px;display:flex;flex-direction:column;
- justify-content:center;align-items:center;text-align:center;
- background:linear-gradient(120deg,#160f17,#10101b 55%,#25131b);
- position:relative;overflow:hidden
-}
-.hero:after{content:"✦";position:absolute;font-size:240px;color:#d6ae690c}
-h1{font:900 clamp(35px,8vw,65px) Cinzel;color:var(--gold);margin:10px}
-h2{color:var(--gold)}
-.subtitle{color:#c9b9a1}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{
- background:linear-gradient(145deg,#191821,#101017);
- border:1px solid #42352a;border-radius:16px;padding:18px;
- transition:.25s;min-width:0
-}
-.card:hover{transform:translateY(-4px);border-color:var(--gold)}
-.sigil{font-size:43px}
-.card h3{color:var(--gold)}
-.muted{color:var(--muted);font-size:13px}
-.stat{font-size:25px;color:var(--gold);font-weight:bold}
-.section-title{margin:28px 0 14px}
-input,textarea{
- width:100%;background:#090910;color:white;border:1px solid #514334;
- border-radius:10px;padding:12px;outline:none
-}
-input:focus,textarea:focus{border-color:var(--gold)}
-textarea{resize:vertical;min-height:90px}
-button:disabled{opacity:.5;cursor:not-allowed}
-.chatbox{background:#090910;border:1px solid #40332b;border-radius:14px;padding:12px}
-.messages{height:330px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;margin:12px 0}
-.msg{background:#1b1a23;padding:10px 12px;border-radius:10px;overflow-wrap:anywhere}
-.msg strong{color:var(--gold)}
-.msg small{color:var(--muted);display:block;font-size:10px;margin-top:4px}
-.chatrow{display:flex;gap:8px}
-.chatrow input{flex:1;min-width:0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.tabs button{background:#211e25;color:white;border:1px solid #514334;border-radius:9px;padding:9px}
-.tabs button.active{background:#755127}
-.preview{font-size:23px;overflow-wrap:anywhere;min-height:70px}
-footer{text-align:center;color:var(--muted);padding:35px}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#27212b;border:1px solid var(--gold);padding:12px 20px;border-radius:12px;display:none;z-index:30}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URBAN STYLE | فروشگاه پوشاک</title>
+  <meta name="description" content="فروشگاه آنلاین پوشاک URBAN STYLE">
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #777;
+      --accent: #111;
+      --line: #e7e7e7;
+      --danger: #d94343;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    button, input { font: inherit; }
+
+    button {
+      cursor: pointer;
+      border: 0;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 70px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .logo span { color: #777; }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .cart-button {
+      position: relative;
+      background: #111;
+      color: white;
+      border-radius: 12px;
+      padding: 11px 16px;
+    }
+
+    .cart-count {
+      background: white;
+      color: #111;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: 25px auto;
+      min-height: 410px;
+      padding: 55px 45px;
+      border-radius: 28px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.15)),
+        url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 70px);
+      margin: 0 0 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 500px;
+      color: #eee;
+      line-height: 2;
+    }
+
+    .hero button {
+      background: white;
+      color: #111;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: bold;
+      width: max-content;
+      margin-top: 10px;
+    }
+
+    /* Main */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 10px 20px 60px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 18px;
+    }
+
+    .section-title h2 { margin: 0; }
+
+    .search {
+      width: min(100%, 340px);
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    .search:focus { border-color: #999; }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 10px 16px;
+      border-radius: 999px;
+    }
+
+    .filter.active {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      transition: transform .2s;
+    }
+
+    .product:hover { transform: translateY(-5px); }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1.1;
+      object-fit: cover;
+      display: block;
+      background: #eee;
+    }
+
+    .product-info { padding: 15px; }
+
+    .product-category {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product h3 {
+      margin: 7px 0;
+      font-size: 16px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .add-button {
+      background: #111;
+      color: white;
+      border-radius: 10px;
+      padding: 9px 12px;
+    }
+
+    /* Cart */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.4);
+      z-index: 40;
+      display: none;
+    }
+
+    .overlay.show { display: block; }
+
+    .cart {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: min(430px, 100%);
+      height: 100vh;
+      background: white;
+      z-index: 50;
+      transform: translateX(-100%);
+      transition: transform .3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart.open { transform: translateX(0); }
+
+    .cart-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close {
+      background: #eee;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    .cart-items {
+      padding: 15px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 50px 15px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-item img {
+      width: 70px;
+      height: 85px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .cart-item h4 { margin: 0 0 7px; }
+
+    .quantity {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .quantity button {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #eee;
+    }
+
+    .remove {
+      background: none;
+      color: var(--danger);
+      padding: 5px 0;
+      font-size: 12px;
+    }
+
+    .cart-footer {
+      padding: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .checkout {
+      width: 100%;
+      background: #111;
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 25px;
+      right: 50%;
+      transform: translateX(50%);
+      background: #111;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 12px;
+      z-index: 100;
+      display: none;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer strong {
+      color: white;
+      font-size: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .products { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links { display: none; }
+      .hero {
+        margin: 15px;
+        padding: 35px 22px;
+        min-height: 360px;
+      }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .section-title { align-items: stretch; flex-direction: column; }
+      .search { width: 100%; }
+      main { padding: 5px 15px 50px; }
+    }
+  </style>
 </head>
+
 <body>
+
 <header>
- <div class="logo">SEVEN SINS</div>
- <nav>
-  <button class="active" data-page="home">خانه</button>
-  <button data-page="sins">هفت گناه</button>
-  <button data-page="chat">چت</button>
-  <button data-page="fonts">فونت‌ساز</button>
-  <button data-page="games">بازی</button>
-  <button data-page="profile">پروفایل</button>
- </nav>
+  <div class="nav">
+    <div class="logo">URBAN <span>STYLE</span></div>
+
+    <nav class="nav-links">
+      <a href="#home">خانه</a>
+      <a href="#products">فروشگاه</a>
+      <a href="#footer">درباره ما</a>
+    </nav>
+
+    <button class="cart-button" onclick="openCart()">
+      🛒 سبد
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
 </header>
 
+<section class="hero" id="home">
+  <h1>URBAN STYLE</h1>
+  <p>استایل خودت را بساز. جدیدترین لباس‌ها و ترندهای روز را در فروشگاه ما پیدا کن.</p>
+  <button onclick="document.getElementById('products').scrollIntoView()">
+    مشاهده محصولات
+  </button>
+</section>
+
 <main>
-<section class="page active" id="home">
- <div class="hero">
-  <p class="subtitle">WELCOME TO THE FORBIDDEN EMPIRE</p>
-  <h1>SEVEN SINS</h1>
-  <p>هفت قلمرو، هفت راز، یک امپراتوری بی‌انتها</p>
-  <button class="btn primary" onclick="showPage('sins')">ورود به هفت قلمرو ✦</button>
- </div>
- <h2 class="section-title">وضعیت امپراتوری</h2>
- <div class="grid">
-  <div class="card"><div class="muted">سطح تو</div><div class="stat" id="level">۱</div></div>
-  <div class="card"><div class="muted">امتیاز تجربه</div><div class="stat" id="xp">۰</div></div>
-  <div class="card"><div class="muted">پیام‌های این نشست</div><div class="stat" id="sent">۰</div></div>
- </div>
- <h2 class="section-title">دروازه‌های امپراتوری</h2>
- <div class="grid">
-  <div class="card"><div class="sigil">💬</div><h3>تالار گفتگو</h3><p>با دیگر بازدیدکنندگان صحبت کن.</p><button class="btn" onclick="showPage('chat')">ورود</button></div>
-  <div class="card"><div class="sigil">✍️</div><h3>کارگاه فونت</h3><p>متن‌های خاص و فانتزی بساز.</p><button class="btn" onclick="showPage('fonts')">ورود</button></div>
-  <div class="card"><div class="sigil">🎮</div><h3>اتاق بازی</h3><p>امتیاز جمع کن و رکورد بزن.</p><button class="btn" onclick="showPage('games')">ورود</button></div>
- </div>
-</section>
-
-<section class="page" id="sins">
- <h1>THE SEVEN KINGDOMS</h1>
- <p class="subtitle">هفت قلمرو افسانه‌ای را کشف کن.</p>
- <div class="grid" id="sinsGrid"></div>
-</section>
-
-<section class="page" id="chat">
- <h1>GLOBAL CHAT</h1>
- <p class="muted">چت گروهی زنده؛ پیام‌ها برای کاربران همان اتاق نمایش داده می‌شوند.</p>
- <div class="chatbox">
-  <div class="tabs" id="roomTabs">
-   <button class="active" data-room="public">عمومی</button>
-   <button data-room="games">گیمرها</button>
-   <button data-room="mystery">اسرارآمیز</button>
+  <div class="section-title" id="products">
+    <h2>محصولات جدید</h2>
+    <input class="search" id="search" placeholder="🔍 جستجوی محصول...">
   </div>
-  <div class="muted" id="chatStatus">در حال اتصال...</div>
-  <div class="messages" id="messages"></div>
-  <div class="chatrow">
-   <input id="chatInput" maxlength="500" placeholder="پیامت را بنویس...">
-   <button class="btn primary" id="sendBtn">ارسال</button>
-  </div>
-  <p class="muted">نام نمایشی: <b id="nickname">...</b> · پیام‌ها عمومی‌اند؛ اطلاعات شخصی ارسال نکن.</p>
- </div>
-</section>
 
-<section class="page" id="fonts">
- <h1>FONT FORGE</h1>
- <p class="subtitle">کارگاه ساخت متن‌های خاص</p>
- <div class="card">
-  <label>متن موردنظر</label>
-  <input id="fontInput" placeholder="متنت را اینجا بنویس..." value="SEVEN SINS">
-  <h3>انتخاب استایل</h3>
-  <div class="grid" id="fontStyles"></div>
-  <h3>پیش‌نمایش</h3>
-  <div class="preview" id="fontPreview">SEVEN SINS</div>
-  <button class="btn primary" id="copyFont">کپی متن</button>
- </div>
-</section>
-
-<section class="page" id="games">
- <h1>THE GAME HALL</h1>
- <div class="grid">
-  <div class="card">
-   <div class="sigil">💎</div><h3>شکار کریستال</h3>
-   <p>با هر کلیک یک کریستال جمع کن.</p>
-   <div class="stat" id="crystals">۰</div>
-   <button class="btn primary" id="crystalBtn">جمع‌آوری کریستال</button>
+  <div class="filters">
+    <button class="filter active" data-category="همه">همه</button>
+    <button class="filter" data-category="مردانه">مردانه</button>
+    <button class="filter" data-category="زنانه">زنانه</button>
+    <button class="filter" data-category="اکسسوری">اکسسوری</button>
   </div>
-  <div class="card">
-   <div class="sigil">🔮</div><h3>حدس عدد</h3>
-   <p>عدد بین ۱ تا ۱۰ را حدس بزن.</p>
-   <input id="guess" type="number" min="1" max="10" placeholder="عدد؟">
-   <button class="btn" id="guessBtn">امتحان کن</button>
-   <p id="guessResult" class="muted"></p>
-  </div>
- </div>
-</section>
 
-<section class="page" id="profile">
- <h1>YOUR IDENTITY</h1>
- <div class="card">
-  <div class="sigil">👑</div>
-  <h2 id="profileName">مسافر امپراتوری</h2>
-  <p>شناسه مهمان: <span id="uidShort">...</span></p>
-  <p>سطح: <b id="profileLevel">۱</b></p>
-  <p>امتیاز تجربه: <b id="profileXP">۰</b></p>
-  <p class="muted">پیشرفت بازی در همین مرورگر ذخیره می‌شود.</p>
- </div>
-</section>
+  <div class="products" id="productsGrid"></div>
 </main>
-<footer>SEVEN SINS · THE FORBIDDEN EMPIRE</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<aside class="cart" id="cart">
+  <div class="cart-header">
+    <h2>🛒 سبد خرید</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer">
+    <div class="total">
+      <span>مجموع:</span>
+      <span id="totalPrice">۰ تومان</span>
+    </div>
+
+    <button class="checkout" onclick="checkout()">
+      ادامه و ثبت سفارش
+    </button>
+  </div>
+</aside>
+
+<footer id="footer">
+  <strong>URBAN STYLE</strong>
+  <p>فروشگاه آنلاین پوشاک و استایل</p>
+  <p>© 2026 تمامی حقوق محفوظ است.</p>
+</footer>
+
 <div id="toast"></div>
 
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import {getAuth,signInAnonymously,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import {getFirestore,collection,addDoc,query,orderBy,limit,onSnapshot,serverTimestamp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+<script>
+  const products = [
+    {
+      id: 1,
+      name: "هودی مشکی کلاسیک",
+      category: "مردانه",
+      price: 1290000,
+      image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 2,
+      name: "کت جین شهری",
+      category: "مردانه",
+      price: 1590000,
+      image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 3,
+      name: "استایل مینیمال",
+      category: "زنانه",
+      price: 1890000,
+      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 4,
+      name: "تی‌شرت اورسایز",
+      category: "مردانه",
+      price: 790000,
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 5,
+      name: "کیف شهری",
+      category: "اکسسوری",
+      price: 990000,
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 6,
+      name: "لباس روزمره",
+      category: "زنانه",
+      price: 1490000,
+      image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 7,
+      name: "کلاه استایل",
+      category: "اکسسوری",
+      price: 490000,
+      image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      id: 8,
+      name: "ژاکت زمستانی",
+      category: "مردانه",
+      price: 2190000,
+      image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=700&q=80"
+    }
+  ];
 
-const firebaseConfig={
- apiKey:"AIzaSyDHgvoAw4cHHD01UfQipDo6z5Z88Me0oCc",
- authDomain:"seven-sins-chat.firebaseapp.com",
- projectId:"seven-sins-chat",
- storageBucket:"seven-sins-chat.firebasestorage.app",
- messagingSenderId:"1009632654398",
- appId:"1:1009632654398:web:c7bc6b9660dfda377bcd6f"
-};
+  let cart = JSON.parse(localStorage.getItem("urbanStyleCart") || "[]");
+  let currentCategory = "همه";
 
-const $=id=>document.getElementById(id);
-function toast(text){
- const t=$("toast");t.textContent=text;t.style.display="block";
- setTimeout(()=>t.style.display="none",2600);
-}
+  const faNumber = number =>
+    number.toLocaleString("fa-IR") + " تومان";
 
-let xp=Number(localStorage.getItem("sinsXP")||0);
-let crystals=Number(localStorage.getItem("sinsCrystals")||0);
-let sent=0;
-function updateStats(){
- const level=Math.floor(xp/100)+1;
- $("xp").textContent=xp;$("level").textContent=level;
- $("profileXP").textContent=xp;$("profileLevel").textContent=level;
- $("sent").textContent=sent;$("crystals").textContent=crystals;
-}
-function addXP(amount){
- xp+=amount;localStorage.setItem("sinsXP",xp);updateStats();
-}
-updateStats();
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.display = "block";
 
-window.showPage=id=>{
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
- $(id).classList.add("active");
-};
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
-
-const sins=[
- ["👑","غرور","PRIDE","قدرت، شکوه و جاه‌طلبی"],
- ["💰","طمع","GREED","گنجینه‌های پنهان"],
- ["🌹","شهوت","LUST","زیبایی و وسوسه"],
- ["🪞","حسادت","ENVY","آینه‌ی آرزوها"],
- ["🍷","شکم‌پرستی","GLUTTONY","ضیافت بی‌پایان"],
- ["🔥","خشم","WRATH","آتش درون"],
- ["⏳","تنبلی","SLOTH","سکوت زمان"]
-];
-sins.forEach((s,i)=>{
- const el=document.createElement("div");el.className="card";
- el.innerHTML=`<div class="sigil">${s[0]}</div><h3>${s[1]}</h3><div class="muted">${s[2]}</div><p>${s[3]}</p><button class="btn" data-sin="${i}">کشف قلمرو</button>`;
- el.querySelector("button").onclick=()=>toast("قلمرو "+s[1]+" انتخاب شد!");
- $("sinsGrid").append(el);
-});
-
-const styles=[
- ["معمولی",s=>s],
- ["گوتیک",s=>"𝕲𝖔𝖙𝖍𝖎𝖈: "+s],
- ["بولد",s=>s.toUpperCase()],
- ["فاصله‌دار",s=>[...s].join(" ")],
- ["ستاره‌ای",s=>"✦ "+s+" ✦"],
- ["سلطنتی",s=>"♛ "+s+" ♛"],
- ["مرموز",s=>"☾ "+s+" ☽"],
- ["الماسی",s=>"◇ "+s+" ◇"],
- ["آتشین",s=>"🔥 "+s+" 🔥"],
- ["کلاسیک",s=>"『"+s+"』"],
- ["مربعی",s=>"▣ "+s+" ▣"],
- ["جادویی",s=>"༺ "+s+" ༻"]
-];
-let currentStyle=styles[0];
-styles.forEach(s=>{
- const b=document.createElement("button");b.className="btn";b.textContent=s[0];
- b.onclick=()=>{currentStyle=s;updateFont();};
- $("fontStyles").append(b);
-});
-function updateFont(){
- $("fontPreview").textContent=currentStyle[1]($("fontInput").value);
-}
-$("fontInput").addEventListener("input",updateFont);
-updateFont();
-$("copyFont").onclick=async()=>{
- try{await navigator.clipboard.writeText($("fontPreview").textContent);toast("متن کپی شد!");}
- catch{toast("کپی خودکار در این مرورگر در دسترس نیست.");}
-};
-
-$("crystalBtn").onclick=()=>{
- crystals++;localStorage.setItem("sinsCrystals",crystals);
- addXP(5);$("crystals").textContent=crystals;
-};
-let secret=Math.floor(Math.random()*10)+1;
-$("guessBtn").onclick=()=>{
- const n=Number($("guess").value);
- if(!Number.isInteger(n)||n<1||n>10){$("guessResult").textContent="عدد ۱ تا ۱۰ وارد کن.";return;}
- if(n===secret){
-  $("guessResult").textContent="درست حدس زدی! ۲۰ XP گرفتی.";
-  addXP(20);secret=Math.floor(Math.random()*10)+1;
- }else $("guessResult").textContent=n<secret?"عدد بزرگ‌تر است.":"عدد کوچک‌تر است.";
-};
-
-// Firebase chat
-let db,auth,user,currentRoom="public",unsubscribe=null;
-let nickname=sessionStorage.getItem("sinsNickname");
-if(!nickname){
- nickname="Shadow-"+Math.floor(1000+Math.random()*9000);
- sessionStorage.setItem("sinsNickname",nickname);
-}
-$("nickname").textContent=nickname;
-$("profileName").textContent=nickname;
-
-function chatError(e){
- console.error(e);
- $("chatStatus").textContent="خطا در اتصال: "+(e.code||e.message||"نامشخص");
-}
-try{
- const app=initializeApp(firebaseConfig);
- auth=getAuth(app);db=getFirestore(app);
- onAuthStateChanged(auth,async u=>{
-  if(u){user=u; $("uidShort").textContent=u.uid.slice(0,8);listenRoom();}
-  else{
-   try{await signInAnonymously(auth);}
-   catch(e){chatError(e);}
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+      toast.style.display = "none";
+    }, 2500);
   }
- });
-}catch(e){chatError(e);}
 
-function listenRoom(){
- if(unsubscribe)unsubscribe();
- $("messages").innerHTML="";
- $("chatStatus").textContent="در حال دریافت پیام‌ها...";
- const q=query(collection(db,"rooms",currentRoom,"messages"),orderBy("createdAt","desc"),limit(60));
- unsubscribe=onSnapshot(q,snap=>{
-  $("chatStatus").textContent="متصل · اتاق "+currentRoom;
-  $("messages").innerHTML="";
-  const docs=[...snap.docs].reverse();
-  docs.forEach(doc=>{
-   const d=doc.data();
-   const el=document.createElement("div");el.className="msg";
-   const name=document.createElement("strong");name.textContent=d.nickname||"مهمان";
-   const body=document.createElement("div");body.textContent=d.text||"";
-   const time=document.createElement("small");
-   time.textContent=d.createdAt?.toDate?d.createdAt.toDate().toLocaleString("fa-IR"):"اکنون";
-   el.append(name,body,time);$("messages").append(el);
+  function renderProducts() {
+    const search = document.getElementById("search").value.trim().toLowerCase();
+
+    const filtered = products.filter(product => {
+      const categoryMatch =
+        currentCategory === "همه" ||
+        product.category === currentCategory;
+
+      const searchMatch =
+        product.name.toLowerCase().includes(search) ||
+        product.category.includes(search);
+
+      return categoryMatch && searchMatch;
+    });
+
+    const grid = document.getElementById("productsGrid");
+
+    if (!filtered.length) {
+      grid.innerHTML = "<p>محصولی پیدا نشد.</p>";
+      return;
+    }
+
+    grid.innerHTML = filtered.map(product => `
+      <article class="product">
+        <img
+          class="product-image"
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+        >
+
+        <div class="product-info">
+          <div class="product-category">${product.category}</div>
+          <h3>${product.name}</h3>
+
+          <div class="product-bottom">
+            <div class="price">${faNumber(product.price)}</div>
+            <button class="add-button" onclick="addToCart(${product.id})">
+              افزودن
+            </button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  function addToCart(id) {
+    const item = cart.find(item => item.id === id);
+
+    if (item) {
+      item.quantity++;
+    } else {
+      cart.push({ id, quantity: 1 });
+    }
+
+    saveCart();
+    showToast("محصول به سبد خرید اضافه شد 🛍️");
+  }
+
+  function saveCart() {
+    localStorage.setItem("urbanStyleCart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function renderCart() {
+    const container = document.getElementById("cartItems");
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    document.getElementById("cartCount").textContent =
+      count.toLocaleString("fa-IR");
+
+    if (!cart.length) {
+      container.innerHTML = `
+        <div class="empty">
+          <h3>سبد خرید خالی است</h3>
+          <p>یک محصول انتخاب کن و به سبد اضافه کن.</p>
+        </div>
+      `;
+
+      document.getElementById("totalPrice").textContent = "۰ تومان";
+      return;
+    }
+
+    let total = 0;
+
+    container.innerHTML = cart.map(item => {
+      const product = products.find(product => product.id === item.id);
+      total += product.price * item.quantity;
+
+      return `
+        <div class="cart-item">
+          <img src="${product.image}" alt="${product.name}">
+
+          <div>
+            <h4>${product.name}</h4>
+            <strong>${faNumber(product.price)}</strong>
+
+            <div class="quantity">
+              <button onclick="changeQuantity(${product.id}, 1)">+</button>
+              <span>${item.quantity.toLocaleString("fa-IR")}</span>
+              <button onclick="changeQuantity(${product.id}, -1)">−</button>
+            </div>
+
+            <button class="remove" onclick="removeFromCart(${product.id})">
+              حذف محصول
+            </button>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    document.getElementById("totalPrice").textContent = faNumber(total);
+  }
+
+  function changeQuantity(id, change) {
+    const item = cart.find(item => item.id === id);
+    if (!item) return;
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+      cart = cart.filter(item => item.id !== id);
+    }
+
+    saveCart();
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    showToast("محصول حذف شد.");
+  }
+
+  function openCart() {
+    document.getElementById("cart").classList.add("open");
+    document.getElementById("overlay").classList.add("show");
+  }
+
+  function closeCart() {
+    document.getElementById("cart").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
+  }
+
+  function checkout() {
+    if (!cart.length) {
+      showToast("سبد خریدت خالی است.");
+      return;
+    }
+
+    showToast("سیستم ثبت سفارش در نسخه دمو فعال است.");
+  }
+
+  document.getElementById("search")
+    .addEventListener("input", renderProducts);
+
+  document.querySelectorAll(".filter").forEach(button => {
+    button.addEventListener("click", () => {
+      currentCategory = button.dataset.category;
+
+      document.querySelectorAll(".filter")
+        .forEach(btn => btn.classList.remove("active"));
+
+      button.classList.add("active");
+      renderProducts();
+    });
   });
-  $("messages").scrollTop=$("messages").scrollHeight;
- },chatError);
-}
-document.querySelectorAll("[data-room]").forEach(b=>{
- b.onclick=()=>{
-  currentRoom=b.dataset.room;
-  document.querySelectorAll("[data-room]").forEach(x=>x.classList.toggle("active",x===b));
-  if(user)listenRoom();
- };
-});
-async function sendMessage(){
- const text=$("chatInput").value.trim();
- if(!text)return;
- if(!user){toast("هنوز به چت وصل نشده‌ای.");return;}
- if(text.length>500){toast("حداکثر ۵۰۰ حرف مجاز است.");return;}
- $("sendBtn").disabled=true;
- try{
-  await addDoc(collection(db,"rooms",currentRoom,"messages"),{
-   uid:user.uid,nickname,text,createdAt:serverTimestamp()
-  });
-  $("chatInput").value="";sent++;updateStats();addXP(1);
- }catch(e){chatError(e);toast("پیام ارسال نشد.");}
- finally{$("sendBtn").disabled=false;}
-}
-$("sendBtn").onclick=sendMessage;
-$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage();});
+
+  renderProducts();
+  renderCart();
 </script>
+
 </body>
-</html>
+ </html>
