@@ -3,402 +3,480 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SEVEN SINS | THE CREW</title>
+<title>SEVEN SINS — THE ULTIMATE CREW</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Vazirmatn:wght@400;600;700;900&display=swap');
 
 :root{
-  --bg:#07070b;
-  --panel:#101018;
-  --gold:#e1b86c;
-  --red:#b52d47;
-  --text:#f4f0e8;
-  --muted:#9995a1;
+  --bg:#07070c;
+  --panel:#11111a;
+  --panel2:#181824;
+  --gold:#e5bb70;
+  --gold2:#8c6735;
+  --red:#b13a50;
+  --text:#f4f0e9;
+  --muted:#9895a0;
+  --line:#ffffff12;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
 body{
-  margin:0;
-  background:
-    radial-gradient(circle at 20% 0%,#25151c 0,transparent 28%),
-    radial-gradient(circle at 80% 20%,#17152b 0,transparent 25%),
-    var(--bg);
-  color:var(--text);
-  font-family:Vazirmatn,sans-serif;
-  overflow-x:hidden;
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Vazirmatn,Arial,sans-serif;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 15% 5%,#311b2a55,transparent 25%),
+    radial-gradient(circle at 85% 15%,#1d214055,transparent 25%);
 }
+button,input{font:inherit}
+button{cursor:pointer}
+button:active{transform:scale(.97)}
 
-button{font:inherit;cursor:pointer}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.dot{
+  position:absolute;width:4px;height:4px;border-radius:50%;
+  background:var(--gold);opacity:.35;
+  animation:float linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(105vh)}
+  to{transform:translateY(-10vh)}
+}
 
 header{
-  position:fixed;
-  top:0;right:0;left:0;
-  z-index:100;
-  padding:15px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(7,7,11,.75);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid #ffffff10;
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;padding:14px 5%;
+  background:#090910dd;backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
 }
-
 .logo{
-  font-family:Cinzel,serif;
-  font-weight:900;
-  color:var(--gold);
-  letter-spacing:3px;
-  font-size:22px;
+  font-family:Cinzel,serif;font-weight:900;letter-spacing:3px;
+  color:var(--gold);font-size:22px;white-space:nowrap;
+}
+nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+nav button{
+  background:transparent;border:1px solid transparent;color:var(--muted);
+  padding:8px 11px;border-radius:10px;
+}
+nav button:hover,nav button.active{
+  color:var(--gold);border-color:#e5bb7040;background:#e5bb700b;
 }
 
-nav{display:flex;gap:8px}
-nav a{
-  text-decoration:none;
-  color:var(--muted);
-  padding:8px 11px;
-  font-size:13px;
-  transition:.2s;
-}
-nav a:hover{color:var(--gold)}
+main{max-width:1200px;margin:auto;padding:24px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 .hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:100px 20px 50px;
-  position:relative;
+  min-height:500px;border:1px solid #e5bb7026;border-radius:28px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:40px 20px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#170f1b,#0d101d 55%,#1d1511);
 }
-
-.hero::before{
-  content:"VII";
-  position:absolute;
-  font-family:Cinzel,serif;
-  font-size:min(70vw,700px);
-  font-weight:900;
-  color:#ffffff05;
-  z-index:-1;
+.hero:before{
+  content:"VII";position:absolute;font-family:Cinzel,serif;
+  font-size:min(65vw,550px);font-weight:900;color:#ffffff06;
+  z-index:0;
 }
-
-.eyebrow{
-  color:var(--gold);
-  letter-spacing:4px;
-  font-size:12px;
-}
-
+.hero-content{position:relative;z-index:1}
+.kicker{color:var(--gold);letter-spacing:4px;font-size:12px}
+h1,h2,h3{font-family:Vazirmatn,sans-serif}
 .hero h1{
-  font-family:Cinzel,serif;
-  font-size:clamp(55px,12vw,150px);
-  line-height:.9;
-  margin:20px 0;
-  letter-spacing:8px;
-  background:linear-gradient(135deg,#fff,#c89b4c);
-  -webkit-background-clip:text;
-  color:transparent;
+  font-family:Cinzel,serif;font-size:clamp(55px,11vw,120px);
+  margin:15px 0;line-height:.85;letter-spacing:6px;
+  background:linear-gradient(135deg,#fff,#c99748);
+  -webkit-background-clip:text;color:transparent;
 }
-
-.hero p{
-  max-width:600px;
-  color:var(--muted);
-  line-height:2;
-  margin:auto;
+.hero p{max-width:600px;color:var(--muted);line-height:2;margin:auto}
+.primary,.secondary{
+  border-radius:12px;padding:12px 18px;margin:8px 4px;font-weight:bold;
 }
+.primary{background:var(--gold);border:1px solid var(--gold);color:#17120c}
+.secondary{background:#ffffff08;border:1px solid var(--line);color:var(--text)}
 
-.enter{
-  margin-top:28px;
-  padding:14px 28px;
-  border:1px solid var(--gold);
-  border-radius:50px;
-  color:#17120a;
-  background:var(--gold);
-  font-weight:900;
-  box-shadow:0 0 35px #e1b86c30;
-}
-
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:90px 20px;
-}
-
-.title{
-  font-family:Cinzel,serif;
-  color:var(--gold);
-  font-size:clamp(30px,5vw,55px);
-  margin:0 0 10px;
-}
-
-.subtitle{color:var(--muted);margin-bottom:35px}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
 .card{
-  min-height:230px;
-  padding:22px;
-  border:1px solid #ffffff12;
-  border-radius:22px;
-  background:linear-gradient(145deg,#15151e,#0c0c12);
-  position:relative;
-  overflow:hidden;
-  transition:.3s;
+  background:linear-gradient(145deg,var(--panel2),#0e0e16);
+  border:1px solid var(--line);border-radius:20px;padding:18px;
+  transition:.25s;
 }
+.card:hover{transform:translateY(-5px);border-color:#e5bb7055}
+.card h3{margin:8px 0;color:var(--gold)}
+.muted{color:var(--muted);font-size:13px}
+.icon{font-size:38px}
 
-.card:hover{
-  transform:translateY(-8px);
-  border-color:var(--gold);
+.section-title{margin:35px 0 15px;color:var(--gold)}
+.stat{font-size:28px;color:var(--gold);font-weight:bold}
+
+.progress{height:9px;background:#ffffff0b;border-radius:99px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--gold2),var(--gold));transition:.4s}
+
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{
+  padding:10px 13px;border-radius:12px;background:#ffffff08;
+  border:1px solid var(--line);color:var(--muted);
 }
+.badge.unlocked{color:var(--gold);border-color:#e5bb7060;background:#e5bb7010}
 
-.number{
-  font-family:Cinzel,serif;
-  font-size:45px;
-  color:#ffffff0d;
-  position:absolute;
-  left:15px;
-  top:5px;
+.mission{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;padding:14px;border-bottom:1px solid var(--line);
 }
+.mission:last-child{border:0}
+.mission.done{text-decoration:line-through;opacity:.55}
 
-.icon{font-size:42px}
-.card h3{color:var(--gold);margin-bottom:5px}
-.card p{color:var(--muted);font-size:13px;line-height:1.9}
-
-.members{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:16px;
+input{
+  width:100%;background:#090911;color:white;border:1px solid #ffffff18;
+  border-radius:11px;padding:12px;outline:none;
 }
+input:focus{border-color:var(--gold)}
 
-.member{
-  padding:24px;
-  background:var(--panel);
-  border:1px solid #ffffff10;
-  border-radius:22px;
+.profile{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;
 }
-
 .avatar{
-  width:65px;height:65px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#38251d,#181520);
-  border:1px solid var(--gold);
-  font-size:28px;
+  width:85px;height:85px;border-radius:50%;display:grid;place-items:center;
+  font-size:35px;background:linear-gradient(135deg,#38251d,#15131b);
+  border:2px solid var(--gold);
 }
 
-.member h3{margin:15px 0 3px}
-.role{color:var(--gold);font-size:12px}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:25px;
-}
-
-.stat{
-  background:#0f0f16;
-  padding:20px;
-  text-align:center;
-  border-radius:16px;
-  border:1px solid #ffffff0c;
-}
-
-.stat b{
-  display:block;
-  font-size:28px;
-  color:var(--gold);
-}
-
-.terminal{
-  background:#050508;
-  border:1px solid #3a3026;
-  border-radius:18px;
+.chatbox{
+  background:#090910;border:1px solid var(--line);border-radius:20px;
   overflow:hidden;
 }
-
-.terminal-head{
-  padding:12px 16px;
-  border-bottom:1px solid #ffffff10;
-  color:var(--gold);
-  font-size:13px;
-}
-
-.messages{
-  height:240px;
-  overflow:auto;
-  padding:15px;
-}
-
-.message{
-  padding:10px 13px;
-  margin-bottom:9px;
-  background:#111119;
-  border-radius:12px;
-  font-size:13px;
-}
-
+.messages{height:300px;overflow:auto;padding:15px}
+.message{background:#171721;border:1px solid #ffffff08;padding:10px 12px;border-radius:12px;margin-bottom:8px}
 .message b{color:var(--gold)}
+.chatrow{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chatrow input{flex:1}
 
-.chat-form{
-  display:flex;
-  gap:8px;
-  padding:14px;
-  border-top:1px solid #ffffff10;
+.gallery{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;
+}
+.gallery-item{
+  min-height:150px;border-radius:16px;overflow:hidden;
+  background:#15151e;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--muted);
+}
+.gallery-item img{width:100%;height:190px;object-fit:cover;display:block}
+
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:#211d25;border:1px solid var(--gold);color:white;
+  padding:11px 17px;border-radius:12px;display:none;z-index:100;
 }
 
-.chat-form input{
-  flex:1;
-  background:#101018;
-  border:1px solid #ffffff15;
-  border-radius:10px;
-  color:white;
-  padding:11px;
-  outline:none;
-}
+footer{text-align:center;color:var(--muted);padding:35px 10px}
 
-.chat-form button{
-  background:var(--gold);
-  color:#15110b;
-  border:0;
-  border-radius:10px;
-  padding:0 18px;
-  font-weight:bold;
-}
-
-footer{
-  padding:35px;
-  text-align:center;
-  color:var(--muted);
-  border-top:1px solid #ffffff0d;
-}
-
-@media(max-width:600px){
-  nav a{display:none}
-  .hero h1{letter-spacing:3px}
-  .stats{grid-template-columns:1fr}
+@media(max-width:700px){
+  header{align-items:flex-start;flex-direction:column}
+  nav{width:100%;overflow:auto;flex-wrap:nowrap}
+  nav button{white-space:nowrap}
+  .hero{min-height:450px}
 }
 </style>
 </head>
 
 <body>
+<div id="particles"></div>
 
 <header>
   <div class="logo">SEVEN SINS</div>
   <nav>
-    <a href="#sins">قلمروها</a>
-    <a href="#crew">اکیپ</a>
-    <a href="#chat">تالار</a>
+    <button class="active" data-page="home">خانه</button>
+    <button data-page="kingdoms">قلمروها</button>
+    <button data-page="dashboard">داشبورد</button>
+    <button data-page="missions">مأموریت‌ها</button>
+    <button data-page="gallery">گالری</button>
+    <button data-page="chat">تالار</button>
+    <button data-page="profile">پروفایل</button>
   </nav>
 </header>
 
-<section class="hero">
-  <div>
-    <div class="eyebrow">WELCOME TO THE FORBIDDEN CREW</div>
-    <h1>SEVEN<br>SINS</h1>
-    <p>
-      هفت نام، هفت قلمرو، یک اکیپ.
-      به دنیای مرموز و اختصاصی SEVEN SINS خوش آمدی.
-    </p>
-    <button class="enter" onclick="document.querySelector('#sins').scrollIntoView()">
-      ورود به قلمروها ✦
-    </button>
+<main>
+
+<section class="page active" id="home">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="kicker">WELCOME TO THE FORBIDDEN EMPIRE</div>
+      <h1>SEVEN<br>SINS</h1>
+      <p>هفت قلمرو، یک اکیپ و یک داستان که خودتان آن را می‌سازید.</p>
+      <button class="primary" onclick="showPage('dashboard')">ورود به امپراتوری ✦</button>
+      <button class="secondary" onclick="showPage('kingdoms')">کشف قلمروها</button>
+    </div>
   </div>
 </section>
 
-<section id="sins">
-  <h2 class="title">THE SEVEN KINGDOMS</h2>
-  <p class="subtitle">هر قلمرو یک داستان دارد.</p>
+<section class="page" id="kingdoms">
+  <h2 class="section-title">THE SEVEN KINGDOMS</h2>
+  <p class="muted">هر قلمرو نماد یک ویژگی و داستان متفاوت است.</p>
+  <div class="grid" id="kingdomGrid"></div>
+</section>
 
+<section class="page" id="dashboard">
+  <h2 class="section-title">COMMAND CENTER</h2>
   <div class="grid">
-    <div class="card"><span class="number">I</span><div class="icon">👑</div><h3>غرور</h3><p>قلمرو قدرت، شکوه و اعتماد.</p></div>
-    <div class="card"><span class="number">II</span><div class="icon">💰</div><h3>طمع</h3><p>قلمرو گنجینه‌ها و آرزوهای بزرگ.</p></div>
-    <div class="card"><span class="number">III</span><div class="icon">🌹</div><h3>وسوسه</h3><p>قلمروی رازها و زیبایی.</p></div>
-    <div class="card"><span class="number">IV</span><div class="icon">🪞</div><h3>حسادت</h3><p>آینه‌ای برای آرزوهای پنهان.</p></div>
-    <div class="card"><span class="number">V</span><div class="icon">🍷</div><h3>ضیافت</h3><p>قلمرو جشن و ماجراجویی.</p></div>
-    <div class="card"><span class="number">VI</span><div class="icon">🔥</div><h3>خشم</h3><p>انرژی، قدرت و آتش درون.</p></div>
-    <div class="card"><span class="number">VII</span><div class="icon">⏳</div><h3>سکوت</h3><p>آرام‌ترین و مرموزترین قلمرو.</p></div>
+    <div class="card"><div class="muted">سطح فعلی</div><div class="stat" id="level">۱</div></div>
+    <div class="card"><div class="muted">امتیاز XP</div><div class="stat" id="xp">۰</div></div>
+    <div class="card"><div class="muted">کریستال‌ها</div><div class="stat" id="crystals">۰</div></div>
+    <div class="card"><div class="muted">مأموریت‌های کامل</div><div class="stat" id="missionCount">۰</div></div>
   </div>
 
-  <div class="stats">
-    <div class="stat"><b>۷</b> قلمرو</div>
-    <div class="stat"><b id="visits">۱</b> ورود</div>
-    <div class="stat"><b>∞</b> داستان</div>
+  <div class="card" style="margin-top:15px">
+    <h3>پیشرفت تا سطح بعدی</h3>
+    <div class="progress"><div id="xpBar"></div></div>
+    <div class="muted" id="xpText"></div>
   </div>
+
+  <h2 class="section-title">دستاوردها</h2>
+  <div class="badges" id="badges"></div>
 </section>
 
-<section id="crew">
-  <h2 class="title">THE CREW</h2>
-  <p class="subtitle">اینجا می‌توانی نام اعضای اکیپ خودت را وارد کنی.</p>
-
-  <div class="members" id="members">
-    <div class="member"><div class="avatar">♛</div><h3>LEADER</h3><div class="role">فرمانده اکیپ</div></div>
-    <div class="member"><div class="avatar">⚡</div><h3>MEMBER 02</h3><div class="role">عضو قلمرو</div></div>
-    <div class="member"><div class="avatar">🌙</div><h3>MEMBER 03</h3><div class="role">عضو قلمرو</div></div>
-  </div>
+<section class="page" id="missions">
+  <h2 class="section-title">DAILY MISSIONS</h2>
+  <div class="card" id="missionList"></div>
 </section>
 
-<section id="chat">
-  <h2 class="title">THE HALL</h2>
-  <p class="subtitle">یک تالار گفت‌وگوی نمایشی برای اکیپ شما.</p>
+<section class="page" id="gallery">
+  <h2 class="section-title">CREW GALLERY</h2>
+  <p class="muted">تصاویر انتخاب‌شده فقط در همین مرورگر ذخیره می‌شوند.</p>
+  <div class="card" style="margin-bottom:15px">
+    <input type="file" id="imageInput" accept="image/*">
+  </div>
+  <div class="gallery" id="galleryGrid"></div>
+</section>
 
-  <div class="terminal">
-    <div class="terminal-head">● SEVEN SINS — CREW CHANNEL</div>
-
+<section class="page" id="chat">
+  <h2 class="section-title">THE HALL</h2>
+  <p class="muted">این نسخه تالار گفت‌وگوی نمایشی است و پیام‌ها فقط در همین صفحه نمایش داده می‌شوند.</p>
+  <div class="chatbox">
     <div class="messages" id="messages">
-      <div class="message"><b>SYSTEM:</b> به قلمرو SEVEN SINS خوش آمدید.</div>
-      <div class="message"><b>LEADER:</b> اکیپ آماده‌ست؟ 🔥</div>
+      <div class="message"><b>SYSTEM:</b> به SEVEN SINS خوش آمدی. ✦</div>
     </div>
-
-    <div class="chat-form">
-      <input id="messageInput" placeholder="پیامی برای اکیپ بنویس...">
-      <button onclick="sendMessage()">ارسال</button>
+    <div class="chatrow">
+      <input id="chatInput" maxlength="300" placeholder="پیامی بنویس...">
+      <button class="primary" id="sendBtn">ارسال</button>
     </div>
   </div>
 </section>
 
-<footer>
-  <b>SEVEN SINS</b><br>
-  THE CREW · THE LEGEND · THE EMPIRE
-</footer>
+<section class="page" id="profile">
+  <h2 class="section-title">YOUR IDENTITY</h2>
+  <div class="card profile">
+    <div class="avatar">♛</div>
+    <div>
+      <h3 id="displayName">مسافر امپراتوری</h3>
+      <p class="muted">نام خودت را انتخاب کن و پروفایلت را شخصی‌سازی کن.</p>
+      <input id="nameInput" maxlength="30" placeholder="نام نمایشی">
+      <button class="primary" id="saveName">ذخیره نام</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>SEVEN SINS · THE CREW · THE LEGEND</footer>
+<div class="toast" id="toast"></div>
 
 <script>
-let visits = Number(localStorage.getItem("sevenVisits") || 0) + 1;
-localStorage.setItem("sevenVisits", visits);
-document.getElementById("visits").textContent =
-  visits.toLocaleString("fa-IR");
+const $ = id => document.getElementById(id);
 
-function sendMessage(){
-  const input = document.getElementById("messageInput");
-  const text = input.value.trim();
+let state = JSON.parse(localStorage.getItem("sevenSinsUltimate") || "{}");
+state.xp ??= 0;
+state.crystals ??= 0;
+state.name ??= "مسافر امپراتوری";
+state.missions ??= {};
+state.gallery ??= [];
 
-  if(!text) return;
-
-  const message = document.createElement("div");
-  message.className = "message";
-
-  const name = document.createElement("b");
-  name.textContent = "YOU: ";
-
-  message.append(name, document.createTextNode(text));
-
-  const messages = document.getElementById("messages");
-  messages.appendChild(message);
-  messages.scrollTop = messages.scrollHeight;
-
-  input.value = "";
+function save(){
+  localStorage.setItem("sevenSinsUltimate", JSON.stringify(state));
 }
 
-document.getElementById("messageInput").addEventListener("keydown", e => {
-  if(e.key === "Enter") sendMessage();
-});
-</script>
+function toast(text){
+  const t=$("toast");
+  t.textContent=text;
+  t.style.display="block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>t.style.display="none",2500);
+}
 
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  $(id).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.querySelectorAll("nav button").forEach(b=>{
+  b.onclick=()=>showPage(b.dataset.page);
+});
+
+const kingdoms=[
+  ["👑","غرور","قدرت، اعتماد و رهبری"],
+  ["💎","طمع","جست‌وجوی گنجینه‌ها و هدف‌های بزرگ"],
+  ["🌹","وسوسه","رازها، زیبایی و داستان‌های مرموز"],
+  ["🪞","حسادت","آینه‌ای برای شناخت آرزوها"],
+  ["🍇","ضیافت","جشن، سرگرمی و خاطره‌سازی"],
+  ["🔥","خشم","انرژی، شجاعت و قدرت حرکت"],
+  ["🌙","سکوت","آرامش، تمرکز و رازهای شب"]
+];
+
+$("kingdomGrid").innerHTML=kingdoms.map((k,i)=>`
+  <div class="card">
+    <div class="icon">${k[0]}</div>
+    <h3>${i+1}. ${k[1]}</h3>
+    <p class="muted">${k[2]}</p>
+    <button class="secondary" onclick="chooseKingdom('${k[1]}')">انتخاب قلمرو</button>
+  </div>
+`).join("");
+
+window.chooseKingdom=function(name){
+  toast("قلمرو "+name+" انتخاب شد! +5 XP");
+  addXP(5);
+};
+
+function addXP(amount){
+  state.xp+=amount;
+  save();
+  renderDashboard();
+}
+
+function renderDashboard(){
+  const level=Math.floor(state.xp/100)+1;
+  const current=state.xp%100;
+  const completed=Object.values(state.missions).filter(Boolean).length;
+
+  $("level").textContent=level.toLocaleString("fa-IR");
+  $("xp").textContent=state.xp.toLocaleString("fa-IR");
+  $("crystals").textContent=state.crystals.toLocaleString("fa-IR");
+  $("missionCount").textContent=completed.toLocaleString("fa-IR");
+  $("xpBar").style.width=current+"%";
+  $("xpText").textContent=(100-current).toLocaleString("fa-IR")+" XP تا سطح بعدی";
+
+  const badges=[
+    ["✦ شروع‌کننده",state.xp>=1],
+    ["⚔ ماجراجو",state.xp>=50],
+    ["👑 فرمانده",state.xp>=150],
+    ["💎 شکارچی کریستال",state.crystals>=10],
+    ["✓ مأمور حرفه‌ای",completed>=3]
+  ];
+  $("badges").innerHTML=badges.map(b=>
+    `<div class="badge ${b[1]?"unlocked":""}">${b[0]}</div>`
+  ).join("");
+}
+
+const missions=[
+  ["welcome","از یکی از قلمروها دیدن کن",10],
+  ["crystal","یک کریستال جمع کن",5],
+  ["message","یک پیام در تالار بنویس",5],
+  ["explore","سه قلمرو را کشف کن",20]
+];
+
+function renderMissions(){
+  $("missionList").innerHTML=missions.map(m=>`
+    <div class="mission ${state.missions[m[0]]?"done":""}">
+      <div>
+        <b>${m[1]}</b>
+        <div class="muted">پاداش: ${m[2]} XP</div>
+      </div>
+      <button class="secondary" ${state.missions[m[0]]?"disabled":""}
+        onclick="completeMission('${m[0]}',${m[2]})">
+        ${state.missions[m[0]]?"انجام شد ✓":"انجام مأموریت"}
+      </button>
+    </div>
+  `).join("");
+}
+
+window.completeMission=function(id,reward){
+  if(state.missions[id])return;
+  state.missions[id]=true;
+  addXP(reward);
+  save();
+  renderMissions();
+  toast("مأموریت کامل شد! +"+reward+" XP");
+};
+
+function renderGallery(){
+  $("galleryGrid").innerHTML=state.gallery.length
+    ?state.gallery.map((img,i)=>`
+      <div class="gallery-item">
+        <img src="${img}" alt="تصویر گالری ${i+1}">
+      </div>
+    `).join("")
+    :`<div class="gallery-item">هنوز تصویری اضافه نشده 📷</div>`;
+}
+
+$("imageInput").addEventListener("change",function(){
+  const file=this.files[0];
+  if(!file)return;
+
+  const reader=new FileReader();
+  reader.onload=e=>{
+    state.gallery.push(e.target.result);
+    save();
+    renderGallery();
+    toast("تصویر به گالری اضافه شد!");
+  };
+  reader.readAsDataURL(file);
+  this.value="";
+});
+
+function sendMessage(){
+  const input=$("chatInput");
+  const text=input.value.trim();
+  if(!text)return;
+
+  const div=document.createElement("div");
+  div.className="message";
+  const name=document.createElement("b");
+  name.textContent=state.name+": ";
+  div.append(name,document.createTextNode(text));
+
+  $("messages").appendChild(div);
+  $("messages").scrollTop=$("messages").scrollHeight;
+  input.value="";
+
+  if(!state.missions.message){
+    state.missions.message=true;
+    state.xp+=5;
+    save();
+    renderMissions();
+    renderDashboard();
+    toast("اولین پیام! +5 XP");
+  }
+}
+
+$("sendBtn").onclick=sendMessage;
+$("chatInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter")sendMessage();
+});
+
+$("displayName").textContent=state.name;
+$("nameInput").value=state.name;
+
+$("saveName").onclick=()=>{
+  const name=$("nameInput").value.trim();
+  if(!name){toast("یک نام وارد کن.");return;}
+  state.name=name.slice(0,30);
+  save();
+  $("displayName").textContent=state.name;
+  toast("پروفایل ذخیره شد!");
+};
+
+for(let i=0;i<45;i++){
+  const dot=document.createElement("div");
+  dot.className="dot";
+  dot.style.left=Math.random()*100+"%";
+  dot.style.animationDuration=(8+Math.random()*15)+"s";
+  dot.style.animationDelay=(-Math.random()*15)+"s";
+  $("particles").appendChild(dot);
+}
+
+renderDashboard();
+renderMissions();
+renderGallery();
+</script>
 </body>
-                                                                    </html>
+    </html>
