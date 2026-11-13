@@ -514,4 +514,144 @@ setInterval(()=>document.getElementById("clock").textContent=new Date().toLocale
 renderAll();
 </script>
 </body>
+ 
+<!-- اتصال چت سایت به Firebase -->
+<script>
+(async function () {
+  const config = {
+    apiKey: "AIzaSyDHgvoAw4cHHD01UfQipDo6z5Z88Me0oCcA",
+    authDomain: "seven-sins-chat.firebaseapp.com",
+    projectId: "seven-sins-chat",
+    storageBucket: "seven-sins-chat.firebasestorage.app",
+    messagingSenderId: "1009632654398",
+    appId: "1:1009632654398:web:c7bc6b9660dfda377bcd6f"
+  };
+
+  const status = (message) => {
+    const p = document.querySelector(".hero p");
+    if (p) p.textContent = message;
+  };
+
+  try {
+    status("در حال اتصال چت آنلاین...");
+
+    const load = (src) => new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error("بارگذاری Firebase ناموفق بود"));
+      document.head.appendChild(s);
+    });
+
+    const version = "10.14.1";
+    await load(`https://www.gstatic.com/firebasejs/${version}/firebase-app-compat.js`);
+    await load(`https://www.gstatic.com/firebasejs/${version}/firebase-auth-compat.js`);
+    await load(`https://www.gstatic.com/firebasejs/${version}/firebase-firestore-compat.js`);
+
+    if (!firebase.apps.length) firebase.initializeApp(config);
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const messagesRef = db.collection("rooms").doc("main").collection("messages");
+
+    await auth.signInAnonymously();
+
+    window.onlineMessages = [];
+
+    messagesRef.orderBy("createdAt", "asc").limit(300).onSnapshot(snapshot => {
+      window.onlineMessages = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+
+      window.renderChat();
+      const total = document.getElementById("totalMessages");
+      if (total) total.textContent = window.onlineMessages.length;
+      status("چت آنلاین متصل است");
+    }, error => {
+      console.error(error);
+      status("خطا در دریافت پیام‌ها: " + error.message);
+    });
+
+    window.renderChat = function () {
+      const container = document.getElementById("chatMessages");
+      if (!container) return;
+
+      if (!window.onlineMessages.length) {
+        container.innerHTML = '<div class="empty">هنوز پیامی ارسال نشده است.</div>';
+        return;
+      }
+
+      container.innerHTML = window.onlineMessages.map(msg => {
+        const sender = typeof safe === "function"
+          ? safe(String(msg.sender || "عضو"))
+          : String(msg.sender || "عضو");
+
+        const content = typeof safe === "function"
+          ? safe(String(msg.text || ""))
+          : String(msg.text || "");
+
+        let time = "";
+        if (msg.createdAt && msg.createdAt.toDate) {
+          time = msg.createdAt.toDate().toLocaleString("fa-IR");
+        }
+
+        return `
+          <div class="message">
+            <strong>${sender}</strong>
+            <div>${content}</div>
+            <small>${time}</small>
+          </div>
+        `;
+      }).join("");
+    };
+
+    window.sendMessage = async function () {
+      const senderEl = document.getElementById("messageSender");
+      const input = document.getElementById("messageInput");
+
+      if (!input || !input.value.trim()) return;
+
+      const text = input.value.trim();
+      const sender = senderEl ? senderEl.value : "عضو";
+
+      if (text.length > 1000) {
+        alert("پیام نباید بیشتر از ۱۰۰۰ کاراکتر باشد.");
+        return;
+      }
+
+      input.value = "";
+
+      try {
+        await messagesRef.add({
+          sender: String(sender).slice(0, 40),
+          text: text,
+          uid: auth.currentUser.uid,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (error) {
+        input.value = text;
+        alert("ارسال پیام ناموفق بود: " + error.message);
+      }
+    };
+
+    window.deleteMessage = function () {
+      alert("حذف پیام در چت آنلاین فعلاً غیرفعال است.");
+    };
+
+    window.clearChat = function () {
+      alert("پاک کردن گروهی پیام‌ها در چت آنلاین غیرفعال است.");
+    };
+
+    status("چت آنلاین متصل است");
+    window.renderChat();
+
+  } catch (error) {
+    console.error(error);
+    status("اتصال چت ناموفق بود: " + error.message);
+    alert("خطای اتصال Firebase: " + error.message);
+  }
+})();
+</script>
+
  </html>
