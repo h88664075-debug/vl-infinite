@@ -4,81 +4,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>هفت گناه کبیره | SEVEN SINS</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07050d;--panel:#120e1d;--panel2:#21162e;--text:#f8f1ff;--muted:#aaa0b9;--purple:#a855f7;--pink:#ec4899;--gold:#fbbf24;--green:#22c55e;--border:#ffffff1c}
+:root{
+--bg:#07050d;--panel:#151020;--panel2:#241632;
+--text:#fff;--muted:#b7a9c7;--purple:#a855f7;
+--pink:#ec4899;--gold:#fbbf24;--green:#22c55e;
+}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 15% 0%,#351052,transparent 38%),radial-gradient(ellipse at 90% 30%,#35102c,transparent 30%),var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:38px 38px}
+body{
+margin:0;color:var(--text);font-family:Vazirmatn,Tahoma;
+background:radial-gradient(ellipse at 15% 0%,#48115d,transparent 40%),
+radial-gradient(ellipse at 90% 30%,#42102e,transparent 35%),var(--bg);
+min-height:100vh
+}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-header{position:sticky;top:0;z-index:50;background:#090611ed;backdrop-filter:blur(18px);border-bottom:1px solid var(--border);padding:15px 4%}
+header{
+position:sticky;top:0;z-index:20;padding:15px 4%;
+background:#090611ed;backdrop-filter:blur(18px);
+border-bottom:1px solid #ffffff20
+}
 .top,.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.top,.between{justify-content:space-between}
-.logo{font-size:25px;font-weight:900}
-.logo span{background:linear-gradient(90deg,#c084fc,#f472b6,#fbbf24);background-clip:text;color:transparent}
+.between{justify-content:space-between}
+.logo{font-size:24px;font-weight:900}
+.logo span{
+background:linear-gradient(90deg,#c084fc,#f472b6,#fbbf24);
+background-clip:text;color:transparent
+}
 .small,.muted{color:var(--muted);font-size:12px}
-.badge{display:inline-flex;align-items:center;gap:5px;border:1px solid #a855f755;background:#a855f714;color:#e9d5ff;border-radius:30px;padding:5px 10px;font-size:11px}
-nav{display:flex;gap:8px;overflow-x:auto;padding-top:15px}
-nav button,.btn{border:1px solid var(--border);background:#21182e;color:white;padding:10px 14px;border-radius:12px;white-space:nowrap;transition:.2s}
-nav button:hover,.btn:hover{transform:translateY(-2px);filter:brightness(1.15)}
-nav button.active,.primary{background:linear-gradient(120deg,#7e22ce,#be185d);border-color:transparent;box-shadow:0 7px 25px #a855f733}
-.gold{background:linear-gradient(120deg,#80530b,#d69e20);border:0}
-.good{background:#14532d;border:0}
-main{max-width:1300px;margin:auto;padding:25px 4% 90px}
+nav{display:flex;gap:7px;overflow-x:auto;padding-top:13px}
+nav button,.btn{
+border:1px solid #ffffff20;background:#251a32;color:white;
+padding:10px 14px;border-radius:12px;white-space:nowrap
+}
+nav button.active,.primary{
+background:linear-gradient(120deg,#7e22ce,#be185d);
+border-color:transparent
+}
+.btn:hover,nav button:hover{filter:brightness(1.2);transform:translateY(-2px)}
+.good{background:#14532d}
+.gold{background:linear-gradient(120deg,#80530b,#d69e20)}
+main{max-width:1300px;margin:auto;padding:25px 4% 80px}
 .page{display:none}
-.page.active{display:block;animation:appear .35s ease}
-@keyframes appear{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
-.hero{position:relative;overflow:hidden;padding:38px 27px;margin-bottom:18px;border:1px solid #a855f755;border-radius:25px;background:radial-gradient(circle at 80% 20%,#a855f733,transparent 35%),linear-gradient(130deg,#281039,#100d1b 70%);box-shadow:0 15px 50px #0005}
-.hero:after{content:"";position:absolute;width:230px;height:230px;left:-80px;bottom:-140px;border-radius:50%;background:#c026d3;filter:blur(80px);opacity:.35}
-.hero h1{font-size:clamp(28px,5vw,48px);margin:8px 0;position:relative}
-.hero p{color:#d8c9e8;position:relative}
+.page.active{display:block;animation:appear .3s}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.hero{
+padding:32px 24px;margin-bottom:18px;border:1px solid #a855f766;
+border-radius:24px;background:radial-gradient(circle at 80% 20%,#a855f744,transparent 40%),#160d22
+}
+.hero h1{font-size:clamp(27px,5vw,44px);margin:8px 0}
+.hero p{color:#d9c9e8}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{position:relative;background:linear-gradient(145deg,#21182eeb,#100d19f5);border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 12px 35px #0003}
-.card h3{margin:0 0 12px}
+.card{
+background:linear-gradient(145deg,#24182fee,#100d19f5);
+border:1px solid #ffffff20;border-radius:18px;padding:18px;margin-bottom:14px;
+box-shadow:0 12px 35px #0005
+}
+.card h3{margin-top:0}
 .stat{font-size:32px;font-weight:900;color:#d8a5ff}
 .coin{color:var(--gold);font-weight:900}
-input,textarea,select{width:100%;padding:12px;border-radius:11px;background:#090711;border:1px solid var(--border);color:white;outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #a855f71c}
+input,textarea,select{
+width:100%;padding:12px;border-radius:11px;
+background:#090711;border:1px solid #ffffff25;color:white
+}
 .field{margin:12px 0}
-.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+label{font-size:12px;color:var(--muted)}
+.item{background:#ffffff09;border:1px solid #ffffff20;border-radius:14px;padding:13px}
 .list{display:flex;flex-direction:column;gap:9px}
-.item{background:#ffffff08;border:1px solid var(--border);border-radius:14px;padding:13px}
+.badge{
+display:inline-flex;align-items:center;gap:5px;border:1px solid #a855f766;
+background:#a855f71a;color:#ead5ff;border-radius:30px;
+padding:5px 10px;font-size:11px
+}
 .member{display:flex;align-items:center;gap:12px}
-.avatar{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;font-size:20px;font-weight:900;background:linear-gradient(135deg,#7e22ce,#db2777);box-shadow:0 8px 20px #a855f744}
-.empty{text-align:center;padding:25px;color:var(--muted)}
-.shop-card{overflow:hidden;min-height:270px;transition:.25s}
-.shop-card:hover{transform:translateY(-5px);border-color:#c084fc88;box-shadow:0 15px 35px #a855f722}
-.item-icon{width:70px;height:70px;display:grid;place-items:center;font-size:37px;border-radius:20px;background:linear-gradient(145deg,#43205e,#171022);border:1px solid #ffffff20;box-shadow:8px 10px 20px #0008;animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0) rotateY(-9deg)}50%{transform:translateY(-5px) rotateY(9deg)}}
-.rarity{font-size:11px;font-weight:900;letter-spacing:1px}
-.common{color:#9ca3af}.rare{color:#60a5fa}.epic{color:#c084fc}.legendary{color:#fbbf24}.mythic{color:#fb7185}
-.chatbox{height:410px;overflow:auto;padding:12px;border-radius:16px;border:1px solid var(--border);background:#08060e;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:88%;padding:11px 14px;border-radius:15px;background:#28203a;border:1px solid #ffffff0a;overflow-wrap:anywhere}
+.avatar{
+width:48px;height:48px;display:grid;place-items:center;
+border-radius:15px;font-size:20px;font-weight:900;
+background:linear-gradient(135deg,#7e22ce,#db2777)
+}
+.empty{text-align:center;padding:24px;color:var(--muted)}
+.chatbox{
+height:410px;overflow:auto;padding:12px;border-radius:16px;
+border:1px solid #ffffff25;background:#08060e;
+display:flex;flex-direction:column;gap:10px
+}
+.msg{
+max-width:88%;padding:11px 14px;border-radius:15px;
+background:#28203a;border:1px solid #ffffff12;overflow-wrap:anywhere
+}
 .msg b{color:#e9caff}
 .msg small{display:block;margin-top:6px;color:var(--muted);font-size:10px}
+.shop-card{
+min-height:290px;perspective:1000px;transition:.3s;
+transform-style:preserve-3d;position:relative;overflow:hidden
+}
+.shop-card:hover{transform:rotateY(-5deg) rotateX(4deg) translateY(-7px);box-shadow:0 20px 45px #a855f744}
+.item-icon{
+width:75px;height:75px;display:grid;place-items:center;font-size:39px;
+border-radius:22px;background:linear-gradient(145deg,#54216f,#171022);
+border:1px solid #ffffff30;box-shadow:8px 12px 25px #0009;
+transform:translateZ(25px);animation:float 3s ease-in-out infinite
+}
+@keyframes float{0%,100%{transform:translateY(0) translateZ(25px)}50%{transform:translateY(-8px) translateZ(35px)}}
+.rarity{font-size:11px;font-weight:900}
+.common{color:#9ca3af}.rare{color:#60a5fa}.epic{color:#c084fc}
+.legendary{color:#fbbf24}.mythic{color:#fb7185}
+.effect-dragon{box-shadow:0 0 0 2px #fb923c,0 0 28px #f97316!important;animation:fire 1.5s infinite alternate}
+.effect-shadow{box-shadow:0 0 0 2px #a78bfa,0 0 30px #7c3aed!important;animation:shadow 2s infinite alternate}
+.effect-wings{box-shadow:0 0 0 2px #fde68a,0 0 30px #facc15!important}
+.effect-thunder{box-shadow:0 0 0 2px #67e8f9,0 0 30px #06b6d4!important;animation:thunder .8s infinite alternate}
+.effect-demon{box-shadow:0 0 0 2px #fb7185,0 0 30px #e11d48!important;animation:fire 1s infinite alternate}
+.effect-cosmic{box-shadow:0 0 0 2px #c4b5fd,0 0 35px #8b5cf6!important;animation:cosmic 3s infinite}
+.effect-gold{box-shadow:0 0 0 2px #facc15,0 0 30px #eab308!important}
+.effect-purple{box-shadow:0 0 0 2px #c084fc,0 0 30px #9333ea!important}
+.effect-ice{box-shadow:0 0 0 2px #67e8f9,0 0 30px #38bdf8!important}
+.effect-blood{box-shadow:0 0 0 2px #f43f5e,0 0 30px #be123c!important}
+.effect-nova{box-shadow:0 0 0 2px #f0abfc,0 0 30px #d946ef!important}
+.effect-void{box-shadow:0 0 0 2px #818cf8,0 0 30px #4338ca!important}
+.effect-light{box-shadow:0 0 0 2px #fff7ae,0 0 30px #fff!important}
+@keyframes fire{to{filter:brightness(1.35)}}
+@keyframes shadow{to{filter:brightness(.7)}}
+@keyframes thunder{to{filter:brightness(1.5)}}
+@keyframes cosmic{50%{filter:hue-rotate(70deg) brightness(1.3)}}
 .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px}
-footer{text-align:center;padding:30px;color:var(--muted);font-size:12px}
-.effect-dragon{box-shadow:0 0 0 2px #fb923c,0 0 24px #f97316!important}
-.effect-shadow{box-shadow:0 0 0 2px #a78bfa,0 0 25px #7c3aed!important}
-.effect-wings{box-shadow:0 0 0 2px #fde68a,0 0 24px #facc15!important}
-.effect-thunder{box-shadow:0 0 0 2px #67e8f9,0 0 25px #06b6d4!important}
-.effect-demon{box-shadow:0 0 0 2px #fb7185,0 0 25px #e11d48!important}
-.effect-cosmic{box-shadow:0 0 0 2px #c4b5fd,0 0 25px #8b5cf6!important}
-@media(max-width:600px){header{position:relative}.hero{padding:26px 18px}main{padding:18px 4% 80px}}
+footer{text-align:center;padding:30px;color:var(--muted)}
+@media(max-width:600px){header{position:relative}.hero{padding:24px 17px}}
 </style>
 </head>
 <body>
-
 <header>
-<div class="top">
+<div class="top between">
 <div>
 <div class="logo">هفت گناه کبیره <span>| SEVEN SINS</span></div>
 <div class="small">THE ROYAL KINGDOM • DARK LEGEND</div>
 </div>
 <div class="row">
-<span class="badge">● <span id="systemStatus">در حال اتصال</span></span>
+<span class="badge" id="systemStatus">در حال اتصال</span>
 <span class="badge" id="clock">--:--</span>
 </div>
 </div>
@@ -87,7 +149,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:12px}
 <button data-page="members">👑 اعضا</button>
 <button data-page="missions">⚔️ مأموریت‌ها</button>
 <button data-page="rank">🏆 رتبه‌ها</button>
-<button data-page="shop">💎 بازار سلطنتی</button>
+<button data-page="shop">💎 فروشگاه</button>
 <button data-page="inventory">🎒 موجودی</button>
 <button data-page="chat">💬 چت آنلاین</button>
 <button data-page="news">📜 اخبار</button>
@@ -100,73 +162,60 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:12px}
 <div class="hero">
 <span class="badge">👑 THE SEVEN SINS KINGDOM</span>
 <h1>به قلمرو هفت گناه کبیره خوش آمدی</h1>
-<p>اینجا قدرت ساخته می‌شود، افسانه‌ها شکل می‌گیرند و نام‌ها جاودانه می‌شوند.</p>
+<p>قدرت بساز، مأموریت انجام بده و افسانه خودت را بساز.</p>
 <div class="row">
-<button class="btn primary" onclick="showPage('members')">مشاهده جنگجویان</button>
-<button class="btn" onclick="showPage('shop')">بازار سلطنتی 💎</button>
+<button class="btn primary" onclick="showPage('members')">جنگجویان</button>
+<button class="btn" onclick="showPage('shop')">بازار سلطنتی</button>
 <button class="btn gold" onclick="showPage('chat')">اتاق فرماندهی</button>
 </div>
 </div>
 <div class="grid">
-<div class="card"><div class="muted">جنگجویان قلمرو</div><div class="stat" id="totalMembers">0</div></div>
-<div class="card"><div class="muted">قدرت کل XP</div><div class="stat" id="totalXP">0</div></div>
-<div class="card"><div class="muted">خزانه سکه‌ها</div><div class="stat coin" id="totalCoins">0 🪙</div></div>
-<div class="card"><div class="muted">پیام‌های اتاق</div><div class="stat" id="totalMessages">0</div></div>
+<div class="card">جنگجویان<div class="stat" id="totalMembers">0</div></div>
+<div class="card">قدرت XP<div class="stat" id="totalXP">0</div></div>
+<div class="card">خزانه<div class="stat coin" id="totalCoins">0 🪙</div></div>
+<div class="card">پیام‌های چت<div class="stat" id="totalMessages">0</div></div>
 </div>
-<div class="grid" style="margin-top:15px">
+<div class="grid">
 <div class="card"><h3>⚡ آخرین رویدادها</h3><div id="activity" class="list"></div></div>
-<div class="card"><h3>👑 فرمانروای قلمرو</h3><div id="topMember" class="empty">هنوز عضوی ثبت نشده</div></div>
+<div class="card"><h3>👑 فرمانروای قلمرو</h3><div id="topMember" class="empty">هنوز عضوی نیست</div></div>
 </div>
 </section>
 
 <section id="members" class="page">
-<div class="hero"><h1>👑 خاندان امپراتوری</h1><p>فهرست جنگجویان و میزان قدرت هرکدام.</p></div>
+<div class="hero"><h1>👑 خاندان امپراتوری</h1><p>فهرست جنگجویان این مرورگر</p></div>
 <div class="card">
-<div class="row between">
-<h3>اعضای قلمرو</h3>
-<input id="memberSearch" style="max-width:230px" placeholder="جستجوی نام..." oninput="renderMembers()">
-</div>
+<div class="row between"><h3>اعضا</h3><input id="memberSearch" style="max-width:230px" placeholder="جستجو..." oninput="renderMembers()"></div>
 <div id="membersList" class="list"></div>
 </div>
 </section>
 
 <section id="missions" class="page">
-<div class="hero"><h1>⚔️ مأموریت‌های سلطنتی</h1><p>مأموریت‌ها را انجام بده و XP و سکه دریافت کن.</p></div>
+<div class="hero"><h1>⚔️ مأموریت‌های سلطنتی</h1></div>
 <div class="card">
-<h3>ساخت مأموریت جدید</h3>
+<h3>ساخت مأموریت</h3>
 <div class="grid">
 <input id="missionName" placeholder="نام مأموریت">
 <input id="missionXP" type="number" min="0" placeholder="پاداش XP">
 <input id="missionCoins" type="number" min="0" placeholder="پاداش سکه">
-</div>
-<br>
+</div><br>
 <button class="btn primary" onclick="addMission()">ساخت مأموریت</button>
 </div>
 <div id="missionsList" class="list"></div>
 </section>
 
 <section id="rank" class="page">
-<div class="hero"><h1>🏆 تالار افسانه‌ها</h1><p>قوی‌ترین اعضای امپراتوری بر اساس XP.</p></div>
+<div class="hero"><h1>🏆 تالار افسانه‌ها</h1></div>
 <div class="card"><div id="rankList" class="list"></div></div>
 </section>
 
 <section id="shop" class="page">
-<div class="hero">
-<span class="badge">💎 THE ROYAL BLACK MARKET</span>
-<h1>بازار سلطنتی</h1>
-<p>تمام آیتم‌ها رایگان‌اند؛ قدرت مورد علاقه‌ات را دریافت و فعال کن.</p>
-</div>
-<div class="card">
-<h3>✨ فروشگاه آیتم‌های ویژه</h3>
-<p class="muted">هر آیتم فقط یک‌بار برای هر عضو قابل دریافت است. افکت‌ها روی کارت پروفایل نمایش داده می‌شوند.</p>
-</div>
+<div class="hero"><h1>💎 بازار سلطنتی</h1><p>۱۴ قدرت ویژه رایگان با افکت‌های سه‌بعدی نمایشی</p></div>
 <div id="shopList" class="grid"></div>
 </section>
 
 <section id="inventory" class="page">
-<div class="hero"><h1>🎒 خزانه شخصی</h1><p>آیتم‌هایت را مدیریت و افکت دلخواهت را فعال کن.</p></div>
+<div class="hero"><h1>🎒 خزانه شخصی</h1><p>قدرت‌های دریافت‌شده را فعال کن.</p></div>
 <div class="card">
-<label class="muted">انتخاب عضو</label>
 <select id="inventoryMember" onchange="renderInventory()"></select>
 <div id="inventoryList" class="list" style="margin-top:14px"></div>
 </div>
@@ -179,105 +228,69 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:12px}
 <p id="chatStatus">در حال اتصال به سرور...</p>
 </div>
 <div class="card">
-<div class="row between"><h3>اتاق اصلی</h3><span class="badge" id="chatCount">0 پیام</span></div>
+<div class="row between"><h3>اتاق اصلی مشترک</h3><span class="badge" id="chatCount">0 پیام</span></div>
 <div class="chatbox" id="chatMessages"><div class="empty">در حال اتصال...</div></div>
 <div class="field"><textarea id="chatInput" rows="2" maxlength="500" placeholder="پیامت را بنویس..."></textarea></div>
 <div class="row between">
 <span class="muted">حداکثر ۵۰۰ کاراکتر</span>
-<button class="btn primary" id="sendBtn" onclick="sendMessage()">ارسال پیام 🚀</button>
+<button class="btn primary" id="sendBtn" onclick="sendMessage()">ارسال 🚀</button>
 </div>
 </div>
 </section>
 
 <section id="news" class="page">
-<div class="hero"><h1>📜 کتیبه‌های امپراتوری</h1><p>اطلاعیه‌ها و خبرهای مهم قلمرو.</p></div>
+<div class="hero"><h1>📜 کتیبه‌های امپراتوری</h1></div>
 <div class="card">
-<h3>انتشار اطلاعیه</h3>
 <input id="newsTitle" placeholder="عنوان خبر">
-<div class="field"><textarea id="newsBody" rows="3" placeholder="متن اطلاعیه..."></textarea></div>
+<div class="field"><textarea id="newsBody" rows="3" placeholder="متن اطلاعیه"></textarea></div>
 <button class="btn primary" onclick="addNews()">انتشار خبر</button>
 </div>
 <div id="newsList" class="list"></div>
 </section>
 
 <section id="gallery" class="page">
-<div class="hero"><h1>🖼️ گالری خاطرات</h1><p>تصاویر و خاطرات قلمرو.</p></div>
+<div class="hero"><h1>🖼️ گالری خاطرات</h1></div>
 <div class="card">
-<input type="file" id="photoInput" accept="image/*">
-<br><br>
+<input type="file" id="photoInput" accept="image/*"><br><br>
 <button class="btn primary" onclick="addPhoto()">افزودن تصویر</button>
-<p class="muted">تصاویر در حافظه همین مرورگر ذخیره می‌شوند.</p>
+<p class="muted">تصاویر فقط در همین مرورگر ذخیره می‌شوند.</p>
 </div>
 <div id="galleryList" class="grid gallery"></div>
 </section>
 </main>
-
 <footer>هفت گناه کبیره | SEVEN SINS • THE ROYAL KINGDOM</footer>
 
 <script>
-const KEY="seven_sins_empire_v12";
+const KEY="seven_sins_empire_v20";
 const defaults={members:[],missions:[],news:[],photos:[],activity:[]};
-
-let data=loadData();
-let currentUser=null;
-let currentName="";
-let firebaseReady=false;
-let db=null,auth=null,messagesRef=null;
+let data=loadData(),currentUser=null,currentName="",firebaseReady=false,db=null,auth=null,messagesRef=null;
 
 const shopItems=[
-{id:"emperor",name:"THE EMPEROR",type:"title",icon:"👑",rarity:"MYTHIC",desc:"لقب فرمانروای مطلق",power:"هاله سلطنتی"},
-{id:"shadow",name:"SHADOW KING",type:"title",icon:"🌑",rarity:"LEGENDARY",desc:"پادشاه قلمرو سایه‌ها",power:"افکت سایه"},
-{id:"wrath",name:"LORD OF WRATH",type:"title",icon:"🔥",rarity:"EPIC",desc:"ارباب خاندان خشم",power:"نشان شعله"},
-{id:"legend",name:"DARK LEGEND",type:"title",icon:"💀",rarity:"LEGENDARY",desc:"نامی که فراموش نمی‌شود",power:"هاله تاریک"},
-{id:"storm",name:"STORM WALKER",type:"title",icon:"⚡",rarity:"RARE",desc:"مسافر طوفان",power:"درخشش الکتریکی"},
-{id:"void",name:"VOID MASTER",type:"title",icon:"🌀",rarity:"MYTHIC",desc:"استاد خلأ",power:"نشان خلأ"},
-{id:"dragon",name:"DRAGON LORD",type:"title",icon:"🐉",rarity:"MYTHIC",desc:"ارباب اژدهایان",power:"قدرت اژدها"},
-{id:"phantom",name:"PHANTOM",type:"title",icon:"👻",rarity:"RARE",desc:"روح ناشناخته",power:"رد شبح"},
-{id:"immortal",name:"THE IMMORTAL",type:"title",icon:"♾️",rarity:"MYTHIC",desc:"جاودانه امپراتوری",power:"هاله جاودان"},
-{id:"king",name:"CRIMSON KING",type:"title",icon:"🩸",rarity:"LEGENDARY",desc:"سلطان سرخ",power:"افکت قرمز"},
-{id:"crown",name:"ROYAL CROWN",type:"badge",icon:"👑",rarity:"MYTHIC",desc:"تاج سلطنتی سه‌بعدی",power:"نشان تاج"},
-{id:"fire",name:"HELLFIRE EMBLEM",type:"badge",icon:"🔥",rarity:"LEGENDARY",desc:"نشان آتش جاودان",power:"شعله متحرک"},
-{id:"eye",name:"CRIMSON EYE",type:"badge",icon:"👁️",rarity:"EPIC",desc:"چشم مرموز",power:"چشم سرخ"},
-{id:"crystal",name:"VOID CRYSTAL",type:"badge",icon:"💎",rarity:"EPIC",desc:"کریستال کمیاب",power:"درخشش کریستالی"},
-{id:"shield",name:"OBSIDIAN SHIELD",type:"badge",icon:"🛡️",rarity:"RARE",desc:"سپر محافظ",power:"نشان سپر"},
-{id:"wolf",name:"ALPHA WOLF",type:"badge",icon:"🐺",rarity:"LEGENDARY",desc:"نشان گرگ آلفا",power:"هاله گرگ"},
-{id:"angel",name:"FALLEN ANGEL",type:"badge",icon:"😇",rarity:"LEGENDARY",desc:"فرشته سقوط کرده",power:"بال‌های نورانی"},
-{id:"golden",name:"GOLDEN AURA",type:"effect",icon:"✨",rarity:"EPIC",desc:"هاله طلایی نمایشی",power:"افکت طلایی"},
-{id:"purple",name:"PURPLE FLAME",type:"effect",icon:"🔮",rarity:"EPIC",desc:"شعله بنفش نمایشی",power:"افکت بنفش"},
-{id:"lightning",name:"THUNDER CORE",type:"effect",icon:"🌩️",rarity:"LEGENDARY",desc:"هسته رعدوبرق",power:"افکت رعد"},
-{id:"heart",name:"DARK HEART",type:"badge",icon:"💜",rarity:"RARE",desc:"قلب تاریک",power:"نشان قلب"},
-{id:"star",name:"NOVA STAR",type:"badge",icon:"🌟",rarity:"RARE",desc:"ستاره نووا",power:"نشان ستاره"},
-{id:"moon",name:"BLOOD MOON",type:"badge",icon:"🌙",rarity:"EPIC",desc:"ماه خونین",power:"هلال ماه"},
-{id:"flame",name:"ETERNAL FLAME",type:"effect",icon:"♨️",rarity:"MYTHIC",desc:"شعله ابدی",power:"افکت آتش"},
-{id:"diamond",name:"ROYAL DIAMOND",type:"badge",icon:"💠",rarity:"LEGENDARY",desc:"الماس سلطنتی",power:"نشان الماس"},
-{id:"skull",name:"DARK SKULL",type:"badge",icon:"☠️",rarity:"RARE",desc:"جمجمه تاریک",power:"نشان جمجمه"},
-{id:"seal",name:"KING'S SEAL",type:"badge",icon:"♛",rarity:"MYTHIC",desc:"مهر پادشاهی",power:"مهر سلطنتی"},
-{id:"fox",name:"SPIRIT FOX",type:"badge",icon:"🦊",rarity:"EPIC",desc:"روباه روح",power:"نشان روباه"},
-{id:"dragonSoul",name:"DRAGON SOUL",type:"effect",icon:"🐲",rarity:"MYTHIC",desc:"روح اژدها",power:"افکت اژدها"},
-{id:"comet",name:"COSMIC COMET",type:"effect",icon:"☄️",rarity:"LEGENDARY",desc:"دنباله‌دار کیهانی",power:"افکت کیهانی"},
-{id:"dragonWrath",name:"DRAGON WRATH",type:"effect",icon:"🐉",rarity:"MYTHIC",desc:"خشم اژدهای باستانی",power:"هاله آتشین",effect:"dragon"},
-{id:"shadowKing",name:"SHADOW KING",type:"effect",icon:"🌘",rarity:"MYTHIC",desc:"فرمانروای سایه‌ها",power:"هاله سایه",effect:"shadow"},
-{id:"eternalWings",name:"ETERNAL WINGS",type:"effect",icon:"🪽",rarity:"MYTHIC",desc:"بال‌های زرین جاودان",power:"افکت بال‌های طلایی",effect:"wings"},
-{id:"thunderGod",name:"THUNDER GOD",type:"effect",icon:"⚡",rarity:"MYTHIC",desc:"قدرت خدای رعد",power:"هاله الکتریکی",effect:"thunder"},
-{id:"demonForm",name:"DEMON FORM",type:"effect",icon:"😈",rarity:"MYTHIC",desc:"فرم اهریمنی افسانه‌ای",power:"قاب سرخ",effect:"demon"},
-{id:"seventhDimension",name:"SEVENTH DIMENSION",type:"effect",icon:"🌌",rarity:"MYTHIC",desc:"دروازه بُعد هفتم",power:"هاله کیهانی",effect:"cosmic"},
-{id:"pride",name:"PRIDE • غرور",type:"title",icon:"🦚",rarity:"LEGENDARY",desc:"نشان گناه غرور",power:"لقب گناه نخست"},
-{id:"greed",name:"GREED • طمع",type:"title",icon:"💰",rarity:"LEGENDARY",desc:"نشان گناه طمع",power:"لقب گناه دوم"},
-{id:"lust",name:"LUST • شهوت",type:"title",icon:"🌹",rarity:"EPIC",desc:"نام یکی از هفت گناه",power:"لقب گناه سوم"},
-{id:"envy",name:"ENVY • حسادت",type:"title",icon:"🐍",rarity:"EPIC",desc:"نشان گناه حسادت",power:"لقب گناه چهارم"},
-{id:"gluttony",name:"GLUTTONY • شکم‌پرستی",type:"title",icon:"🍇",rarity:"EPIC",desc:"نشان گناه شکم‌پرستی",power:"لقب گناه پنجم"},
-{id:"wrathSin",name:"WRATH • خشم",type:"title",icon:"🔥",rarity:"LEGENDARY",desc:"نشان گناه خشم",power:"لقب گناه ششم"},
-{id:"sloth",name:"SLOTH • تنبلی",type:"title",icon:"🌙",rarity:"EPIC",desc:"نشان گناه تنبلی",power:"لقب گناه هفتم"}
+{id:"dragon",name:"DRAGON WRATH",icon:"🐉",effect:"dragon",desc:"هاله آتشین اژدها"},
+{id:"shadow",name:"SHADOW KING",icon:"🌑",effect:"shadow",desc:"فرمانروای تاریکی"},
+{id:"wings",name:"ETERNAL WINGS",icon:"🪽",effect:"wings",desc:"بال‌های زرین"},
+{id:"thunder",name:"THUNDER GOD",icon:"⚡",effect:"thunder",desc:"هاله الکتریکی"},
+{id:"demon",name:"DEMON FORM",icon:"😈",effect:"demon",desc:"فرم اهریمنی"},
+{id:"cosmic",name:"SEVENTH DIMENSION",icon:"🌌",effect:"cosmic",desc:"قدرت بُعد هفتم"},
+{id:"gold",name:"GOLDEN AURA",icon:"✨",effect:"gold",desc:"درخشش طلایی"},
+{id:"purple",name:"PURPLE FLAME",icon:"🔮",effect:"purple",desc:"شعله بنفش"},
+{id:"ice",name:"FROST EMPEROR",icon:"❄️",effect:"ice",desc:"هاله یخی"},
+{id:"blood",name:"CRIMSON KING",icon:"🩸",effect:"blood",desc:"قاب سرخ"},
+{id:"nova",name:"NOVA STAR",icon:"🌟",effect:"nova",desc:"انفجار ستاره‌ای"},
+{id:"void",name:"VOID MASTER",icon:"🌀",effect:"void",desc:"قدرت خلأ"},
+{id:"light",name:"DIVINE LIGHT",icon:"☀️",effect:"light",desc:"نور جاودان"},
+{id:"emperor",name:"THE EMPEROR",icon:"👑",effect:"gold",desc:"هاله فرمانروایی"}
 ];
 
-function clone(o){return JSON.parse(JSON.stringify(o))}
 function loadData(){
- try{return {...clone(defaults),...JSON.parse(localStorage.getItem(KEY)||"{}")}}
- catch(e){return clone(defaults)}
+ try{return {...JSON.parse(localStorage.getItem(KEY)||"{}"),...{}}.members!==undefined
+ ?{...defaults,...JSON.parse(localStorage.getItem(KEY)||"{}")}
+ :structuredClone(defaults)}
+ catch(e){return structuredClone(defaults)}
 }
 function save(){
  try{localStorage.setItem(KEY,JSON.stringify(data))}
- catch(e){alert("حافظه مرورگر پر شده؛ احتمالاً تصاویر زیادی ذخیره شده‌اند.")}
+ catch(e){alert("حافظه مرورگر پر شده است.")}
  renderAll()
 }
 function uid(){return Date.now()+Math.floor(Math.random()*99999)}
@@ -286,134 +299,141 @@ function safe(s){
 }
 function logActivity(text){
  data.activity.unshift({text,time:new Date().toLocaleString("fa-IR")});
- data.activity=data.activity.slice(0,30)
+ data.activity=data.activity.slice(0,25)
 }
 function getMember(id){return data.members.find(m=>String(m.id)===String(id))}
 function showPage(id){
  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
- window.scrollTo({top:0,behavior:"smooth"});
  renderAll()
 }
 document.getElementById("nav").addEventListener("click",e=>{
- let b=e.target.closest("button[data-page]");
+ const b=e.target.closest("button[data-page]");
  if(b)showPage(b.dataset.page)
 });
 
 function ensureMember(name,uidValue){
  let m=data.members.find(x=>uidValue&&x.uid===uidValue);
  if(!m){
-  m={id:uid(),uid:uidValue||null,name,baseTitle:"عضو امپراتوری",xp:0,coins:0,inventory:[],activeTitle:null,activeBadge:null,activeEffect:null};
+  m={id:uid(),uid:uidValue||null,name,baseTitle:"عضو امپراتوری",xp:0,coins:0,inventory:[],activeEffect:null};
   data.members.push(m);
-  logActivity("👤 "+name+" به قلمرو پیوست.")
+  logActivity("👤 "+name+" به قلمرو پیوست.");
  }
  currentName=m.name;
  save();
- return m
+ return m;
 }
 function localGuest(){
- let guestId=localStorage.getItem("seven_sins_guest_id");
- if(!guestId){
-  guestId="guest-"+Math.random().toString(36).slice(2,9);
-  localStorage.setItem("seven_sins_guest_id",guestId)
+ let id=localStorage.getItem("seven_sins_guest_id");
+ if(!id){
+  id="guest-"+Math.random().toString(36).slice(2,9);
+  localStorage.setItem("seven_sins_guest_id",id);
  }
- let existing=data.members.find(m=>m.uid===guestId);
- if(existing){currentName=existing.name;return}
- let name="جنگجو-"+guestId.slice(-5).toUpperCase();
- ensureMember(name,guestId)
+ let m=data.members.find(x=>x.uid===id);
+ if(!m)ensureMember("جنگجو-"+id.slice(-5).toUpperCase(),id);
+ else currentName=m.name;
 }
 
 function loadFirebase(){
  const version="10.14.1";
- function script(src){
+ function loadScript(src){
   return new Promise((resolve,reject)=>{
-   let s=document.createElement("script");
-   s.src=src;s.onload=resolve;
-   s.onerror=()=>reject(new Error("بارگذاری Firebase ناموفق بود"));
-   document.head.appendChild(s)
-  })
+   const s=document.createElement("script");
+   s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error("بارگذاری Firebase ناموفق بود"));
+   document.head.appendChild(s);
+  });
  }
  (async()=>{
   try{
-   await script("https://www.gstatic.com/firebasejs/"+version+"/firebase-app-compat.js");
-   await script("https://www.gstatic.com/firebasejs/"+version+"/firebase-auth-compat.js");
-   await script("https://www.gstatic.com/firebasejs/"+version+"/firebase-firestore-compat.js");
+   await loadScript("https://www.gstatic.com/firebasejs/"+version+"/firebase-app-compat.js");
+   await loadScript("https://www.gstatic.com/firebasejs/"+version+"/firebase-auth-compat.js");
+   await loadScript("https://www.gstatic.com/firebasejs/"+version+"/firebase-firestore-compat.js");
+
    const config={
-    apiKey:"AIzaSyDHgvoAw4cHHD01UfQipDo6z5Z88Me0oCc",
+    apiKey:"AIzaSyDHvgoAw4cHHD01UfQipDo6z5Z88Me0oCc",
     authDomain:"seven-sins-chat.firebaseapp.com",
     projectId:"seven-sins-chat",
     storageBucket:"seven-sins-chat.firebasestorage.app",
     messagingSenderId:"1009632654398",
     appId:"1:1009632654398:web:c7bc6b9660dfda377bcd6f"
    };
+
    if(!firebase.apps.length)firebase.initializeApp(config);
    auth=firebase.auth();
    db=firebase.firestore();
-   await auth.signInAnonymously();
-   currentUser=auth.currentUser;
+
+   await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+   const credential=await auth.signInAnonymously();
+   currentUser=credential.user;
+
    messagesRef=db.collection("rooms").doc("main").collection("messages");
-   firebaseReady=true;
 
-   let ref=db.collection("members").doc(currentUser.uid);
-   let snap=await ref.get();
+   const profileRef=db.collection("members").doc(currentUser.uid);
+   const profile=await profileRef.get();
 
-   if(snap.exists&&snap.data().name){
-    ensureMember(snap.data().name,currentUser.uid)
+   if(profile.exists&&profile.data().name){
+    ensureMember(profile.data().name,currentUser.uid);
    }else{
-    let name="جنگجو-"+currentUser.uid.slice(0,5).toUpperCase();
+    const name="جنگجو-"+currentUser.uid.slice(0,5).toUpperCase();
     ensureMember(name,currentUser.uid);
     try{
-     await ref.set({
+     await profileRef.set({
       uid:currentUser.uid,
-      name,
+      name:name,
       createdAt:firebase.firestore.FieldValue.serverTimestamp()
-     })
-    }catch(profileErr){console.warn("Profile not saved",profileErr)}
+     });
+    }catch(e){console.warn("Profile save:",e);}
    }
 
+   firebaseReady=true;
    document.getElementById("systemStatus").textContent="ONLINE";
-   document.getElementById("chatStatus").textContent="🟢 اتصال آنلاین برقرار است";
-   listenChat()
+   document.getElementById("chatStatus").textContent="🟢 چت آنلاین متصل است.";
+   listenChat();
+
   }catch(err){
-   console.error(err);
-   document.getElementById("systemStatus").textContent="حالت محلی";
-   document.getElementById("chatStatus").textContent="🔴 چت آنلاین متصل نشد: "+err.message+" — بخش‌های دیگر سایت فعال‌اند.";
-   localGuest()
+   console.error("Firebase:",err);
+   firebaseReady=false;
+   document.getElementById("systemStatus").textContent="خطای اتصال";
+   document.getElementById("chatStatus").textContent="اتصال ناموفق: "+err.message;
+   localGuest();
   }
- })()
+ })();
 }
 
 function listenChat(){
+ if(!messagesRef)return;
  messagesRef.orderBy("createdAt","asc").limit(300).onSnapshot(snapshot=>{
-  renderOnlineChat(snapshot.docs.map(d=>({id:d.id,...d.data()})))
+  renderOnlineChat(snapshot.docs.map(d=>({id:d.id,...d.data()})));
  },err=>{
   console.error(err);
-  document.getElementById("chatStatus").textContent="خطا در دریافت پیام‌ها: "+err.message
- })
+  document.getElementById("chatStatus").textContent="خطای دریافت پیام: "+err.message;
+ });
 }
 
 function renderOnlineChat(msgs){
- let el=document.getElementById("chatMessages");
+ const el=document.getElementById("chatMessages");
  el.innerHTML=msgs.length?msgs.map(m=>{
-  let t=m.createdAt&&m.createdAt.toDate?m.createdAt.toDate().toLocaleString("fa-IR"):"";
-  return `<div class="msg"><b>${safe(m.sender||"عضو")}</b><div>${safe(m.text||"").replace(/\n/g,"<br>")}</div><small>${t}</small></div>`
+  const t=m.createdAt&&m.createdAt.toDate?m.createdAt.toDate().toLocaleString("fa-IR"):"";
+  return `<div class="msg"><b>${safe(m.sender||"عضو")}</b><div>${safe(m.text||"").replace(/\n/g,"<br>")}</div><small>${safe(t)}</small></div>`;
  }).join(""):'<div class="empty">هنوز پیامی نیست. اولین پیام را بفرست! ✨</div>';
  el.scrollTop=el.scrollHeight;
  document.getElementById("chatCount").textContent=msgs.length+" پیام";
- document.getElementById("totalMessages").textContent=msgs.length
+ document.getElementById("totalMessages").textContent=msgs.length;
 }
 
 async function sendMessage(){
- if(!firebaseReady||!currentUser){
-  alert("چت آنلاین در دسترس نیست؛ اتصال اینترنت و Firebase را بررسی کن.");
-  return
- }
- let input=document.getElementById("chatInput");
- let text=input.value.trim();
+ const input=document.getElementById("chatInput");
+ const button=document.getElementById("sendBtn");
+ const text=input.value.trim();
  if(!text)return;
- if(text.length>500)return alert("پیام بیشتر از ۵۰۰ کاراکتر است.");
- let sender=data.members.find(m=>m.uid===currentUser.uid)?.name||currentName||"عضو امپراتوری";
- input.disabled=true;
+ if(!firebaseReady||!currentUser||!messagesRef){
+  alert("چت آنلاین وصل نیست. اتصال اینترنت و ورود ناشناس Firebase را بررسی کن.");
+  return;
+ }
+ if(text.length>500)return alert("حداکثر ۵۰۰ کاراکتر مجاز است.");
+ const member=data.members.find(m=>m.uid===currentUser.uid);
+ const sender=member?.name||currentName||"عضو";
+ input.disabled=true;button.disabled=true;
  try{
   await messagesRef.add({
    sender:String(sender).slice(0,40),
@@ -421,253 +441,168 @@ async function sendMessage(){
    uid:currentUser.uid,
    createdAt:firebase.firestore.FieldValue.serverTimestamp()
   });
-  input.value=""
- }catch(err){alert("ارسال پیام ناموفق بود: "+err.message)}
- finally{input.disabled=false;input.focus()}
+  input.value="";
+ }catch(err){
+  console.error(err);
+  alert("ارسال پیام ناموفق بود: "+err.message);
+ }finally{
+  input.disabled=false;button.disabled=false;input.focus();
+ }
 }
 document.getElementById("chatInput").addEventListener("keydown",e=>{
- if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMessage()}
+ if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMessage();}
 });
 
-function decorations(m){
- let out="";
- if(m.activeBadge){
-  let i=shopItems.find(x=>x.id===m.activeBadge);
-  if(i)out+=` <span title="${safe(i.name)}">${i.icon}</span>`
- }
- if(m.activeTitle){
-  let i=shopItems.find(x=>x.id===m.activeTitle);
-  if(i)out+=` <span class="badge">${i.icon} ${safe(i.name)}</span>`
- }
- if(m.activeEffect){
-  let i=shopItems.find(x=>x.id===m.activeEffect);
-  if(i)out+=` <span class="badge">${i.icon} ${safe(i.name)}</span>`
- }
- return out
-}
 function effectClass(m){
- let i=shopItems.find(x=>x.id===m.activeEffect);
- return i&&i.effect?"effect-"+i.effect:""
+ const i=shopItems.find(x=>x.id===m.activeEffect);
+ return i?"effect-"+i.effect:"";
 }
-
+function decorations(m){
+ const i=shopItems.find(x=>x.id===m.activeEffect);
+ return i?` <span class="badge">${i.icon} ${safe(i.name)}</span>`:"";
+}
 function renderMembers(){
- let el=document.getElementById("membersList");
- let q=(document.getElementById("memberSearch").value||"").toLowerCase();
- let list=data.members.filter(m=>(m.name+" "+(m.baseTitle||"")).toLowerCase().includes(q));
- el.innerHTML=list.length?list.map(m=>`
+ const q=(document.getElementById("memberSearch").value||"").toLowerCase();
+ const list=data.members.filter(m=>m.name.toLowerCase().includes(q));
+ document.getElementById("membersList").innerHTML=list.length?list.map(m=>`
  <div class="item row between ${effectClass(m)}">
-  <div class="member">
-   <div class="avatar">${safe((m.name||"?").charAt(0))}</div>
-   <div>
-    <b>${safe(m.name)}</b>${decorations(m)}
-    <div class="muted">${safe(m.baseTitle||"عضو امپراتوری")}</div>
-    <div class="row">
-     <span class="badge">⚡ ${m.xp||0} XP</span>
-     <span class="badge coin">🪙 ${m.coins||0}</span>
-     <span class="badge">سطح ${Math.floor((m.xp||0)/100)+1}</span>
-    </div>
-   </div>
-  </div>
- </div>`).join(""):'<div class="empty">هنوز عضوی ثبت نشده.</div>'
+ <div class="member"><div class="avatar">${safe(m.name[0]||"؟")}</div>
+ <div><b>${safe(m.name)}</b>${decorations(m)}
+ <div class="muted">${safe(m.baseTitle)}</div>
+ <span class="badge">⚡ ${m.xp} XP</span>
+ <span class="badge coin">🪙 ${m.coins}</span></div></div></div>`).join(""):'<div class="empty">عضوی نیست.</div>';
 }
-
 function addMission(){
- let name=document.getElementById("missionName").value.trim();
- let xp=Number(document.getElementById("missionXP").value);
- let coins=Number(document.getElementById("missionCoins").value);
- if(!name||xp<0||coins<0||!Number.isFinite(xp)||!Number.isFinite(coins))
-  return alert("اطلاعات مأموریت را درست وارد کن.");
+ const name=document.getElementById("missionName").value.trim();
+ const xp=Number(document.getElementById("missionXP").value);
+ const coins=Number(document.getElementById("missionCoins").value);
+ if(!name||xp<0||coins<0)return alert("اطلاعات مأموریت را کامل کن.");
  data.missions.push({id:uid(),name,xp,coins,done:false});
  logActivity("⚔️ مأموریت جدید: "+name);
  document.getElementById("missionName").value="";
  document.getElementById("missionXP").value="";
  document.getElementById("missionCoins").value="";
- save()
+ save();
 }
-
 function finishMission(id){
- let mission=data.missions.find(x=>x.id===id);
- if(!mission||mission.done)return;
- let member=data.members.find(m=>currentUser&&m.uid===currentUser.uid)||data.members[0];
- if(!member)return alert("عضوی در این مرورگر وجود ندارد.");
- mission.done=true;
- member.xp=(member.xp||0)+mission.xp;
- member.coins=(member.coins||0)+mission.coins;
- logActivity("🏆 "+member.name+" مأموریت "+mission.name+" را انجام داد.");
- save()
+ const m=data.missions.find(x=>x.id===id);
+ if(!m||m.done)return;
+ const member=data.members.find(x=>currentUser&&x.uid===currentUser.uid)||data.members[0];
+ if(!member)return alert("عضوی وجود ندارد.");
+ m.done=true;member.xp+=m.xp;member.coins+=m.coins;
+ logActivity("🏆 "+member.name+" مأموریت "+m.name+" را انجام داد.");
+ save();
 }
 function deleteMission(id){
  if(!confirm("مأموریت حذف شود؟"))return;
- data.missions=data.missions.filter(m=>m.id!==id);
- save()
+ data.missions=data.missions.filter(x=>x.id!==id);save();
 }
 function renderMissions(){
- let el=document.getElementById("missionsList");
- el.innerHTML=data.missions.length?data.missions.map(m=>`
- <div class="item row between">
-  <div><b>${safe(m.name)}</b><div class="muted">⚡ ${m.xp} XP • 🪙 ${m.coins} سکه</div></div>
-  <div class="row">
-   ${m.done?'<span class="badge">✓ انجام شد</span>':`<button class="btn good" onclick="finishMission(${m.id})">انجام مأموریت</button>`}
-   <button class="btn" onclick="deleteMission(${m.id})">حذف</button>
-  </div>
- </div>`).join(""):'<div class="empty">مأموریتی ساخته نشده.</div>'
+ document.getElementById("missionsList").innerHTML=data.missions.length?data.missions.map(m=>`
+ <div class="item row between"><div><b>${safe(m.name)}</b><div class="muted">⚡ ${m.xp} XP • 🪙 ${m.coins}</div></div>
+ <div class="row">${m.done?'<span class="badge">انجام شد ✓</span>':`<button class="btn good" onclick="finishMission(${m.id})">انجام</button>`}
+ <button class="btn" onclick="deleteMission(${m.id})">حذف</button></div></div>`).join(""):'<div class="empty">مأموریتی نیست.</div>';
 }
-
 function renderRank(){
- let el=document.getElementById("rankList");
- let list=[...data.members].sort((a,b)=>(b.xp||0)-(a.xp||0));
- let medals=["🥇","🥈","🥉"];
- el.innerHTML=list.length?list.map((m,i)=>`
- <div class="item row between ${effectClass(m)}">
-  <div class="member">
-   <div class="avatar">${medals[i]||"#"+(i+1)}</div>
-   <div><b>${safe(m.name)}</b>${decorations(m)}<div class="muted">${safe(m.baseTitle||"")}</div></div>
-  </div>
-  <div><b>⚡ ${m.xp||0} XP</b><div class="coin">🪙 ${m.coins||0}</div></div>
- </div>`).join(""):'<div class="empty">هنوز رتبه‌ای ثبت نشده.</div>'
+ const list=[...data.members].sort((a,b)=>b.xp-a.xp);
+ document.getElementById("rankList").innerHTML=list.length?list.map((m,i)=>`
+ <div class="item row between ${effectClass(m)}"><div class="member"><div class="avatar">${["🥇","🥈","🥉"][i]||"#"+(i+1)}</div>
+ <div><b>${safe(m.name)}</b>${decorations(m)}</div></div><b>⚡ ${m.xp} XP</b></div>`).join(""):'<div class="empty">رتبه‌ای وجود ندارد.</div>';
 }
-
 function renderShop(){
  document.getElementById("shopList").innerHTML=shopItems.map(i=>`
- <div class="card shop-card">
-  <div class="item-icon">${i.icon}</div><br>
-  <div class="rarity ${i.rarity.toLowerCase()}">${i.rarity}</div>
-  <h3>${safe(i.name)}</h3>
-  <p class="muted">${safe(i.desc)}</p>
-  <div class="badge">✨ ${safe(i.power)}</div>
-  <p class="coin">رایگان • FREE</p>
-  <button class="btn primary" onclick="buyItem('${i.id}')">دریافت رایگان</button>
- </div>`).join("")
+ <div class="card shop-card effect-${i.effect}">
+ <div class="item-icon">${i.icon}</div><br>
+ <div class="rarity mythic">✦ MYTHIC POWER</div>
+ <h3>${safe(i.name)}</h3><p class="muted">${safe(i.desc)}</p>
+ <span class="badge">✨ افکت سه‌بعدی ویژه</span>
+ <p class="coin">رایگان • FREE</p>
+ <button class="btn primary" onclick="buyItem('${i.id}')">دریافت رایگان</button>
+ </div>`).join("");
 }
-
 function buyItem(id){
- let item=shopItems.find(i=>i.id===id);
+ const item=shopItems.find(i=>i.id===id);
  if(!item)return;
  let m=data.members.find(x=>currentUser&&x.uid===currentUser.uid)||data.members[0];
- if(!m){localGuest();m=data.members[0]}
+ if(!m){localGuest();m=data.members[0];}
  m.inventory=m.inventory||[];
- if(m.inventory.includes(item.id))return alert("این آیتم را قبلاً دریافت کرده‌ای.");
- m.inventory.push(item.id);
- logActivity("💎 "+m.name+" آیتم "+item.name+" را رایگان دریافت کرد.");
+ if(m.inventory.includes(id))return alert("این قدرت را قبلاً دریافت کرده‌ای.");
+ m.inventory.push(id);
+ logActivity("💎 "+m.name+" قدرت "+item.name+" را دریافت کرد.");
  save();
- alert("آیتم رایگان به موجودی اضافه شد!")
+ alert("قدرت رایگان به موجودی اضافه شد!");
 }
-
 function renderInventorySelectors(){
- let s=document.getElementById("inventoryMember");
- let old=s.value;
+ const s=document.getElementById("inventoryMember"),old=s.value;
  s.innerHTML=data.members.map(m=>`<option value="${m.id}">${safe(m.name)}</option>`).join("");
  if(data.members.some(m=>String(m.id)===String(old)))s.value=old;
- else if(data.members.length)s.value=data.members[0].id
+ else if(data.members.length)s.value=data.members[0].id;
 }
-
 function renderInventory(){
  renderInventorySelectors();
- let s=document.getElementById("inventoryMember");
- let el=document.getElementById("inventoryList");
- let m=getMember(s.value);
- if(!m){el.innerHTML='<div class="empty">هنوز عضوی وجود ندارد.</div>';return}
+ const m=getMember(document.getElementById("inventoryMember").value);
+ const el=document.getElementById("inventoryList");
+ if(!m){el.innerHTML='<div class="empty">عضوی نیست.</div>';return;}
  m.inventory=m.inventory||[];
  el.innerHTML=m.inventory.length?m.inventory.map(id=>{
-  let i=shopItems.find(x=>x.id===id);
-  if(!i)return "";
-  let active=m.activeTitle===id||m.activeBadge===id||m.activeEffect===id;
-  return `
-  <div class="item inventory-item ${active?effectClass({...m,activeEffect:i.type==="effect"?id:m.activeEffect}):""}">
-   <div class="row">
-    <div class="item-icon" style="width:48px;height:48px;font-size:24px">${i.icon}</div>
-    <div><b>${safe(i.name)}</b><div class="muted">${safe(i.type)} • ${safe(i.rarity)}</div></div>
-   </div>
-   <br>
-   <button class="btn ${active?"good":"primary"}" onclick="activateItem('${m.id}','${i.id}')">${active?"فعال ✓":"فعال کردن"}</button>
-  </div>`
- }).join(""):'<div class="empty">هنوز آیتمی دریافت نکرده‌ای. از بازار سلطنتی آیتم رایگان بگیر.</div>'
+  const i=shopItems.find(x=>x.id===id);if(!i)return "";
+  const active=m.activeEffect===id;
+  return `<div class="item ${active?"effect-"+i.effect:""}">
+  <div class="row"><div class="item-icon">${i.icon}</div><div><b>${safe(i.name)}</b><div class="muted">${safe(i.desc)}</div></div></div><br>
+  <button class="btn ${active?"good":"primary"}" onclick="activateItem('${m.id}','${i.id}')">${active?"غیرفعال کردن":"فعال کردن قدرت"}</button>
+  </div>`;
+ }).join(""):'<div class="empty">موجودی خالی است. از فروشگاه قدرت بگیر.</div>';
 }
-
 function activateItem(mid,id){
- let m=getMember(mid);
- let i=shopItems.find(x=>x.id===id);
+ const m=getMember(mid),i=shopItems.find(x=>x.id===id);
  if(!m||!i)return;
- if(!m.inventory.includes(id))return alert("این آیتم در موجودی نیست.");
- if(i.type==="title")m.activeTitle=m.activeTitle===id?null:id;
- else if(i.type==="badge")m.activeBadge=m.activeBadge===id?null:id;
- else m.activeEffect=m.activeEffect===id?null:id;
- logActivity("✨ "+m.name+" آیتم "+i.name+" را فعال کرد.");
- save()
+ if(!m.inventory.includes(id))return alert("این قدرت در موجودی نیست.");
+ m.activeEffect=m.activeEffect===id?null:id;
+ logActivity("✨ "+m.name+" قدرت "+i.name+" را تغییر داد.");
+ save();
 }
-
 function addNews(){
- let title=document.getElementById("newsTitle").value.trim();
- let body=document.getElementById("newsBody").value.trim();
+ const title=document.getElementById("newsTitle").value.trim();
+ const body=document.getElementById("newsBody").value.trim();
  if(!title||!body)return alert("عنوان و متن خبر را وارد کن.");
  data.news.unshift({id:uid(),title,body,time:new Date().toLocaleString("fa-IR")});
- logActivity("📢 اطلاعیه جدید منتشر شد.");
  document.getElementById("newsTitle").value="";
  document.getElementById("newsBody").value="";
- save()
+ save();
 }
 function renderNews(){
- let el=document.getElementById("newsList");
- el.innerHTML=data.news.length?data.news.map(n=>`
- <div class="card">
-  <h3>${safe(n.title)}</h3>
-  <p>${safe(n.body).replace(/\n/g,"<br>")}</p>
-  <div class="muted">${safe(n.time)}</div>
- </div>`).join(""):'<div class="empty">هنوز خبری منتشر نشده.</div>'
+ document.getElementById("newsList").innerHTML=data.news.length?data.news.map(n=>`
+ <div class="card"><h3>${safe(n.title)}</h3><p>${safe(n.body).replace(/\n/g,"<br>")}</p><div class="muted">${safe(n.time||"")}</div></div>`).join(""):'<div class="empty">خبری نیست.</div>';
 }
-
 function addPhoto(){
- let f=document.getElementById("photoInput").files[0];
- if(!f)return alert("یک عکس انتخاب کن.");
- if(!f.type.startsWith("image/"))return alert("فقط فایل تصویر مجاز است.");
- if(f.size>1024*1024)return alert("حجم عکس باید کمتر از ۱ مگابایت باشد.");
- let r=new FileReader();
- r.onload=()=>{
-  data.photos.push({id:uid(),src:r.result,name:f.name});
-  logActivity("🖼️ تصویر جدید به گالری اضافه شد.");
-  save()
- };
- r.readAsDataURL(f)
+ const f=document.getElementById("photoInput").files[0];
+ if(!f)return alert("یک تصویر انتخاب کن.");
+ if(!f.type.startsWith("image/"))return alert("فقط تصویر مجاز است.");
+ if(f.size>1024*1024)return alert("حجم تصویر باید کمتر از یک مگابایت باشد.");
+ const r=new FileReader();
+ r.onload=()=>{data.photos.push({id:uid(),src:r.result,name:f.name});save();};
+ r.readAsDataURL(f);
 }
 function renderGallery(){
- let el=document.getElementById("galleryList");
- el.innerHTML=data.photos.length?data.photos.map(p=>`
- <div class="card">
-  <img src="${p.src}" alt="تصویر گالری">
-  <p class="muted">${safe(p.name)}</p>
- </div>`).join(""):'<div class="empty">هنوز تصویری اضافه نشده.</div>'
+ document.getElementById("galleryList").innerHTML=data.photos.length?data.photos.map(p=>`
+ <div class="card"><img src="${p.src}" alt="تصویر گالری"><p class="muted">${safe(p.name)}</p></div>`).join(""):'<div class="empty">گالری خالی است.</div>';
 }
-
 function renderHome(){
  document.getElementById("totalMembers").textContent=data.members.length;
- document.getElementById("totalXP").textContent=data.members.reduce((s,m)=>s+(m.xp||0),0).toLocaleString("en-US");
- document.getElementById("totalCoins").textContent=data.members.reduce((s,m)=>s+(m.coins||0),0).toLocaleString("en-US")+" 🪙";
- document.getElementById("activity").innerHTML=data.activity.length?data.activity.slice(0,7).map(a=>`
- <div class="item">${safe(a.text)}<div class="muted">${safe(a.time)}</div></div>`).join(""):'<div class="empty">هنوز فعالیتی ثبت نشده.</div>';
- let top=[...data.members].sort((a,b)=>(b.xp||0)-(a.xp||0))[0];
- document.getElementById("topMember").innerHTML=top?`
- <div class="item-icon">${top.activeBadge?(shopItems.find(i=>i.id===top.activeBadge)||{}).icon||"👑":"👑"}</div>
- <h3>${safe(top.name)}</h3>${decorations(top)}
- <p>⚡ ${top.xp||0} XP • 🪙 ${top.coins||0}</p>`:"هنوز عضوی ثبت نشده"
+ document.getElementById("totalXP").textContent=data.members.reduce((s,m)=>s+(m.xp||0),0);
+ document.getElementById("totalCoins").textContent=data.members.reduce((s,m)=>s+(m.coins||0),0)+" 🪙";
+ document.getElementById("activity").innerHTML=data.activity.length?data.activity.slice(0,7).map(a=>`<div class="item">${safe(a.text)}<div class="muted">${safe(a.time)}</div></div>`).join(""):'<div class="empty">فعالیتی نیست.</div>';
+ const top=[...data.members].sort((a,b)=>b.xp-a.xp)[0];
+ document.getElementById("topMember").innerHTML=top?`<h3>${safe(top.name)}</h3>${decorations(top)}<p>⚡ ${top.xp} XP</p>`:"هنوز عضوی نیست";
 }
-
 function renderAll(){
- renderHome();
- renderMembers();
- renderMissions();
- renderRank();
- renderShop();
- renderInventorySelectors();
- renderNews();
- renderGallery();
- if(document.getElementById("inventoryMember").value)renderInventory()
+ renderHome();renderMembers();renderMissions();renderRank();renderShop();
+ renderInventorySelectors();renderInventory();renderNews();renderGallery();
 }
-
 setInterval(()=>document.getElementById("clock").textContent=new Date().toLocaleTimeString("fa-IR"),1000);
-
 if(!data.members.length)localGuest();
 renderAll();
 loadFirebase();
 </script>
 </body>
-  </html>
+</html>
