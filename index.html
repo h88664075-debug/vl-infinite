@@ -7,9 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
---bg:#07050d;--panel:#151020;--panel2:#241632;
---text:#fff;--muted:#b7a9c7;--purple:#a855f7;
---pink:#ec4899;--gold:#fbbf24;--green:#22c55e;
+--bg:#07050d;--panel:#151020;--text:#fff;--muted:#b7a9c7;
+--purple:#a855f7;--pink:#ec4899;--gold:#fbbf24;--green:#22c55e;
 }
 *{box-sizing:border-box}
 body{
@@ -28,20 +27,14 @@ border-bottom:1px solid #ffffff20
 .top,.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .between{justify-content:space-between}
 .logo{font-size:24px;font-weight:900}
-.logo span{
-background:linear-gradient(90deg,#c084fc,#f472b6,#fbbf24);
-background-clip:text;color:transparent
-}
+.logo span{background:linear-gradient(90deg,#c084fc,#f472b6,#fbbf24);background-clip:text;color:transparent}
 .small,.muted{color:var(--muted);font-size:12px}
 nav{display:flex;gap:7px;overflow-x:auto;padding-top:13px}
 nav button,.btn{
 border:1px solid #ffffff20;background:#251a32;color:white;
 padding:10px 14px;border-radius:12px;white-space:nowrap
 }
-nav button.active,.primary{
-background:linear-gradient(120deg,#7e22ce,#be185d);
-border-color:transparent
-}
+nav button.active,.primary{background:linear-gradient(120deg,#7e22ce,#be185d);border-color:transparent}
 .btn:hover,nav button:hover{filter:brightness(1.2);transform:translateY(-2px)}
 .good{background:#14532d}
 .gold{background:linear-gradient(120deg,#80530b,#d69e20)}
@@ -74,20 +67,17 @@ label{font-size:12px;color:var(--muted)}
 .list{display:flex;flex-direction:column;gap:9px}
 .badge{
 display:inline-flex;align-items:center;gap:5px;border:1px solid #a855f766;
-background:#a855f71a;color:#ead5ff;border-radius:30px;
-padding:5px 10px;font-size:11px
+background:#a855f71a;color:#ead5ff;border-radius:30px;padding:5px 10px;font-size:11px
 }
 .member{display:flex;align-items:center;gap:12px}
 .avatar{
-width:48px;height:48px;display:grid;place-items:center;
-border-radius:15px;font-size:20px;font-weight:900;
-background:linear-gradient(135deg,#7e22ce,#db2777)
+width:48px;height:48px;display:grid;place-items:center;border-radius:15px;
+font-size:20px;font-weight:900;background:linear-gradient(135deg,#7e22ce,#db2777)
 }
 .empty{text-align:center;padding:24px;color:var(--muted)}
 .chatbox{
 height:410px;overflow:auto;padding:12px;border-radius:16px;
-border:1px solid #ffffff25;background:#08060e;
-display:flex;flex-direction:column;gap:10px
+border:1px solid #ffffff25;background:#08060e;display:flex;flex-direction:column;gap:10px
 }
 .msg{
 max-width:88%;padding:11px 14px;border-radius:15px;
@@ -96,10 +86,13 @@ background:#28203a;border:1px solid #ffffff12;overflow-wrap:anywhere
 .msg b{color:#e9caff}
 .msg small{display:block;margin-top:6px;color:var(--muted);font-size:10px}
 .shop-card{
-min-height:290px;perspective:1000px;transition:.3s;
+min-height:320px;perspective:1000px;transition:.3s;
 transform-style:preserve-3d;position:relative;overflow:hidden
 }
-.shop-card:hover{transform:rotateY(-5deg) rotateX(4deg) translateY(-7px);box-shadow:0 20px 45px #a855f744}
+.shop-card:hover{
+transform:rotateY(-5deg) rotateX(4deg) translateY(-7px);
+box-shadow:0 20px 45px #a855f744
+}
 .item-icon{
 width:75px;height:75px;display:grid;place-items:center;font-size:39px;
 border-radius:22px;background:linear-gradient(145deg,#54216f,#171022);
@@ -127,6 +120,11 @@ transform:translateZ(25px);animation:float 3s ease-in-out infinite
 @keyframes shadow{to{filter:brightness(.7)}}
 @keyframes thunder{to{filter:brightness(1.5)}}
 @keyframes cosmic{50%{filter:hue-rotate(70deg) brightness(1.3)}}
+.power-desc{
+color:#d8b4fe;font-size:11px;line-height:2;
+background:linear-gradient(90deg,#a855f715,#ec489915);
+border-right:2px solid #a855f7;padding:7px 10px;border-radius:8px;margin-top:9px
+}
 .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px}
 footer{text-align:center;padding:30px;color:var(--muted)}
 @media(max-width:600px){header{position:relative}.hero{padding:24px 17px}}
@@ -209,7 +207,7 @@ footer{text-align:center;padding:30px;color:var(--muted)}
 </section>
 
 <section id="shop" class="page">
-<div class="hero"><h1>💎 بازار سلطنتی</h1><p>۱۴ قدرت ویژه رایگان با افکت‌های سه‌بعدی نمایشی</p></div>
+<div class="hero"><h1>💎 بازار سلطنتی</h1><p>۴۰ قدرت ویژه با افکت‌های سه‌بعدی نمایشی</p></div>
 <div id="shopList" class="grid"></div>
 </section>
 
@@ -266,27 +264,55 @@ const defaults={members:[],missions:[],news:[],photos:[],activity:[]};
 let data=loadData(),currentUser=null,currentName="",firebaseReady=false,db=null,auth=null,messagesRef=null;
 
 const shopItems=[
-{id:"dragon",name:"DRAGON WRATH",icon:"🐉",effect:"dragon",desc:"هاله آتشین اژدها"},
-{id:"shadow",name:"SHADOW KING",icon:"🌑",effect:"shadow",desc:"فرمانروای تاریکی"},
-{id:"wings",name:"ETERNAL WINGS",icon:"🪽",effect:"wings",desc:"بال‌های زرین"},
-{id:"thunder",name:"THUNDER GOD",icon:"⚡",effect:"thunder",desc:"هاله الکتریکی"},
-{id:"demon",name:"DEMON FORM",icon:"😈",effect:"demon",desc:"فرم اهریمنی"},
-{id:"cosmic",name:"SEVENTH DIMENSION",icon:"🌌",effect:"cosmic",desc:"قدرت بُعد هفتم"},
-{id:"gold",name:"GOLDEN AURA",icon:"✨",effect:"gold",desc:"درخشش طلایی"},
-{id:"purple",name:"PURPLE FLAME",icon:"🔮",effect:"purple",desc:"شعله بنفش"},
-{id:"ice",name:"FROST EMPEROR",icon:"❄️",effect:"ice",desc:"هاله یخی"},
-{id:"blood",name:"CRIMSON KING",icon:"🩸",effect:"blood",desc:"قاب سرخ"},
-{id:"nova",name:"NOVA STAR",icon:"🌟",effect:"nova",desc:"انفجار ستاره‌ای"},
-{id:"void",name:"VOID MASTER",icon:"🌀",effect:"void",desc:"قدرت خلأ"},
-{id:"light",name:"DIVINE LIGHT",icon:"☀️",effect:"light",desc:"نور جاودان"},
-{id:"emperor",name:"THE EMPEROR",icon:"👑",effect:"gold",desc:"هاله فرمانروایی"}
+{id:"dragon",name:"DRAGON WRATH",icon:"🐉",effect:"dragon",desc:"هاله آتشین اژدها",power:"هاله آتشین و درخشش شعله‌ای"},
+{id:"shadow",name:"SHADOW KING",icon:"🌑",effect:"shadow",desc:"فرمانروای تاریکی",power:"قاب تاریک و درخشش بنفش"},
+{id:"wings",name:"ETERNAL WINGS",icon:"🪽",effect:"wings",desc:"بال‌های زرین",power:"درخشش طلایی سلطنتی"},
+{id:"thunder",name:"THUNDER GOD",icon:"⚡",effect:"thunder",desc:"هاله الکتریکی",power:"افکت نورانی و الکتریکی"},
+{id:"demon",name:"DEMON FORM",icon:"😈",effect:"demon",desc:"فرم اهریمنی",power:"هاله سرخ و آتشین"},
+{id:"cosmic",name:"SEVENTH DIMENSION",icon:"🌌",effect:"cosmic",desc:"قدرت بُعد هفتم",power:"تغییر رنگ و درخشش فضایی"},
+{id:"gold",name:"GOLDEN AURA",icon:"✨",effect:"gold",desc:"درخشش طلایی",power:"هاله طلایی ویژه"},
+{id:"purple",name:"PURPLE FLAME",icon:"🔮",effect:"purple",desc:"شعله بنفش",power:"قاب بنفش درخشان"},
+{id:"ice",name:"FROST EMPEROR",icon:"❄️",effect:"ice",desc:"هاله یخی",power:"درخشش آبی یخی"},
+{id:"blood",name:"CRIMSON KING",icon:"🩸",effect:"blood",desc:"قاب سرخ",power:"هاله قرمز سلطنتی"},
+{id:"nova",name:"NOVA STAR",icon:"🌟",effect:"nova",desc:"انفجار ستاره‌ای",power:"درخشش ستاره‌ای صورتی"},
+{id:"void",name:"VOID MASTER",icon:"🌀",effect:"void",desc:"قدرت خلأ",power:"هاله بنفش تیره"},
+{id:"light",name:"DIVINE LIGHT",icon:"☀️",effect:"light",desc:"نور جاودان",power:"درخشش سفید الهی"},
+{id:"emperor",name:"THE EMPEROR",icon:"👑",effect:"gold",desc:"هاله فرمانروایی",power:"قاب طلایی ویژه"},
+{id:"phoenix",name:"PHOENIX RISE",icon:"🔥",effect:"dragon",desc:"ققنوس جاودان",power:"جلوه شعله‌ای درخشان"},
+{id:"moon",name:"MOON WALKER",icon:"🌙",effect:"shadow",desc:"نگهبان ماه",power:"هاله تاریک و مرموز"},
+{id:"angel",name:"ANGEL ASCENSION",icon:"😇",effect:"light",desc:"صعود فرشته",power:"قاب نورانی سفید"},
+{id:"storm",name:"STORM BREAKER",icon:"🌩️",effect:"thunder",desc:"شکننده طوفان",power:"درخشش الکتریکی"},
+{id:"ruby",name:"RUBY HEART",icon:"💎",effect:"blood",desc:"قلب یاقوتی",power:"هاله قرمز جواهری"},
+{id:"sapphire",name:"SAPPHIRE SOUL",icon:"🔷",effect:"ice",desc:"روح یاقوت کبود",power:"درخشش آبی"},
+{id:"nebula",name:"NEBULA LORD",icon:"🪐",effect:"cosmic",desc:"ارباب سحابی",power:"جلوه رنگین فضایی"},
+{id:"starfall",name:"STARFALL",icon:"☄️",effect:"nova",desc:"بارش ستارگان",power:"هاله صورتی درخشان"},
+{id:"abyss",name:"ABYSS WALKER",icon:"🕳️",effect:"void",desc:"رهرو اعماق",power:"قاب خلأ و تاریکی"},
+{id:"venom",name:"VENOM EMPRESS",icon:"🐍",effect:"purple",desc:"ملکه زهر",power:"درخشش بنفش مرموز"},
+{id:"blizzard",name:"BLIZZARD KING",icon:"🌨️",effect:"ice",desc:"پادشاه کولاک",power:"هاله یخی آبی"},
+{id:"inferno",name:"INFERNO LORD",icon:"🌋",effect:"dragon",desc:"ارباب آتش",power:"قاب شعله‌ای"},
+{id:"samurai",name:"ETERNAL SAMURAI",icon:"⚔️",effect:"blood",desc:"سامورایی ابدی",power:"قاب سرخ جنگجویان"},
+{id:"titan",name:"TITAN SOUL",icon:"🗿",effect:"gold",desc:"روح تایتان",power:"هاله طلایی قدرتمند"},
+{id:"phantom",name:"PHANTOM LORD",icon:"👻",effect:"shadow",desc:"ارباب شبح",power:"قاب تاریک و بنفش"},
+{id:"crystal",name:"CRYSTAL GUARDIAN",icon:"🔮",effect:"purple",desc:"نگهبان کریستال",power:"درخشش بنفش"},
+{id:"eclipse",name:"TOTAL ECLIPSE",icon:"🌘",effect:"shadow",desc:"کسوف مطلق",power:"هاله سایه‌ای"},
+{id:"rainbow",name:"RAINBOW SPIRIT",icon:"🌈",effect:"cosmic",desc:"روح رنگین‌کمان",power:"تغییر رنگ فضایی"},
+{id:"soulfire",name:"SOUL FIRE",icon:"🕯️",effect:"demon",desc:"آتش روح",power:"شعله سرخ نمایشی"},
+{id:"frostfire",name:"FROSTFIRE",icon:"🧊",effect:"ice",desc:"آتش یخی",power:"هاله سرد و درخشان"},
+{id:"throne",name:"GOLDEN THRONE",icon:"🏆",effect:"gold",desc:"تخت طلایی",power:"قاب سلطنتی طلایی"},
+{id:"dragonlord",name:"DRAGON LORD",icon:"🐲",effect:"dragon",desc:"ارباب اژدهایان",power:"درخشش آتشین ویژه"},
+{id:"darkmatter",name:"DARK MATTER",icon:"⚫",effect:"void",desc:"ماده تاریک",power:"هاله خلأ"},
+{id:"divine",name:"DIVINE EMPEROR",icon:"👼",effect:"light",desc:"امپراتور الهی",power:"نور سفید سلطنتی"},
+{id:"supernova",name:"SUPERNOVA",icon:"💫",effect:"nova",desc:"ابرنواختر",power:"درخشش صورتی"},
+{id:"hellking",name:"HELL KING",icon:"👹",effect:"demon",desc:"پادشاه دوزخ",power:"هاله سرخ اهریمنی"}
 ];
 
 function loadData(){
- try{return {...JSON.parse(localStorage.getItem(KEY)||"{}"),...{}}.members!==undefined
- ?{...defaults,...JSON.parse(localStorage.getItem(KEY)||"{}")}
- :structuredClone(defaults)}
- catch(e){return structuredClone(defaults)}
+ try{
+  const saved=JSON.parse(localStorage.getItem(KEY)||"{}");
+  return {...defaults,...saved};
+ }catch(e){
+  return {...defaults};
+ }
 }
 function save(){
  try{localStorage.setItem(KEY,JSON.stringify(data))}
@@ -376,13 +402,11 @@ function loadFirebase(){
    }else{
     const name="جنگجو-"+currentUser.uid.slice(0,5).toUpperCase();
     ensureMember(name,currentUser.uid);
-    try{
-     await profileRef.set({
-      uid:currentUser.uid,
-      name:name,
-      createdAt:firebase.firestore.FieldValue.serverTimestamp()
-     });
-    }catch(e){console.warn("Profile save:",e);}
+    await profileRef.set({
+     uid:currentUser.uid,
+     name:name,
+     createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    });
    }
 
    firebaseReady=true;
@@ -511,11 +535,13 @@ function renderRank(){
 }
 function renderShop(){
  document.getElementById("shopList").innerHTML=shopItems.map(i=>`
- <div class="card shop-card effect-${i.effect}">
- <div class="item-icon">${i.icon}</div><br>
+ <div class="card shop-card">
+ <div class="item-icon effect-${i.effect}">${i.icon}</div><br>
  <div class="rarity mythic">✦ MYTHIC POWER</div>
- <h3>${safe(i.name)}</h3><p class="muted">${safe(i.desc)}</p>
- <span class="badge">✨ افکت سه‌بعدی ویژه</span>
+ <h3>${safe(i.name)}</h3>
+ <p class="muted">${safe(i.desc)}</p>
+ <div class="power-desc">⚡ ${safe(i.power)}</div>
+ <br><span class="badge">✨ افکت سه‌بعدی ویژه</span>
  <p class="coin">رایگان • FREE</p>
  <button class="btn primary" onclick="buyItem('${i.id}')">دریافت رایگان</button>
  </div>`).join("");
@@ -548,7 +574,11 @@ function renderInventory(){
   const i=shopItems.find(x=>x.id===id);if(!i)return "";
   const active=m.activeEffect===id;
   return `<div class="item ${active?"effect-"+i.effect:""}">
-  <div class="row"><div class="item-icon">${i.icon}</div><div><b>${safe(i.name)}</b><div class="muted">${safe(i.desc)}</div></div></div><br>
+  <div class="row"><div class="item-icon effect-${i.effect}">${i.icon}</div><div>
+  <b>${safe(i.name)}</b><div class="muted">${safe(i.desc)}</div>
+  <div class="power-desc">⚡ ${safe(i.power)}</div>
+  ${active?'<span class="badge">قدرت فعال ✓</span>':""}
+  </div></div><br>
   <button class="btn ${active?"good":"primary"}" onclick="activateItem('${m.id}','${i.id}')">${active?"غیرفعال کردن":"فعال کردن قدرت"}</button>
   </div>`;
  }).join(""):'<div class="empty">موجودی خالی است. از فروشگاه قدرت بگیر.</div>';
