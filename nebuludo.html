@@ -4,177 +4,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#080719">
-<title>NEBULUDO - Galactic Ludo</title>
+<meta name="theme-color" content="#080817">
+<title>NEBULUDO | منچ کهکشانی</title>
 <style>
+:root{
+ --bg:#080817;--panel:#15152c;--line:#ffffff20;
+ --purple:#a66cff;--text:#fff;--muted:#b6b1d5;
+ --red:#ff416b;--green:#19d6a0;--yellow:#ffd34e;--blue:#4c8dff;
+}
 *{box-sizing:border-box}
 body{
- margin:0;min-height:100vh;color:#fff;text-align:center;
+ margin:0;min-height:100vh;color:var(--text);
  font-family:Tahoma,Arial,sans-serif;
- background:radial-gradient(ellipse at top,#30205a,#100b27 48%,#05040e);
- padding:12px;
+ background:
+ radial-gradient(ellipse at 50% -10%,#42246d 0%,transparent 48%),
+ radial-gradient(circle at 5% 75%,#142451 0%,transparent 35%),
+ var(--bg);
+ padding:12px 10px 30px;
 }
-header{padding:12px 0 18px}
-h1{
- margin:0;font-size:clamp(34px,9vw,55px);letter-spacing:3px;
- color:#fff;text-shadow:0 0 8px #b66aff,0 0 25px #9a39ff,0 0 50px #7024ff;
+button{font:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+.app{width:min(100%,620px);margin:auto}
+.top{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:8px;padding:5px 2px 15px;
 }
-.subtitle{color:#c7b4ff;font-size:12px;margin-top:7px}
-.wrap{width:min(96vw,570px);margin:auto}
+.brand{font-weight:1000;font-size:clamp(27px,8vw,42px);letter-spacing:2px;
+ color:#fff;text-shadow:0 0 8px #c18aff,0 0 25px #8c43ff}
+.brand small{display:block;font-size:9px;letter-spacing:4px;color:#c6b2ff;text-align:center}
+.top-actions{display:flex;gap:7px}
+.icon-btn{
+ width:39px;height:39px;border:1px solid #ffffff2b;border-radius:12px;
+ color:white;background:#ffffff12;font-size:18px;
+}
+.screen{display:none}
+.screen.active{display:block;animation:appear .35s ease}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .panel{
- background:#ffffff0d;border:1px solid #ffffff25;border-radius:18px;
- padding:12px;margin-bottom:12px;box-shadow:0 0 18px #762b8533;
+ background:linear-gradient(145deg,#1d1b3cdd,#101027ee);
+ border:1px solid var(--line);border-radius:19px;padding:14px;
+ box-shadow:0 10px 35px #0005,inset 0 1px #ffffff0c;
 }
-.players{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.hero{
+ padding:25px 15px;text-align:center;border-radius:24px;
+ background:
+ radial-gradient(circle at 50% 20%,#7546a8aa,transparent 48%),
+ linear-gradient(145deg,#1b1740,#0d1028);
+ border:1px solid #b17aff55;
+ box-shadow:0 0 35px #7736b733;
+}
+.hero-art{font-size:65px;filter:drop-shadow(0 0 15px #a66cff);margin:5px}
+.hero h2{font-size:27px;margin:7px 0;color:#f1e5ff}
+.hero p{color:#c7c0e5;font-size:12px;line-height:2;margin:8px auto 18px;max-width:340px}
+.primary{
+ border:0;border-radius:14px;padding:14px 24px;
+ color:white;font-weight:bold;font-size:15px;
+ background:linear-gradient(120deg,#a53eff,#5d63ff);
+ box-shadow:0 0 20px #8548ff66;
+}
+.secondary{
+ border:1px solid #ffffff30;border-radius:13px;padding:11px 15px;
+ color:#eee8ff;background:#ffffff0c;font-size:13px;
+}
+.menu-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}
+.stat{padding:12px 5px;text-align:center;border-radius:14px;background:#ffffff09;border:1px solid var(--line)}
+.stat strong{display:block;font-size:21px;color:#e5ceff}
+.stat span{font-size:10px;color:var(--muted)}
+.section-title{font-size:13px;color:#e9dfff;margin:0 0 11px}
+.players{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:11px
+}
 .player{
- border:1px solid #ffffff30;border-radius:12px;padding:9px 2px;
- font-size:12px;background:#ffffff0a;transition:.2s;
+ border:1px solid #ffffff24;border-radius:13px;padding:8px 2px;
+ background:#ffffff08;text-align:center;min-width:0;
 }
-.player.active{border-color:white;box-shadow:0 0 15px currentColor;background:#ffffff20}
-.player b{display:block;font-size:19px;margin-bottom:4px}
-.redText{color:#ff547b}.greenText{color:#43f5b5}
-.yellowText{color:#ffe16a}.blueText{color:#70a4ff}
-.boardFrame{
- padding:7px;border-radius:19px;
- background:linear-gradient(135deg,#b45cff,#3c8dff,#ff55bb);
- box-shadow:0 0 25px #933dff77;
+.player.active{background:#ffffff1a;border-color:#fff;box-shadow:0 0 13px #ffffff45}
+.player .orb{font-size:20px;display:block;margin-bottom:4px}
+.player .pname{font-size:10px;font-weight:bold}
+.player .count{font-size:9px;color:#c9c2e2;margin-top:4px}
+.board-shell{
+ padding:5px;border-radius:17px;
+ background:linear-gradient(135deg,#ff5d91,#9a5cff,#4e9cff,#45e0bb);
+ box-shadow:0 0 26px #8a49ff55;
 }
 #board{
- display:grid;grid-template-columns:repeat(15,1fr);
- grid-template-rows:repeat(15,1fr);aspect-ratio:1;
- background:#100d25;border-radius:13px;overflow:hidden;
+ display:grid;grid-template-columns:repeat(15,minmax(0,1fr));
+ grid-template-rows:repeat(15,minmax(0,1fr));
+ aspect-ratio:1;background:#111126;border-radius:12px;overflow:hidden;
 }
 .cell{
  min-width:0;min-height:0;position:relative;
  display:flex;align-items:center;justify-content:center;
- border:1px solid #ffffff18;background:#17142e;
+ border:1px solid #282542;background:#17162e;
 }
-.track{background:#dcd9f5;color:#19152c;border:1px solid #aaa4d0}
-.safe:after{content:"✦";position:absolute;font-size:10px;color:#4e347e;pointer-events:none}
-.homeRed{background:#9e214c}
-.homeGreen{background:#08765a}
-.homeYellow{background:#9a7415}
-.homeBlue{background:#244a9a}
-.laneRed{background:#ff5c87}
-.laneGreen{background:#36e4ac}
-.laneYellow{background:#ffe06b}
-.laneBlue{background:#6b9cff}
-.center{
- background:conic-gradient(#ff5c87 0 25%,#36e4ac 25% 50%,#ffe06b 50% 75%,#6b9cff 75%);
+.track{background:#e9e7f8;border-color:#aaa5ca}
+.track.safe:after{content:"✦";font-size:clamp(6px,1.7vw,12px);color:#775c9f}
+.start-red{background:#ff7191!important}
+.start-green{background:#64e9c0!important}
+.start-yellow{background:#ffe17d!important}
+.start-blue{background:#83b0ff!important}
+.base-red{background:#9e2447}
+.base-green{background:#08785b}
+.base-yellow{background:#94701b}
+.base-blue{background:#244b91}
+.pad{
+ width:72%;height:72%;border-radius:10px;
+ background:#ffffffd9;border:2px solid #ffffffa8;
+ display:flex;align-items:center;justify-content:center;
+ box-shadow:inset 0 0 10px #0002;
 }
-.baseSpot{background:#ffffff35;border:1px solid #ffffff80;border-radius:5px}
-.tokens{
- position:relative;z-index:2;width:100%;height:100%;
- display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
- gap:0;
+.pad .token{width:75%;height:75%}
+.lane-red{background:#ff7897}
+.lane-green{background:#53e7b8}
+.lane-yellow{background:#ffdf72}
+.lane-blue{background:#78aaff}
+.center-cell{
+ background:conic-gradient(from 45deg,#ff547b 0 25%,#22d5a0 25% 50%,#4c8dff 50% 75%,#ffd34e 75%);
 }
+.center-star{font-size:clamp(9px,3vw,20px);text-shadow:0 1px 5px #000}
 .token{
- width:90%;height:90%;min-width:0;min-height:0;padding:0;
- border:1px solid #ffffffbb;border-radius:50%;
- font-size:clamp(8px,2.5vw,15px);font-weight:bold;color:white;
- text-shadow:0 1px 3px #000;cursor:pointer;
- box-shadow:0 0 7px currentColor,inset 0 -3px 5px #0005;
+ display:flex;align-items:center;justify-content:center;
+ width:88%;height:88%;padding:0;border-radius:50%;
+ border:1px solid #ffffffc9;color:#fff;font-size:clamp(7px,2vw,13px);
+ font-weight:bold;text-shadow:0 1px 3px #000;
+ box-shadow:0 2px 4px #0008,inset 0 -3px 5px #0004;
+ position:relative;z-index:2;
 }
-.token.red{background:radial-gradient(circle at 30% 25%,#ffb4c7,#f01859 65%,#8d0933)}
-.token.green{background:radial-gradient(circle at 30% 25%,#c1ffe8,#09bd86 65%,#00684c)}
-.token.yellow{background:radial-gradient(circle at 30% 25%,#fff4b5,#e8b521 65%,#92620b)}
-.token.blue{background:radial-gradient(circle at 30% 25%,#c8dcff,#3479f3 65%,#123a94)}
-.token:active{transform:scale(.86)}
-.token:disabled{cursor:default;opacity:.85}
-.controls{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.token.red{background:radial-gradient(circle at 30% 25%,#ffced9,#ff3567 55%,#a40036)}
+.token.green{background:radial-gradient(circle at 30% 25%,#c8ffec,#13d49c 55%,#007453)}
+.token.yellow{background:radial-gradient(circle at 30% 25%,#fff6c5,#ffcb32 55%,#a16c00)}
+.token.blue{background:radial-gradient(circle at 30% 25%,#d4e5ff,#4389ff 55%,#1745a0)}
+.token.movable{outline:2px solid white;animation:pulse 1s infinite;cursor:pointer}
+@keyframes pulse{50%{filter:brightness(1.35);transform:scale(.88)}}
+.token:disabled{opacity:1;cursor:default}
+.token-stack{width:100%;height:100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1px}
+.token-stack .token{width:48%;height:48%;font-size:clamp(6px,1.7vw,11px)}
+.battle{
+ margin-top:11px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center
+}
+.turn-info{min-width:0;text-align:right}
+.turn-label{font-size:11px;color:#bcb3df}
+#message{font-size:13px;line-height:1.8;margin-top:5px;color:#fff}
+.dice-area{display:flex;align-items:center;gap:9px}
 #dice{
- width:65px;height:65px;display:grid;place-items:center;
- border-radius:17px;background:linear-gradient(145deg,#fff,#cfc6ff);
- color:#23154a;font-size:42px;
- box-shadow:0 0 20px #b18aff;
+ width:60px;height:60px;border-radius:16px;display:grid;place-items:center;
+ background:linear-gradient(145deg,#fff,#c9c3e9);color:#20183e;
+ font-size:39px;box-shadow:0 0 19px #b18aff;
 }
-#dice.rolling{animation:shake .12s infinite}
-@keyframes shake{0%{transform:rotate(-9deg) scale(1.05)}50%{transform:rotate(9deg) scale(.95)}100%{transform:rotate(-9deg) scale(1.05)}}
-button.action{
- border:0;border-radius:13px;padding:13px 17px;
- color:white;font-weight:bold;font-size:14px;
- background:linear-gradient(130deg,#a344ff,#4b5eff);
- box-shadow:0 0 13px #874cff77;cursor:pointer;
-}
-button.action:disabled{opacity:.45;cursor:not-allowed}
-#message{font-size:13px;line-height:1.9;color:#e4d9ff;min-height:28px}
-.small{font-size:11px;color:#aa9acb;line-height:1.9}
-#log{max-height:105px;overflow:auto;text-align:right;font-size:11px;color:#c8bce8;line-height:2}
+#dice.rolling{animation:shake .11s infinite}
+@keyframes shake{0%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}100%{transform:rotate(-10deg)}}
+#roll{padding:12px 14px;white-space:nowrap}
+.game-actions{display:flex;gap:7px;margin-top:10px}
+.game-actions button{flex:1}
+.log{margin-top:10px}
+#log{max-height:78px;overflow:auto;font-size:10px;color:#c8c1e4;line-height:2;text-align:right}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.help-item{background:#ffffff09;border:1px solid var(--line);border-radius:12px;padding:10px;font-size:11px;line-height:1.9}
+.help-item b{display:block;color:#e5caff;font-size:12px}
 .modal{
- display:none;position:fixed;inset:0;z-index:10;
- background:#050313dd;align-items:center;justify-content:center;padding:20px;
+ display:none;position:fixed;inset:0;z-index:20;
+ background:#03020cdd;align-items:center;justify-content:center;padding:18px;
 }
-.modalBox{
- width:min(90vw,360px);padding:25px;border-radius:20px;
- background:#1b1436;border:1px solid #a66bff;
- box-shadow:0 0 35px #923cff;
+.modal.show{display:flex}
+.modal-box{
+ width:min(100%,370px);padding:22px;border-radius:21px;text-align:center;
+ background:linear-gradient(145deg,#28204c,#101025);
+ border:1px solid #b47aff;box-shadow:0 0 40px #8b41ff66;
 }
-.modalBox h2{color:#e4c5ff}
+.modal-box h2{margin:4px 0 12px;color:#f0dcff}
+.modal-box p{font-size:13px;line-height:2;color:#d7cbed}
+.modal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:15px}
+.option-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.switch{accent-color:#a66cff;width:19px;height:19px}
+.footer{text-align:center;color:#766c9e;font-size:9px;padding:15px}
+body.light{
+ --bg:#e9e5ff;--text:#211a3b;--muted:#625b7b;
+ background:radial-gradient(ellipse at top,#d7c3ff,#e9e5ff 60%);
+}
+body.light .panel{background:#ffffffd9;border-color:#b6a5df}
+body.light .player{background:#ffffffaa;color:#211a3b}
+body.light .turn-label,body.light #log{color:#51496b}
 @media(max-width:380px){
- body{padding:7px}.panel{padding:8px}.player{font-size:10px}
+ body{padding:8px 6px}.panel{padding:10px}.player{padding:7px 1px}
+ #dice{width:52px;height:52px;font-size:34px}
+ #roll{font-size:12px;padding:11px 10px}
 }
 </style>
 </head>
 <body>
-<header>
-<h1>NEBULUDO</h1>
-<div class="subtitle">GALACTIC LUDO • نبرد فرمانروایان کهکشان</div>
-</header>
-
-<main class="wrap">
- <section class="panel">
-  <div class="players" id="players">
-   <div class="player redText active"><b>🔴</b>قرمز</div>
-   <div class="player greenText"><b>🟢</b>سبز</div>
-   <div class="player yellowText"><b>🟡</b>زرد</div>
-   <div class="player blueText"><b>🔵</b>آبی</div>
+<div class="app">
+ <header class="top">
+  <div class="brand">NEBULUDO<small>GALACTIC BOARD ARENA</small></div>
+  <div class="top-actions">
+   <button class="icon-btn" id="soundBtn" title="صدا">🔊</button>
+   <button class="icon-btn" id="themeBtn" title="تم">🌙</button>
   </div>
- </section>
+ </header>
 
- <div class="boardFrame">
-  <div id="board"></div>
- </div>
-
- <section class="panel" style="margin-top:13px">
-  <div class="controls">
-   <div id="dice">🎲</div>
-   <button class="action" id="roll">🎲 انداختن تاس</button>
-   <button class="action" id="newGame">↻ بازی جدید</button>
+ <section class="screen active" id="homeScreen">
+  <div class="hero">
+   <div class="hero-art">🌌🎲</div>
+   <h2>نبرد کهکشانی آغاز می‌شود</h2>
+   <p>چهار فرمانروا، شانزده مهره و یک مسیر تا قهرمانی! دوستانت را دور یک گوشی جمع کن.</p>
+   <button class="primary" id="startBtn">🚀 شروع بازی</button>
   </div>
-  <p id="message">نوبت قرمز است! تاس را بینداز.</p>
-  <div class="small">برای حرکت، روی مهرهٔ قابل انتخاب بزن. برای خروج از خانه باید ۶ بیاوری.</div>
+  <div class="menu-buttons">
+   <button class="secondary" id="rulesBtn">📖 قوانین بازی</button>
+   <button class="secondary" id="settingsBtn">⚙️ تنظیمات</button>
+  </div>
+  <div class="stats">
+   <div class="stat"><strong>۴</strong><span>بازیکن</span></div>
+   <div class="stat"><strong>۱۶</strong><span>مهره</span></div>
+   <div class="stat"><strong id="wins">۰</strong><span>قهرمانی‌ها</span></div>
+  </div>
+  <p class="footer">نسخه محلی • آفلاین • مناسب یک گوشی</p>
  </section>
 
- <section class="panel">
-  <b>📜 گزارش بازی</b>
-  <div id="log">بازی آماده است...</div>
+ <section class="screen" id="gameScreen">
+  <div class="players" id="players"></div>
+  <div class="board-shell"><div id="board"></div></div>
+  <div class="panel battle">
+   <div class="turn-info">
+    <div class="turn-label" id="turnLabel">نوبت بازیکن قرمز</div>
+    <div id="message">تاس را بینداز!</div>
+   </div>
+   <div class="dice-area">
+    <div id="dice">🎲</div>
+    <button class="primary" id="roll">انداختن تاس</button>
+   </div>
+  </div>
+  <div class="game-actions">
+   <button class="secondary" id="homeBtn">⌂ منو</button>
+   <button class="secondary" id="restartBtn">↻ بازی جدید</button>
+   <button class="secondary" id="rulesGameBtn">؟ قوانین</button>
+  </div>
+  <div class="panel log">
+   <div class="section-title">📡 گزارش نبرد</div>
+   <div id="log">بازی آماده است.</div>
+  </div>
+  <div class="footer">برای حرکت، روی مهره درخشان بزن.</div>
  </section>
- <div class="small">NEBULUDO • نسخه آفلاین چهار نفره</div>
-</main>
+</div>
 
 <div class="modal" id="modal">
- <div class="modalBox">
+ <div class="modal-box">
   <h2 id="modalTitle">🏆 قهرمان کهکشان!</h2>
   <p id="modalText"></p>
-  <button class="action" id="playAgain">بازی دوباره</button>
+  <div class="modal-actions">
+   <button class="primary" id="againBtn">بازی دوباره</button>
+   <button class="secondary" id="modalHomeBtn">بازگشت به منو</button>
+  </div>
+ </div>
+</div>
+
+<div class="modal" id="rulesModal">
+ <div class="modal-box">
+  <h2>📖 قوانین NEBULUDO</h2>
+  <div class="help-grid">
+   <div class="help-item"><b>🎲 شروع مهره</b>برای خارج کردن مهره از خانه باید ۶ بیاوری.</div>
+   <div class="help-item"><b>🚀 حرکت</b>مهره به اندازه عدد تاس جلو می‌رود.</div>
+   <div class="help-item"><b>🌟 عدد شش</b>با آوردن ۶ یک نوبت اضافه می‌گیری.</div>
+   <div class="help-item"><b>💥 زدن حریف</b>روی خانه غیرامن حریف بنشین تا به خانه برگردد.</div>
+   <div class="help-item"><b>🛡️ خانه امن</b>در خانه‌های ستاره‌دار مهره زده نمی‌شود.</div>
+   <div class="help-item"><b>🏁 مقصد</b>برای رسیدن به آخر مسیر باید عدد دقیق بیاوری.</div>
+  </div>
+  <p>هر بازیکن باید هر چهار مهره را به مقصد برساند تا برنده شود.</p>
+  <button class="primary" id="closeRules">فهمیدم</button>
+ </div>
+</div>
+
+<div class="modal" id="settingsModal">
+ <div class="modal-box">
+  <h2>⚙️ تنظیمات</h2>
+  <div class="option-row"><span>صدای بازی</span><input class="switch" id="soundToggle" type="checkbox" checked></div>
+  <div class="option-row"><span>تم روشن</span><input class="switch" id="lightToggle" type="checkbox"></div>
+  <div class="option-row"><span>افکت لرزش تاس</span><input class="switch" id="motionToggle" type="checkbox" checked></div>
+  <p class="small">رکورد قهرمانی‌ها روی همین گوشی ذخیره می‌شود.</p>
+  <button class="primary" id="closeSettings">بستن</button>
  </div>
 </div>
 
 <script>
+"use strict";
 const $=id=>document.getElementById(id);
-const board=$("board");
-const diceEl=$("dice");
-const message=$("message");
-const rollBtn=$("roll");
-const logEl=$("log");
-
 const players=[
  {name:"قرمز",color:"red",emoji:"🔴",start:0},
  {name:"سبز",color:"green",emoji:"🟢",start:13},
  {name:"زرد",color:"yellow",emoji:"🟡",start:26},
  {name:"آبی",color:"blue",emoji:"🔵",start:39}
 ];
-
 const path=[
  [6,1],[6,2],[6,3],[6,4],[6,5],
  [5,6],[4,6],[3,6],[2,6],[1,6],[0,6],
@@ -186,235 +305,249 @@ const path=[
  [8,5],[8,4],[8,3],[8,2],[8,1],[8,0],
  [7,0],[6,0]
 ];
-
 const lanes=[
  [[7,1],[7,2],[7,3],[7,4],[7,5],[7,6]],
  [[1,7],[2,7],[3,7],[4,7],[5,7],[6,7]],
  [[7,13],[7,12],[7,11],[7,10],[7,9],[7,8]],
  [[13,7],[12,7],[11,7],[10,7],[9,7],[8,7]]
 ];
-
 const bases=[
  [[1,1],[1,4],[4,1],[4,4]],
  [[1,10],[1,13],[4,10],[4,13]],
  [[10,10],[10,13],[13,10],[13,13]],
  [[10,1],[10,4],[13,1],[13,4]]
 ];
-
-const safeIndices=[0,8,13,21,26,34,39,47];
-const cells=new Map();
-const pawns=players.map(()=>[-1,-1,-1,-1]);
-let turn=0;
-let dice=0;
-let rolled=false;
-let busy=false;
-let gameOver=false;
-let sixCount=0;
+const safe=[0,8,13,21,26,34,39,47];
+const board=$("board"),cells=new Map();
+let pawns=players.map(()=>[-1,-1,-1,-1]);
+let turn=0,dice=0,rolled=false,busy=false,ended=false;
+let soundOn=true,motionOn=true,lightOn=false;
+let audio=null,rollTimer=null;
+let wins=Number(localStorage.getItem("nebuludo-wins")||0);
+$("wins").textContent=wins;
 
 function key(r,c){return r+","+c}
+function cell(r,c){return cells.get(key(r,c))}
 function makeCell(r,c,cls=""){
  const el=document.createElement("div");
- el.className="cell "+cls;
- el.dataset.r=r;el.dataset.c=c;
- board.appendChild(el);
- cells.set(key(r,c),el);
- return el;
+ el.className="cell "+cls;el.dataset.r=r;el.dataset.c=c;
+ board.appendChild(el);cells.set(key(r,c),el);return el;
 }
-function setupBoard(){
- board.innerHTML="";
- cells.clear();
+function buildBoard(){
+ board.innerHTML="";cells.clear();
  for(let r=0;r<15;r++)for(let c=0;c<15;c++)makeCell(r,c);
-
  const zones=[
-  {r:0,c:0,cls:"homeRed"},
-  {r:0,c:9,cls:"homeGreen"},
-  {r:9,c:9,cls:"homeYellow"},
-  {r:9,c:0,cls:"homeBlue"}
+  {r:0,c:0,p:0},{r:0,c:9,p:1},
+  {r:9,c:9,p:2},{r:9,c:0,p:3}
  ];
  zones.forEach(z=>{
   for(let r=z.r;r<z.r+6;r++)for(let c=z.c;c<z.c+6;c++)
-   cells.get(key(r,c)).className="cell "+z.cls;
+   cell(r,c).classList.add("base-"+players[z.p].color);
  });
-
- bases.forEach((group,p)=>{
-  group.forEach(([r,c])=>cells.get(key(r,c)).classList.add("baseSpot"));
+ bases.forEach((spots,p)=>{
+  spots.forEach(([r,c])=>{
+   const pad=document.createElement("div");
+   pad.className="pad";cell(r,c).appendChild(pad);
+  });
  });
-
  path.forEach(([r,c],i)=>{
-  const el=cells.get(key(r,c));
-  el.className="cell track";
-  if(safeIndices.includes(i))el.classList.add("safe");
+  cell(r,c).classList.add("track");
+  if(safe.includes(i))cell(r,c).classList.add("safe");
  });
-
- lanes.forEach((lane,p)=>lane.forEach(([r,c])=>{
-  cells.get(key(r,c)).className="cell lane"+players[p].color[0].toUpperCase()+players[p].color.slice(1);
- }));
-
- cells.get(key(7,7)).className="cell center";
- cells.get(key(7,7)).textContent="✦";
+ lanes.forEach((lane,p)=>lane.forEach(([r,c])=>
+  cell(r,c).classList.add("lane-"+players[p].color)
+ ));
+ const starts=[0,13,26,39];
+ starts.forEach((idx,p)=>{
+  const [r,c]=path[idx];cell(r,c).classList.add("start-"+players[p].color);
+ });
+ for(let r=6;r<=8;r++)for(let c=6;c<=8;c++)
+  cell(r,c).classList.add("center-cell");
+ cell(7,7).innerHTML='<span class="center-star">✦</span>';
 }
 
-function location(p,step,pawnIndex){
- if(step===-1)return bases[p][pawnIndex];
+function position(p,step,i){
+ if(step===-1)return bases[p][i];
  if(step<=50)return path[(players[p].start+step)%52];
  if(step<=56)return lanes[p][step-51];
  return null;
 }
-
-function addToken(el,p,i,selectable){
- const btn=document.createElement("button");
- btn.className="token "+players[p].color;
- btn.textContent=players[p].emoji;
- btn.title=players[p].name+" - مهره "+(i+1);
- btn.disabled=!selectable;
- btn.addEventListener("click",()=>movePawn(p,i));
- el.appendChild(btn);
-}
-
-function draw(){
- cells.forEach(el=>{
-  if(!el.classList.contains("center"))el.innerHTML="";
- });
- pawns.forEach((group,p)=>{
-  group.forEach((step,i)=>{
-   const pos=location(p,step,i);
-   if(!pos)return;
-   const el=cells.get(key(pos[0],pos[1]));
-   if(el)addToken(el,p,i,rolled&&!busy&&p===turn&&isLegal(p,i));
-  });
- });
- $("players").innerHTML=players.map((p,i)=>
-  `<div class="player ${p.color}Text ${i===turn?"active":""}">
-  <b>${p.emoji}</b>${p.name}<br><small>${pawns[i].filter(x=>x===57).length}/4 رسیده</small></div>`
- ).join("");
-}
-
-function isLegal(p,i){
+function legal(p,i){
  const s=pawns[p][i];
  if(s===57)return false;
  if(s===-1)return dice===6;
  return s+dice<=57;
 }
-
-function legalMoves(){
- return pawns[turn].map((_,i)=>i).filter(i=>isLegal(turn,i));
+function possible(){return pawns[turn].map((_,i)=>i).filter(i=>legal(turn,i))}
+function makeToken(p,i,canMove){
+ const b=document.createElement("button");
+ b.className="token "+players[p].color+(canMove?" movable":"");
+ b.textContent=i+1;b.disabled=!canMove;
+ b.setAttribute("aria-label",players[p].name+" مهره "+(i+1));
+ if(canMove)b.addEventListener("click",()=>move(p,i));
+ return b;
 }
-
-function say(t){message.textContent=t}
-function addLog(t){
- logEl.innerHTML=t+"<br>"+logEl.innerHTML;
-}
-
-function nextTurn(extra=false){
- rolled=false;dice=0;busy=false;
- if(!extra)turn=(turn+1)%4;
- rollBtn.disabled=false;
- diceEl.textContent="🎲";
- draw();
- say("نوبت "+players[turn].name+" است. تاس را بینداز!");
-}
-
-function rollDice(){
- if(busy||rolled||gameOver)return;
- busy=true;rollBtn.disabled=true;
- diceEl.classList.add("rolling");
- let count=0;
- const symbols=["⚀","⚁","⚂","⚃","⚄","⚅"];
- const timer=setInterval(()=>{
-  diceEl.textContent=symbols[Math.floor(Math.random()*6)];
-  count++;
-  if(count>=13){
-   clearInterval(timer);
-   dice=1+Math.floor(Math.random()*6);
-   diceEl.classList.remove("rolling");
-   diceEl.textContent=symbols[dice-1];
-   rolled=true;busy=false;
-   if(dice===6)sixCount++;else sixCount=0;
-   draw();
-   const moves=legalMoves();
-   if(moves.length===0){
-    say("عدد "+dice+" آمد؛ مهره‌ای برای حرکت نداری.");
-    addLog(players[turn].name+" تاس "+dice+" آورد.");
-    setTimeout(()=>nextTurn(dice===6),1100);
+function draw(){
+ cells.forEach(el=>{
+  el.querySelectorAll(".token-stack").forEach(x=>x.remove());
+  el.querySelectorAll(".pad .token").forEach(x=>x.remove());
+ });
+ pawns.forEach((group,p)=>{
+  group.forEach((step,i)=>{
+   const pos=position(p,step,i);if(!pos)return;
+   const el=cell(pos[0],pos[1]);if(!el)return;
+   if(step===-1){
+    const pad=el.querySelector(".pad");if(pad)pad.appendChild(makeToken(p,i,rolled&&!busy&&p===turn&&legal(p,i)));
    }else{
-    say(players[turn].name+" عدد "+dice+" آورد! مهره‌ات را انتخاب کن.");
-    addLog(players[turn].name+" تاس "+dice+" آورد.");
+    let stack=el.querySelector(".token-stack");
+    if(!stack){stack=document.createElement("div");stack.className="token-stack";el.appendChild(stack)}
+    stack.appendChild(makeToken(p,i,rolled&&!busy&&p===turn&&legal(p,i)));
+   }
+  });
+ });
+ $("players").innerHTML=players.map((p,i)=>{
+  const home=pawns[i].filter(s=>s===-1).length;
+  const done=pawns[i].filter(s=>s===57).length;
+  return `<div class="player ${turn===i?"active":""}">
+   <span class="orb">${p.emoji}</span>
+   <span class="pname">${p.name}</span>
+   <div class="count">🏠 ${home} | 🏁 ${done}/4</div>
+  </div>`;
+ }).join("");
+ $("turnLabel").textContent="نوبت "+players[turn].name+" "+players[turn].emoji;
+}
+function say(t){$("message").textContent=t}
+function log(t){
+ const row=document.createElement("div");row.textContent="• "+t;
+ $("log").prepend(row);
+ while($("log").children.length>15)$("log").lastChild.remove();
+}
+function tone(freq=440,duration=.12,type="sine"){
+ if(!soundOn)return;
+ try{
+  audio=audio||new (window.AudioContext||window.webkitAudioContext)();
+  if(audio.state==="suspended")audio.resume();
+  const osc=audio.createOscillator(),gain=audio.createGain();
+  osc.type=type;osc.frequency.value=freq;
+  gain.gain.setValueAtTime(.08,audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);
+  osc.connect(gain);gain.connect(audio.destination);
+  osc.start();osc.stop(audio.currentTime+duration);
+ }catch(e){}
+}
+function nextTurn(extra=false){
+ rolled=false;busy=false;dice=0;
+ if(!extra)turn=(turn+1)%4;
+ $("roll").disabled=false;$("dice").textContent="🎲";
+ draw();say(extra?"۶ آوردی! دوباره تاس بینداز.":"نوبت "+players[turn].name+" است؛ تاس را بینداز.");
+}
+function roll(){
+ if(busy||rolled||ended)return;
+ busy=true;$("roll").disabled=true;
+ let count=0;const faces=["⚀","⚁","⚂","⚃","⚄","⚅"];
+ if(motionOn)$("dice").classList.add("rolling");
+ rollTimer=setInterval(()=>{
+  $("dice").textContent=faces[Math.floor(Math.random()*6)];
+  count++;
+  if(count>=15){
+   clearInterval(rollTimer);rollTimer=null;
+   $("dice").classList.remove("rolling");
+   dice=1+Math.floor(Math.random()*6);
+   $("dice").textContent=faces[dice-1];
+   tone(260+dice*75,.2,"triangle");
+   rolled=true;busy=false;draw();
+   const moves=possible();
+   if(!moves.length){
+    say("عدد "+dice+" آمد؛ حرکت ممکنی نداری.");
+    log(players[turn].name+" عدد "+dice+" آورد، اما حرکتی نداشت.");
+    setTimeout(()=>nextTurn(dice===6),950);
+   }else{
+    say(dice===6?"🌟 عدد ۶! یک مهره را انتخاب کن.":"مهرهٔ درخشان را برای حرکت انتخاب کن.");
    }
   }
- },65);
+ },motionOn?65:35);
 }
-
-function movePawn(p,i){
- if(!rolled||busy||p!==turn||!isLegal(p,i)||gameOver)return;
- busy=true;
- rollBtn.disabled=true;
+function move(p,i){
+ if(!rolled||busy||ended||p!==turn||!legal(p,i))return;
+ busy=true;$("roll").disabled=true;
  const old=pawns[p][i];
- let target=old===-1?0:old+dice;
+ const target=old===-1?0:old+dice;
  pawns[p][i]=target;
+ let captured=false;
  if(target<=50){
-  const absolute=(players[p].start+target)%52;
-  if(!safeIndices.includes(absolute)){
+  const global=(players[p].start+target)%52;
+  if(!safe.includes(global)){
    players.forEach((op,opIndex)=>{
     if(opIndex===p)return;
-    pawns[opIndex].forEach((step,j)=>{
-     if(step>=0&&step<=50&&
-       (op.start+step)%52===absolute){
-      pawns[opIndex][j]=-1;
-      addLog(players[p].name+" مهره "+players[opIndex].name+" را زد!");
-      say("💥 برخورد! مهره حریف به خانه برگشت.");
+    pawns[opIndex].forEach((s,j)=>{
+     if(s>=0&&s<=50&&(players[opIndex].start+s)%52===global){
+      pawns[opIndex][j]=-1;captured=true;
      }
     });
    });
   }
  }
- if(target===57){
-  addLog(players[p].name+" یک مهره را به مقصد رساند! 🏆");
-  say("✨ یک مهره به مقصد رسید!");
- }else if(old===-1){
-  addLog(players[p].name+" یک مهره را وارد بازی کرد.");
-  say("🚀 مهره وارد مسیر شد!");
- }else{
-  addLog(players[p].name+" حرکت کرد.");
-  say("حرکت انجام شد!");
- }
- draw();
-
+ draw();tone(520,.12,"triangle");
+ if(captured){say("💥 برخورد! مهرهٔ حریف به خانه برگشت.");log(players[p].name+" مهرهٔ حریف را زد!");tone(170,.3,"sawtooth")}
+ else if(old===-1){say("🚀 مهره وارد مسیر شد!");log(players[p].name+" مهره‌ای را وارد بازی کرد.")}
+ else if(target===57){say("🏁 یک مهره به مقصد رسید!");log(players[p].name+" یک مهره را به مقصد رساند.");tone(850,.35)}
+ else{say("حرکت انجام شد.");log(players[p].name+" حرکت کرد.")}
  if(pawns[p].every(s=>s===57)){
-  gameOver=true;
-  $("modalTitle").textContent="🏆 قهرمان کهکشان!";
-  $("modalText").textContent="تبریک! بازیکن "+players[p].name+" برنده بازی NEBULUDO شد!";
-  $("modal").style.display="flex";
+  ended=true;
+  wins++;localStorage.setItem("nebuludo-wins",String(wins));
+  $("wins").textContent=wins;
+  setTimeout(()=>{
+   $("modalTitle").textContent="🏆 قهرمان کهکشان!";
+   $("modalText").textContent="تبریک! "+players[p].name+" با رساندن هر چهار مهره به مقصد، برندهٔ NEBULUDO شد.";
+   $("modal").classList.add("show");tone(700,.5);
+  },450);
   return;
  }
-
  const extra=dice===6;
- if(extra){
-  say("🌟 عدد ۶! دوباره تاس بینداز.");
-  setTimeout(()=>nextTurn(true),850);
- }else{
-  setTimeout(()=>nextTurn(false),850);
- }
+ setTimeout(()=>nextTurn(extra),700);
 }
-
 function newGame(){
- pawns.forEach(group=>group.fill(-1));
- turn=0;dice=0;rolled=false;busy=false;gameOver=false;sixCount=0;
- rollBtn.disabled=false;
- diceEl.textContent="🎲";
- $("modal").style.display="none";
- logEl.textContent="بازی جدید شروع شد!";
- draw();
- say("نوبت قرمز است! برای شروع تاس بینداز.");
+ if(rollTimer){clearInterval(rollTimer);rollTimer=null}
+ pawns=players.map(()=>[-1,-1,-1,-1]);
+ turn=0;dice=0;rolled=false;busy=false;ended=false;
+ $("modal").classList.remove("show");
+ $("roll").disabled=false;$("dice").textContent="🎲";
+ $("log").innerHTML="";
+ draw();say("بازی جدید! نوبت قرمز است.");
+ log("نبرد تازه آغاز شد.");
 }
+function showScreen(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ $(id).classList.add("active");
+}
+$("startBtn").onclick=()=>{showScreen("gameScreen");newGame()};
+$("roll").onclick=roll;
+$("restartBtn").onclick=()=>{if(confirm("بازی از اول شروع شود؟"))newGame()};
+$("homeBtn").onclick=()=>{if(confirm("به منوی اصلی برگردی؟"))showScreen("homeScreen")};
+$("rulesBtn").onclick=$("rulesGameBtn").onclick=()=>$("rulesModal").classList.add("show");
+$("closeRules").onclick=()=>$("rulesModal").classList.remove("show");
+$("settingsBtn").onclick=()=>$("settingsModal").classList.add("show");
+$("closeSettings").onclick=()=>$("settingsModal").classList.remove("show");
+$("againBtn").onclick=()=>{newGame();$("modal").classList.remove("show")};
+$("modalHomeBtn").onclick=()=>{$("modal").classList.remove("show");showScreen("homeScreen")};
+$("soundBtn").onclick=()=>{
+ soundOn=!soundOn;$("soundBtn").textContent=soundOn?"🔊":"🔇";
+ $("soundToggle").checked=soundOn;
+};
+$("soundToggle").onchange=e=>{
+ soundOn=e.target.checked;$("soundBtn").textContent=soundOn?"🔊":"🔇";
+};
+$("themeBtn").onclick=()=>{
+ lightOn=!lightOn;document.body.classList.toggle("light",lightOn);
+ $("lightToggle").checked=lightOn;$("themeBtn").textContent=lightOn?"☀️":"🌙";
+};
+$("lightToggle").onchange=e=>{
+ lightOn=e.target.checked;document.body.classList.toggle("light",lightOn);
+ $("themeBtn").textContent=lightOn?"☀️":"🌙";
+};
+$("motionToggle").onchange=e=>motionOn=e.target.checked;
 
-rollBtn.addEventListener("click",rollDice);
-$("newGame").addEventListener("click",()=>{
- if(confirm("بازی از اول شروع شود؟"))newGame();
-});
-$("playAgain").addEventListener("click",newGame);
-
-setupBoard();
-draw();
+buildBoard();draw();
 </script>
 </body>
 </html>
