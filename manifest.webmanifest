@@ -1,0 +1,19 @@
+{
+  "name": "هفت گناه کبیره | SEVEN SINS",
+  "short_name": "SEVEN SINS",
+  "description": "قلمرو هفت گناه کبیره",
+  "start_url": "/vl-infinite/",
+  "scope": "/vl-infinite/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07050d",
+  "theme_color": "#090611",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
