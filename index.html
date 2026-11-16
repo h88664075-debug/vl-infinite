@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+ <link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#090611">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>هفت گناه کبیره | SEVEN SINS</title>
@@ -987,6 +989,12 @@ else{
 
 renderAll();
 loadFirebase();
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .catch(error => console.error("PWA:", error));
+  });
+}
 </script>
 </body>
- </html>
