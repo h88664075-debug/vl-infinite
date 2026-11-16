@@ -1,13 +1,515 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#a855f7"/>
-      <stop offset="55%" stop-color="#ec4899"/>
-      <stop offset="100%" stop-color="#fbbf24"/>
-    </linearGradient>
-  </defs>
-  <rect width="512" height="512" rx="100" fill="#07050d"/>
-  <text x="256" y="355" text-anchor="middle"
-    font-family="serif" font-size="330" font-weight="bold"
-    fill="url(#g)">7</text>
-</svg>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d1b">
+<title>ربات‌ساز سروش پلاس</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root{
+--bg:#080d1b;--side:#0b1222;--panel:#111b30;--panel2:#17243d;
+--line:#263653;--text:#f1f5ff;--muted:#91a2c2;
+--blue:#438cff;--purple:#9864ff;--cyan:#36dafa;
+--green:#36d5a1;--red:#ff6682;--yellow:#ffc66b
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 75% 0%,#192b4c 0,transparent 38%),var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{display:flex;min-height:100vh}
+.sidebar{width:250px;background:var(--side);border-left:1px solid var(--line);padding:22px 15px;display:flex;flex-direction:column;gap:23px;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:12px;padding:5px}
+.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;font-size:23px;box-shadow:0 0 24px #477cff55}
+.brand strong{font-size:14px;display:block}
+.brand small{color:var(--muted);font-size:11px}
+.nav-title{font-size:10px;color:#7184a8;padding:0 12px}
+.nav{display:grid;gap:6px}
+.nav button{background:transparent;border:1px solid transparent;color:var(--muted);padding:11px 12px;text-align:right;border-radius:11px;display:flex;gap:12px;align-items:center;font-size:13px}
+.nav button:hover,.nav button.active{background:#1b2b49;border-color:#334e7c;color:white}
+.nav .ico{font-size:18px;width:23px;text-align:center}
+.sidefoot{margin-top:auto}
+.sidebox{border:1px solid var(--line);background:#121e34;border-radius:13px;padding:13px;font-size:12px;color:var(--muted);line-height:2}
+.main{flex:1;min-width:0;padding:26px 30px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:27px}
+.topbar h1{font-size:22px;margin:0}
+.topbar p{font-size:12px;color:var(--muted);margin:5px 0}
+.actions{display:flex;align-items:center;gap:9px}
+.avatar{width:39px;height:39px;border-radius:12px;background:#283d65;display:grid;place-items:center}
+.btn{border:0;border-radius:10px;padding:10px 15px;background:linear-gradient(120deg,var(--blue),var(--purple));color:white;font-weight:700;font-size:12px}
+.btn:hover{filter:brightness(1.12)}
+.btn.secondary{background:#202f4d;border:1px solid var(--line);box-shadow:none}
+.btn.danger{background:#56263c;box-shadow:none}
+.btn.green{background:#17634f;box-shadow:none}
+.btn.small{padding:7px 10px;font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.stat,.panel,.card{background:linear-gradient(145deg,#14213a,#10182a);border:1px solid var(--line);border-radius:16px}
+.stat{padding:17px}
+.stat .label{font-size:11px;color:var(--muted)}
+.stat .num{font-size:26px;font-weight:800;margin-top:8px}
+.stat .symbol{float:left;font-size:21px}
+.section{margin-top:25px}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
+.sectionhead h2{font-size:16px;margin:0}
+.sectionhead p{font-size:11px;color:var(--muted);margin:4px 0}
+.panel{padding:17px}
+.botgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.botcard{background:linear-gradient(145deg,#192946,#111a2d);border:1px solid var(--line);border-radius:14px;padding:15px}
+.botcard:hover{border-color:#5278bb}
+.boticon{width:43px;height:43px;border-radius:13px;background:#263c64;display:grid;place-items:center;font-size:22px;margin-bottom:11px}
+.botcard h3{font-size:14px;margin:0 0 5px}
+.muted{color:var(--muted);font-size:11px}
+.botmeta{display:flex;justify-content:space-between;margin:13px 0;color:var(--muted);font-size:11px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:5px}
+.search{width:100%;background:#0b1426;border:1px solid var(--line);padding:11px 13px;color:white;border-radius:10px;outline:none}
+input,textarea,select{background:#0b1426;border:1px solid var(--line);padding:10px 12px;color:white;border-radius:9px;width:100%;outline:none}
+textarea{min-height:85px;resize:vertical}
+label{font-size:11px;color:#b8c5df;display:block;margin:11px 0 6px}
+.row{display:flex;gap:9px;align-items:center}
+.row>*{min-width:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:480px}
+th,td{text-align:right;padding:12px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:500}
+td{color:#e1eaff}
+.badge{font-size:10px;border-radius:20px;padding:4px 8px;background:#193d39;color:#69e6bd}
+.badge.off{background:#42273a;color:#ff9bb0}
+.empty{text-align:center;color:var(--muted);padding:28px;font-size:12px}
+.hidden{display:none!important}
+.page{display:none}
+.page.active{display:block}
+.preview{background:#0b1425;border:1px solid var(--line);border-radius:17px;padding:14px;max-width:440px;margin:auto}
+.chathead{display:flex;align-items:center;gap:10px;padding:9px;border-bottom:1px solid var(--line);margin-bottom:13px}
+.chatbubble{background:#1c3152;border-radius:13px 13px 4px 13px;padding:11px;margin:9px 0;font-size:12px;max-width:90%;line-height:1.9}
+.chatbubble.user{background:#26354c;margin-right:auto;border-radius:13px 13px 13px 4px}
+.chatbuttons{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:13px}
+.chatbuttons button{background:#182a49;border:1px solid #35527e;color:white;padding:9px;border-radius:9px;font-size:11px}
+.log{padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.log small{display:block;color:var(--muted);margin-top:4px}
+.modalbg{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:15px;z-index:10}
+.modalbg.show{display:flex}
+.modal{width:min(520px,100%);background:#111d32;border:1px solid #35496c;border-radius:17px;padding:20px;max-height:90vh;overflow:auto}
+.modalhead{display:flex;justify-content:space-between;align-items:center}
+.modalhead h3{margin:0;font-size:16px}
+.close{background:transparent;border:0;color:white;font-size:23px}
+.toast{position:fixed;bottom:20px;left:20px;background:#1b3553;border:1px solid #43689b;padding:12px 17px;border-radius:11px;font-size:12px;display:none;z-index:20}
+.toast.show{display:block}
+hr{border:0;border-top:1px solid var(--line);margin:17px 0}
+@media(max-width:900px){.sidebar{width:205px}.main{padding:20px}.botgrid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){
+.app{display:block}.sidebar{width:auto;border-left:0;border-bottom:1px solid var(--line);padding:12px;gap:10px}
+.brand{padding:3px}.nav-title,.sidefoot{display:none}.nav{display:flex;overflow:auto;gap:5px}
+.nav button{white-space:nowrap;padding:8px 10px;font-size:11px}
+.main{padding:17px 13px}.topbar h1{font-size:18px}.topbar p{font-size:10px}
+.botgrid{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}.stat .num{font-size:22px}
+.top-actions .hide-mobile{display:none}.two,.three{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand">
+  <div class="logo">✦</div>
+  <div><strong>ربات‌ساز سروش پلاس</strong><small>استودیو مدیریت ربات</small></div>
+ </div>
+ <div>
+  <div class="nav-title">مدیریت اصلی</div>
+  <nav class="nav">
+   <button class="active" data-page="dashboard"><span class="ico">▦</span>داشبورد</button>
+   <button data-page="bots"><span class="ico">🤖</span>ربات‌های من</button>
+   <button data-page="builder"><span class="ico">🧩</span>طراحی منو</button>
+   <button data-page="replies"><span class="ico">💬</span>پاسخ خودکار</button>
+   <button data-page="users"><span class="ico">👥</span>کاربران</button>
+   <button data-page="analytics"><span class="ico">📊</span>گزارش‌ها</button>
+  </nav>
+ </div>
+ <div>
+  <div class="nav-title">ابزارها</div>
+  <nav class="nav">
+   <button data-page="preview"><span class="ico">📱</span>پیش‌نمایش</button>
+   <button data-page="settings"><span class="ico">⚙️</span>تنظیمات</button>
+  </nav>
+ </div>
+ <div class="sidefoot">
+  <div class="sidebox">✦ فضای کاری شخصی<br><strong style="color:#fff">ذخیره‌سازی روی دستگاه</strong><br>اطلاعات این نسخه در مرورگر شما ذخیره می‌شود.</div>
+ </div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+ <div><h1 id="pageTitle">داشبورد مدیریت</h1><p id="pageSub">مرکز فرماندهی ربات‌های شما</p></div>
+ <div class="actions">
+  <button class="btn secondary hide-mobile" onclick="exportData()">⬇ پشتیبان</button>
+  <button class="btn" onclick="openBotModal()">＋ ساخت ربات</button>
+  <div class="avatar">👤</div>
+ </div>
+</header>
+
+<section id="dashboard" class="page active">
+ <div class="stats">
+  <div class="stat"><span class="symbol">🤖</span><div class="label">کل ربات‌ها</div><div class="num" id="statBots">۰</div></div>
+  <div class="stat"><span class="symbol">⚡</span><div class="label">ربات‌های فعال</div><div class="num" id="statActive">۰</div></div>
+  <div class="stat"><span class="symbol">💬</span><div class="label">قوانین پاسخ</div><div class="num" id="statReplies">۰</div></div>
+  <div class="stat"><span class="symbol">👥</span><div class="label">کاربران ثبت‌شده</div><div class="num" id="statUsers">۰</div></div>
+ </div>
+ <div class="section">
+  <div class="sectionhead"><div><h2>ربات‌های اخیر</h2><p>مدیریت سریع پروژه‌های شما</p></div><button class="btn secondary small" onclick="go('bots')">همه ربات‌ها</button></div>
+  <div class="botgrid" id="recentBots"></div>
+ </div>
+ <div class="section">
+  <div class="sectionhead"><div><h2>آخرین فعالیت‌ها</h2><p>رویدادهای ثبت‌شده در برنامه</p></div></div>
+  <div class="panel" id="recentLogs"></div>
+ </div>
+</section>
+
+<section id="bots" class="page">
+ <div class="sectionhead"><div><h2>مدیریت ربات‌ها</h2><p>ساخت، ویرایش و سازمان‌دهی ربات‌ها</p></div><button class="btn" onclick="openBotModal()">＋ ربات جدید</button></div>
+ <input class="search" id="botSearch" placeholder="جست‌وجو در نام ربات‌ها..." oninput="renderBots()">
+ <div class="section botgrid" id="allBots"></div>
+</section>
+
+<section id="builder" class="page">
+ <div class="sectionhead"><div><h2>طراح منو و دکمه</h2><p>ساخت منوی تعاملی برای ربات انتخاب‌شده</p></div></div>
+ <div class="panel">
+  <label>انتخاب ربات</label><select id="menuBot" onchange="renderMenus()"></select>
+  <div class="two">
+   <div><label>عنوان دکمه</label><input id="menuLabel" placeholder="مثلاً خدمات ما"></div>
+   <div><label>متن پاسخ دکمه</label><input id="menuResponse" placeholder="به بخش خدمات خوش آمدید"></div>
+  </div>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="addMenu()">＋ افزودن دکمه</button></div>
+  <hr>
+  <h3 style="font-size:14px">دکمه‌های ساخته‌شده</h3>
+  <div id="menuList"></div>
+ </div>
+</section>
+
+<section id="replies" class="page">
+ <div class="sectionhead"><div><h2>مدیریت پاسخ خودکار</h2><p>تعریف کلمه کلیدی و پاسخ مناسب</p></div></div>
+ <div class="panel">
+  <label>ربات</label><select id="replyBot"></select>
+  <div class="two">
+   <div><label>کلمه یا عبارت کلیدی</label><input id="replyKey" placeholder="مثلاً قیمت"></div>
+   <div><label>نوع تطبیق</label><select id="replyMatch"><option value="contains">شامل عبارت باشد</option><option value="exact">کاملاً برابر باشد</option></select></div>
+  </div>
+  <label>متن پاسخ</label><textarea id="replyText" placeholder="پاسخ ربات را بنویسید..."></textarea>
+  <div style="margin-top:13px"><button class="btn" onclick="addReply()">＋ ثبت پاسخ</button></div>
+  <hr><h3 style="font-size:14px">قوانین پاسخ موجود</h3>
+  <div class="tablewrap"><table><thead><tr><th>ربات</th><th>کلیدواژه</th><th>نوع</th><th>پاسخ</th><th>عملیات</th></tr></thead><tbody id="replyTable"></tbody></table></div>
+ </div>
+</section>
+
+<section id="users" class="page">
+ <div class="sectionhead"><div><h2>مدیریت کاربران</h2><p>فهرست نمونه کاربران ثبت‌شده در فضای کاری</p></div><button class="btn" onclick="addUser()">＋ افزودن کاربر آزمایشی</button></div>
+ <div class="panel">
+  <input class="search" id="userSearch" placeholder="جست‌وجوی کاربر..." oninput="renderUsers()">
+  <div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>نام</th><th>شناسه</th><th>وضعیت</th><th>تاریخ ثبت</th><th>عملیات</th></tr></thead><tbody id="userTable"></tbody></table></div>
+ </div>
+ <p class="muted">این فهرست محلی است؛ هنوز به کاربران واقعی سروش متصل نیست.</p>
+</section>
+
+<section id="analytics" class="page">
+ <div class="sectionhead"><div><h2>گزارش و آمار</h2><p>وضعیت پروژه‌های ذخیره‌شده روی دستگاه</p></div></div>
+ <div class="stats">
+  <div class="stat"><div class="label">کل منوها</div><div class="num" id="anaMenus">۰</div></div>
+  <div class="stat"><div class="label">کل پاسخ‌ها</div><div class="num" id="anaReplies">۰</div></div>
+  <div class="stat"><div class="label">رویدادها</div><div class="num" id="anaLogs">۰</div></div>
+  <div class="stat"><div class="label">کاربران محلی</div><div class="num" id="anaUsers">۰</div></div>
+ </div>
+ <div class="section panel">
+  <h3 style="font-size:14px">ترکیب پروژه‌ها</h3>
+  <div id="analyticsText" class="muted"></div>
+ </div>
+</section>
+
+<section id="preview" class="page">
+ <div class="sectionhead"><div><h2>پیش‌نمایش ربات</h2><p>آزمایش منوها و پاسخ‌ها در محیط نمایشی</p></div></div>
+ <div class="panel">
+  <label>انتخاب ربات</label><select id="previewBot" onchange="renderPreview()"></select>
+  <div class="preview" style="margin-top:15px">
+   <div class="chathead"><div class="boticon" style="margin:0">🤖</div><div><strong id="previewName">ربات شما</strong><div class="muted">پیش‌نمایش محلی</div></div></div>
+   <div class="chatbubble">سلام! به ربات خوش آمدید. یکی از گزینه‌ها را انتخاب کنید.</div>
+   <div id="previewMessages"></div>
+   <div id="previewButtons" class="chatbuttons"></div>
+   <div class="row" style="margin-top:13px"><input id="testMessage" placeholder="پیام آزمایشی بنویسید..."><button class="btn small" onclick="sendPreview()">ارسال</button></div>
+  </div>
+ </div>
+</section>
+
+<section id="settings" class="page">
+ <div class="sectionhead"><div><h2>تنظیمات برنامه</h2><p>مدیریت اطلاعات و پشتیبان‌گیری</p></div></div>
+ <div class="panel">
+  <h3 style="font-size:14px">اطلاعات فضای کاری</h3>
+  <label>نام فضای کاری</label><input id="workspaceName" value="فضای کاری من">
+  <button class="btn" style="margin-top:12px" onclick="saveWorkspace()">ذخیره تنظیمات</button>
+  <hr>
+  <h3 style="font-size:14px">پشتیبان‌گیری</h3>
+  <p class="muted">از اطلاعات محلی خود فایل پشتیبان JSON تهیه کنید یا نسخه قبلی را بازیابی کنید.</p>
+  <div class="row" style="flex-wrap:wrap">
+   <button class="btn secondary" onclick="exportData()">⬇ دریافت پشتیبان</button>
+   <button class="btn secondary" onclick="document.getElementById('importFile').click()">⬆ بازیابی پشتیبان</button>
+   <input type="file" id="importFile" accept=".json,application/json" class="hidden" onchange="importData(event)">
+  </div>
+  <hr>
+  <h3 style="font-size:14px">اتصال به سروش پلاس</h3>
+  <p class="muted">اتصال واقعی هنوز پیکربندی نشده است. برای راه‌اندازی به مستندات API معتبر و سرور امن نیاز داریم. توکن را در این فایل یا داخل برنامه وارد نکنید.</p>
+  <span class="badge off">اتصال برقرار نشده</span>
+  <hr>
+  <button class="btn danger" onclick="resetData()">پاک کردن همه اطلاعات محلی</button>
+ </div>
+</section>
+</main>
+</div>
+
+<div class="modalbg" id="botModal">
+ <div class="modal">
+  <div class="modalhead"><h3 id="botModalTitle">ساخت ربات جدید</h3><button class="close" onclick="closeModal()">×</button></div>
+  <label>نام ربات</label><input id="botName" placeholder="مثلاً ربات پشتیبانی">
+  <label>توضیحات</label><textarea id="botDesc" placeholder="توضیح کوتاه درباره کاربرد ربات"></textarea>
+  <label>نماد ربات</label><select id="botIcon"><option>🤖</option><option>🚀</option><option>💬</option><option>🛍️</option><option>🎓</option><option>🎮</option><option>🧠</option><option>🌟</option></select>
+  <div class="row" style="margin-top:17px"><button class="btn" onclick="saveBot()">ذخیره ربات</button><button class="btn secondary" onclick="closeModal()">انصراف</button></div>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY='soroush_studio_data_v1';
+let data=load();
+let editingBot=null;
+let currentPreviewMessages=[];
+
+function initialData(){
+ return {bots:[],menus:[],replies:[],users:[],logs:[],workspace:'فضای کاری من'};
+}
+function load(){
+ try{return {...initialData(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}
+ catch(e){return initialData()}
+}
+function save(){
+ localStorage.setItem(KEY,JSON.stringify(data));
+ refresh();
+}
+function fa(n){return Number(n||0).toLocaleString('fa-IR')}
+function esc(s){
+ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function toast(msg){
+ let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+ setTimeout(()=>t.classList.remove('show'),2500);
+}
+function log(action,detail){
+ data.logs.unshift({action,detail,time:new Date().toLocaleString('fa-IR')});
+ data.logs=data.logs.slice(0,100);
+}
+const titles={
+ dashboard:['داشبورد مدیریت','مرکز فرماندهی ربات‌های شما'],
+ bots:['ربات‌های من','مدیریت پروژه‌های رباتی'],
+ builder:['طراحی منو','ساخت دکمه‌ها و مسیرهای تعاملی'],
+ replies:['پاسخ خودکار','تعریف قوانین پاسخ‌گویی'],
+ users:['مدیریت کاربران','دفترچه کاربران فضای کاری'],
+ analytics:['گزارش‌ها','آمار اطلاعات ذخیره‌شده'],
+ preview:['پیش‌نمایش','آزمایش رفتار ربات در محیط نمایشی'],
+ settings:['تنظیمات','مدیریت فضای کاری و پشتیبان']
+};
+function go(page){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(page).classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+ document.getElementById('pageTitle').textContent=titles[page][0];
+ document.getElementById('pageSub').textContent=titles[page][1];
+ if(page==='preview')renderPreview();
+ if(page==='builder')renderMenus();
+ if(page==='replies')renderReplies();
+}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
+
+function openBotModal(id=null){
+ editingBot=id;
+ let bot=data.bots.find(x=>x.id===id);
+ document.getElementById('botModalTitle').textContent=bot?'ویرایش ربات':'ساخت ربات جدید';
+ document.getElementById('botName').value=bot?.name||'';
+ document.getElementById('botDesc').value=bot?.desc||'';
+ document.getElementById('botIcon').value=bot?.icon||'🤖';
+ document.getElementById('botModal').classList.add('show');
+}
+function closeModal(){document.getElementById('botModal').classList.remove('show')}
+function saveBot(){
+ let name=document.getElementById('botName').value.trim();
+ if(!name){toast('نام ربات را وارد کنید');return}
+ let desc=document.getElementById('botDesc').value.trim();
+ let icon=document.getElementById('botIcon').value;
+ if(editingBot){
+  let b=data.bots.find(x=>x.id===editingBot);
+  if(b){b.name=name;b.desc=desc;b.icon=icon}
+  log('ویرایش ربات',name);
+ }else{
+  let id=crypto.randomUUID?crypto.randomUUID():String(Date.now());
+  data.bots.push({id,name,desc,icon,active:true,created:new Date().toLocaleDateString('fa-IR')});
+  log('ساخت ربات',name);
+ }
+ save();closeModal();toast('ربات ذخیره شد');
+}
+function toggleBot(id){
+ let b=data.bots.find(x=>x.id===id);if(!b)return;
+ b.active=!b.active;log('تغییر وضعیت',b.name);
+ save();toast('وضعیت ربات تغییر کرد');
+}
+function deleteBot(id){
+ let b=data.bots.find(x=>x.id===id);if(!b)return;
+ if(!confirm('ربات و منوها و پاسخ‌های مرتبط با آن حذف شوند؟'))return;
+ data.bots=data.bots.filter(x=>x.id!==id);
+ data.menus=data.menus.filter(x=>x.botId!==id);
+ data.replies=data.replies.filter(x=>x.botId!==id);
+ log('حذف ربات',b.name);save();toast('ربات حذف شد');
+}
+function botCard(b){
+ return `<article class="botcard">
+ <div class="boticon">${esc(b.icon)}</div>
+ <h3>${esc(b.name)}</h3><div class="muted">${esc(b.desc||'بدون توضیحات')}</div>
+ <div class="botmeta"><span>${b.active?'<i class="dot"></i>فعال':'غیرفعال'}</span><span>${esc(b.created||'')}</span></div>
+ <div class="row"><button class="btn secondary small" onclick="openBotModal('${b.id}')">ویرایش</button>
+ <button class="btn secondary small" onclick="toggleBot('${b.id}')">${b.active?'توقف':'فعال‌سازی'}</button>
+ <button class="btn danger small" onclick="deleteBot('${b.id}')">حذف</button></div>
+ </article>`;
+}
+function renderBots(){
+ let q=(document.getElementById('botSearch')?.value||'').toLowerCase();
+ let arr=data.bots.filter(b=>b.name.toLowerCase().includes(q));
+ document.getElementById('allBots').innerHTML=arr.length?arr.map(botCard).join(''):'<div class="empty">هنوز رباتی ساخته نشده است.</div>';
+}
+function addMenu(){
+ let botId=document.getElementById('menuBot').value;
+ let label=document.getElementById('menuLabel').value.trim();
+ let response=document.getElementById('menuResponse').value.trim();
+ if(!botId){toast('ابتدا یک ربات بسازید');return}
+ if(!label||!response){toast('عنوان و پاسخ را کامل کنید');return}
+ data.menus.push({id:String(Date.now()),botId,label,response});
+ log('افزودن دکمه',label);save();
+ document.getElementById('menuLabel').value='';
+ document.getElementById('menuResponse').value='';
+ toast('دکمه اضافه شد');
+}
+function renderMenus(){
+ fillBotSelect('menuBot');
+ let id=document.getElementById('menuBot').value;
+ let arr=data.menus.filter(m=>m.botId===id);
+ document.getElementById('menuList').innerHTML=arr.length?arr.map(m=>`
+ <div class="log"><strong>${esc(m.label)}</strong><small>${esc(m.response)}</small>
+ <button class="btn danger small" onclick="deleteMenu('${m.id}')">حذف</button></div>`).join(''):'<div class="empty">هنوز دکمه‌ای ساخته نشده است.</div>';
+}
+function deleteMenu(id){
+ data.menus=data.menus.filter(m=>m.id!==id);log('حذف دکمه','منوی ربات');save();toast('دکمه حذف شد');
+}
+function addReply(){
+ let botId=document.getElementById('replyBot').value;
+ let key=document.getElementById('replyKey').value.trim();
+ let text=document.getElementById('replyText').value.trim();
+ let match=document.getElementById('replyMatch').value;
+ if(!botId){toast('ابتدا ربات بسازید');return}
+ if(!key||!text){toast('کلیدواژه و پاسخ را وارد کنید');return}
+ data.replies.push({id:String(Date.now()),botId,key,text,match});
+ log('افزودن پاسخ خودکار',key);save();
+ document.getElementById('replyKey').value='';
+ document.getElementById('replyText').value='';
+ toast('قانون پاسخ ثبت شد');
+}
+function renderReplies(){
+ fillBotSelect('replyBot');
+ let rows=data.replies.map(r=>{
+ let b=data.bots.find(x=>x.id===r.botId);
+ return `<tr><td>${esc(b?.name||'حذف‌شده')}</td><td>${esc(r.key)}</td><td>${r.match==='exact'?'برابر':'شامل'}</td><td>${esc(r.text.slice(0,55))}</td><td><button class="btn danger small" onclick="deleteReply('${r.id}')">حذف</button></td></tr>`;
+ }).join('');
+ document.getElementById('replyTable').innerHTML=rows||'<tr><td colspan="5" class="empty">قانونی ثبت نشده است.</td></tr>';
+}
+function deleteReply(id){
+ data.replies=data.replies.filter(r=>r.id!==id);log('حذف پاسخ','قانون پاسخ خودکار');save();toast('پاسخ حذف شد');
+}
+function addUser(){
+ let name=prompt('نام نمایشی کاربر را وارد کنید:');if(!name?.trim())return;
+ let id='local_'+Date.now();
+ data.users.push({id,name:name.trim(),date:new Date().toLocaleDateString('fa-IR'),status:'آزمایشی'});
+ log('افزودن کاربر آزمایشی',name);save();toast('کاربر محلی اضافه شد');
+}
+function renderUsers(){
+ let q=(document.getElementById('userSearch')?.value||'').toLowerCase();
+ let arr=data.users.filter(u=>u.name.toLowerCase().includes(q)||u.id.toLowerCase().includes(q));
+ document.getElementById('userTable').innerHTML=arr.length?arr.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.id)}</td><td><span class="badge">${esc(u.status)}</span></td><td>${esc(u.date)}</td><td><button class="btn danger small" onclick="deleteUser('${u.id}')">حذف</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">کاربری وجود ندارد.</td></tr>';
+}
+function deleteUser(id){
+ data.users=data.users.filter(u=>u.id!==id);log('حذف کاربر','کاربر محلی');save();
+}
+function fillBotSelect(id){
+ let el=document.getElementById(id);if(!el)return;
+ let old=el.value;
+ el.innerHTML=data.bots.map(b=>`<option value="${esc(b.id)}">${esc(b.name)}</option>`).join('');
+ if(data.bots.some(b=>b.id===old))el.value=old;
+}
+function renderPreview(){
+ fillBotSelect('previewBot');
+ let id=document.getElementById('previewBot').value;
+ let b=data.bots.find(x=>x.id===id);
+ document.getElementById('previewName').textContent=b?.name||'ربات شما';
+ document.getElementById('previewButtons').innerHTML=data.menus.filter(m=>m.botId===id).map(m=>`<button onclick="previewMenu('${m.id}')">${esc(m.label)}</button>`).join('');
+ document.getElementById('previewMessages').innerHTML=currentPreviewMessages.map(m=>`<div class="chatbubble ${m.user?'user':''}">${esc(m.text)}</div>`).join('');
+}
+function previewMenu(id){
+ let m=data.menus.find(x=>x.id===id);if(!m)return;
+ currentPreviewMessages.push({text:m.label,user:true},{text:m.response,user:false});
+ renderPreview();
+}
+function sendPreview(){
+ let value=document.getElementById('testMessage').value.trim();if(!value)return;
+ let id=document.getElementById('previewBot').value;
+ currentPreviewMessages.push({text:value,user:true});
+ let r=data.replies.find(x=>x.botId===id&&(x.match==='exact'?value===x.key:value.includes(x.key)));
+ currentPreviewMessages.push({text:r?.text||'برای این پیام پاسخ خودکاری تعریف نشده است.',user:false});
+ document.getElementById('testMessage').value='';renderPreview();
+}
+function refresh(){
+ let active=data.bots.filter(b=>b.active).length;
+ document.getElementById('statBots').textContent=fa(data.bots.length);
+ document.getElementById('statActive').textContent=fa(active);
+ document.getElementById('statReplies').textContent=fa(data.replies.length);
+ document.getElementById('statUsers').textContent=fa(data.users.length);
+ document.getElementById('anaMenus').textContent=fa(data.menus.length);
+ document.getElementById('anaReplies').textContent=fa(data.replies.length);
+ document.getElementById('anaLogs').textContent=fa(data.logs.length);
+ document.getElementById('anaUsers').textContent=fa(data.users.length);
+ document.getElementById('recentBots').innerHTML=data.bots.slice(-3).reverse().map(botCard).join('')||'<div class="empty">برای شروع اولین ربات خود را بسازید.</div>';
+ document.getElementById('recentLogs').innerHTML=data.logs.slice(0,5).map(l=>`<div class="log"><strong>${esc(l.action)}</strong> — ${esc(l.detail)}<small>${esc(l.time)}</small></div>`).join('')||'<div class="empty">هنوز فعالیتی ثبت نشده است.</div>';
+ document.getElementById('analyticsText').textContent=`${fa(data.bots.length)} ربات، ${fa(data.menus.length)} دکمه، ${fa(data.replies.length)} قانون پاسخ و ${fa(data.users.length)} کاربر محلی در فضای کاری ثبت شده است.`;
+ renderBots();renderMenus();renderReplies();renderUsers();
+}
+function exportData(){
+ let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ let a=document.createElement('a');a.href=URL.createObjectURL(blob);
+ a.download='soroush-studio-backup.json';a.click();URL.revokeObjectURL(a.href);
+ toast('فایل پشتیبان آماده شد');
+}
+function importData(event){
+ let file=event.target.files[0];if(!file)return;
+ let reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   let x=JSON.parse(reader.result);
+   if(!x||!Array.isArray(x.bots)||!Array.isArray(x.menus)||!Array.isArray(x.replies))throw Error();
+   data={...initialData(),...x};save();toast('اطلاعات بازیابی شد');
+  }catch(e){toast('فایل پشتیبان معتبر نیست')}
+ };
+ reader.readAsText(file);
+}
+function saveWorkspace(){
+ data.workspace=document.getElementById('workspaceName').value.trim()||'فضای کاری من';
+ save();toast('تنظیمات ذخیره شد');
+}
+function resetData(){
+ if(!confirm('تمام اطلاعات محلی این برنامه پاک شود؟'))return;
+ data=initialData();save();toast('اطلاعات پاک شد');
+}
+refresh();
+document.getElementById('workspaceName').value=data.workspace||'فضای کاری من';
+</script>
+</body>
+</html>
