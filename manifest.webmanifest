@@ -1,13 +1,15 @@
 {
-  "name": "هفت گناه کبیره | SEVEN SINS",
-  "short_name": "SEVEN SINS",
-  "description": "قلمرو هفت گناه کبیره",
+  "name": "ربات‌ساز سروش",
+  "short_name": "ربات‌ساز",
+  "description": "اپلیکیشن حرفه‌ای ساخت و مدیریت ربات‌های سروش",
   "start_url": "/vl-infinite/",
   "scope": "/vl-infinite/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#07050d",
-  "theme_color": "#090611",
+  "background_color": "#080d1b",
+  "theme_color": "#080d1b",
+  "lang": "fa",
+  "dir": "rtl",
   "icons": [
     {
       "src": "./icon.svg",
