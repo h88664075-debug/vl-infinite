@@ -1,1000 +1,238 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
- <link rel="manifest" href="./manifest.webmanifest">
-<meta name="theme-color" content="#090611">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>هفت گناه کبیره | SEVEN SINS</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+<title>Soroush Bot Studio</title>
 <style>
-:root{
- --bg:#07050d;
- --panel:#151020;
- --text:#fff;
- --muted:#b7a9c7;
- --purple:#a855f7;
- --pink:#ec4899;
- --gold:#fbbf24;
- --green:#22c55e;
- --red:#ef4444;
-}
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0b1020;--panel:#131b30;--panel2:#19243d;--line:#283653;--text:#edf3ff;--muted:#8e9bb5;--blue:#5488ff;--cyan:#39d6d0;--green:#38d996}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;
- background:
- radial-gradient(ellipse at 15% 0%,#48115d,transparent 40%),
- radial-gradient(ellipse at 90% 30%,#42102e,transparent 35%),
- var(--bg);
- min-height:100vh;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif}
 button,input,textarea,select{font:inherit}
-button{cursor:pointer;transition:.2s}
-button:hover{filter:brightness(1.15);transform:translateY(-2px)}
-button:disabled{opacity:.5;cursor:not-allowed;transform:none}
-
-header{
- position:sticky;top:0;z-index:100;padding:15px 4%;
- background:#090611ed;backdrop-filter:blur(18px);
- border-bottom:1px solid #ffffff20;
-}
-.top,.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.between{justify-content:space-between}
-.logo{font-size:24px;font-weight:900}
-.logo span{
- background:linear-gradient(90deg,#c084fc,#f472b6,#fbbf24);
- background-clip:text;-webkit-background-clip:text;color:transparent
-}
-.small,.muted{color:var(--muted);font-size:12px}
-
-nav{
- display:flex;gap:7px;overflow-x:auto;
- padding-top:13px;padding-bottom:4px
-}
-nav button,.btn{
- border:1px solid #ffffff20;background:#251a32;color:white;
- padding:10px 14px;border-radius:12px;white-space:nowrap
-}
-nav button.active,.primary{
- background:linear-gradient(120deg,#7e22ce,#be185d);
- border-color:transparent
-}
-.good{background:#14532d!important}
-.danger{background:#7f1d1d!important}
-.gold{background:linear-gradient(120deg,#80530b,#d69e20)!important}
-
-main{max-width:1300px;margin:auto;padding:25px 4% 80px}
-.page{display:none}
-.page.active{display:block;animation:appear .3s}
-@keyframes appear{
- from{opacity:0;transform:translateY(8px)}
- to{opacity:1;transform:translateY(0)}
-}
-.hero{
- padding:32px 24px;margin-bottom:18px;border:1px solid #a855f766;
- border-radius:24px;
- background:radial-gradient(circle at 80% 20%,#a855f744,transparent 40%),#160d22
-}
-.hero h1{font-size:clamp(27px,5vw,44px);margin:8px 0}
-.hero p{color:#d9c9e8}
-
-.grid{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px
-}
-.card{
- background:linear-gradient(145deg,#24182fee,#100d19f5);
- border:1px solid #ffffff20;border-radius:18px;padding:18px;
- margin-bottom:14px;box-shadow:0 12px 35px #0005
-}
-.card h3{margin-top:0}
-.stat{font-size:32px;font-weight:900;color:#d8a5ff}
-.coin{color:var(--gold);font-weight:900}
-
-input,textarea,select{
- width:100%;padding:12px;border-radius:11px;background:#090711;
- border:1px solid #ffffff25;color:white;outline:none
-}
-input:focus,textarea:focus,select:focus{
- border-color:#a855f7;box-shadow:0 0 0 3px #a855f722
-}
-.field{margin:12px 0}
-label{font-size:12px;color:var(--muted)}
-
-.item{
- background:#ffffff09;border:1px solid #ffffff20;
- border-radius:14px;padding:13px
-}
-.list{display:flex;flex-direction:column;gap:9px}
-.badge{
- display:inline-flex;align-items:center;gap:5px;
- border:1px solid #a855f766;background:#a855f71a;color:#ead5ff;
- border-radius:30px;padding:5px 10px;font-size:11px
-}
-.online-badge{border-color:#22c55e77;color:#86efac;background:#22c55e15}
-.member{display:flex;align-items:center;gap:12px}
-.avatar{
- width:48px;height:48px;display:grid;place-items:center;
- border-radius:15px;font-size:20px;font-weight:900;
- background:linear-gradient(135deg,#7e22ce,#db2777);flex-shrink:0
-}
-.empty{text-align:center;padding:24px;color:var(--muted)}
-
-.chatbox{
- height:430px;overflow:auto;padding:12px;border-radius:16px;
- border:1px solid #ffffff25;background:#08060e;
- display:flex;flex-direction:column;gap:10px
-}
-.msg{
- max-width:88%;padding:11px 14px;border-radius:15px;
- background:#28203a;border:1px solid #ffffff12;overflow-wrap:anywhere
-}
-.msg.mine{
- margin-right:auto;background:linear-gradient(135deg,#54216f,#4a1239);
- border-color:#c084fc55
-}
-.msg b{color:#e9caff}
-.msg small{display:block;margin-top:6px;color:var(--muted);font-size:10px}
-
-.shop-card{
- min-height:360px;position:relative;overflow:hidden;
- transition:.3s
-}
-.shop-card:hover{
- transform:translateY(-7px);
- box-shadow:0 20px 45px #a855f744
-}
-.item-icon{
- width:75px;height:75px;display:grid;place-items:center;
- font-size:39px;border-radius:22px;
- background:linear-gradient(145deg,#54216f,#171022);
- border:1px solid #ffffff30;box-shadow:8px 12px 25px #0009;
- animation:float 3s ease-in-out infinite
-}
-@keyframes float{
- 0%,100%{transform:translateY(0)}
- 50%{transform:translateY(-8px)}
-}
-.rarity{font-size:11px;font-weight:900}
-.mythic{color:#fb7185}
-
-.effect-dragon{box-shadow:0 0 0 2px #fb923c,0 0 28px #f97316!important}
-.effect-shadow{box-shadow:0 0 0 2px #a78bfa,0 0 30px #7c3aed!important}
-.effect-wings{box-shadow:0 0 0 2px #fde68a,0 0 30px #facc15!important}
-.effect-thunder{box-shadow:0 0 0 2px #67e8f9,0 0 30px #06b6d4!important}
-.effect-demon{box-shadow:0 0 0 2px #fb7185,0 0 30px #e11d48!important}
-.effect-cosmic{box-shadow:0 0 0 2px #c4b5fd,0 0 35px #8b5cf6!important}
-.effect-gold{box-shadow:0 0 0 2px #facc15,0 0 30px #eab308!important}
-.effect-purple{box-shadow:0 0 0 2px #c084fc,0 0 30px #9333ea!important}
-.effect-ice{box-shadow:0 0 0 2px #67e8f9,0 0 30px #38bdf8!important}
-.effect-blood{box-shadow:0 0 0 2px #f43f5e,0 0 30px #be123c!important}
-.effect-nova{box-shadow:0 0 0 2px #f0abfc,0 0 30px #d946ef!important}
-.effect-void{box-shadow:0 0 0 2px #818cf8,0 0 30px #4338ca!important}
-.effect-light{box-shadow:0 0 0 2px #fff7ae,0 0 30px #fff!important}
-
-.power-desc{
- color:#d8b4fe;font-size:11px;line-height:2;
- background:linear-gradient(90deg,#a855f715,#ec489915);
- border-right:2px solid #a855f7;padding:7px 10px;
- border-radius:8px;margin-top:9px
-}
-.progress{
- width:100%;height:10px;border-radius:20px;background:#08060e;
- overflow:hidden;margin-top:8px;border:1px solid #ffffff15
-}
-.progress div{
- height:100%;background:linear-gradient(90deg,#7e22ce,#ec4899,#fbbf24);
- border-radius:20px;transition:.4s
-}
-.gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px}
-footer{text-align:center;padding:30px;color:var(--muted)}
-
-@media(max-width:600px){
- header{position:relative}.hero{padding:24px 17px}
- .chatbox{height:380px}.logo{font-size:19px}
-}
+button{cursor:pointer}
+.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}
+.sidebar{background:#0e1628;border-left:1px solid var(--line);padding:22px 15px}
+.brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:800;margin-bottom:35px}
+.logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,#477cff,#39d6d0);display:grid;place-items:center;font-size:22px}
+.brand small{display:block;color:var(--muted);font-size:10px;font-weight:500}
+.navtitle{font-size:11px;color:#687895;margin:22px 10px 9px}
+.nav{display:flex;align-items:center;gap:12px;padding:12px;border-radius:11px;color:#aab7ce;margin:4px 0;cursor:pointer;font-size:13px}
+.nav:hover,.nav.active{background:#1d2c49;color:white}
+.nav.active{border-right:3px solid var(--cyan)}
+.sidebar-bottom{margin-top:45px;padding:14px;border:1px solid var(--line);border-radius:13px;color:var(--muted);font-size:11px;line-height:2}
+.main{min-width:0;padding:25px 30px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}
+.top h1{font-size:22px;margin:0}
+.top p{color:var(--muted);font-size:12px;margin:5px 0}
+.status{font-size:11px;color:var(--green);background:#14372f;padding:8px 12px;border-radius:30px}
+.welcome{background:linear-gradient(115deg,#1b3970,#182b4d 55%,#123c49);border:1px solid #31517d;border-radius:20px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}
+.welcome h2{font-size:20px;margin:0 0 8px}
+.welcome p{font-size:12px;color:#c4d6ef;margin:0}
+.welcome .bigicon{font-size:55px}
+.btn{border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:white;font-weight:700;font-size:12px}
+.btn:hover{filter:brightness(1.12)}
+.btn.secondary{background:#253653;border:1px solid #3b4c6b}
+.btn.green{background:#168e6a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:22px}
+.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px}
+.stat span{font-size:11px;color:var(--muted)}
+.stat strong{display:block;font-size:24px;margin-top:8px}
+.layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);gap:17px}
+.card h3{font-size:15px;margin:0 0 6px}
+.sub{font-size:11px;color:var(--muted);margin:0 0 17px}
+.field{margin:13px 0}
+.field label{display:block;font-size:11px;color:#aebbd1;margin-bottom:7px}
+.field input,.field textarea,.field select{width:100%;background:#0d1628;border:1px solid var(--line);border-radius:10px;color:white;padding:11px;outline:none;font-size:12px}
+.field textarea{min-height:75px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--blue)}
+.row{display:flex;gap:9px;align-items:center}
+.row>*{flex:1;min-width:0}
+.blocks{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:14px 0}
+.block{background:#1b2943;border:1px solid #30415f;border-radius:11px;padding:13px;text-align:right;color:white;font-size:12px}
+.block span{display:block;font-size:19px;margin-bottom:5px}
+.block:hover{border-color:var(--cyan);background:#203653}
+.items{display:grid;gap:9px;margin-top:15px}
+.item{background:#0e182b;border:1px solid var(--line);padding:12px;border-radius:11px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px}
+.item button{border:0;background:#422b3a;color:#ff9ba9;border-radius:7px;padding:6px 9px}
+.phonewrap{display:flex;justify-content:center;padding:8px 0}
+.phone{width:100%;max-width:285px;background:#e9eff8;border:7px solid #27334b;border-radius:30px;overflow:hidden;color:#17243a;min-height:420px}
+.phonehead{background:#fff;padding:14px;display:flex;gap:9px;align-items:center;border-bottom:1px solid #dce3ee}
+.avatar{width:36px;height:36px;border-radius:50%;background:#4b83ed;color:white;display:grid;place-items:center}
+.phonehead strong{font-size:12px}
+.phonehead small{display:block;color:#8793a7;font-size:9px}
+.chat{padding:14px;min-height:310px;background:#e8eef7}
+.bubble{background:white;padding:11px;border-radius:12px 12px 12px 3px;font-size:11px;line-height:1.9;margin-bottom:10px;max-width:95%;box-shadow:0 2px 5px #0000000b}
+.previewbuttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.previewbuttons button{border:0;background:#dce8ff;color:#2555a8;padding:8px 4px;border-radius:8px;font-size:10px}
+.empty{color:var(--muted);font-size:11px;text-align:center;padding:18px}
+.footer-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hidden{display:none}
+@media(max-width:850px){.app{grid-template-columns:1fr}.sidebar{border-left:0;border-bottom:1px solid var(--line);padding:12px}.brand{margin:0 0 10px}.navtitle,.sidebar-bottom{display:none}.navs{display:flex;overflow:auto;gap:5px}.nav{white-space:nowrap;padding:9px}.main{padding:18px 13px}.layout{grid-template-columns:1fr}.top h1{font-size:18px}}
+@media(max-width:420px){.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:19px}.welcome{padding:17px}.welcome .bigicon{font-size:38px}}
 </style>
 </head>
-
 <body>
-
-<header>
-<div class="top between">
-<div>
-<div class="logo">هفت گناه کبیره <span>| SEVEN SINS</span></div>
-<div class="small">THE ROYAL KINGDOM • DARK LEGEND</div>
-</div>
-
-<div class="row">
-<span class="badge" id="systemStatus">در حال اتصال</span>
-<span class="badge online-badge" id="headerOnline">🟢 0 آنلاین</span>
-<span class="badge" id="clock">--:--</span>
-</div>
-</div>
-
-<nav id="nav">
-<button class="active" data-page="home">🏰 خانه</button>
-<button data-page="profile">👤 پروفایل</button>
-<button data-page="members">👑 اعضا</button>
-<button data-page="missions">⚔️ مأموریت‌ها</button>
-<button data-page="rank">🏆 رتبه‌ها</button>
-<button data-page="shop">💎 فروشگاه</button>
-<button data-page="inventory">🎒 موجودی</button>
-<button data-page="chat">💬 چت آنلاین</button>
-<button data-page="news">📜 اخبار</button>
-<button data-page="gallery">🖼️ گالری</button>
-</nav>
-</header>
-
-<main>
-
-<section id="home" class="page active">
-<div class="hero">
-<span class="badge">👑 THE SEVEN SINS KINGDOM</span>
-<h1>به قلمرو هفت گناه کبیره خوش آمدی</h1>
-<p>قدرت بساز، مأموریت انجام بده و با جنگجویان دیگر گفتگو کن.</p>
-<div class="row">
-<button class="btn primary" onclick="showPage('members')">جنگجویان</button>
-<button class="btn" onclick="showPage('shop')">بازار سلطنتی</button>
-<button class="btn gold" onclick="showPage('chat')">اتاق فرماندهی</button>
-</div>
-</div>
-
-<div class="grid">
-<div class="card">جنگجویان<div class="stat" id="totalMembers">0</div></div>
-<div class="card">قدرت XP<div class="stat" id="totalXP">0</div></div>
-<div class="card">خزانه<div class="stat coin" id="totalCoins">0 🪙</div></div>
-<div class="card">آنلاین<div class="stat" id="totalOnline">0</div></div>
-</div>
-
-<div class="grid">
-<div class="card"><h3>⚡ آخرین رویدادها</h3><div id="activity" class="list"></div></div>
-<div class="card"><h3>👑 فرمانروای قلمرو</h3><div id="topMember" class="empty">هنوز عضوی نیست</div></div>
-</div>
-</section>
-
-<section id="profile" class="page">
-<div class="hero"><h1>👤 پروفایل جنگجو</h1><p>هویت و قدرت خودت را مدیریت کن.</p></div>
-<div class="grid">
-<div class="card">
-<h3>نام جنگجو</h3>
-<input id="profileName" maxlength="30" placeholder="نام خود را وارد کن">
-<br><br><button class="btn primary" onclick="updateProfile()">ذخیره نام</button>
-</div>
-<div class="card">
-<h3 id="profileTitle">جنگجوی امپراتوری</h3>
-<div class="stat" id="profileLevel">LEVEL 1</div>
-<div id="profileXP">0 XP</div>
-<div class="progress"><div id="xpProgress"></div></div>
-<div class="muted" id="xpNeeded"></div>
-</div>
-</div>
-<div class="card"><h3>🏅 دستاوردها</h3><div id="achievements" class="row"></div></div>
-</section>
-
-<section id="members" class="page">
-<div class="hero"><h1>👑 خاندان امپراتوری</h1><p>جنگجویان این دستگاه</p></div>
-<div class="card">
-<div class="row between">
-<h3>اعضا</h3>
-<input id="memberSearch" style="max-width:230px" placeholder="جستجو..." oninput="renderMembers()">
-</div>
-<div id="membersList" class="list"></div>
-</div>
-</section>
-
-<section id="missions" class="page">
-<div class="hero"><h1>⚔️ مأموریت‌های سلطنتی</h1><p>XP و سکه دریافت کن.</p></div>
-<div class="card">
-<h3>ساخت مأموریت</h3>
-<div class="grid">
-<input id="missionName" maxlength="80" placeholder="نام مأموریت">
-<input id="missionXP" type="number" min="0" placeholder="پاداش XP">
-<input id="missionCoins" type="number" min="0" placeholder="پاداش سکه">
-</div>
-<br><button class="btn primary" onclick="addMission()">ساخت مأموریت</button>
-</div>
-<div id="missionsList" class="list"></div>
-</section>
-
-<section id="rank" class="page">
-<div class="hero"><h1>🏆 تالار افسانه‌ها</h1><p>رتبه‌بندی بر اساس XP</p></div>
-<div class="card"><div id="rankList" class="list"></div></div>
-</section>
-
-<section id="shop" class="page">
-<div class="hero">
-<h1>💎 بازار سلطنتی</h1>
-<p>ده‌ها قدرت ویژه دریافت کن و از موجودی فعالشان کن.</p>
-</div>
-<div id="shopList" class="grid"></div>
-</section>
-
-<section id="inventory" class="page">
-<div class="hero"><h1>🎒 خزانه شخصی</h1><p>از اینجا قدرت‌های فروشگاه را فعال یا غیرفعال کن.</p></div>
-<div class="card">
-<select id="inventoryMember" onchange="renderInventory()"></select>
-<div id="inventoryList" class="list" style="margin-top:14px"></div>
-</div>
-</section>
-
-<section id="chat" class="page">
-<div class="hero">
-<span class="badge online-badge">● LIVE GLOBAL CHAT</span>
-<h1>💬 اتاق گفت‌وگوی آنلاین</h1>
-<p id="chatStatus">در حال اتصال به سرور...</p>
-</div>
-
-<div class="grid">
-<div class="card"><h3>🟢 آنلاین</h3><div class="stat" id="onlineCount">0</div></div>
-<div class="card"><h3>💬 پیام‌ها</h3><div class="stat" id="totalMessages">0</div></div>
-</div>
-
-<div class="card">
-<div class="row between"><h3>اتاق اصلی مشترک</h3><span class="badge" id="chatCount">0 پیام</span></div>
-<div class="chatbox" id="chatMessages"><div class="empty">در حال اتصال...</div></div>
-<div class="field"><textarea id="chatInput" rows="2" maxlength="500" placeholder="پیامت را برای همه بنویس..."></textarea></div>
-<div class="row between">
-<span class="muted">Enter برای ارسال</span>
-<button class="btn primary" id="sendBtn" onclick="sendMessage()">ارسال 🚀</button>
-</div>
-</div>
-
-<div class="card"><h3>👥 اعضای آنلاین</h3><div id="onlineMembersList" class="list"></div></div>
-</section>
-
-<section id="news" class="page">
-<div class="hero"><h1>📜 اخبار قلمرو</h1></div>
-<div class="card">
-<input id="newsTitle" maxlength="100" placeholder="عنوان خبر">
-<div class="field"><textarea id="newsBody" rows="3" maxlength="1000" placeholder="متن خبر"></textarea></div>
-<button class="btn primary" onclick="addNews()">انتشار خبر</button>
-</div>
-<div id="newsList" class="list"></div>
-</section>
-
-<section id="gallery" class="page">
-<div class="hero"><h1>🖼️ گالری خاطرات</h1></div>
-<div class="card">
-<input type="file" id="photoInput" accept="image/*">
-<br><br><button class="btn primary" onclick="addPhoto()">افزودن تصویر</button>
-<p class="muted">حداکثر حجم: ۱ مگابایت</p>
-</div>
-<div id="galleryList" class="grid gallery"></div>
-</section>
-
-</main>
-
-<footer>هفت گناه کبیره | SEVEN SINS • THE ROYAL KINGDOM</footer>
-
-<script>
-const KEY="seven_sins_empire_v31";
-
-const defaults={
- members:[],
- missions:[],
- news:[],
- photos:[],
- activity:[]
-};
-
-let data=loadData();
-let currentUser=null;
-let currentName="";
-let firebaseReady=false;
-let db=null,auth=null,messagesRef=null;
-let membersOnline=[];
-let unsubscribeChat=null;
-let presenceTimer=null;
-
-const shopItems=[
-["dragon","DRAGON WRATH","🐉","dragon","هاله آتشین اژدها"],
-["shadow","SHADOW KING","🌑","shadow","فرمانروای تاریکی"],
-["wings","ETERNAL WINGS","🪽","wings","بال‌های زرین"],
-["thunder","THUNDER GOD","⚡","thunder","قدرت الکتریکی"],
-["demon","DEMON FORM","😈","demon","فرم اهریمنی"],
-["cosmic","SEVENTH DIMENSION","🌌","cosmic","قدرت بُعد هفتم"],
-["gold","GOLDEN AURA","✨","gold","درخشش طلایی"],
-["purple","PURPLE FLAME","🔮","purple","شعله بنفش"],
-["ice","FROST EMPEROR","❄️","ice","هاله یخی"],
-["crimson","CRIMSON KING","💎","blood","هاله سرخ"],
-["nova","NOVA STAR","🌟","nova","قدرت ستاره‌ای"],
-["void","VOID MASTER","🌀","void","قدرت خلأ"],
-["light","DIVINE LIGHT","☀️","light","نور جاودان"],
-["emperor","THE EMPEROR","👑","gold","قدرت فرمانروایی"],
-["phoenix","PHOENIX RISE","🔥","dragon","قدرت ققنوس"],
-["moon","MOON WALKER","🌙","shadow","نگهبان ماه"],
-["angel","ANGEL ASCENSION","😇","light","صعود فرشته"],
-["storm","STORM BREAKER","🌩️","thunder","قدرت طوفان"],
-["ruby","RUBY HEART","❤️","blood","قلب یاقوتی"],
-["sapphire","SAPPHIRE SOUL","🔷","ice","روح یخی"],
-["nebula","NEBULA LORD","🪐","cosmic","ارباب سحابی"],
-["starfall","STARFALL","☄️","nova","بارش ستارگان"],
-["abyss","ABYSS WALKER","🕳️","void","رهرو اعماق"],
-["venom","VENOM EMPRESS","🐍","purple","قدرت بنفش"],
-["blizzard","BLIZZARD KING","🌨️","ice","پادشاه کولاک"],
-["inferno","INFERNO LORD","🌋","dragon","ارباب آتش"],
-["samurai","ETERNAL SAMURAI","⚔️","blood","سامورایی ابدی"],
-["titan","TITAN SOUL","🗿","gold","روح تایتان"],
-["phantom","PHANTOM LORD","👻","shadow","ارباب شبح"],
-["crystal","CRYSTAL GUARDIAN","💠","purple","نگهبان کریستال"],
-["eclipse","TOTAL ECLIPSE","🌘","shadow","کسوف مطلق"],
-["rainbow","RAINBOW SPIRIT","🌈","cosmic","روح رنگین‌کمان"],
-["soulfire","SOUL FIRE","🕯️","demon","آتش روح"],
-["frostfire","FROSTFIRE","🧊","ice","آتش یخی"],
-["throne","GOLDEN THRONE","🏆","gold","تخت طلایی"],
-["dragonlord","DRAGON LORD","🐲","dragon","ارباب اژدهایان"],
-["darkmatter","DARK MATTER","⚫","void","ماده تاریک"],
-["divine","DIVINE EMPEROR","👼","light","امپراتور الهی"],
-["supernova","SUPERNOVA","💫","nova","ابرنواختر"],
-["hellking","HELL KING","👹","demon","پادشاه تاریکی"],
-["wolf","NIGHT WOLF","🐺","shadow","گرگ شب"],
-["lion","ROYAL LION","🦁","gold","شیر سلطنتی"],
-["ocean","OCEAN LORD","🌊","ice","فرمانروای اقیانوس"],
-["galaxy","GALAXY KING","🌠","cosmic","پادشاه کهکشان"],
-["magic","ARCANE MASTER","🪄","purple","جادوی کهن"],
-["sun","SUN EMPEROR","🌞","light","قدرت خورشید"],
-["lightning","LIGHTNING CORE","🔋","thunder","هسته رعدوبرق"],
-["dark","DARK CROWN","♛","void","تاج تاریکی"],
-["fire","FIRE MASTER","🔥","dragon","استاد آتش"],
-["diamond","DIAMOND GUARD","💠","ice","محافظ الماس"]
-].map(x=>({
- id:x[0],name:x[1],icon:x[2],effect:x[3],
- desc:x[4],power:"افکت ویژه و قاب نمایشی"
-}));
-
-function loadData(){
- try{return {...defaults,...JSON.parse(localStorage.getItem(KEY)||"{}")}}
- catch(e){return {...defaults}}
-}
-
-function save(){
- localStorage.setItem(KEY,JSON.stringify(data));
- renderAll();
-}
-
-function uid(){return Date.now()+"_"+Math.random().toString(36).slice(2,8)}
-
-function safe(s){
- return String(s??"").replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
-}
-
-function logActivity(text){
- data.activity.unshift({text,time:new Date().toLocaleString("fa-IR")});
- data.activity=data.activity.slice(0,30);
-}
-
-function getMember(id){
- return data.members.find(m=>String(m.id)===String(id));
-}
-
-function getCurrentMember(){
- if(currentUser){
-  const m=data.members.find(x=>x.uid===currentUser.uid);
-  if(m)return m;
- }
- return data.members[0]||null;
-}
-
-function getLevel(xp){return Math.floor((Number(xp)||0)/100)+1}
-function getXPProgress(xp){return (Number(xp)||0)%100}
-
-function showPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
- document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
- renderAll();
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-document.getElementById("nav").addEventListener("click",e=>{
- const b=e.target.closest("button[data-page]");
- if(b)showPage(b.dataset.page);
-});
-
-function ensureMember(name,uidValue){
- let m=data.members.find(x=>x.uid===uidValue);
- if(!m){
-  m={id:uid(),uid:uidValue,name:name,baseTitle:"عضو امپراتوری",xp:0,coins:0,inventory:[],activeEffect:null};
-  data.members.push(m);
-  logActivity("👤 "+name+" به قلمرو پیوست.");
-  localStorage.setItem(KEY,JSON.stringify(data));
- }
- currentName=m.name;
- return m;
-}
-
-function localGuest(){
- let id=localStorage.getItem("seven_sins_guest_id");
- if(!id){
-  id="guest-"+Math.random().toString(36).slice(2,9);
-  localStorage.setItem("seven_sins_guest_id",id);
- }
- let m=data.members.find(x=>x.uid===id);
- if(!m)m=ensureMember("جنگجو-"+id.slice(-5).toUpperCase(),id);
- currentName=m.name;
-}
-
-function updateProfile(){
- const name=document.getElementById("profileName").value.trim();
- if(name.length<2){alert("نام باید حداقل ۲ کاراکتر باشد.");return}
- const m=getCurrentMember();
- if(!m)return;
- const old=m.name;m.name=name;currentName=name;
- logActivity("👤 "+old+" نام خود را تغییر داد.");
- save();
-
- if(firebaseReady&&db&&currentUser){
-  db.collection("members").doc(currentUser.uid).set({
-   uid:currentUser.uid,name:name,
-   lastSeen:firebase.firestore.FieldValue.serverTimestamp()
-  },{merge:true}).catch(console.error);
- }
- alert("نام ذخیره شد!");
-}
-
-function setStatus(status,text){
- const a=document.getElementById("systemStatus");
- const b=document.getElementById("chatStatus");
- a.textContent=status;
- if(b)b.textContent=text;
- a.className="badge";
- if(status==="ONLINE"){a.style.color="#86efac";a.style.borderColor="#22c55e"}
- else if(status==="در حال اتصال"){a.style.color="#fde68a";a.style.borderColor="#fbbf24"}
- else{a.style.color="#fca5a5";a.style.borderColor="#ef4444"}
-}
-
-async function loadFirebase(){
- try{
-  setStatus("در حال اتصال","در حال اتصال به چت جهانی...");
-
-  await loadScript("https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js");
-  await loadScript("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js");
-  await loadScript("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js");
-
-  const config={
-   apiKey:"AIzaSyDHvgoAw4cHHD01UfQipDo6z5Z88Me0oCc",
-   authDomain:"seven-sins-chat.firebaseapp.com",
-   projectId:"seven-sins-chat",
-   storageBucket:"seven-sins-chat.firebasestorage.app",
-   messagingSenderId:"1009632654398",
-   appId:"1:1009632654398:web:c7bc6b9660dfda377bcd6f"
-  };
-
-  if(!firebase.apps.length)firebase.initializeApp(config);
-
-  auth=firebase.auth();
-  db=firebase.firestore();
-  await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-
-  if(!auth.currentUser)await auth.signInAnonymously();
-  currentUser=auth.currentUser;
-
-  const ref=db.collection("members").doc(currentUser.uid);
-  const profile=await ref.get();
-
-  if(profile.exists&&profile.data().name){
-   ensureMember(profile.data().name,currentUser.uid);
-  }else{
-   ensureMember("جنگجو-"+currentUser.uid.slice(0,5).toUpperCase(),currentUser.uid);
-   await ref.set({
-    uid:currentUser.uid,name:currentName,
-    lastSeen:firebase.firestore.FieldValue.serverTimestamp()
-   },{merge:true});
-  }
-
-  messagesRef=db.collection("rooms").doc("main").collection("messages");
-  firebaseReady=true;
-
-  setStatus("ONLINE","🟢 چت جهانی آنلاین است");
-  listenChat();
-  startPresence();
-  renderAll();
-
- }catch(err){
-  console.error(err);
-  firebaseReady=false;
-  localGuest();
-  setStatus("آفلاین","🔴 اتصال Firebase برقرار نشد. تنظیمات Authentication و Firestore را بررسی کن.");
-  renderAll();
- }
-}
-
-function loadScript(src){
- return new Promise((resolve,reject)=>{
-  if(document.querySelector('script[src="'+src+'"]'))return resolve();
-  const s=document.createElement("script");
-  s.src=src;s.onload=resolve;s.onerror=reject;document.head.appendChild(s);
- });
-}
-
-function startPresence(){
- if(!firebaseReady||!db||!currentUser)return;
-
- const update=()=>db.collection("members").doc(currentUser.uid).set({
-  uid:currentUser.uid,name:currentName||"جنگجو",
-  lastSeen:firebase.firestore.FieldValue.serverTimestamp()
- },{merge:true}).catch(console.error);
-
- update();
- clearInterval(presenceTimer);
- presenceTimer=setInterval(update,30000);
-
- db.collection("members").onSnapshot(snapshot=>{
-  const now=Date.now();
-  membersOnline=snapshot.docs.map(d=>({id:d.id,...d.data()})).filter(m=>{
-   return m.lastSeen&&m.lastSeen.toDate&&(now-m.lastSeen.toDate().getTime()<90000);
-  });
-  updateOnlineUI();
- });
-}
-
-function updateOnlineUI(){
- const count=membersOnline.length;
- const online=document.getElementById("onlineCount");
- if(online)online.textContent=count;
- document.getElementById("headerOnline").textContent="🟢 "+count+" آنلاین";
- document.getElementById("totalOnline").textContent=count;
-
- const list=document.getElementById("onlineMembersList");
- if(list){
-  list.innerHTML=membersOnline.length?membersOnline.map(m=>`
-   <div class="item row between">
-    <div class="member"><div class="avatar">🟢</div>
-    <div><b>${safe(m.name||"عضو")}</b><div class="muted">آنلاین در قلمرو</div></div></div>
-    <span class="badge online-badge">ONLINE</span>
-   </div>`).join(""):'<div class="empty">هنوز جنگجویی آنلاین نیست.</div>';
- }
-}
-
-function listenChat(){
- if(!messagesRef)return;
- if(unsubscribeChat)unsubscribeChat();
-
- unsubscribeChat=messagesRef.orderBy("createdAt","asc").limit(300).onSnapshot(
- snapshot=>{
-  renderOnlineChat(snapshot.docs.map(d=>({id:d.id,...d.data()})));
- },
- err=>{
-  console.error(err);
-  document.getElementById("chatStatus").textContent="خطای چت: "+err.message;
- });
-}
-
-function renderOnlineChat(msgs){
- const el=document.getElementById("chatMessages");
- if(!el)return;
-
- el.innerHTML=msgs.length?msgs.map(m=>{
-  const mine=currentUser&&m.uid===currentUser.uid;
-  const time=m.createdAt&&m.createdAt.toDate?
-   m.createdAt.toDate().toLocaleTimeString("fa-IR"):"در حال ارسال...";
-  return `<div class="msg${mine?" mine":""}">
-   <b>${mine?"👑 شما":safe(m.sender||"عضو")}</b>
-   <div>${safe(m.text||"").replace(/\n/g,"<br>")}</div>
-   <small>${safe(time)}</small>
-  </div>`;
- }).join(""):'<div class="empty">هنوز پیامی نیست. اولین پیام را بفرست! ✨</div>';
-
- el.scrollTop=el.scrollHeight;
- document.getElementById("chatCount").textContent=msgs.length+" پیام";
- document.getElementById("totalMessages").textContent=msgs.length;
-}
-
-async function sendMessage(){
- const input=document.getElementById("chatInput");
- const btn=document.getElementById("sendBtn");
- const text=input.value.trim();
- if(!text)return;
-
- if(!firebaseReady||!currentUser||!messagesRef){
-  alert("چت هنوز به Firebase متصل نشده است.");
-  return;
- }
-
- btn.disabled=true;input.disabled=true;
-
- try{
-  const member=getCurrentMember();
-  await messagesRef.add({
-   sender:String(member?.name||currentName||"عضو").slice(0,40),
-   text:text.slice(0,500),
-   uid:currentUser.uid,
-   createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-  input.value="";
- }catch(err){
-  console.error(err);
-  alert("پیام ارسال نشد: "+(err.code==="permission-denied"?"دسترسی Firestore بسته است.":"خطای اتصال."));
- }finally{
-  btn.disabled=false;input.disabled=false;input.focus();
- }
-}
-
-document.getElementById("chatInput").addEventListener("keydown",e=>{
- if(e.key==="Enter"&&!e.shiftKey){
-  e.preventDefault();sendMessage();
- }
-});
-
-function effectClass(m){
- const i=shopItems.find(x=>x.id===m.activeEffect);
- return i?"effect-"+i.effect:"";
-}
-
-function decorations(m){
- const i=shopItems.find(x=>x.id===m.activeEffect);
- return i?`<span class="badge">${i.icon} ${safe(i.name)}</span>`:"";
-}
-
-function renderMembers(){
- const q=(document.getElementById("memberSearch")?.value||"").toLowerCase();
- const list=data.members.filter(m=>m.name.toLowerCase().includes(q));
-
- document.getElementById("membersList").innerHTML=list.length?list.map(m=>`
- <div class="item row between ${effectClass(m)}">
-  <div class="member">
-   <div class="avatar">${safe(m.name[0]||"؟")}</div>
-   <div><b>${safe(m.name)}</b> ${decorations(m)}
-   <div class="muted">${safe(m.baseTitle||"عضو امپراتوری")}</div>
-   <span class="badge">⚡ ${m.xp||0} XP</span>
-   <span class="badge coin">🪙 ${m.coins||0}</span></div>
-  </div>
-  <div>LEVEL ${getLevel(m.xp)}</div>
- </div>`).join(""):'<div class="empty">عضوی پیدا نشد.</div>';
-}
-
-function addMission(){
- const name=document.getElementById("missionName").value.trim();
- const xp=Number(document.getElementById("missionXP").value);
- const coins=Number(document.getElementById("missionCoins").value);
-
- if(!name||!Number.isFinite(xp)||!Number.isFinite(coins)||xp<0||coins<0){
-  alert("اطلاعات مأموریت را کامل کن.");return;
- }
-
- data.missions.push({id:uid(),name,xp,coins,done:false});
- logActivity("⚔️ مأموریت جدید: "+name);
-
- ["missionName","missionXP","missionCoins"].forEach(id=>document.getElementById(id).value="");
- save();
-}
-
-function finishMission(id){
- const mission=data.missions.find(x=>x.id===id);
- const member=getCurrentMember();
- if(!mission||mission.done||!member)return;
-
- mission.done=true;
- member.xp=(member.xp||0)+mission.xp;
- member.coins=(member.coins||0)+mission.coins;
- logActivity("🏆 "+member.name+" مأموریت "+mission.name+" را انجام داد.");
- save();
- alert("مأموریت انجام شد! "+mission.xp+" XP و "+mission.coins+" 🪙 دریافت کردی.");
-}
-
-function deleteMission(id){
- if(confirm("مأموریت حذف شود؟")){
-  data.missions=data.missions.filter(x=>x.id!==id);save();
- }
-}
-
-function renderMissions(){
- document.getElementById("missionsList").innerHTML=data.missions.length?
- data.missions.map(m=>`
- <div class="item row between">
-  <div><b>${safe(m.name)}</b><div class="muted">⚡ ${m.xp} XP • 🪙 ${m.coins}</div></div>
-  <div class="row">
-   ${m.done?'<span class="badge">انجام شد ✓</span>':`<button class="btn good" onclick="finishMission('${m.id}')">انجام</button>`}
-   <button class="btn danger" onclick="deleteMission('${m.id}')">حذف</button>
-  </div>
- </div>`).join(""):'<div class="empty">مأموریتی وجود ندارد.</div>';
-}
-
-function renderRank(){
- const list=[...data.members].sort((a,b)=>(b.xp||0)-(a.xp||0));
- document.getElementById("rankList").innerHTML=list.length?list.map((m,i)=>`
- <div class="item row between ${effectClass(m)}">
-  <div class="member"><div class="avatar">${["🥇","🥈","🥉"][i]||"#"+(i+1)}</div>
-  <div><b>${safe(m.name)}</b> ${decorations(m)}<div class="muted">LEVEL ${getLevel(m.xp)}</div></div></div>
-  <b>⚡ ${m.xp||0} XP</b>
- </div>`).join(""):'<div class="empty">رتبه‌ای وجود ندارد.</div>';
-}
-
-function renderShop(){
- const member=getCurrentMember();
- document.getElementById("shopList").innerHTML=shopItems.map(i=>{
-  const owned=member?.inventory?.includes(i.id);
-  return `<div class="card shop-card">
-   <div class="item-icon effect-${i.effect}">${i.icon}</div><br>
-   <div class="rarity mythic">✦ MYTHIC POWER</div>
-   <h3>${safe(i.name)}</h3>
-   <p class="muted">${safe(i.desc)}</p>
-   <div class="power-desc">⚡ ${safe(i.power)}</div><br>
-   <span class="badge">✨ افکت ویژه</span>
-   <p class="coin">${owned?"دریافت شده ✓":"رایگان • FREE"}</p>
-   <button class="btn ${owned?"good":"primary"}" onclick="buyItem('${i.id}')">
-   ${owned?"در موجودی است ✓":"دریافت قدرت"}</button>
-  </div>`;
- }).join("");
-}
-
-function buyItem(id){
- const item=shopItems.find(i=>i.id===id);
- let member=getCurrentMember();
- if(!member){localGuest();member=getCurrentMember()}
- if(!item||!member)return;
-
- member.inventory=member.inventory||[];
- if(member.inventory.includes(id)){
-  alert("این قدرت قبلاً در موجودی تو است.");return;
- }
-
- member.inventory.push(id);
- logActivity("💎 "+member.name+" قدرت "+item.name+" را دریافت کرد.");
- save();
- alert(item.icon+" "+item.name+" به موجودی اضافه شد!");
-}
-
-function renderInventorySelectors(){
- const select=document.getElementById("inventoryMember");
- if(!select)return;
- const old=select.value;
- select.innerHTML=data.members.map(m=>`<option value="${m.id}">${safe(m.name)}</option>`).join("");
-
- const current=getCurrentMember();
- if(current)select.value=current.id;
- if(data.members.some(m=>String(m.id)===String(old)))select.value=old;
-}
-
-function renderInventory(){
- const select=document.getElementById("inventoryMember");
- const el=document.getElementById("inventoryList");
- if(!select||!el)return;
-
- const member=getMember(select.value);
- if(!member){el.innerHTML='<div class="empty">عضوی نیست.</div>';return}
-
- member.inventory=member.inventory||[];
-
- el.innerHTML=member.inventory.length?member.inventory.map(id=>{
-  const item=shopItems.find(x=>x.id===id);
-  if(!item)return "";
-  const active=member.activeEffect===id;
-
-  return `<div class="item ${active?"effect-"+item.effect:""}">
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="logo">✦</div><div> SOROUSH STUDIO<small>ربات‌ساز حرفه‌ای</small></div></div>
+ <div class="navtitle">منوی اصلی</div>
+ <div class="navs">
+  <div class="nav active" data-page="builder">⚡ سازنده ربات</div>
+  <div class="nav" data-page="commands">▤ مدیریت پیام‌ها</div>
+  <div class="nav" data-page="projects">▣ پروژه‌های من</div>
+  <div class="nav" data-page="settings">⚙ تنظیمات</div>
+ </div>
+ <div class="sidebar-bottom">✦ فضای ساخت ربات سروش پلاس<br>پروژه‌ها در حافظه همین دستگاه ذخیره می‌شوند.</div>
+</aside>
+
+<main class="main">
+ <div class="top">
+  <div><h1 id="pageTitle">سازنده ربات</h1><p>ربات خودت را ساده و سریع طراحی کن.</p></div>
+  <div class="status">● محیط طراحی فعال</div>
+ </div>
+
+ <section class="welcome">
+  <div><h2>به استودیوی ساخت ربات خوش آمدی!</h2><p>بدون کدنویسی، منو و پاسخ‌های رباتت را طراحی کن.</p></div>
+  <div class="bigicon">🤖</div>
+ </section>
+
+ <div class="stats">
+  <div class="stat"><span>پروژه‌های ذخیره‌شده</span><strong id="projectCount">۰</strong></div>
+  <div class="stat"><span>دکمه‌های ساخته‌شده</span><strong id="buttonCount">۰</strong></div>
+  <div class="stat"><span>پیام‌های تنظیم‌شده</span><strong id="messageCount">۰</strong></div>
+ </div>
+
+ <section id="builderPage">
+ <div class="layout">
+  <div class="card">
+   <h3>⚡ طراحی ربات</h3><p class="sub">مشخصات و رفتار اولیه رباتت را تنظیم کن.</p>
+   <div class="field"><label>نام ربات</label><input id="botName" placeholder="مثلاً ربات فروشگاهی من"></div>
+   <div class="field"><label>متن خوش‌آمدگویی</label><textarea id="welcomeText" placeholder="سلام! به ربات ما خوش آمدی..."></textarea></div>
+   <div class="divider"></div>
+   <h3>افزودن دکمه به منو</h3><p class="sub">هر دکمه یک عنوان و پاسخ دارد.</p>
    <div class="row">
-    <div class="item-icon effect-${item.effect}">${item.icon}</div>
-    <div><b>${safe(item.name)}</b>
-    <div class="muted">${safe(item.desc)}</div>
-    <div class="power-desc">⚡ ${safe(item.power)}</div>
-    ${active?'<span class="badge">قدرت فعال ✓</span>':""}</div>
-   </div><br>
-   <button class="btn ${active?"good":"primary"}" onclick="activateItem('${member.id}','${item.id}')">
-   ${active?"غیرفعال کردن":"فعال کردن قدرت"}
-   </button>
-  </div>`;
- }).join(""):'<div class="empty">موجودی خالی است. از فروشگاه قدرت بگیر.</div>';
-}
+    <div class="field"><label>عنوان دکمه</label><input id="buttonName" placeholder="مثلاً درباره ما"></div>
+    <div class="field"><label>متن پاسخ</label><input id="buttonReply" placeholder="متن پاسخ ربات"></div>
+   </div>
+   <button class="btn" onclick="addButton()">＋ افزودن دکمه</button>
+   <div class="items" id="buttonList"><div class="empty">هنوز دکمه‌ای اضافه نکردی.</div></div>
+   <div class="footer-actions">
+    <button class="btn green" onclick="saveProject()">ذخیره پروژه</button>
+    <button class="btn secondary" onclick="exportProject()">دریافت خروجی JSON</button>
+   </div>
+  </div>
 
-function activateItem(memberId,itemId){
- const member=getMember(memberId);
- const item=shopItems.find(x=>x.id===itemId);
- if(!member||!item||!member.inventory?.includes(itemId))return;
+  <div class="card">
+   <h3>پیش‌نمایش زنده</h3><p class="sub">نمای تقریبی ربات در پیام‌رسان</p>
+   <div class="phonewrap">
+    <div class="phone">
+     <div class="phonehead"><div class="avatar">🤖</div><div><strong id="previewName">ربات من</strong><small>ربات آزمایشی</small></div></div>
+     <div class="chat">
+      <div class="bubble" id="previewWelcome">سلام! به ربات ما خوش آمدی 👋</div>
+      <div class="previewbuttons" id="previewButtons"></div>
+     </div>
+    </div>
+   </div>
+   <p class="sub">برای دیدن پاسخ هر دکمه، روی آن در پیش‌نمایش بزن.</p>
+  </div>
+ </div>
+ </section>
 
- member.activeEffect=member.activeEffect===itemId?null:itemId;
- logActivity("✨ "+member.name+" قدرت "+item.name+" را تغییر داد.");
- save();
-}
+ <section id="commandsPage" class="card hidden">
+  <h3>مدیریت پیام‌ها</h3><p class="sub">پیام‌های ساخته‌شده در پروژه فعلی</p>
+  <div id="commandList" class="items"></div>
+ </section>
 
-function addNews(){
- const title=document.getElementById("newsTitle").value.trim();
- const body=document.getElementById("newsBody").value.trim();
- if(!title||!body){alert("عنوان و متن خبر را وارد کن.");return}
+ <section id="projectsPage" class="card hidden">
+  <h3>پروژه‌های من</h3><p class="sub">پروژه‌های ذخیره‌شده روی این دستگاه</p>
+  <div id="savedProjects" class="items"></div>
+ </section>
 
- data.news.unshift({id:uid(),title,body,time:new Date().toLocaleString("fa-IR")});
- document.getElementById("newsTitle").value="";
- document.getElementById("newsBody").value="";
- logActivity("📜 خبر جدید: "+title);
- save();
-}
+ <section id="settingsPage" class="card hidden">
+  <h3>تنظیمات استودیو</h3>
+  <div class="field"><label>نام سازنده</label><input id="ownerName" placeholder="نام شما"></div>
+  <button class="btn" onclick="saveOwner()">ذخیره تنظیمات</button>
+  <p class="sub" style="margin-top:18px">اطلاعات این نسخه در حافظه مرورگر ذخیره می‌شود. برای اتصال واقعی، باید بک‌اند امن و API رسمی سروش پلاس راه‌اندازی شود.</p>
+ </section>
+</main>
+</div>
 
-function renderNews(){
- document.getElementById("newsList").innerHTML=data.news.length?
- data.news.map(n=>`<div class="card"><h3>${safe(n.title)}</h3>
- <p>${safe(n.body).replace(/\n/g,"<br>")}</p>
- <div class="muted">${safe(n.time)}</div></div>`).join("")
- :'<div class="empty">خبری وجود ندارد.</div>';
-}
-
-function addPhoto(){
- const file=document.getElementById("photoInput").files[0];
- if(!file){alert("یک تصویر انتخاب کن.");return}
- if(!file.type.startsWith("image/")){alert("فقط تصویر مجاز است.");return}
- if(file.size>1024*1024){alert("حجم تصویر باید کمتر از یک مگابایت باشد.");return}
-
- const reader=new FileReader();
- reader.onload=()=>{
-  data.photos.push({id:uid(),src:reader.result,name:file.name});
-  logActivity("🖼️ تصویری به گالری اضافه شد.");
-  document.getElementById("photoInput").value="";
-  save();
- };
- reader.readAsDataURL(file);
-}
-
-function renderGallery(){
- document.getElementById("galleryList").innerHTML=data.photos.length?
- data.photos.map(p=>`<div class="card"><img src="${p.src}" alt="تصویر گالری"><p class="muted">${safe(p.name)}</p></div>`).join("")
- :'<div class="empty">گالری خالی است.</div>';
-}
-
-function renderProfile(){
- const member=getCurrentMember();
- if(!member)return;
-
- const xp=member.xp||0,level=getLevel(xp),progress=getXPProgress(xp);
- document.getElementById("profileName").value=member.name||"";
- document.getElementById("profileTitle").textContent=member.baseTitle||"جنگجوی امپراتوری";
- document.getElementById("profileLevel").textContent="LEVEL "+level;
- document.getElementById("profileXP").textContent=xp+" XP";
- document.getElementById("xpProgress").style.width=progress+"%";
- document.getElementById("xpNeeded").textContent=progress+" / 100 XP تا Level "+(level+1);
-
- const achievements=["🌱 اولین قدم"];
- if(xp>=100)achievements.push("⚡ جنگجوی قدرتمند");
- if(xp>=500)achievements.push("🔥 قهرمان قلمرو");
- if((member.inventory||[]).length>=1)achievements.push("💎 جمع‌آوری‌کننده قدرت");
- if((member.inventory||[]).length>=10)achievements.push("👑 استاد قدرت‌ها");
- if((member.inventory||[]).length>=30)achievements.push("🌌 افسانه قلمرو");
-
- document.getElementById("achievements").innerHTML=achievements.map(a=>`<span class="badge">${a}</span>`).join("");
-}
-
-function renderHome(){
- document.getElementById("totalMembers").textContent=data.members.length;
- document.getElementById("totalXP").textContent=data.members.reduce((s,m)=>s+(m.xp||0),0);
- document.getElementById("totalCoins").textContent=data.members.reduce((s,m)=>s+(m.coins||0),0)+" 🪙";
-
- document.getElementById("activity").innerHTML=data.activity.length?
- data.activity.slice(0,7).map(a=>`<div class="item">${safe(a.text)}<div class="muted">${safe(a.time)}</div></div>`).join("")
- :'<div class="empty">هنوز فعالیتی نیست.</div>';
-
- const top=[...data.members].sort((a,b)=>(b.xp||0)-(a.xp||0))[0];
- document.getElementById("topMember").innerHTML=top?
- `<h3>${safe(top.name)}</h3>${decorations(top)}
- <p>⚡ ${top.xp||0} XP • LEVEL ${getLevel(top.xp)}</p>`
- :"هنوز عضوی نیست";
-}
-
-function renderAll(){
- renderHome();renderProfile();renderMembers();renderMissions();
- renderRank();renderShop();renderInventorySelectors();renderInventory();
- renderNews();renderGallery();updateOnlineUI();
-}
-
-setInterval(()=>{
- document.getElementById("clock").textContent=new Date().toLocaleTimeString("fa-IR");
-},1000);
-
-if(!data.members.length)localGuest();
-else{
- const guestId=localStorage.getItem("seven_sins_guest_id");
- const member=data.members.find(m=>m.uid===guestId);
- if(member)currentName=member.name;
-}
-
-renderAll();
-loadFirebase();
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .catch(error => console.error("PWA:", error));
-  });
+let buttons=[];
+let projects=JSON.parse(localStorage.getItem('soroushProjects')||'[]');
+const $=id=>document.getElementById(id);
+function fa(n){return Number(n).toLocaleString('fa-IR')}
+function update(){
+ $('previewName').textContent=$('botName').value||'ربات من';
+ $('previewWelcome').textContent=$('welcomeText').value||'سلام! به ربات ما خوش آمدی 👋';
+ $('previewButtons').innerHTML='';
+ $('buttonList').innerHTML='';
+ $('commandList').innerHTML='';
+ if(!buttons.length)$('buttonList').innerHTML='<div class="empty">هنوز دکمه‌ای اضافه نکردی.</div>';
+ buttons.forEach((b,i)=>{
+  const item=document.createElement('div');item.className='item';
+  const span=document.createElement('span');span.textContent='🔘 '+b.name;
+  const del=document.createElement('button');del.textContent='حذف';del.onclick=()=>{buttons.splice(i,1);update()};
+  item.append(span,del);$('buttonList').append(item);
+  const pb=document.createElement('button');pb.textContent=b.name;
+  pb.onclick=()=>{ $('previewWelcome').textContent=b.reply||'برای این دکمه پاسخی تنظیم نشده است.' };
+  $('previewButtons').append(pb);
+  const cmd=document.createElement('div');cmd.className='item';
+  const txt=document.createElement('span');txt.textContent=b.name+' ← '+b.reply;
+  cmd.append(txt);$('commandList').append(cmd);
+ });
+ $('buttonCount').textContent=fa(buttons.length);
+ $('messageCount').textContent=fa(buttons.length+1);
+ $('projectCount').textContent=fa(projects.length);
 }
+function addButton(){
+ const name=$('buttonName').value.trim(),reply=$('buttonReply').value.trim();
+ if(!name||!reply){alert('عنوان دکمه و متن پاسخ را وارد کن.');return}
+ buttons.push({name,reply});
+ $('buttonName').value='';$('buttonReply').value='';
+ update();
+}
+function currentProject(){
+ return {name:$('botName').value||'ربات بدون نام',welcome:$('welcomeText').value,buttons:buttons,date:new Date().toLocaleString('fa-IR')};
+}
+function saveProject(){
+ const p=currentProject();
+ projects.push(p);
+ localStorage.setItem('soroushProjects',JSON.stringify(projects));
+ update();alert('پروژه روی همین دستگاه ذخیره شد.');
+}
+function exportProject(){
+ const data=JSON.stringify(currentProject(),null,2);
+ const blob=new Blob([data],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=url;a.download='soroush-bot.json';a.click();
+ URL.revokeObjectURL(url);
+}
+function renderProjects(){
+ $('savedProjects').innerHTML='';
+ if(!projects.length){$('savedProjects').innerHTML='<div class="empty">هنوز پروژه‌ای ذخیره نشده است.</div>';return}
+ projects.forEach((p,i)=>{
+  const item=document.createElement('div');item.className='item';
+  const info=document.createElement('span');info.textContent='🤖 '+p.name+' — '+p.date;
+  const load=document.createElement('button');load.textContent='بازکردن';
+  load.onclick=()=>{ $('botName').value=p.name; $('welcomeText').value=p.welcome;buttons=p.buttons||[];showPage('builder');update()};
+  item.append(info,load);$('savedProjects').append(item);
+ });
+}
+function showPage(page){
+ ['builder','commands','projects','settings'].forEach(p=>$(p+'Page').classList.toggle('hidden',p!==page));
+ document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+ $('pageTitle').textContent={builder:'سازنده ربات',commands:'مدیریت پیام‌ها',projects:'پروژه‌های من',settings:'تنظیمات'}[page];
+ if(page==='projects')renderProjects();
+}
+document.querySelectorAll('.nav').forEach(n=>n.onclick=()=>showPage(n.dataset.page));
+$('botName').addEventListener('input',update);
+$('welcomeText').addEventListener('input',update);
+function saveOwner(){localStorage.setItem('soroushOwner',$('ownerName').value);alert('تنظیمات ذخیره شد.')}
+$('ownerName').value=localStorage.getItem('soroushOwner')||'';
+update();
 </script>
 </body>
+</html>
