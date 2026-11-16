@@ -3,474 +3,635 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#10152d">
-<title>Nebuludo | منچ</title>
+<meta name="theme-color" content="#090e1b">
+<title>LUDO LEGENDS - منچ افسانه‌ای</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#29345c,#10152d 65%);font-family:Tahoma,Arial;color:white;min-height:100vh}
-header{text-align:center;padding:17px 10px 8px}
-.logo{font-size:30px;font-weight:1000;letter-spacing:2px;color:#ffe28a;text-shadow:0 3px 15px #ffad35}
-.sub{font-size:11px;color:#b7c4ed;margin-top:5px}
-.wrap{width:min(96vw,680px);margin:auto;padding:8px 8px 25px}
-.panel{background:#202b4a;border:1px solid #45577f;border-radius:18px;padding:12px;box-shadow:0 9px 25px #0005}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
-.turn{font-weight:bold;font-size:14px}
-.status{font-size:11px;color:#c8d5f5;margin-top:5px}
-.pill{background:#111a32;border-radius:20px;padding:8px 12px;font-size:11px;color:#ffe28a}
-.boardbox{background:#111a30;border-radius:20px;padding:7px;border:1px solid #52628b;box-shadow:0 12px 30px #0008}
-canvas{display:block;width:100%;height:auto;border-radius:13px;touch-action:manipulation}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-button{border:0;border-radius:14px;padding:14px 9px;font-weight:bold;font-size:14px;color:white;cursor:pointer;touch-action:manipulation}
-button:active{transform:scale(.97)}
-.dice{background:linear-gradient(145deg,#ffe89a,#f5a92d);color:#38220b;font-size:19px;box-shadow:0 5px 0 #a86619}
-.secondary{background:#35466e;border:1px solid #6175a2}
-.dice:disabled{opacity:.5}
-.info{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
-.player{border-radius:12px;padding:9px 4px;text-align:center;background:#17213b;border:1px solid #425477;font-size:10px}
-.player strong{display:block;font-size:12px;margin-bottom:5px}
-.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:4px}
-.actions{display:flex;gap:8px;margin-top:10px}
-.actions button{flex:1;font-size:11px;padding:12px 5px}
-.help{font-size:11px;line-height:2;color:#b9c8e9;text-align:center;margin:12px 4px}
-.overlay{position:fixed;inset:0;background:#080d1deF;z-index:5;display:flex;align-items:center;justify-content:center;padding:18px}
-.modal{width:min(420px,100%);background:linear-gradient(145deg,#29375d,#151e39);border:1px solid #6379a9;border-radius:24px;padding:25px 18px;text-align:center;box-shadow:0 20px 70px #000b}
-.modal h1{color:#ffe18a;font-size:29px;margin:5px}
-.modal p{font-size:12px;color:#c4d1ee;line-height:2}
-.startbtn{width:100%;background:linear-gradient(145deg,#ffe89a,#f3a52b);color:#34210b;margin-top:12px}
-select{width:100%;padding:12px;border-radius:12px;background:#101a32;color:white;border:1px solid #62749d;margin-top:8px}
-.hidden{display:none!important}
+:root{
+ --bg:#090e1b;--panel:#151e30;--gold:#ffc857;
+ --muted:#9aa9c0;--red:#ff5268;--green:#24d69a;
+ --blue:#4da3ff;--yellow:#ffcc42;
+}
+body{
+ margin:0;background:radial-gradient(circle at top,#1c2b49,#090e1b 65%);
+ color:white;font-family:Tahoma,Arial,sans-serif;
+ text-align:center;min-height:100vh;
+}
+header{padding:19px 10px 10px}
+h1{
+ margin:0;font-size:27px;color:var(--gold);
+ text-shadow:0 0 20px #ffc85755;
+}
+.sub{font-size:11px;color:var(--muted);margin-top:8px}
+.container{max-width:650px;margin:auto;padding:10px}
+.panel{
+ background:#151e30;border:1px solid #ffffff13;
+ border-radius:18px;padding:13px;margin-bottom:12px;
+ box-shadow:0 8px 25px #0004;
+}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+select,button{
+ font-family:inherit;border:0;border-radius:12px;
+ padding:12px 8px;font-weight:bold;font-size:13px;
+}
+select{background:#27364e;color:white}
+button{
+ background:linear-gradient(135deg,#ffdc78,#efa82d);
+ color:#171b27;cursor:pointer;
+ transition:.2s;
+}
+button:active{transform:scale(.96)}
+button.secondary{background:#293851;color:white}
+button:disabled{opacity:.4;cursor:not-allowed}
+.status{
+ padding:13px;border-radius:13px;
+ background:#202d44;color:#fff;font-size:13px;
+ line-height:2;
+}
+.turn{color:var(--gold);font-weight:bold}
+.players{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:6px;margin:12px 0;
+}
+.player{
+ background:#202c40;border-radius:12px;padding:9px 3px;
+ font-size:10px;line-height:2;opacity:.55;
+ border:2px solid transparent;
+}
+.player.active{opacity:1;border-color:var(--gold);background:#34415a}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+#board{
+ display:block;width:100%;max-width:560px;margin:12px auto;
+ border-radius:22px;background:#111b2b;
+ border:3px solid #43516b;
+ box-shadow:0 12px 35px #0009;
+}
+.token{cursor:pointer;transition:transform .2s}
+.token circle{stroke:white;stroke-width:2.5}
+.token.legal circle{stroke:#fff36c;stroke-width:5}
+.token.legal{filter:drop-shadow(0 0 7px #ffe36b)}
+.token text{font-size:11px;font-weight:bold;fill:#111}
+#dice{
+ width:78px;height:78px;margin:12px auto;
+ background:linear-gradient(145deg,#fff,#dce5f2);
+ border-radius:18px;color:#17253b;
+ font-size:43px;display:flex;align-items:center;
+ justify-content:center;
+ box-shadow:0 8px 20px #0006;
+}
+.rolling{animation:roll .45s infinite}
+@keyframes roll{
+ 0%{transform:rotate(0) scale(1)}
+ 50%{transform:rotate(180deg) scale(.8)}
+ 100%{transform:rotate(360deg) scale(1)}
+}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+#message{color:#ffd166;font-size:12px;min-height:25px;padding:8px}
+.stats{display:flex;justify-content:space-around;font-size:11px;color:#b8c7dc}
+.stat b{display:block;font-size:18px;color:white;margin-top:5px}
+footer{padding:20px;color:#71819a;font-size:10px}
+#win{
+ display:none;position:fixed;inset:0;z-index:20;
+ background:#080d1bee;align-items:center;
+ justify-content:center;padding:20px;
+}
+.winbox{
+ width:100%;max-width:350px;background:#1d2b43;
+ padding:30px 20px;border-radius:24px;
+ border:1px solid #ffc85766;
+ box-shadow:0 0 50px #ffc85733;
+}
+.winbox h2{color:var(--gold)}
+@media(max-width:390px){
+ h1{font-size:23px}
+ .container{padding:6px}
+ .panel{padding:9px}
+}
 </style>
 </head>
 <body>
+
 <header>
- <div class="logo">✦ NEBULUDO ✦</div>
- <div class="sub">چهار نفره • آفلاین • بازی کلاسیک منچ</div>
+<h1>👑 LUDO LEGENDS</h1>
+<div class="sub">THE ULTIMATE OFFLINE BOARD GAME</div>
 </header>
 
-<div class="wrap">
- <div class="panel">
-  <div class="topbar">
-   <div>
-    <div class="turn" id="turn">نوبت قرمز</div>
-    <div class="status" id="status">برای شروع تاس بریز!</div>
-   </div>
-   <div class="pill" id="diceResult">🎲 تاس: ـ</div>
-  </div>
+<main class="container">
 
-  <div class="boardbox">
-   <canvas id="board" width="640" height="640"></canvas>
-  </div>
-
-  <div class="controls">
-   <button class="dice" id="roll">🎲 پرتاب تاس</button>
-   <button class="secondary" id="newGame">↻ بازی جدید</button>
-  </div>
-
-  <div class="info" id="players"></div>
-  <div class="actions">
-   <button class="secondary" id="sound">🔊 صدا: روشن</button>
-   <button class="secondary" id="rules">📖 قوانین</button>
-   <button class="secondary" id="save">💾 ذخیره</button>
-  </div>
-  <div class="help">بعد از آوردن ۶، مهره از خانه خارج می‌شود. بعد از تاس، روی مهرهٔ موردنظر بزن تا حرکت کند.</div>
- </div>
-</div>
-
-<div class="overlay" id="welcome">
- <div class="modal">
-  <div style="font-size:48px">🎲</div>
-  <h1>NEBULUDO</h1>
-  <p>بازی منچ چهار نفره<br>با دوستانت دور یک گوشی بازی کن!</p>
-  <label style="font-size:12px">تعداد بازیکنان</label>
+<section class="panel">
+ <div class="controls">
   <select id="playerCount">
-   <option value="4">۴ بازیکن</option>
-   <option value="3">۳ بازیکن</option>
    <option value="2">۲ بازیکن</option>
+   <option value="3">۳ بازیکن</option>
+   <option value="4" selected>۴ بازیکن</option>
   </select>
-  <button class="startbtn" id="start">شروع بازی 🚀</button>
+  <select id="gameMode">
+   <option value="local">بازی خانوادگی</option>
+   <option value="ai">بازی با ربات</option>
+  </select>
+  <select id="difficulty">
+   <option value="1">ربات آسان</option>
+   <option value="2" selected>ربات حرفه‌ای</option>
+   <option value="3">ربات استاد</option>
+  </select>
+  <button onclick="newGame()">🎮 شروع بازی جدید</button>
  </div>
-</div>
+</section>
 
-<div class="overlay hidden" id="message">
- <div class="modal">
-  <div style="font-size:48px">🏆</div>
-  <h1 id="winnerText">برنده!</h1>
-  <p>همهٔ مهره‌ها به مقصد رسیدند!</p>
-  <button class="startbtn" id="again">بازی دوباره</button>
+<section class="panel">
+ <div class="status" id="status">برای شروع بازی تاس را بیندازید 🎲</div>
+ <div class="players" id="players"></div>
+ <svg id="board" viewBox="0 0 600 600" aria-label="صفحه بازی منچ"></svg>
+ <div id="dice">🎲</div>
+ <div class="actions">
+  <button id="rollBtn" onclick="rollDice()">🎲 انداختن تاس</button>
+  <button class="secondary" onclick="saveGame()">💾 ذخیره بازی</button>
+ </div>
+ <div id="message">برای خروج مهره باید عدد ۶ بیاورید.</div>
+</section>
+
+<section class="panel">
+ <div class="stats">
+  <div class="stat">حرکت‌ها<b id="moves">۰</b></div>
+  <div class="stat">حذف مهره‌ها<b id="kills">۰</b></div>
+  <div class="stat">بازی‌ها<b id="games">۰</b></div>
+ </div>
+</section>
+
+<section class="panel">
+ <div class="actions">
+  <button class="secondary" onclick="loadGame()">📂 ادامه بازی ذخیره‌شده</button>
+  <button class="secondary" onclick="toggleSound()">🔊 صدا روشن / خاموش</button>
+ </div>
+</section>
+
+<footer>
+LUDO LEGENDS © 2026 | OFFLINE EDITION
+</footer>
+</main>
+
+<div id="win">
+ <div class="winbox">
+  <div style="font-size:60px">🏆</div>
+  <h2 id="winnerText">قهرمان بازی!</h2>
+  <p>تبریک! تو برنده مسابقه شدی.</p>
+  <button onclick="newGame()">مسابقه دوباره 🔥</button>
  </div>
 </div>
 
 <script>
-(()=>{
-"use strict";
-
-const canvas=document.getElementById("board");
-const ctx=canvas.getContext("2d");
-const $=id=>document.getElementById(id);
+const NS="http://www.w3.org/2000/svg";
 
 const colors=[
- {name:"قرمز",color:"#f04455",dark:"#a91f36",light:"#ff9e9e"},
- {name:"سبز",color:"#28c987",dark:"#087a55",light:"#9affd3"},
- {name:"زرد",color:"#ffc83d",dark:"#b77b0b",light:"#fff0a1"},
- {name:"آبی",color:"#438cff",dark:"#2052ae",light:"#a7d2ff"}
+ {name:"قرمز",color:"#ff5268",start:0,base:[115,115],home:[300,75]},
+ {name:"سبز",color:"#24d69a",start:13,base:[485,115],home:[525,300]},
+ {name:"زرد",color:"#ffcc42",start:26,base:[485,485],home:[300,525]},
+ {name:"آبی",color:"#4da3ff",start:39,base:[115,485],home:[75,300]}
 ];
 
-const track=[];
-for(let x=1;x<=14;x++) track.push([x,1]);
-for(let y=2;y<=14;y++) track.push([14,y]);
-for(let x=13;x>=1;x--) track.push([x,14]);
-for(let y=13;y>=2;y--) track.push([1,y]);
-
-const starts=[6,19,32,45];
-const lanes=[
- [[7.5,2],[7.5,3],[7.5,4],[7.5,5],[7.5,6],[7.5,7]],
- [[13,7.5],[12,7.5],[11,7.5],[10,7.5],[9,7.5],[8,7.5]],
- [[7.5,13],[7.5,12],[7.5,11],[7.5,10],[7.5,9],[7.5,8]],
- [[2,7.5],[3,7.5],[4,7.5],[5,7.5],[6,7.5],[7,7.5]]
-];
+const diceFaces=["⚀","⚁","⚂","⚃","⚄","⚅"];
 
 let players=[];
-let current=0;
+let turn=0;
 let dice=0;
 let rolling=false;
-let soundOn=true;
-let sixCount=0;
-let gameOver=false;
-let cell=40;
-let offset=0;
+let finished=false;
+let sound=true;
+let moves=0;
+let kills=0;
+let games=0;
+let gameCount=4;
+let mode="local";
+let difficulty=2;
+let currentLegal=[];
+let audio=null;
 
-function init(count=4){
- players=colors.slice(0,count).map((c,i)=>({
-  ...c,id:i,tokens:[-1,-1,-1,-1]
- }));
- current=0;dice=0;rolling=false;sixCount=0;gameOver=false;
- $("message").classList.add("hidden");
- $("diceResult").textContent="🎲 تاس: ـ";
- setStatus("برای شروع تاس بریز!");
- draw();updateUI();saveGame();
+const board=document.getElementById("board");
+
+function el(tag,attrs={},parent=board){
+ const e=document.createElementNS(NS,tag);
+ Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));
+ parent.appendChild(e);
+ return e;
 }
 
-function saveGame(){
- try{
-  localStorage.setItem("nebuludo-save",JSON.stringify({
-   players:players.map(p=>({id:p.id,tokens:p.tokens})),
-   current,dice,sixCount
-  }));
- }catch(e){}
+function circle(x,y,r,fill,parent=board,stroke="none",sw=0){
+ return el("circle",{cx:x,cy:y,r,fill,stroke,"stroke-width":sw},parent);
 }
 
-function loadGame(){
- try{
-  const data=JSON.parse(localStorage.getItem("nebuludo-save"));
-  if(!data||!data.players)return false;
-  players=data.players.map(p=>({...colors[p.id],id:p.id,tokens:p.tokens}));
-  current=data.current||0;dice=0;sixCount=data.sixCount||0;
-  if(!players.length)return false;
-  draw();updateUI();setStatus("بازی ذخیره‌شده بارگذاری شد.");
-  return true;
- }catch(e){return false}
+function text(x,y,value,size=14,fill="white",parent=board){
+ const e=el("text",{x,y,"text-anchor":"middle","dominant-baseline":"middle",fill,"font-size":size,"font-weight":"bold"},parent);
+ e.textContent=value;
+ return e;
 }
 
-function setStatus(t){$("status").textContent=t}
-
-function point(x,y){
- return [offset+x*cell,offset+y*cell];
-}
-function rounded(x,y,w,h,r,fill,stroke){
- ctx.beginPath();ctx.roundRect(x,y,w,h,r);
- ctx.fillStyle=fill;ctx.fill();
- if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}
-}
-function circle(x,y,r,fill,stroke){
- ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
- ctx.fillStyle=fill;ctx.fill();
- if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=3;ctx.stroke()}
+function point(i){
+ const a=-Math.PI/2+i*Math.PI*2/52;
+ return [300+218*Math.cos(a),300+218*Math.sin(a)];
 }
 
-function basePositions(id){
- const coords=[
-  [[2.7,2.7],[4.5,2.7],[2.7,4.5],[4.5,4.5]],
-  [[11.5,2.7],[13.3,2.7],[11.5,4.5],[13.3,4.5]],
-  [[11.5,11.5],[13.3,11.5],[11.5,13.3],[13.3,13.3]],
-  [[2.7,11.5],[4.5,11.5],[2.7,13.3],[4.5,13.3]]
+function homePoint(p,step){
+ const a=-Math.PI/2+p*Math.PI/2;
+ const x=300+218*Math.cos(a);
+ const y=300+218*Math.sin(a);
+ const t=(step+1)/7;
+ return [x+(300-x)*t,y+(300-y)*t];
+}
+
+function drawBoard(){
+ board.innerHTML="";
+
+ el("rect",{x:0,y:0,width:600,height:600,rx:25,fill:"#17243a"});
+
+ // چهار منطقه رنگی
+ const zones=[
+  [20,20,220,220,colors[0].color],
+  [360,20,220,220,colors[1].color],
+  [360,360,220,220,colors[2].color],
+  [20,360,220,220,colors[3].color]
  ];
- return coords[id];
-}
-function tokenPosition(id,n){
- const p=players[id],progress=p.tokens[n];
- if(progress<0)return basePositions(id)[n];
- if(progress>=52)return lanes[id][Math.min(5,progress-52)];
- return track[(starts[id]+progress)%52];
-}
-
-function drawBase(id){
- const c=players[id];if(!c)return;
- const rects=[
-  [0.35,0.35,5.25,5.25],
-  [10.4,0.35,5.25,5.25],
-  [10.4,10.4,5.25,5.25],
-  [0.35,10.4,5.25,5.25]
- ];
- const [x,y,w,h]=rects[id];
- const px=offset+x*cell,py=offset+y*cell;
- rounded(px,py,w*cell,h*cell,22,c.dark);
- rounded(px+12,py+12,w*cell-24,h*cell-24,17,c.color);
- rounded(px+28,py+28,w*cell-56,h*cell-56,13,"#f8f8ff");
- basePositions(id).forEach((pos,n)=>{
-  const [tx,ty]=point(...pos);
-  circle(tx,ty,18,"#d9deed","#a2acc5");
-  drawToken(tx,ty,c,n,false);
+ zones.forEach(z=>{
+  el("rect",{x:z[0],y:z[1],width:z[2],height:z[3],rx:30,fill:z[4],opacity:.19,stroke:z[4],"stroke-width":3});
  });
-}
 
-function drawTrack(){
- for(let i=0;i<track.length;i++){
-  const [x,y]=point(...track[i]);
-  const owner=starts.indexOf(i);
-  let fill="#e9edf7";
-  if(owner>=0)fill=colors[owner].color;
-  if(i%13===0)fill=colors[starts.indexOf(i)]?.color||fill;
-  rounded(x-18,y-18,36,36,7,fill,"#a9b5ce");
-  if(owner>=0){
-   circle(x,y,5,"#fff");
+ // حلقه اصلی
+ circle(300,300,240,"#26364e");
+ circle(300,300,232,"#111c2e");
+
+ for(let i=0;i<52;i++){
+  const [x,y]=point(i);
+  const safe=[0,13,26,39].includes(i);
+  circle(x,y,14,safe?"#f4cf73":"#e6eaf0",board,safe?"#fff":"#64748b",2);
+  if(safe)text(x,y,"★",13,"#25344c");
+ }
+
+ // خانه‌های پایانی
+ for(let p=0;p<4;p++){
+  for(let j=0;j<6;j++){
+   const [x,y]=homePoint(p,j);
+   circle(x,y,12,colors[p].color,board,"#fff",1.5);
   }
  }
-}
 
-function drawHomeLanes(){
- for(let id=0;id<4;id++){
-  lanes[id].forEach((p,i)=>{
-   const [x,y]=point(...p);
-   rounded(x-17,y-17,34,34,7,colors[id].color,"#ffffff99");
-   if(i===5)circle(x,y,5,"#fff");
-  });
- }
-}
+ // مرکز
+ el("circle",{cx:300,cy:300,r:60,fill:"#263750",stroke:"#ffc857","stroke-width":4});
+ text(300,285,"LUDO",20,"#ffc857");
+ text(300,310,"LEGENDS",11,"white");
 
-function drawCenter(){
- const [cx,cy]=point(7.5,7.5);
- ctx.save();
- ctx.translate(cx,cy);
- ctx.beginPath();
- ctx.moveTo(-38,-38);ctx.lineTo(38,-38);ctx.lineTo(38,38);ctx.lineTo(-38,38);ctx.closePath();
- ctx.fillStyle="#f5f3ee";ctx.fill();
- const triangles=[
-  [0,0,-38,-38,38,-38,colors[0].color],
-  [0,0,38,-38,38,38,colors[1].color],
-  [0,0,38,38,-38,38,colors[2].color],
-  [0,0,-38,38,-38,-38,colors[3].color]
- ];
- triangles.forEach(t=>{
-  ctx.beginPath();ctx.moveTo(t[0],t[1]);ctx.lineTo(t[2],t[3]);ctx.lineTo(t[4],t[5]);ctx.closePath();
-  ctx.fillStyle=t[6];ctx.fill();
+ // خانه‌های مهره‌ها
+ colors.forEach((c,p)=>{
+  const [bx,by]=c.base;
+  el("rect",{x:bx-77,y:by-77,width:154,height:154,rx:25,fill:c.color,opacity:.2,stroke:c.color,"stroke-width":3});
+  for(let j=0;j<4;j++){
+   const x=bx+(j%2?28:-28);
+   const y=by+(j<2?-28:28);
+   circle(x,y,17,"#152238",board,c.color,4);
+  }
  });
- circle(0,0,7,"#fff");
- ctx.restore();
 }
 
-function drawToken(x,y,c,n,selected){
- ctx.save();
- ctx.shadowColor="#0009";ctx.shadowBlur=selected?15:7;ctx.shadowOffsetY=5;
- const grad=ctx.createRadialGradient(x-7,y-9,2,x,y,19);
- grad.addColorStop(0,c.light);grad.addColorStop(.45,c.color);grad.addColorStop(1,c.dark);
- circle(x,y,16,grad,"#ffffff");
- ctx.shadowColor="transparent";
- circle(x,y-4,5,"#ffffffaa");
- if(selected){
-  ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);
-  ctx.strokeStyle="#fff";ctx.lineWidth=3;ctx.stroke();
- }
- ctx.restore();
-}
+function createPlayers(){
+ const count=Number(document.getElementById("playerCount").value);
+ gameCount=count;
+ mode=document.getElementById("gameMode").value;
+ difficulty=Number(document.getElementById("difficulty").value);
 
-function draw(){
- const W=640;
- ctx.clearRect(0,0,W,W);
- const bg=ctx.createLinearGradient(0,0,W,W);
- bg.addColorStop(0,"#e8edf9");bg.addColorStop(1,"#b9c8e5");
- rounded(0,0,W,W,16,bg);
- offset=0;cell=40;
- drawBase(0);drawBase(1);drawBase(2);drawBase(3);
- drawTrack();drawHomeLanes();drawCenter();
+ const ids=count===2?[0,2]:count===3?[0,1,2]:[0,1,2,3];
 
- const occupied={};
- players.forEach(p=>p.tokens.forEach((v,n)=>{
-  if(v<0)return;
-  const pos=tokenPosition(p.id,n);
-  const key=pos[0]+","+pos[1];
-  (occupied[key]??=[]).push({p,n});
+ players=ids.map((id,index)=>({
+  id,
+  name:colors[id].name,
+  color:colors[id].color,
+  pieces:[-1,-1,-1,-1],
+  wins:0,
+  bot:mode==="ai"&&index!==0
  }));
- Object.values(occupied).forEach(group=>{
-  group.forEach(({p,n},i)=>{
-   const pos=tokenPosition(p.id,n);
-   const [x,y]=point(pos[0],pos[1]);
-   const shift=group.length>1?(i-(group.length-1)/2)*7:0;
-   drawToken(x+shift,y,p,n,false);
+ turn=0;dice=0;finished=false;rolling=false;
+ currentLegal=[];moves=0;kills=0;
+ document.getElementById("win").style.display="none";
+ document.getElementById("message").textContent="برای خروج مهره عدد ۶ بیاورید.";
+ update();
+}
+
+function newGame(){
+ createPlayers();
+ drawBoard();
+ renderPieces();
+ update();
+}
+
+function basePosition(p,j){
+ const [bx,by]=colors[p.id].base;
+ return [bx+(j%2?28:-28),by+(j<2?-28:28)];
+}
+
+function piecePosition(p,j){
+ const v=p.pieces[j];
+ if(v===-1)return basePosition(p,j);
+ if(v===57){
+  const [x,y]=colors[p.id].home;
+  return [x,y];
+ }
+ if(v>=51)return homePoint(p.id,v-51);
+ const [x,y]=point((colors[p.id].start+v)%52);
+ return [x,y];
+}
+
+function renderPieces(){
+ board.querySelectorAll(".token").forEach(e=>e.remove());
+
+ players.forEach(p=>{
+  p.pieces.forEach((v,j)=>{
+   const [x,y]=piecePosition(p,j);
+   const g=el("g",{class:"token"+(currentLegal.includes(j)&&p===players[turn]?" legal":"")});
+   const r=el("circle",{cx:x,cy:y,r:13,fill:p.color,stroke:"#fff","stroke-width":2},g);
+   el("circle",{cx:x-4,cy:y-4,r:4,fill:"#ffffff","fill-opacity":.5,stroke:"none"},g);
+   if(v===57)text(x,y,"★",14,"#fff",g);
+   else text(x,y,j+1,10,"#152238",g);
+   g.addEventListener("click",()=>choosePiece(players.indexOf(p),j));
   });
  });
 }
 
-function updateUI(){
- const p=players[current];
- $("turn").textContent="نوبت "+(p?.name||"ـ");
- $("turn").style.color=p?.color||"white";
- $("players").innerHTML=players.map((pl,i)=>{
-  const finished=pl.tokens.filter(v=>v===58).length;
-  return `<div class="player" style="border-color:${pl.color}">
-   <strong style="color:${pl.color}">● ${pl.name}</strong>
-   ${finished}/4 خانه
-  </div>`;
- }).join("");
- $("roll").disabled=rolling||gameOver||dice!==0;
+function update(){
+ document.getElementById("status").innerHTML=
+ finished?"بازی به پایان رسید":
+ "نوبت: <span class='turn'>"+players[turn].name+"</span> "+
+ (players[turn].bot?"🤖 ربات":"🎮 بازیکن")+" | "+(dice?"عدد تاس: "+dice:"منتظر تاس");
+
+ document.getElementById("players").innerHTML=players.map((p,i)=>
+ `<div class="player ${i===turn?"active":""}">
+ <span class="dot" style="background:${p.color}"></span><br>
+ ${p.name} ${p.bot?"🤖":"👤"}<br>
+ ${p.pieces.filter(v=>v===57).length} از ۴ مهره
+ </div>`).join("");
+
+ document.getElementById("moves").textContent=moves;
+ document.getElementById("kills").textContent=kills;
+ document.getElementById("games").textContent=games;
+ document.getElementById("rollBtn").disabled=finished||rolling||dice!==0||players[turn].bot;
 }
 
-function beep(freq=500,duration=.12){
- if(!soundOn)return;
+function playSound(freq=500){
+ if(!sound)return;
  try{
-  const AC=window.AudioContext||window.webkitAudioContext;
-  const ac=new AC(),osc=ac.createOscillator(),gain=ac.createGain();
-  osc.frequency.value=freq;osc.type="sine";
-  gain.gain.setValueAtTime(.08,ac.currentTime);
-  gain.gain.exponentialRampToValueAtTime(.001,ac.currentTime+duration);
-  osc.connect(gain);gain.connect(ac.destination);
-  osc.start();osc.stop(ac.currentTime+duration);
-  setTimeout(()=>ac.close(),300);
+  audio=audio||new(window.AudioContext||window.webkitAudioContext)();
+  const o=audio.createOscillator();
+  const g=audio.createGain();
+  o.frequency.value=freq;
+  g.gain.value=.06;
+  o.connect(g);g.connect(audio.destination);
+  o.start();o.stop(audio.currentTime+.12);
  }catch(e){}
 }
 
-function canMove(p,value){
- return p.tokens.map((v,i)=>({v,i})).filter(t=>
-  t.v===-1?value===6:(t.v<58&&t.v+value<=58)
- ).map(t=>t.i);
+function toggleSound(){
+ sound=!sound;
+ document.getElementById("message").textContent=sound?"صدا روشن شد 🔊":"صدا خاموش شد 🔇";
+}
+
+function legalMoves(p,d){
+ return p.pieces.map((v,j)=>{
+  if(v===57)return false;
+  if(v===-1)return d===6;
+  return v+d<=57;
+ }).map((ok,j)=>ok?j:-1).filter(j=>j!==-1);
 }
 
 function rollDice(){
- if(rolling||gameOver||dice!==0)return;
- rolling=true;updateUI();
- let ticks=0;
- const anim=setInterval(()=>{
-  const temp=1+Math.floor(Math.random()*6);
-  $("diceResult").textContent="🎲 تاس: "+temp;
-  ticks++;
-  if(ticks>=10){
-   clearInterval(anim);
+ if(finished||rolling||dice!==0||players[turn].bot)return;
+ rolling=true;
+ const box=document.getElementById("dice");
+ box.classList.add("rolling");
+ let n=0;
+ const interval=setInterval(()=>{
+  const v=1+Math.floor(Math.random()*6);
+  box.textContent=diceFaces[v-1];
+  if(++n>=10){
+   clearInterval(interval);
    dice=1+Math.floor(Math.random()*6);
    rolling=false;
-   $("diceResult").textContent="🎲 تاس: "+dice;
-   beep(650,.18);
-   if(dice===6)sixCount++;else sixCount=0;
-   if(sixCount>=3){
-    setStatus("سه بار پشت سر هم ۶ آوردی! نوبت از دست رفت.");
-    dice=0;sixCount=0;setTimeout(nextPlayer,1100);
-    return;
-   }
-   const moves=canMove(players[current],dice);
-   if(!moves.length){
-    setStatus("مهره‌ای برای این تاس نداری.");
-    const extra=dice===6;
-    dice=0;
-    setTimeout(()=>{if(!extra)nextPlayer();else setStatus("۶ آوردی؛ دوباره تاس بریز!");updateUI()},1000);
+   box.classList.remove("rolling");
+   box.textContent=diceFaces[dice-1];
+   playSound(400+dice*80);
+   currentLegal=legalMoves(players[turn],dice);
+   renderPieces();
+   if(!currentLegal.length){
+    document.getElementById("message").textContent="حرکت مجاز نداری!";
+    setTimeout(nextTurn,false);
    }else{
-    setStatus(moves.length===1?"مهرهٔ روشن‌شده را انتخاب کن.":"یکی از مهره‌هایت را انتخاب کن.");
-    draw();updateUI();
+    document.getElementById("message").textContent="مهره مورد نظر را انتخاب کن.";
+    update();
+    if(players[turn].bot) setTimeout(botMove,700);
    }
   }
- },75);
+ },65);
 }
 
-function nextPlayer(){
- dice=0;
- current=(current+1)%players.length;
- setStatus("نوبت "+players[current].name+" است.");
- draw();updateUI();saveGame();
+function choosePiece(pi,j){
+ if(finished||pi!==turn||!currentLegal.includes(j)||players[turn].bot)return;
+ movePiece(j);
 }
 
-function moveToken(id,n){
- const p=players[id],old=p.tokens[n];
- if(old===-1){
-  p.tokens[n]=0;
- }else{
-  p.tokens[n]+=dice;
- }
- const newProgress=p.tokens[n];
- dice=0;
- beep(720,.13);
+function movePiece(j){
+ const p=players[turn];
+ let v=p.pieces[j];
+ if(v===-1)p.pieces[j]=0;
+ else p.pieces[j]+=dice;
 
- if(newProgress<52){
-  const global=(starts[id]+newProgress)%52;
-  const safe=starts.includes(global)||[5,18,31,44].includes(global);
-  if(!safe){
+ moves++;
+ playSound(650);
+
+ let capture=false;
+ const newV=p.pieces[j];
+
+ if(newV>=0&&newV<=50){
+  const pos=(colors[p.id].start+newV)%52;
+  if(![0,13,26,39].includes(pos)){
    players.forEach(other=>{
-    if(other.id===id)return;
-    other.tokens.forEach((v,k)=>{
-     if(v>=0&&v<52&&(starts[other.id]+v)%52===global){
-      other.tokens[k]=-1;
-      setStatus("آفرین! مهرهٔ "+other.name+" را زدی!");
-      beep(250,.25);
-     }
+    if(other===p)return;
+    other.pieces.forEach((ov,k)=>{
+     if(ov>=0&&ov<=50&&
+       (colors[other.id].start+ov)%52===pos){
+       other.pieces[k]=-1;
+       capture=true;
+       kills++;
+      }
     });
    });
   }
  }
- const won=p.tokens.every(v=>v===58);
- if(won){
-  gameOver=true;
-  $("winnerText").textContent="🏆 "+p.name+" برنده شد!";
-  $("message").classList.remove("hidden");
+
+ dice=0;currentLegal=[];
+ renderPieces();
+
+ if(capture){
+  document.getElementById("message").textContent="💥 مهره حریف را زدی!";
+  playSound(850);
+ }else{
+  document.getElementById("message").textContent=newV===57?"🏆 مهره به خانه نهایی رسید!":"حرکت انجام شد!";
  }
- const extra=(newProgress===58||old===-1&&dice===6);
- if(!gameOver){
-  if(extra){
-   setStatus("حرکت عالی! دوباره تاس بریز.");
+
+ if(p.pieces.every(v=>v===57)){
+  finished=true;
+  games++;
+  document.getElementById("winnerText").textContent="🏆 "+p.name+" قهرمان شد!";
+  setTimeout(()=>document.getElementById("win").style.display="flex",500);
+  update();saveGame();
+  return;
+ }
+
+ update();
+ if(dice===0){
+  if(capture){
+   setTimeout(()=>{
+    update();
+    if(p.bot)botRoll();
+   },500);
   }else{
-   setTimeout(nextPlayer,450);
+   if(v===-1||p.pieces[j]===57||Math.abs(p.pieces[j]-v)>0&&v!==-1){
+    // ادامه نوبت در صورت آوردن شش
+   }
+   if(lastRollSix){
+    lastRollSix=false;
+    setTimeout(()=>{if(p.bot)botRoll()},500);
+   }else nextTurn();
   }
  }
- draw();updateUI();saveGame();
 }
 
-function handleBoardTap(e){
- if(dice===0||rolling||gameOver)return;
- const rect=canvas.getBoundingClientRect();
- const x=(e.clientX-rect.left)*640/rect.width;
- const y=(e.clientY-rect.top)*640/rect.height;
- const moves=canMove(players[current],dice);
- const p=players[current];
- let chosen=-1,best=999;
- moves.forEach(n=>{
-  const pos=tokenPosition(p.id,n);
-  const [tx,ty]=point(pos[0],pos[1]);
-  const d=Math.hypot(x-tx,y-ty);
-  if(d<32&&d<best){best=d;chosen=n}
+let lastRollSix=false;
+
+const oldRollDice=rollDice;
+function botRoll(){
+ if(finished||!players[turn].bot||dice!==0)return;
+ rolling=false;
+ const d=1+Math.floor(Math.random()*6);
+ dice=d;
+ lastRollSix=d===6;
+ document.getElementById("dice").textContent=diceFaces[d-1];
+ currentLegal=legalMoves(players[turn],dice);
+ renderPieces();
+ update();
+ if(!currentLegal.length){
+  setTimeout(()=>nextTurn(),500);
+  return;
+ }
+ setTimeout(botMove,650);
+}
+
+// تاس انسانی و ربات
+const originalRollDice=rollDice;
+rollDice=function(){
+ if(finished||rolling||dice!==0||players[turn].bot)return;
+ rolling=true;
+ const box=document.getElementById("dice");
+ box.classList.add("rolling");
+ let n=0;
+ const interval=setInterval(()=>{
+  const v=1+Math.floor(Math.random()*6);
+  box.textContent=diceFaces[v-1];
+  if(++n>=10){
+   clearInterval(interval);
+   dice=1+Math.floor(Math.random()*6);
+   rolling=false;
+   box.classList.remove("rolling");
+   lastRollSix=dice===6;
+   box.textContent=diceFaces[dice-1];
+   playSound(400+dice*80);
+   currentLegal=legalMoves(players[turn],dice);
+   renderPieces();
+   update();
+   if(!currentLegal.length){
+    document.getElementById("message").textContent="حرکت مجاز نداری!";
+    setTimeout(()=>nextTurn(),700);
+   }else{
+    document.getElementById("message").textContent="مهره مورد نظر را انتخاب کن.";
+   }
+  }
+ },65);
+};
+
+function botMove(){
+ if(finished||!players[turn].bot||!currentLegal.length)return;
+ const p=players[turn];
+ let choices=currentLegal.map(j=>{
+  const v=p.pieces[j];
+  const target=v===-1?0:v+dice;
+  let score=Math.random()*difficulty;
+  if(v===-1)score+=dice===6?30:0;
+  if(target===57)score+=100;
+  if(target>=51)score+=20;
+  if(target>=0&&target<=50){
+   const pos=(colors[p.id].start+target)%52;
+   players.forEach(o=>{
+    if(o===p)return;
+    o.pieces.forEach(ov=>{
+     if(ov>=0&&ov<=50&&(colors[o.id].start+ov)%52===pos)score+=50;
+    });
+   });
+  }
+  score+=target*.15;
+  return {j,score};
  });
- if(chosen>=0)moveToken(current,chosen);
+ choices.sort((a,b)=>b.score-a.score);
+ movePiece(choices[0].j);
 }
 
-$("roll").addEventListener("click",rollDice);
-canvas.addEventListener("pointerdown",handleBoardTap);
-$("start").addEventListener("click",()=>{
- init(Number($("playerCount").value));
- $("welcome").classList.add("hidden");
-});
-$("newGame").addEventListener("click",()=>{
- if(confirm("بازی از اول شروع شود؟"))init(players.length||4);
-});
-$("again").addEventListener("click",()=>{
- init(players.length||4);
- $("message").classList.add("hidden");
-});
-$("sound").addEventListener("click",()=>{
- soundOn=!soundOn;
- $("sound").textContent=soundOn?"🔊 صدا: روشن":"🔇 صدا: خاموش";
-});
-$("rules").addEventListener("click",()=>{
- alert("قوانین بازی:\n\n۱. برای خارج کردن مهره باید ۶ بیاوری.\n۲. با آوردن ۶ یک نوبت اضافه داری.\n۳. اگر روی مهرهٔ حریف فرود بیایی، آن مهره به خانه برمی‌گردد.\n۴. خانه‌های امن قابل زدن نیستند.\n۵. برای ورود به خانهٔ پایانی باید عدد دقیق بیاوری.\n۶. هرکس هر چهار مهره را به مقصد برساند برنده است.");
-});
-$("save").addEventListener("click",()=>{
- saveGame();setStatus("بازی ذخیره شد.");
-});
-if(!loadGame())init(4);
-})();
+function nextTurn(){
+ if(finished)return;
+ dice=0;currentLegal=[];lastRollSix=false;
+ turn=(turn+1)%players.length;
+ document.getElementById("dice").textContent="🎲";
+ renderPieces();
+ update();
+ if(players[turn].bot)setTimeout(botRoll,650);
+}
+
+function saveGame(){
+ try{
+  const data={
+   players,turn,dice,moves,kills,games,
+   gameCount,mode,difficulty
+  };
+  localStorage.setItem("ludo_legends_save",JSON.stringify(data));
+  document.getElementById("message").textContent="💾 بازی ذخیره شد!";
+ }catch(e){
+  document.getElementById("message").textContent="ذخیره امکان‌پذیر نیست.";
+ }
+}
+
+function loadGame(){
+ try{
+  const data=JSON.parse(localStorage.getItem("ludo_legends_save"));
+  if(!data)throw Error();
+  players=data.players;
+  turn=data.turn;
+  dice=data.dice;
+  moves=data.moves||0;
+  kills=data.kills||0;
+  games=data.games||0;
+  gameCount=data.gameCount;
+  mode=data.mode;
+  difficulty=data.difficulty;
+  document.getElementById("playerCount").value=gameCount;
+  document.getElementById("gameMode").value=mode;
+  document.getElementById("difficulty").value=difficulty;
+  finished=false;rolling=false;
+  currentLegal=dice?legalMoves(players[turn],dice):[];
+  drawBoard();renderPieces();update();
+  document.getElementById("dice").textContent=dice?diceFaces[dice-1]:"🎲";
+  document.getElementById("message").textContent="بازی قبلی بارگذاری شد!";
+  if(players[turn].bot){
+   if(dice)setTimeout(botMove,700);
+   else setTimeout(botRoll,700);
+  }
+ }catch(e){
+  document.getElementById("message").textContent="بازی ذخیره‌شده‌ای پیدا نشد!";
+ }
+}
+
+newGame();
 </script>
 </body>
 </html>
